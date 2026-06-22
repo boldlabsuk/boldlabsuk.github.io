@@ -1082,5 +1082,113 @@
     "profilePicture": "me-cropped-square - Alfie Lamerton.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://alfielamerton.co.uk/; https://x.com/alfie_lamerton; https://scholar.google.com/citations?user=zJlvbNcAAAAJ&hl=en;"
+  },
+  {
+    "source": "main",
+    "name": "Jakob Foerster",
+    "role": "Faculty",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "jakob-foerster.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.jakobfoerster.com/; https://twitter.com/j_foerst; https://scholar.google.com/citations?user=6z4lQzMAAAAJ&hl=en; https://github.com/jakobnicolaus"
+  },
+  {
+    "source": "main",
+    "name": "Sam Coward",
+    "role": "DPhil Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "sam-coward.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://dramacow.github.io/; https://twitter.com/scowardai; https://scholar.google.com/citations?user=-0_t2_EAAAAJ&hl=en; https://github.com/DramaCow"
+  },
+  {
+    "source": "main",
+    "name": "Matthew Jackson",
+    "role": "DPhil Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "matthew-jackson.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://matthewtjackson.com; https://twitter.com/JacksonMattT; https://scholar.google.com/citations?user=SdGawnwAAAAJ&hl=en; https://github.com/EmptyJackson"
+  },
+  {
+    "source": "main",
+    "name": "Qizhen Zhang (Irene)",
+    "role": "DPhil Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "qizhen-zhang.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://irenezhang30.github.io/; https://twitter.com/IreneZhang30; https://scholar.google.com/citations?user=RbjPWpEAAAAJ&hl=en; https://github.com/irenezhang30"
+  },
+  {
+    "source": "main",
+    "name": "Andrei Lupu",
+    "role": "DPhil Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "andrei-lupu.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://twitter.com/_andreilupu; https://scholar.google.com/citations?user=I6aB-YUAAAAJ&hl=en&oi=ao; https://github.com/lupuandr"
+  },
+  {
+    "source": "main",
+    "name": "Sebastian Towers",
+    "role": "DPhil Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "seb-towers.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": ""
+  },
+  {
+    "source": "main",
+    "name": "Garrett Deceuninck-Ziviani",
+    "role": "Group Support",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Research Operations"
+    ],
+    "profilePicture": "garrett-ziviani.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "mailto:garrett.deceuninck-ziviani@eng.ox.ac.uk"
+  },
+  {
+    "source": "main",
+    "name": "Maksymilian Wolski",
+    "role": "Visiting Student (MSc)",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "maks-wolski.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": ""
+  },
+  {
+    "source": "main",
+    "name": "Tim Franzmeyer",
+    "role": "Associate PhD",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "tim-franzmeyer.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.robots.ox.ac.uk/~frtim/; https://twitter.com/frtimlive; https://scholar.google.com/citations?user=Jvv1rkkAAAAJ; https://github.com/fratim"
   }
 ]
