@@ -11,7 +11,7 @@ export function Avatar({
   person: AvatarPerson
   size?: 'standard' | 'large'
 }) {
-  const image = person.image ? profileImages[person.image] : undefined
+  const image = getAvatarImageSource(person.image)
 
   if (image) {
     return (
@@ -32,4 +32,16 @@ export function Avatar({
       {getInitials(person.name)}
     </div>
   )
+}
+
+function getAvatarImageSource(image?: string) {
+  if (!image) {
+    return undefined
+  }
+
+  if (image.startsWith('/') || URL.canParse(image)) {
+    return image
+  }
+
+  return profileImages[image]
 }

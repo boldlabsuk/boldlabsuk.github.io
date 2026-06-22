@@ -18,14 +18,16 @@ export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
       const name = sourcePerson.name.trim()
       const role = sourcePerson.role.trim()
       const affiliation = sourcePerson.homeInstitution?.trim()
+      const slug = slugify(name)
 
       return {
-        slug: slugify(name),
+        slug,
         name,
         role,
         group: role,
         affiliation: affiliation || undefined,
         bio: '',
+        image: buildProfileAssetUrl(slug),
         researchAreas: normalizeResearchAreas(
           sourcePerson.researchInterestKeywords,
         ),
@@ -60,6 +62,10 @@ function slugify(value: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
+}
+
+export function buildProfileAssetUrl(personSlug: string) {
+  return `/profile-assets/${personSlug}.webp`
 }
 
 export const people = buildWebsiteRoster(ourPeople)

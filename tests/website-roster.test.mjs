@@ -1,7 +1,9 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { access } from 'node:fs/promises'
+import { join } from 'node:path'
 
-import { buildWebsiteRoster } from '../src/content/people.ts'
+import { buildWebsiteRoster, people } from '../src/content/people.ts'
 import {
   buildPeopleDirectoryViewModel,
   peopleSectionOrder,
@@ -80,6 +82,10 @@ test('Website Roster derives public Person Listings from central source rows', (
     'University of Oxford',
     'Imperial College London',
   ])
+  assert.deepEqual(roster.map((person) => person.image), [
+    '/profile-assets/included-pi.webp',
+    '/profile-assets/blank-flag-postdoc.webp',
+  ])
 
   const directory = buildPeopleDirectoryViewModel({
     people: roster,
@@ -103,5 +109,45 @@ test('Website Roster derives public Person Listings from central source rows', (
       ['Principal Investigator', ['included-pi']],
       ['Postdoc', ['blank-flag-postdoc']],
     ],
+  )
+})
+
+test('Website Roster maps unsupported profile source formats to generated web-safe assets', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'HEIC Upload',
+      role: 'Postdoc',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'heic-upload.HEIC',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'PDF Upload',
+      role: 'PhD student',
+      homeInstitution: 'Imperial College London',
+      researchInterestKeywords: ['Agent Learning'],
+      profilePicture: 'pdf-upload.pdf',
+      listOnBoldWebsite: 'YES',
+    },
+  ])
+
+  assert.deepEqual(
+    roster.map((person) => person.image),
+    ['/profile-assets/heic-upload.webp', '/profile-assets/pdf-upload.webp'],
+  )
+})
+
+test('Every Website Roster Person resolves to an existing generated public image asset', async () => {
+  assert.ok(people.length > 0)
+
+  await Promise.all(
+    people.map(async (person) => {
+      assert.ok(person.image, `${person.name} is missing a profile image URL`)
+      assert.match(person.image, /^\/profile-assets\/[a-z0-9-]+\.webp$/)
+      await access(join(process.cwd(), 'public', person.image))
+    }),
   )
 })
