@@ -1,6 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { access } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
+import { access, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
 import { buildWebsiteRoster, people } from '../src/content/people.ts'
@@ -150,4 +151,30 @@ test('Every Website Roster Person resolves to an existing generated public image
       await access(join(process.cwd(), 'public', person.image))
     }),
   )
+})
+
+test('Every Website Roster Person uses a distinct generated public image asset', async () => {
+  const imageDigests = await Promise.all(
+    people.map(async (person) => {
+      assert.ok(person.image, `${person.name} is missing a profile image URL`)
+      const image = await readFile(join(process.cwd(), 'public', person.image))
+      const imageDigest = createHash('sha256').update(image).digest('hex')
+
+      return [person.name, imageDigest]
+    }),
+  )
+
+  const firstPersonByImage = new Map()
+
+  for (const [personName, imageDigest] of imageDigests) {
+    const firstPersonName = firstPersonByImage.get(imageDigest)
+
+    assert.equal(
+      firstPersonName,
+      undefined,
+      `${personName} shares a generated profile asset with ${firstPersonName}`,
+    )
+
+    firstPersonByImage.set(imageDigest, personName)
+  }
 })
