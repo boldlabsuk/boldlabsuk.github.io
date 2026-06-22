@@ -15,41 +15,77 @@ export type SourcePerson = {
 }
 
 export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
-  return sourcePeople
+  const roster = sourcePeople
     .filter(isWebsiteRosterSourcePerson)
-    .map((sourcePerson) => {
-      const name = sourcePerson.name.trim()
-      const role = sourcePerson.role.trim()
-      const affiliation = normalizeAffiliation(sourcePerson.homeInstitution)
-      const slug = slugify(name)
+    .map((sourcePerson) => buildPerson(sourcePerson))
+  const rosterBySlug = new Map(roster.map((person) => [person.slug, person]))
 
-      return {
-        slug,
-        name,
-        role,
-        group: role,
-        ...(isExplicitAlumniMarker(sourcePerson.alumni) ? { alumni: true } : {}),
-        affiliation: affiliation || undefined,
-        bio: '',
-        image: buildProfileAssetUrl(slug),
-        links: parsePublicPersonLinks(
+  sourcePeople
+    .filter(isSupplementalSourcePerson)
+    .forEach((sourcePerson) => {
+      const person = rosterBySlug.get(getCanonicalPersonSlug(sourcePerson.name))
+
+      if (!person) {
+        return
+      }
+
+      person.links = mergePersonLinks(
+        person.links,
+        parsePublicPersonLinks(
           sourcePerson.socialLinks ?? sourcePerson['social-links'],
         ),
-        researchAreas: normalizeResearchAreas(
-          sourcePerson.researchInterestKeywords,
-        ),
-      }
+      )
     })
+
+  return roster
+}
+
+function buildPerson(sourcePerson: SourcePerson): Person {
+  const name = sourcePerson.name.trim()
+  const role = sourcePerson.role.trim()
+  const affiliation = normalizeAffiliation(sourcePerson.homeInstitution)
+  const slug = getCanonicalPersonSlug(name)
+
+  return {
+    slug,
+    name,
+    role,
+    group: role,
+    ...(isExplicitAlumniMarker(sourcePerson.alumni) ? { alumni: true } : {}),
+    affiliation: affiliation || undefined,
+    bio: '',
+    image: buildProfileAssetUrl(slug),
+    links: parsePublicPersonLinks(
+      sourcePerson.socialLinks ?? sourcePerson['social-links'],
+    ),
+    researchAreas: normalizeResearchAreas(sourcePerson.researchInterestKeywords),
+  }
 }
 
 function isWebsiteRosterSourcePerson(sourcePerson: SourcePerson) {
+  const source = normalizeSourceName(sourcePerson.source)
+
   return (
-    sourcePerson.source.trim().toLowerCase() === 'main' &&
+    source === 'main' &&
     Boolean(sourcePerson.name.trim()) &&
     Boolean(sourcePerson.role.trim()) &&
     Boolean(sourcePerson.profilePicture?.trim()) &&
     sourcePerson.listOnBoldWebsite?.trim().toLowerCase() !== 'no'
   )
+}
+
+function isSupplementalSourcePerson(sourcePerson: SourcePerson) {
+  const source = normalizeSourceName(sourcePerson.source)
+
+  return (
+    (source.includes('foerster') || source === 'flair') &&
+    Boolean(sourcePerson.name.trim()) &&
+    Boolean(sourcePerson.socialLinks ?? sourcePerson['social-links'])
+  )
+}
+
+function normalizeSourceName(source: string) {
+  return source.trim().toLowerCase()
 }
 
 function isExplicitAlumniMarker(value: SourcePerson['alumni']) {
@@ -102,6 +138,25 @@ function parsePublicPersonLinks(sourceLinks?: string) {
 
     if (link && !links[link.key]) {
       links[link.key] = link.href
+    }
+  }
+
+  return Object.keys(links).length > 0 ? links : undefined
+}
+
+function mergePersonLinks(
+  existingLinks?: PersonLinkSet,
+  supplementalLinks?: PersonLinkSet,
+) {
+  if (!supplementalLinks) {
+    return existingLinks
+  }
+
+  const links: PersonLinkSet = { ...existingLinks }
+
+  for (const [key, href] of Object.entries(supplementalLinks)) {
+    if (!links[key as keyof PersonLinkSet]) {
+      links[key as keyof PersonLinkSet] = href
     }
   }
 
@@ -212,6 +267,17 @@ function isDomainLikeHostname(hostname: string) {
 
 function isHostnameOrSubdomain(hostname: string, domain: string) {
   return hostname === domain || hostname.endsWith(`.${domain}`)
+}
+
+const personSlugAliases: Record<string, string> = {
+  'alex-rutherford': 'alexander-rutherford',
+  'jonathan-cook': 'jonny-cook',
+}
+
+function getCanonicalPersonSlug(name: string) {
+  const slug = slugify(name)
+
+  return personSlugAliases[slug] ?? slug
 }
 
 function slugify(value: string) {

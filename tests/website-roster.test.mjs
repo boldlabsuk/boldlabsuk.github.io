@@ -320,6 +320,201 @@ test('Website Roster classifies first-party social subdomain URLs as social link
   })
 })
 
+test('Website Roster reconciles Foerster aliases into existing People with merged public links', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Jonny Cook',
+      role: 'PhD student',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['RL'],
+      profilePicture: 'jonny-cook.jpg',
+      listOnBoldWebsite: 'YES',
+      socialLinks:
+        'https://x.com/jonnycoook?s=11; https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
+    },
+    {
+      source: 'main',
+      name: 'Alexander Rutherford',
+      role: 'PhD student',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['RL'],
+      profilePicture: 'alexander-rutherford.jpg',
+      listOnBoldWebsite: 'YES',
+      socialLinks:
+        'amacrutherford.com; https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en',
+    },
+    {
+      source: 'main',
+      name: 'Kang Li',
+      role: 'PhD student',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['Reinforcement Learning'],
+      profilePicture: 'kang-li.jpg',
+      listOnBoldWebsite: 'YES',
+      socialLinks:
+        'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
+    },
+    {
+      source: 'main',
+      name: 'Elif Akata',
+      role: 'Visitor',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['Human-Centered AI'],
+      profilePicture: 'elif-akata.jpg',
+      listOnBoldWebsite: 'YES',
+      socialLinks:
+        'https://eliaka.github.io/; https://x.com/elifakata; https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao',
+    },
+    {
+      source: 'foerster',
+      name: 'Jonathan Cook',
+      role: 'DPhil Student',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['RL'],
+      profilePicture: 'jonathan-cook.jpg',
+      socialLinks:
+        'https://twitter.com/JonnyCoook; https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en; https://github.com/jonathan-cook235',
+    },
+    {
+      source: 'foerster',
+      name: 'Alex Rutherford',
+      role: 'DPhil Student',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['RL'],
+      profilePicture: 'alex-rutherford.jpg',
+      socialLinks:
+        'https://amacrutherford.com/; https://twitter.com/alexrutherford0; https://github.com/amacrutherford',
+    },
+    {
+      source: 'foerster',
+      name: 'Kang Li',
+      role: 'Alumni',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['Reinforcement Learning'],
+      profilePicture: 'kang-li.jpg',
+      alumni: 'YES',
+      socialLinks: 'https://twitter.com/Kang__Oxford; https://github.com/KangOxford',
+    },
+    {
+      source: 'foerster',
+      name: 'Elif Akata',
+      role: 'Associate Member',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['Human-Centered AI'],
+      profilePicture: 'elif-akata.jpg',
+      socialLinks:
+        'https://eliaka.github.io/; https://twitter.com/elifakata; https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao',
+    },
+  ])
+
+  assert.deepEqual(
+    roster.map((person) => person.slug),
+    ['jonny-cook', 'alexander-rutherford', 'kang-li', 'elif-akata'],
+  )
+
+  const directory = buildPeopleDirectoryViewModel({
+    people: roster,
+    filters: emptyFilters,
+  })
+  const listingBySlug = Object.fromEntries(
+    directory.sections
+      .flatMap((section) => section.people)
+      .map((listing) => [listing.slug, listing]),
+  )
+
+  assert.deepEqual(roster.find((person) => person.slug === 'jonny-cook')?.links, {
+    twitter: 'https://x.com/jonnycoook?s=11',
+    googleScholar: 'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
+    github: 'https://github.com/jonathan-cook235',
+  })
+  assert.deepEqual(
+    roster.find((person) => person.slug === 'alexander-rutherford')?.links,
+    {
+      website: 'https://amacrutherford.com',
+      googleScholar: 'https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en',
+      twitter: 'https://twitter.com/alexrutherford0',
+      github: 'https://github.com/amacrutherford',
+    },
+  )
+  assert.deepEqual(roster.find((person) => person.slug === 'kang-li')?.links, {
+    googleScholar: 'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
+    twitter: 'https://twitter.com/Kang__Oxford',
+    github: 'https://github.com/KangOxford',
+  })
+  assert.equal(
+    listingBySlug['alexander-rutherford']?.primaryPersonLink,
+    'https://amacrutherford.com',
+  )
+  assert.equal(
+    listingBySlug['kang-li']?.primaryPersonLink,
+    'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
+  )
+  assert.equal(listingBySlug['kang-li']?.peopleSection, 'PhD Student')
+  assert.equal(listingBySlug['elif-akata']?.peopleSection, 'Associate Members')
+})
+
+test('Full Website Roster has reconciled Foerster people exactly once with merged public links', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people,
+    filters: emptyFilters,
+  })
+  const listingBySlug = Object.fromEntries(
+    directory.sections
+      .flatMap((section) => section.people)
+      .map((listing) => [listing.slug, listing]),
+  )
+
+  assert.deepEqual(
+    ['jonny-cook', 'alexander-rutherford', 'kang-li', 'elif-akata'].map(
+      (slug) => people.filter((person) => person.slug === slug).length,
+    ),
+    [1, 1, 1, 1],
+  )
+  assert.deepEqual(people.find((person) => person.slug === 'jonny-cook')?.links, {
+    twitter: 'https://x.com/jonnycoook?s=11',
+    googleScholar: 'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
+    github: 'https://github.com/jonathan-cook235',
+  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'alexander-rutherford')?.links,
+    {
+      website: 'https://amacrutherford.com',
+      googleScholar: 'https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en',
+      twitter: 'https://twitter.com/alexrutherford0',
+      github: 'https://github.com/amacrutherford',
+    },
+  )
+  assert.deepEqual(people.find((person) => person.slug === 'kang-li')?.links, {
+    googleScholar: 'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
+    twitter: 'https://twitter.com/Kang__Oxford',
+    github: 'https://github.com/KangOxford',
+  })
+  assert.deepEqual(people.find((person) => person.slug === 'elif-akata')?.links, {
+    website: 'https://eliaka.github.io',
+    twitter: 'https://x.com/elifakata',
+    googleScholar: 'https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao',
+  })
+  assert.equal(
+    listingBySlug['jonny-cook']?.primaryPersonLink,
+    'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
+  )
+  assert.equal(
+    listingBySlug['alexander-rutherford']?.primaryPersonLink,
+    'https://amacrutherford.com',
+  )
+  assert.equal(
+    listingBySlug['kang-li']?.primaryPersonLink,
+    'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
+  )
+  assert.equal(
+    listingBySlug['elif-akata']?.primaryPersonLink,
+    'https://eliaka.github.io',
+  )
+  assert.equal(listingBySlug['kang-li']?.peopleSection, 'PhD Student')
+  assert.equal(listingBySlug['elif-akata']?.peopleSection, 'Associate Members')
+})
+
 test('Website Roster parsed links feed Primary Person Link priority', () => {
   const roster = buildWebsiteRoster([
     {
