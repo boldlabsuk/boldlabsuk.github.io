@@ -1,0 +1,142 @@
+.year-group-list {
+  display: grid;
+  gap: 38px;
+}
+
+.year-group > h3 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: 30px;
+}
+
+.publication-list {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.publication-list.compact {
+  border-top: 0;
+}
+
+.publication-row {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.publication-date span,
+.publication-date small {
+  display: block;
+}
+
+.publication-date span {
+  color: var(--ink);
+  font-size: 28px;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.publication-date small {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.publication-main h4 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.18;
+}
+
+.publication-main p {
+  margin: 8px 0 0;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: clamp(30px, 6vw, 80px);
+  align-items: start;
+}
+
+.profile-panel {
+  display: grid;
+  gap: 20px;
+}
+
+.detail-main {
+  max-width: 820px;
+}
+
+.detail-lede {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.44;
+}
+
+.detail-subsection {
+  margin-top: 48px;
+}
+
+.detail-subsection h2 {
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-size: 30px;
+}
+
+.article-detail {
+  max-width: 880px;
+}
+
+.article-detail-header {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.article-meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 760;
+}
+
+.article-body {
+  display: grid;
+  gap: 18px;
+}
+
+.article-body p {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.72;
+}
+
+.social-embed {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.social-embed span {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.social-embed p {
+  margin: 0;
+  color: var(--muted);
+}

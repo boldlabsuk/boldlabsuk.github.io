@@ -1,0 +1,182 @@
+@media (max-width: 1120px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-media {
+    min-height: 420px;
+  }
+
+  .home-hero-media::before {
+    background:
+      linear-gradient(0deg, rgba(8, 17, 31, 0.74), rgba(8, 17, 31, 0.18)),
+      linear-gradient(90deg, #08111f 0%, rgba(8, 17, 31, 0.18) 100%);
+  }
+
+  .four-up,
+  .people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .article-card-featured,
+  .featured-news-layout .article-card:first-child,
+  .featured-news-layout .article-card:not(:first-child) {
+    grid-column: span 2;
+  }
+
+  .paper-card-grid,
+  .opportunity-link-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .site-header {
+    flex-wrap: wrap;
+    min-height: 68px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .menu-toggle {
+    display: grid;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 8px;
+  }
+
+  .nav-links-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    flex: 1 1 160px;
+  }
+
+  .section-header,
+  .identity-section,
+  .detail-layout,
+  .contact-section,
+  .footer-inner,
+  .footer-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-section,
+  .footer-bottom {
+    display: grid;
+  }
+
+  .article-grid,
+  .article-grid.two-up,
+  .featured-news-layout,
+  .paper-card-grid,
+  .opportunity-link-grid,
+  .involvement-grid,
+  .current-opportunity-list {
+    grid-template-columns: 1fr;
+  }
+
+  .article-card-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .article-card-featured,
+  .featured-news-layout .article-card:first-child,
+  .featured-news-layout .article-card:not(:first-child) {
+    grid-column: auto;
+  }
+
+  .publication-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .profile-panel {
+    max-width: 360px;
+  }
+
+  .page-hero::after {
+    top: auto;
+    right: 18px;
+    bottom: 18px;
+    width: 220px;
+    opacity: 0.38;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand-text small {
+    display: none;
+  }
+
+  .home-hero-copy {
+    padding-top: 70px;
+  }
+
+  .hero-actions {
+    display: grid;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-media {
+    min-height: 330px;
+  }
+
+  .hero-graphic {
+    right: 18px;
+    bottom: 18px;
+    width: calc(100% - 36px);
+  }
+
+  .four-up,
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card,
+  .paper-card,
+  .card-body,
+  .person-body,
+  .involvement-card,
+  .current-opportunity-card {
+    padding: 20px;
+  }
+
+  .person-body {
+    min-height: auto;
+  }
+
+  .search-input,
+  .select-filter {
+    flex-basis: 100%;
+  }
+
+  .filter-panel {
+    align-items: stretch;
+  }
+
+  .filter-bar {
+    width: 100%;
+  }
+
+  .filter-chip {
+    flex: 1 1 auto;
+  }
+
+  .current-opportunity-card dl div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

@@ -1,0 +1,136 @@
+.page-hero {
+  position: relative;
+  overflow: clip;
+  padding-top: clamp(80px, 10vw, 132px);
+  padding-bottom: clamp(66px, 8vw, 104px);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.page-hero::after {
+  position: absolute;
+  top: 18%;
+  right: clamp(20px, 6vw, 80px);
+  width: min(360px, 42vw);
+  aspect-ratio: 1.7;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  content: '';
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 38px 38px;
+  opacity: 0.7;
+}
+
+.page-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.page-hero h1 {
+  max-width: 900px;
+  margin: 14px 0 0;
+  color: var(--surface);
+  font-size: clamp(48px, 7vw, 94px);
+  line-height: 0.96;
+}
+
+.page-hero p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.36;
+}
+
+.filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.archive-filters {
+  align-items: center;
+}
+
+.search-input,
+.select-filter {
+  display: grid;
+  gap: 6px;
+}
+
+.search-input {
+  min-width: min(310px, 100%);
+  flex: 1 1 280px;
+}
+
+.select-filter {
+  min-width: 168px;
+  flex: 0 1 208px;
+}
+
+.search-input span,
+.select-filter span {
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.search-input input,
+.select-filter select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 0 12px;
+}
+
+.button-filter-reset {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 780;
+}
+
+.filter-chip.active,
+.filter-chip:hover,
+.filter-chip:focus-visible {
+  border-color: var(--blue);
+  background: rgba(43, 100, 216, 0.08);
+  color: var(--blue);
+}
+
+.result-count {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 780;
+}

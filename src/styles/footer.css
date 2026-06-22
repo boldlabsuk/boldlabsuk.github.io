@@ -1,0 +1,83 @@
+.not-found-page {
+  display: grid;
+  min-height: 58svh;
+  align-items: center;
+}
+
+.not-found-page h1 {
+  margin: 10px 0;
+  color: var(--ink);
+  font-size: clamp(42px, 7vw, 82px);
+  line-height: 1;
+}
+
+.not-found-page p:not(.eyebrow) {
+  max-width: 560px;
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 19px;
+}
+
+.site-footer {
+  padding: 56px clamp(18px, 4vw, 48px) 30px;
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.1fr) minmax(160px, 0.4fr) minmax(160px, 0.4fr);
+  gap: 42px;
+}
+
+.footer-brand {
+  color: var(--surface);
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.footer-brand .brand-mark {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.footer-summary p {
+  max-width: 470px;
+  margin: 18px 0 14px;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.footer-summary a:not(.footer-brand),
+.footer-links a {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+}
+
+.footer-summary a:not(.footer-brand):hover,
+.footer-summary a:not(.footer-brand):focus-visible,
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--surface);
+}
+
+.footer-links {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.footer-links a {
+  width: fit-content;
+  font-weight: 760;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 46px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+}

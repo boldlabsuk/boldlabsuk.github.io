@@ -1,0 +1,18 @@
+.featured-news-layout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.featured-news-layout .article-card:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.featured-news-layout .article-card:not(:first-child) {
+  grid-column: span 2;
+}
+
+.archive-grid {
+  margin-top: 24px;
+}

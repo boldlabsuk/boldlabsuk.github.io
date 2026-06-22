@@ -1,0 +1,75 @@
+.section-band,
+.page-hero {
+  padding-right: clamp(18px, 4vw, 48px);
+  padding-left: clamp(18px, 4vw, 48px);
+}
+
+.section-band {
+  padding-top: clamp(68px, 8vw, 112px);
+  padding-bottom: clamp(68px, 8vw, 112px);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.muted-band {
+  background: var(--wash);
+}
+
+.section-header,
+.feature-card-grid,
+.article-grid,
+.paper-card-grid,
+.identity-section,
+.opportunity-link-grid,
+.page-content,
+.detail-layout,
+.article-detail,
+.contact-section,
+.footer-inner,
+.footer-bottom,
+.not-found-page > div {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.section-header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.68fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+  margin-bottom: 34px;
+}
+
+.section-header h2,
+.identity-copy h2,
+.contact-section h2 {
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-size: clamp(32px, 4.5vw, 58px);
+  line-height: 1.02;
+}
+
+.section-header-side {
+  display: grid;
+  gap: 16px;
+}
+
+.section-header p,
+.identity-copy p,
+.contact-section p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.text-link {
+  width: fit-content;
+  color: var(--blue);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.text-link:hover,
+.text-link:focus-visible {
+  color: var(--ink);
+}
