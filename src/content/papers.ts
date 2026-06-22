@@ -4,8 +4,7 @@ export const papers: Paper[] = [
   {
     id: 'autocurricula-tool-using-agents',
     title: 'Autocurricula for Tool-Using Language Agents',
-    authors: ['Amara Singh', 'Jules Chen', 'BOLD Institute'],
-    authorIds: ['amara-singh', 'jules-chen'],
+    authors: ['BOLD Institute'],
     venue: 'International Conference on Learning Representations',
     year: 2026,
     date: '2026-05-20',
@@ -26,8 +25,7 @@ export const papers: Paper[] = [
   {
     id: 'failure-discovery-robotics',
     title: 'Failure Discovery in Open-Ended Robotics Environments',
-    authors: ['Marcus Adeyemi', 'Eve Morrison', 'BOLD Institute'],
-    authorIds: ['marcus-adeyemi', 'eve-morrison'],
+    authors: ['BOLD Institute'],
     venue: 'Robotics: Science and Systems Workshop',
     year: 2026,
     date: '2026-04-12',
@@ -47,8 +45,7 @@ export const papers: Paper[] = [
   {
     id: 'behavioural-portfolios',
     title: 'Behavioural Portfolios for Continually Learning Systems',
-    authors: ['Eve Morrison', 'Amara Singh'],
-    authorIds: ['eve-morrison', 'amara-singh'],
+    authors: [],
     venue: 'BOLD Technical Report',
     year: 2026,
     date: '2026-03-29',
@@ -68,8 +65,7 @@ export const papers: Paper[] = [
   {
     id: 'research-ops-student-projects',
     title: 'Research Operations for Reproducible Student Projects',
-    authors: ['Jules Chen', 'Thomas Okoro', 'BOLD Institute'],
-    authorIds: ['jules-chen', 'thomas-okoro'],
+    authors: ['BOLD Institute'],
     venue: 'Journal of Open Research Software',
     year: 2025,
     date: '2025-11-14',
@@ -85,8 +81,7 @@ export const papers: Paper[] = [
   {
     id: 'multi-agent-evaluation-suite',
     title: 'A Multi-Agent Evaluation Suite for Emergent Coordination',
-    authors: ['Leo Williams', 'Marcus Adeyemi'],
-    authorIds: ['leo-williams', 'marcus-adeyemi'],
+    authors: [],
     venue: 'NeurIPS Datasets and Benchmarks Track',
     year: 2025,
     date: '2025-10-02',
@@ -103,8 +98,7 @@ export const papers: Paper[] = [
   {
     id: 'representation-learning-control',
     title: 'Representations for Controllable Generative Discovery',
-    authors: ['Nina Berg', 'Marta Garcia'],
-    authorIds: ['nina-berg', 'marta-garcia'],
+    authors: [],
     venue: 'Preprint',
     year: 2025,
     date: '2025-08-19',
