@@ -1,10 +1,8 @@
-import { newsPosts, people, siteMeta } from '../content'
+import { people, siteMeta } from '../content.ts'
 
 export type Route =
   | { name: 'home' }
   | { name: 'people'; slug?: string }
-  | { name: 'news'; slug?: string }
-  | { name: 'papers' }
   | { name: 'opportunities' }
   | { name: 'not-found' }
 
@@ -23,14 +21,6 @@ export function parseRoute(pathname: string): Route {
 
   if (segments[0] === 'people') {
     return { name: 'people', slug: segments[1] }
-  }
-
-  if (segments[0] === 'news') {
-    return { name: 'news', slug: segments[1] }
-  }
-
-  if (segments.length === 1 && segments[0] === 'papers') {
-    return { name: 'papers' }
   }
 
   if (segments.length === 1 && segments[0] === 'opportunities') {
@@ -63,20 +53,6 @@ export function getRouteMeta(route: Route): Meta {
         }
   }
 
-  if (route.name === 'news' && route.slug) {
-    const post = newsPosts.find((item) => item.slug === route.slug)
-
-    return post
-      ? {
-          title: `${post.title} | ${siteMeta.name}`,
-          description: post.excerpt,
-        }
-      : {
-          title: `News Post Not Found | ${siteMeta.name}`,
-          description: 'The requested news post could not be found.',
-        }
-  }
-
   const routeMeta: Record<Route['name'], Meta> = {
     home: {
       title: `Home | ${siteMeta.name}`,
@@ -86,16 +62,6 @@ export function getRouteMeta(route: Route): Meta {
       title: `Our People | ${siteMeta.name}`,
       description:
         'Meet the researchers, engineers, students, fellows, and collaborators building the institute.',
-    },
-    news: {
-      title: `News | ${siteMeta.name}`,
-      description:
-        'Read the latest articles, announcements, research updates, and stories from the institute.',
-    },
-    papers: {
-      title: `Papers | ${siteMeta.name}`,
-      description:
-        'Explore publications and research outputs from across the institute.',
     },
     opportunities: {
       title: `Opportunities | ${siteMeta.name}`,

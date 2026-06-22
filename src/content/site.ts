@@ -24,7 +24,5 @@ export const siteMeta = {
 
 export const navigation: NavigationItem[] = [
   { label: 'Our People', href: '/people' },
-  { label: 'News', href: '/news' },
-  { label: 'Papers', href: '/papers' },
   { label: 'Opportunities', href: '/opportunities' },
 ]

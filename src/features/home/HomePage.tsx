@@ -1,16 +1,9 @@
 import { heroImage } from '../../assets/images'
 import { involvementRoutes, siteMeta } from '../../content'
-import { getFeaturedNews } from '../../domain/news'
-import { getFeaturedPapers } from '../../domain/papers'
-import { ArticleCard } from '../../ui/cards/ArticleCard'
-import { PaperCard } from '../../ui/cards/PaperCard'
 import { SectionHeader } from '../../ui/layout/SectionHeader'
 import { FeatureCard } from '../../ui/primitives/FeatureCard'
 
 export function HomePage() {
-  const featuredNews = getFeaturedNews()
-  const featuredPapers = getFeaturedPapers()
-
   return (
     <>
       <section className="home-hero" aria-labelledby="home-hero-title">
@@ -19,14 +12,11 @@ export function HomePage() {
           <h1 id="home-hero-title">{siteMeta.missionPhrase}</h1>
           <p className="hero-lede">{siteMeta.mission}</p>
           <div className="hero-actions" aria-label="Primary actions">
-            <a className="button button-primary" href="/papers">
-              Explore Our Research
-            </a>
-            <a className="button button-secondary" href="/people">
+            <a className="button button-primary" href="/people">
               Meet Our People
             </a>
-            <a className="button button-ghost" href="/news">
-              Latest News
+            <a className="button button-secondary" href="/opportunities">
+              Work With Us
             </a>
           </div>
           <dl className="hero-metrics" aria-label="Institute highlights">
@@ -65,29 +55,15 @@ export function HomePage() {
         <SectionHeader
           eyebrow="Institute"
           title="One institute, clear routes in."
-          description="The site is organised around the people, publications, stories, and opportunities that make the research programme legible."
+          description="The launch site is organised around the people and opportunities that make the research programme legible."
         />
-        <div className="feature-card-grid four-up">
+        <div className="feature-card-grid two-up">
           <FeatureCard
             href="/people"
             kicker="Directory"
             title="Our People"
             description="Meet the researchers, engineers, students, and fellows building the institute."
             variant="teal"
-          />
-          <FeatureCard
-            href="/news"
-            kicker="Updates"
-            title="Latest News"
-            description="Read updates, announcements, articles, and research stories."
-            variant="blue"
-          />
-          <FeatureCard
-            href="/papers"
-            kicker="Research"
-            title="Papers"
-            description="Explore publications and research outputs from across the lab."
-            variant="amber"
           />
           <FeatureCard
             href="/opportunities"
@@ -101,34 +77,6 @@ export function HomePage() {
 
       <section className="statement-section">
         <p>{siteMeta.statement}</p>
-      </section>
-
-      <section className="section-band">
-        <SectionHeader
-          eyebrow="Featured News"
-          title="Announcements, articles, and research stories."
-          description="A concise view of the institute's most important public updates."
-          cta={{ label: 'View all news', href: '/news' }}
-        />
-        <div className="article-grid">
-          {featuredNews.map((post) => (
-            <ArticleCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </section>
-
-      <section className="section-band muted-band">
-        <SectionHeader
-          eyebrow="Featured Papers"
-          title="Selected research outputs."
-          description="Recent papers and technical reports from across the institute."
-          cta={{ label: 'View all papers', href: '/papers' }}
-        />
-        <div className="paper-card-grid">
-          {featuredPapers.map((paper) => (
-            <PaperCard key={paper.id} paper={paper} />
-          ))}
-        </div>
       </section>
 
       <section className="section-band identity-section">

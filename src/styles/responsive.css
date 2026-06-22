@@ -141,6 +141,7 @@
   }
 
   .four-up,
+  .two-up,
   .people-grid {
     grid-template-columns: 1fr;
   }

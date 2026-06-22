@@ -1,10 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { HomePage } from '../features/home/HomePage'
-import { NewsPage } from '../features/news/NewsPage'
-import { NewsPostPage } from '../features/news/NewsPostPage'
 import { NotFoundPage } from '../features/not-found/NotFoundPage'
 import { OpportunitiesPage } from '../features/opportunities/OpportunitiesPage'
-import { PapersPage } from '../features/papers/PapersPage'
 import { PeoplePage } from '../features/people/PeoplePage'
 import { PersonDetailPage } from '../features/people/PersonDetailPage'
 import {
@@ -41,9 +38,6 @@ function App() {
         {route.name === 'people' && route.slug && (
           <PersonDetailPage slug={route.slug} />
         )}
-        {route.name === 'news' && !route.slug && <NewsPage />}
-        {route.name === 'news' && route.slug && <NewsPostPage slug={route.slug} />}
-        {route.name === 'papers' && <PapersPage />}
         {route.name === 'opportunities' && <OpportunitiesPage />}
         {route.name === 'not-found' && <NotFoundPage />}
       </main>
