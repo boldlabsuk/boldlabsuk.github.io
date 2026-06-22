@@ -143,14 +143,15 @@ export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
     return null
   }
 
-  return (
-    links.website ??
-    links.googleScholar ??
-    links.github ??
-    links.linkedin ??
-    links.twitter ??
-    null
-  )
+  const candidates = [
+    links.website,
+    links.googleScholar,
+    links.github,
+    links.linkedin,
+    links.twitter,
+  ]
+
+  return candidates.find((href): href is string => Boolean(href?.trim())) ?? null
 }
 
 export function filterPeople({

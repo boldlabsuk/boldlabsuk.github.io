@@ -159,6 +159,20 @@ test('People Directory exposes Primary Person Link priority for Person Listings'
         },
       },
       {
+        slug: 'blank-preferred-link',
+        name: 'Blank Preferred Link',
+        role: 'Programme Manager',
+        group: 'Staff',
+        bio: 'Coordinates programmes.',
+        researchAreas: ['Research Operations'],
+        links: {
+          website: '',
+          googleScholar: '',
+          github: '',
+          linkedin: 'https://www.linkedin.com/in/blank-preferred-link',
+        },
+      },
+      {
         slug: 'no-link',
         name: 'No Link',
         role: 'Research Engineer',
@@ -181,6 +195,10 @@ test('People Directory exposes Primary Person Link priority for Person Listings'
       ['Website Link', 'https://example.ac.uk/website-link'],
       ['Scholar Link', 'https://scholar.google.com/scholar-link'],
       ['Social Link', 'https://github.com/social-link'],
+      [
+        'Blank Preferred Link',
+        'https://www.linkedin.com/in/blank-preferred-link',
+      ],
       ['No Link', null],
     ],
   )
