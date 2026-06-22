@@ -1,4 +1,4 @@
-import { people, roleOrder } from '../content.ts'
+import { people } from '../content.ts'
 import type { Person, PersonLinkSet } from '../content.ts'
 import { sortedNews } from './news.ts'
 import { sortedPapers } from './papers.ts'
@@ -58,20 +58,9 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
   Alumni: 'Alumni',
 }
 
-export type PeopleFilters = {
-  query: string
-  group: string
-  area: string
-  affiliation: string
-}
-
 export function getPeopleFilterOptions() {
-  const sections = peopleSectionOrder.filter((section) =>
-    people.some((person) => getPeopleSection(person) === section),
-  )
-
   return {
-    sections,
+    sections: [...peopleSectionOrder],
     areas: unique(people.flatMap((person) => person.researchAreas)),
     affiliations: unique(
       people.flatMap((person) => (person.affiliation ? [person.affiliation] : [])),
@@ -154,29 +143,6 @@ export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
   return candidates.find((href): href is string => Boolean(href?.trim())) ?? null
 }
 
-export function filterPeople({
-  query,
-  group,
-  area,
-  affiliation,
-}: PeopleFilters) {
-  return people
-    .filter((person) => {
-      const matchesQuery = person.name
-        .toLowerCase()
-        .includes(query.trim().toLowerCase())
-      const matchesGroup = group === allFilterValue || person.group === group
-      const matchesArea =
-        area === allFilterValue ||
-        person.researchAreas.some((item) => item === area)
-      const matchesAffiliation =
-        affiliation === allFilterValue || person.affiliation === affiliation
-
-      return matchesQuery && matchesGroup && matchesArea && matchesAffiliation
-    })
-    .sort(comparePeople)
-}
-
 export function getPerson(slug: string) {
   return people.find((person) => person.slug === slug)
 }
@@ -197,17 +163,4 @@ export function getAuthors(authorIds?: string[]) {
   return authorIds
     .map((id) => people.find((person) => person.slug === id)?.name)
     .filter((name): name is string => Boolean(name))
-}
-
-export function comparePeople(a: Person, b: Person) {
-  const aIndex = roleOrder.indexOf(a.group)
-  const bIndex = roleOrder.indexOf(b.group)
-  const normalizedA = aIndex === -1 ? Number.MAX_SAFE_INTEGER : aIndex
-  const normalizedB = bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex
-
-  if (normalizedA !== normalizedB) {
-    return normalizedA - normalizedB
-  }
-
-  return a.name.localeCompare(b.name)
 }

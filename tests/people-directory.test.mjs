@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { people } from '../src/content.ts'
 import {
   buildPeopleDirectoryViewModel,
+  getPeopleFilterOptions,
   peopleSectionOrder,
 } from '../src/domain/people.ts'
 import { allFilterValue } from '../src/domain/shared.ts'
@@ -14,6 +15,55 @@ const emptyFilters = {
   area: allFilterValue,
   affiliation: allFilterValue,
 }
+
+const filterFixturePeople = [
+  {
+    slug: 'alex-principal',
+    name: 'Alex Principal',
+    role: 'Principal Investigator',
+    group: 'Faculty',
+    affiliation: 'Northern Centre for AI',
+    bio: 'Leads evaluation research.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'casey-postdoc',
+    name: 'Casey Postdoc',
+    role: 'Research Scientist',
+    group: 'Researchers',
+    affiliation: 'London AI Systems Lab',
+    bio: 'Studies agent systems.',
+    researchAreas: ['Agents'],
+  },
+  {
+    slug: 'devon-dphil',
+    name: 'Devon DPhil',
+    role: 'DPhil Student',
+    group: 'PhD Students',
+    affiliation: 'BOLD Institute',
+    bio: 'Builds evaluation tools.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'riley-associate',
+    name: 'Riley Associate',
+    role: 'Research Engineer',
+    group: 'Research Engineers',
+    affiliation: 'BOLD Institute',
+    bio: 'Builds research infrastructure.',
+    researchAreas: ['Infrastructure'],
+  },
+  {
+    slug: 'alex-alumna',
+    name: 'Alex Alumna',
+    role: 'Alumna',
+    group: 'Alumni',
+    affiliation: 'Public Interest AI Network',
+    bio: 'Former institute researcher.',
+    researchAreas: ['Governance'],
+    alumni: true,
+  },
+]
 
 test('People Directory renders non-empty People Sections in canonical order', () => {
   const directory = buildPeopleDirectoryViewModel({
@@ -117,6 +167,114 @@ test('People Directory preserves content order within each People Section', () =
       'fatima-rahman',
     ],
   )
+})
+
+test('People Directory filter options expose public People Sections and remaining filters', () => {
+  const options = getPeopleFilterOptions()
+
+  assert.deepEqual(options.sections, peopleSectionOrder)
+  assert.ok(options.areas.includes('Evaluation'))
+  assert.ok(options.affiliations.includes('BOLD Institute'))
+})
+
+test('People Directory search filters Person Listings while preserving People Sections', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      query: 'alex',
+    },
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['PIs', ['alex-principal']],
+      ['Alumni', ['alex-alumna']],
+    ],
+  )
+  assert.equal(directory.visiblePeopleCount, 2)
+  assert.equal(directory.totalPeople, filterFixturePeople.length)
+})
+
+test('People Directory People Section filter hides empty People Sections', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      section: 'Associate Members',
+    },
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [['Associate Members', ['riley-associate']]],
+  )
+  assert.equal(directory.visiblePeopleCount, 1)
+})
+
+test('People Directory research-area filter keeps grouped matching Person Listings', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      area: 'Evaluation',
+    },
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['PIs', ['alex-principal']],
+      ['DPhil Students', ['devon-dphil']],
+    ],
+  )
+  assert.equal(directory.visiblePeopleCount, 2)
+})
+
+test('People Directory affiliation filter keeps grouped matching Person Listings', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      affiliation: 'BOLD Institute',
+    },
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['DPhil Students', ['devon-dphil']],
+      ['Associate Members', ['riley-associate']],
+    ],
+  )
+  assert.equal(directory.visiblePeopleCount, 2)
+})
+
+test('People Directory returns a no-results model when active filters match nobody', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      query: 'missing person',
+    },
+  })
+
+  assert.deepEqual(directory.sections, [])
+  assert.equal(directory.visiblePeopleCount, 0)
+  assert.equal(directory.totalPeople, filterFixturePeople.length)
 })
 
 test('People Directory exposes Primary Person Link priority for Person Listings', () => {
