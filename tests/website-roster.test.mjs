@@ -19,6 +19,61 @@ const emptyFilters = {
   affiliation: allFilterValue,
 }
 
+// Mirrors https://foersterlab.com/members/ as checked on 2026-06-22.
+const foersterMembersPageFixture = [
+  ['Faculty', 'Jakob Foerster', 'jakob-foerster', 'Jakob Foerster', 'Principal Investigator'],
+  ['Postdocs', 'Yulin Wang', 'yulin-wang', 'Yulin Wang', 'Postdoc'],
+  ['Postdocs', 'Dylan Cope', 'dylan-cope', 'Dylan Cope', 'Postdoc'],
+  ['Postdocs', 'Johannes Forkel', 'johannes-forkel', 'Johannes Forkel', 'Postdoc'],
+  ['Postdocs', 'Mattie Fellows', 'mattie-fellows', 'Mattie Fellows', 'Postdoc'],
+  ['DPhil Students', 'Lukas Seier', 'lukas-seier', 'Lukas Seier', 'PhD Student'],
+  ['DPhil Students', 'Shashank Reddy Chirra', 'shashank-reddy-chirra', 'Shashank Reddy Chirra', 'PhD Student'],
+  ['DPhil Students', 'Alistair Letcher', 'alistair-letcher', 'Alistair Letcher', 'PhD Student'],
+  ['DPhil Students', 'Theo Wolf', 'theo-wolf', 'Theo Wolf', 'PhD Student'],
+  ['DPhil Students', 'Antonio León Villares', 'antonio-leon-villares', 'Antonio León Villares', 'PhD Student'],
+  ['DPhil Students', 'Austin Tudor David Andrews', 'austin-tudor-david-andrews', 'Austin Tudor David Andrews', 'PhD Student'],
+  ['DPhil Students', 'Jarek Liesen', 'jarek-liesen', 'Jarek Liesen', 'PhD Student'],
+  ['DPhil Students', 'Ravi Hammond', 'ravi-hammond', 'Ravi Hammond', 'PhD Student'],
+  ['DPhil Students', 'J Rosser', 'j-rosser', 'J Rosser', 'PhD Student'],
+  ['DPhil Students', 'Hannah Erlebach', 'hannah-erlebach', 'Hannah Erlebach', 'PhD Student'],
+  ['DPhil Students', 'Harry Mayne', 'harry-mayne', 'Harry Mayne', 'PhD Student'],
+  ['DPhil Students', 'Darius Muglich', 'darius-muglich', 'Darius Muglich', 'PhD Student'],
+  ['DPhil Students', 'Bidipta Sarkar', 'bidipta-sarkar', 'Bidipta Sarkar', 'PhD Student'],
+  ['DPhil Students', 'Thom Foster', 'thom-foster', 'Thom Foster', 'PhD Student'],
+  ['DPhil Students', 'Clarisse Wibault', 'clarisse-wibault', 'Clarisse Wibault', 'PhD Student'],
+  ['DPhil Students', 'Zilin Wang', 'zilin-wang', 'Zilin Wang', 'PhD Student'],
+  ['DPhil Students', 'Sam Coward', 'sam-coward', 'Sam Coward', 'PhD Student'],
+  ['DPhil Students', 'Michael Matthews', 'michael-matthews', 'Michael Matthews', 'PhD Student'],
+  ['DPhil Students', 'Uljad Berdica', 'uljad-berdica', 'Uljad Berdica', 'PhD Student'],
+  ['DPhil Students', 'Jonathan Cook', 'jonny-cook', 'Jonny Cook', 'PhD Student'],
+  ['DPhil Students', 'Michael Beukman', 'michael-beukman', 'Michael Beukman', 'PhD Student'],
+  ['DPhil Students', 'Alex Goldie', 'alex-goldie', 'Alex Goldie', 'PhD Student'],
+  ['DPhil Students', 'Matthew Jackson', 'matthew-jackson', 'Matthew Jackson', 'PhD Student'],
+  ['DPhil Students', 'Qizhen Zhang (Irene)', 'qizhen-zhang-irene', 'Qizhen Zhang (Irene)', 'PhD Student'],
+  ['DPhil Students', 'Silvia Sapora', 'silvia-sapora', 'Silvia Sapora', 'PhD Student'],
+  ['DPhil Students', 'Andrei Lupu', 'andrei-lupu', 'Andrei Lupu', 'PhD Student'],
+  ['DPhil Students', 'Alex Rutherford', 'alexander-rutherford', 'Alexander Rutherford', 'PhD Student'],
+  ['DPhil Students', 'Ola Kalisz', 'ola-kalisz', 'Ola Kalisz', 'PhD Student'],
+  ['DPhil Students', 'Sebastian Towers', 'sebastian-towers', 'Sebastian Towers', 'PhD Student'],
+  ["Master's Students", 'Aramis Marti-Shahandeh', 'aramis-marti-shahandeh', 'Aramis Marti-Shahandeh', 'Masters Student'],
+  ["Master's Students", 'Samuel Simons', 'samuel-simons', 'Samuel Simons', 'Masters Student'],
+  ["Master's Students", 'Satyam Agarwal', 'satyam-agarwal', 'Satyam Agarwal', 'Associate Members'],
+  ["Master's Students", 'Yuhe Gao', 'yuhe-gao', 'Yuhe Gao', 'Masters Student'],
+  ["Master's Students", 'Nathan Monette', 'nathan-monette', 'Nathan Monette', 'Masters Student'],
+  ['Associate Members', 'Elif Akata', 'elif-akata', 'Elif Akata', 'Associate Members'],
+  ['Associate Members', 'Garrett Deceuninck-Ziviani', 'garrett-deceuninck-ziviani', 'Garrett Deceuninck-Ziviani', 'Associate Members'],
+  ['Associate Members', 'Maksymilian Wolski', 'maksymilian-wolski', 'Maksymilian Wolski', 'Associate Members'],
+  ['Associate Members', 'Tim Franzmeyer', 'tim-franzmeyer', 'Tim Franzmeyer', 'Associate Members'],
+  ['Alumni', 'Ben Ellis', 'ben-ellis', 'Ben Ellis', 'Alumni'],
+  ['Alumni', 'Chris Lu', 'chris-lu', 'Chris Lu', 'Alumni'],
+  ['Alumni', 'Timon Willi', 'timon-willi', 'Timon Willi', 'Alumni'],
+  ['Alumni', 'Christian Schroeder de Witt', 'christian-schroeder-de-witt', 'Christian Schroeder de Witt', 'Alumni'],
+  ['Alumni', 'Jia Wan', 'jia-wan', 'Jia Wan', 'Alumni'],
+  ['Alumni', 'Kang Li', 'kang-li', 'Kang Li', 'PhD Student'],
+  ['Alumni', 'Matthias Hericks', 'matthias-hericks', 'Matthias Hericks', 'Alumni'],
+  ['Alumni', 'Noah Sarfati', 'noah-sarfati', 'Noah Sarfati', 'Alumni'],
+]
+
 test('Website Roster derives public Person Listings from central source rows', () => {
   const roster = buildWebsiteRoster([
     {
@@ -914,6 +969,73 @@ test('Full Website Roster includes scoped Foerster alumni once in Alumni without
   assert.deepEqual(people.find((person) => person.slug === 'noah-sarfati')?.links, {
     github: 'https://github.com/NoahSfi',
   })
+})
+
+test('Foerster members page comparison is represented in the Website Roster', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people,
+    filters: emptyFilters,
+  })
+  const listingBySlug = Object.fromEntries(
+    directory.sections
+      .flatMap((section) => section.people)
+      .map((listing) => [listing.slug, listing]),
+  )
+
+  assert.equal(foersterMembersPageFixture.length, 51)
+  assert.deepEqual(
+    foersterMembersPageFixture.map(([, , rosterSlug]) =>
+      people.filter((person) => person.slug === rosterSlug).length,
+    ),
+    Array.from({ length: foersterMembersPageFixture.length }, () => 1),
+  )
+  assert.deepEqual(
+    foersterMembersPageFixture.map(
+      ([sourceSection, sourceName, rosterSlug, expectedName, peopleSection]) => {
+        const listing = listingBySlug[rosterSlug]
+
+        return {
+          sourceSection,
+          sourceName,
+          rosterSlug,
+          name: listing?.name,
+          peopleSection: listing?.peopleSection,
+          image: listing?.image,
+        }
+      },
+    ),
+    foersterMembersPageFixture.map(
+      ([sourceSection, sourceName, rosterSlug, expectedName, peopleSection]) => ({
+        sourceSection,
+        sourceName,
+        rosterSlug,
+        name: expectedName,
+        peopleSection,
+        image: `/profile-assets/${rosterSlug}.webp`,
+      }),
+    ),
+  )
+  assert.deepEqual(
+    [
+      listingBySlug['sebastian-towers']?.primaryPersonLink,
+      listingBySlug['garrett-deceuninck-ziviani']?.primaryPersonLink,
+      listingBySlug['maksymilian-wolski']?.primaryPersonLink,
+    ],
+    [null, null, null],
+  )
+  assert.deepEqual(
+    Object.fromEntries(
+      ['jonny-cook', 'alexander-rutherford', 'kang-li'].map((slug) => [
+        slug,
+        listingBySlug[slug]?.peopleSection,
+      ]),
+    ),
+    {
+      'jonny-cook': 'PhD Student',
+      'alexander-rutherford': 'PhD Student',
+      'kang-li': 'PhD Student',
+    },
+  )
 })
 
 test('Full Website Roster builds the real sectioned People Directory', () => {
