@@ -436,6 +436,15 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       affiliation: 'Imperial College London',
     },
   })
+  const sectionDirectory = buildPeopleDirectoryViewModel({
+    people,
+    filters: {
+      query: '',
+      section: 'Masters Student',
+      area: allFilterValue,
+      affiliation: allFilterValue,
+    },
+  })
   const combinedDirectory = buildPeopleDirectoryViewModel({
     people,
     filters: {
@@ -491,6 +500,15 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ],
   )
   assert.equal(affiliationDirectory.visiblePeopleCount, 2)
+
+  assert.deepEqual(
+    sectionDirectory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [['Masters Student', ['matthew-jackson', 'clarisse-wibault']]],
+  )
+  assert.equal(sectionDirectory.visiblePeopleCount, 2)
 
   assert.deepEqual(
     combinedDirectory.sections.map((section) => [
