@@ -194,6 +194,78 @@ test('Website Roster carries explicit source alumni markers into the Alumni Peop
   )
 })
 
+test('Website Roster only creates supplemental Alumni from the explicit alumni source', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Current Linked Person',
+      role: 'PhD student',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'current-linked-person.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'foerster',
+      name: 'Current Linked Person',
+      role: 'Alumni',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'current-linked-person.jpg',
+      alumni: 'YES',
+      socialLinks: 'https://github.com/current-linked-person',
+    },
+    {
+      source: 'foerster',
+      name: 'Out Of Scope Alumni',
+      role: 'Former visitor',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'out-of-scope-alumni.jpg',
+      listOnBoldWebsite: 'YES',
+      alumni: 'YES',
+      socialLinks: 'https://github.com/out-of-scope-alumni',
+    },
+    {
+      source: 'foerster-alumni',
+      name: 'Explicit Alumni',
+      role: 'Former student',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'explicit-alumni.jpg',
+      listOnBoldWebsite: 'YES',
+      alumni: 'YES',
+      socialLinks: 'https://github.com/explicit-alumni',
+    },
+  ])
+
+  const directory = buildPeopleDirectoryViewModel({
+    people: roster,
+    filters: emptyFilters,
+  })
+
+  assert.deepEqual(
+    roster.map((person) => [person.slug, person.links]),
+    [
+      [
+        'current-linked-person',
+        { github: 'https://github.com/current-linked-person' },
+      ],
+      ['explicit-alumni', { github: 'https://github.com/explicit-alumni' }],
+    ],
+  )
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['PhD Student', ['current-linked-person']],
+      ['Alumni', ['explicit-alumni']],
+    ],
+  )
+})
+
 test('Website Roster parses public profile links from source social-links text', () => {
   const roster = buildWebsiteRoster([
     {

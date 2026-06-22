@@ -100,7 +100,7 @@ function isSupplementalAlumniSourcePerson(sourcePerson: SourcePerson) {
   const source = normalizeSourceName(sourcePerson.source)
 
   return (
-    isSupplementalRosterSource(source) &&
+    source === 'foerster-alumni' &&
     isExplicitAlumniMarker(sourcePerson.alumni) &&
     hasWebsiteRosterRequiredFields(sourcePerson)
   )
