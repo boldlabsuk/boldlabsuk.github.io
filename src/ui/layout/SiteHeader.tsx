@@ -1,18 +1,33 @@
 import { navigation, siteMeta } from '../../content'
 
+type BrandVariant = 'full' | 'icon'
+
 export function SiteHeader({
   activeSection,
+  brandVariant,
   isMenuOpen,
   onMenuToggle,
 }: {
   activeSection: string
+  brandVariant: BrandVariant
   isMenuOpen: boolean
   onMenuToggle: () => void
 }) {
+  const brandLogo =
+    brandVariant === 'icon'
+      ? {
+          className: 'brand-logo brand-logo-icon',
+          src: '/bold-butterfly-logo.svg',
+        }
+      : {
+          className: 'brand-logo',
+          src: '/bold_full_vector_logo.svg',
+        }
+
   return (
     <header className="site-header">
       <a className="brand" href="/" aria-label={`${siteMeta.name} home`}>
-        <img className="brand-logo" src="/bold_full_vector_logo.svg" alt="" />
+        <img className={brandLogo.className} src={brandLogo.src} alt="" />
       </a>
 
       <button

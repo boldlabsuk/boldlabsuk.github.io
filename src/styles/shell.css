@@ -50,6 +50,25 @@
   object-fit: contain;
 }
 
+.brand .brand-logo.brand-logo-icon {
+  width: 46px;
+  height: 52px;
+}
+
+.home-hero-logo {
+  display: block;
+  width: min(660px, 100%);
+  height: auto;
+  margin: 0 0 clamp(18px, 2.2vw, 30px);
+}
+
+@media (max-width: 560px) {
+  .brand .brand-logo.brand-logo-icon {
+    width: 42px;
+    height: 47px;
+  }
+}
+
 .menu-toggle {
   display: none;
   width: 42px;

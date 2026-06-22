@@ -29,6 +29,7 @@ function App() {
       </a>
       <SiteHeader
         activeSection={getActiveSection(route)}
+        brandVariant={route.name === 'home' ? 'icon' : 'full'}
         isMenuOpen={isMenuOpen}
         onMenuToggle={() => setIsMenuOpen((open) => !open)}
       />

@@ -5,6 +5,11 @@ export function HomePage() {
     <>
       <section className="home-hero" aria-labelledby="home-hero-title">
         <div className="home-hero-copy">
+          <img
+            className="home-hero-logo"
+            src="/bold_full_vector_logo.svg"
+            alt=""
+          />
           <p className="eyebrow">{homepageContent.hero.eyebrow}</p>
           <h1 id="home-hero-title">{homepageContent.hero.headline}</h1>
           <p className="hero-lede">{homepageContent.hero.lede}</p>
