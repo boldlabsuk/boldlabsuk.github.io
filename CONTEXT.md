@@ -48,6 +48,10 @@ _Avoid_: Application, job application, sign-up
 A public Opportunities page for one route that explains the route and collects an Expression of Interest from a prospective incoming member or collaborator.
 _Avoid_: Modal, popup, role listing
 
+**Embedded Expression of Interest Form**:
+The applicant-facing form surface shown inside a BOLD Expression of Interest Page while an external form backend handles submission and storage.
+_Avoid_: Off-site form link, redirect-only intake, third-party landing page
+
 **Collaborator Expression of Interest**:
 An Expression of Interest for a research collaboration, which may represent an individual, group, company, or institution and should be framed around collaboration fit rather than personal hiring credentials.
 _Avoid_: Job application, student application, resume-first collaboration form
