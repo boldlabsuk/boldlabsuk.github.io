@@ -5,10 +5,10 @@ import { sortedPapers } from './papers.ts'
 import { allFilterValue, unique } from './shared.ts'
 
 export const peopleSectionOrder = [
-  'PIs',
-  'Postdocs',
-  'DPhil Students',
-  "Master's Students",
+  'Principal Investigator',
+  'Postdoc',
+  'PhD Student',
+  'Masters Student',
   'Associate Members',
   'Alumni',
 ] as const
@@ -45,17 +45,12 @@ export type PeopleDirectoryViewModel = {
 }
 
 const groupToPeopleSection: Record<string, PeopleSection> = {
-  Faculty: 'PIs',
-  Researchers: 'Postdocs',
-  'PhD Students': 'DPhil Students',
-  "Master's Students": "Master's Students",
-  'Research Engineers': 'Associate Members',
-  'Software Engineers': 'Associate Members',
-  'Visiting Students': 'Associate Members',
-  Fellows: 'Associate Members',
-  Staff: 'Associate Members',
-  Affiliates: 'Associate Members',
-  Alumni: 'Alumni',
+  'BOLD PI': 'Principal Investigator',
+  Postdoc: 'Postdoc',
+  'PhD student': 'PhD Student',
+  'Master Student': 'Masters Student',
+  'Current Masters Student, but inc. PhD this fall with Jakob+Shimon':
+    'Masters Student',
 }
 
 export function getPeopleFilterOptions() {
@@ -118,7 +113,7 @@ export function buildPeopleDirectoryViewModel({
 }
 
 export function getPeopleSection(person: Pick<Person, 'group' | 'alumni'>) {
-  if (person.alumni || person.group === 'Alumni') {
+  if (person.alumni) {
     return 'Alumni'
   }
 

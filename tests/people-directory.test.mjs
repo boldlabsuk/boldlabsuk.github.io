@@ -20,8 +20,8 @@ const filterFixturePeople = [
   {
     slug: 'alex-principal',
     name: 'Alex Principal',
-    role: 'Principal Investigator',
-    group: 'Faculty',
+    role: 'BOLD PI',
+    group: 'BOLD PI',
     affiliation: 'Northern Centre for AI',
     bio: 'Leads evaluation research.',
     researchAreas: ['Evaluation'],
@@ -29,8 +29,8 @@ const filterFixturePeople = [
   {
     slug: 'casey-postdoc',
     name: 'Casey Postdoc',
-    role: 'Research Scientist',
-    group: 'Researchers',
+    role: 'Postdoc',
+    group: 'Postdoc',
     affiliation: 'London AI Systems Lab',
     bio: 'Studies agent systems.',
     researchAreas: ['Agents'],
@@ -38,8 +38,8 @@ const filterFixturePeople = [
   {
     slug: 'devon-dphil',
     name: 'Devon DPhil',
-    role: 'DPhil Student',
-    group: 'PhD Students',
+    role: 'PhD student',
+    group: 'PhD student',
     affiliation: 'BOLD Institute',
     bio: 'Builds evaluation tools.',
     researchAreas: ['Evaluation'],
@@ -73,7 +73,7 @@ test('People Directory renders non-empty People Sections in canonical order', ()
 
   assert.deepEqual(
     directory.sections.map((section) => section.title),
-    peopleSectionOrder,
+    peopleSectionOrder.filter((section) => section !== 'Alumni'),
   )
 })
 
@@ -94,30 +94,30 @@ test('People Directory maps every Person into exactly one People Section', () =>
       ]),
     ),
     {
-      'amara-singh': 'PIs',
-      'marcus-adeyemi': 'Postdocs',
-      'jules-chen': 'DPhil Students',
-      'eve-morrison': 'DPhil Students',
-      'samira-patel': 'Associate Members',
-      'thomas-okoro': 'Associate Members',
-      'nina-berg': "Master's Students",
-      'leo-williams': 'Associate Members',
-      'marta-garcia': 'Associate Members',
-      'oliver-hart': 'Associate Members',
-      'fatima-rahman': 'Associate Members',
-      'alex-kim': 'Alumni',
+      'jakob-foerster': 'Principal Investigator',
+      'yulin-wang': 'Postdoc',
+      'dylan-cope': 'Postdoc',
+      'lukas-seier': 'PhD Student',
+      'bidipta-sarkar': 'PhD Student',
+      'zilin-wang': 'PhD Student',
+      'sam-coward': 'PhD Student',
+      'matthew-jackson': 'Masters Student',
+      'clarisse-wibault': 'Masters Student',
+      'shashank-reddy-chirra': 'Associate Members',
+      'jarek-liesen': 'Associate Members',
+      'hannah-erlebach': 'Associate Members',
     },
   )
 })
 
-test('People Directory gives Alumni precedence over a Person group', () => {
+test('People Directory uses explicit Alumni flags without mapping current roles to Alumni', () => {
   const directory = buildPeopleDirectoryViewModel({
     people: [
       {
         slug: 'alumni-flagged-pi',
         name: 'Alumni Flagged PI',
         role: 'Former PI',
-        group: 'Faculty',
+        group: 'BOLD PI',
         bio: 'Former institute lead.',
         researchAreas: ['Evaluation'],
         alumni: true,
@@ -141,8 +141,12 @@ test('People Directory gives Alumni precedence over a Person group', () => {
     ]),
     [
       [
+        'Associate Members',
+        ['alumni-group-member'],
+      ],
+      [
         'Alumni',
-        ['alumni-flagged-pi', 'alumni-group-member'],
+        ['alumni-flagged-pi'],
       ],
     ],
   )
@@ -159,12 +163,9 @@ test('People Directory preserves content order within each People Section', () =
       .find((section) => section.title === 'Associate Members')
       ?.people.map((listing) => listing.slug),
     [
-      'samira-patel',
-      'thomas-okoro',
-      'leo-williams',
-      'marta-garcia',
-      'oliver-hart',
-      'fatima-rahman',
+      'shashank-reddy-chirra',
+      'jarek-liesen',
+      'hannah-erlebach',
     ],
   )
 })
@@ -174,7 +175,7 @@ test('People Directory filter options expose public People Sections and remainin
 
   assert.deepEqual(options.sections, peopleSectionOrder)
   assert.ok(options.areas.includes('Evaluation'))
-  assert.ok(options.affiliations.includes('BOLD Institute'))
+  assert.ok(options.affiliations.includes('University of Oxford'))
 })
 
 test('People Directory search filters Person Listings while preserving People Sections', () => {
@@ -192,7 +193,7 @@ test('People Directory search filters Person Listings while preserving People Se
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['PIs', ['alex-principal']],
+      ['Principal Investigator', ['alex-principal']],
       ['Alumni', ['alex-alumna']],
     ],
   )
@@ -234,8 +235,8 @@ test('People Directory research-area filter keeps grouped matching Person Listin
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['PIs', ['alex-principal']],
-      ['DPhil Students', ['devon-dphil']],
+      ['Principal Investigator', ['alex-principal']],
+      ['PhD Student', ['devon-dphil']],
     ],
   )
   assert.equal(directory.visiblePeopleCount, 2)
@@ -256,7 +257,7 @@ test('People Directory affiliation filter keeps grouped matching Person Listings
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['DPhil Students', ['devon-dphil']],
+      ['PhD Student', ['devon-dphil']],
       ['Associate Members', ['riley-associate']],
     ],
   )
@@ -283,8 +284,8 @@ test('People Directory exposes Primary Person Link priority for Person Listings'
       {
         slug: 'website-link',
         name: 'Website Link',
-        role: 'Associate Professor',
-        group: 'Faculty',
+        role: 'BOLD PI',
+        group: 'BOLD PI',
         bio: 'Researches evaluation.',
         researchAreas: ['Evaluation'],
         links: {
@@ -296,8 +297,8 @@ test('People Directory exposes Primary Person Link priority for Person Listings'
       {
         slug: 'scholar-link',
         name: 'Scholar Link',
-        role: 'Research Scientist',
-        group: 'Researchers',
+        role: 'Postdoc',
+        group: 'Postdoc',
         bio: 'Researches agents.',
         researchAreas: ['Agents'],
         links: {
@@ -308,8 +309,8 @@ test('People Directory exposes Primary Person Link priority for Person Listings'
       {
         slug: 'social-link',
         name: 'Social Link',
-        role: 'PhD Student',
-        group: 'PhD Students',
+        role: 'PhD student',
+        group: 'PhD student',
         bio: 'Researches language models.',
         researchAreas: ['Language Models'],
         links: {
@@ -368,8 +369,8 @@ test('People Directory returns compact Person Listing output without biography o
       {
         slug: 'compact-listing',
         name: 'Compact Listing',
-        role: 'Research Scientist',
-        group: 'Researchers',
+        role: 'Postdoc',
+        group: 'Postdoc',
         affiliation: 'BOLD Institute',
         bio: 'This biography belongs on the Person detail page only.',
         image: 'marcus',
@@ -386,14 +387,14 @@ test('People Directory returns compact Person Listing output without biography o
   assert.deepEqual(directory.sections[0]?.people[0], {
     slug: 'compact-listing',
     name: 'Compact Listing',
-    role: 'Research Scientist',
+    role: 'Postdoc',
     affiliation: 'BOLD Institute',
     image: 'marcus',
     links: {
       website: 'https://example.ac.uk/compact-listing',
       email: 'mailto:compact.listing@example.ac.uk',
     },
-    peopleSection: 'Postdocs',
+    peopleSection: 'Postdoc',
     primaryPersonLink: 'https://example.ac.uk/compact-listing',
   })
 })
