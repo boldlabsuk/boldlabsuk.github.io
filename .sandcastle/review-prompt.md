@@ -1,55 +1,103 @@
-# TASK
+GitHub Issue number: {{ISSUE_NUMBER}}
+Branch: {{BRANCH}} (cut from {{BASE_BRANCH}})
 
-Review the code changes on branch `{{BRANCH}}` and improve code clarity, consistency, and maintainability while preserving exact functionality.
+# Task
 
-# CONTEXT
+This phase does TWO things in one pass on this branch: first **review** the
+implementation of issue #{{ISSUE_NUMBER}}, then **fix** the valid findings.
 
-## Branch diff
+You are an expert code reviewer and engineer. Review thoroughly first, then make
+the code changes to address every finding that needs fixing. If, after reviewing,
+nothing needs fixing, skip straight to # Commit and say so. Do not push, do not
+close or edit the issue, and do not create a PR — the merge phase handles that.
 
-!`git diff {{TARGET_BRANCH}}...{{BRANCH}}`
+# GitHub Issue
 
-## Commits on this branch
+Start by reading the issue, including all comments:
+`gh issue view {{ISSUE_NUMBER}} --comments`.
 
-!`git log {{TARGET_BRANCH}}..{{BRANCH}} --oneline`
+If the issue references a parent PRD, blocker issue, follow-on issue, or related
+implementation issue, read those too. Treat the issue and linked PRD as the
+source of truth for expected behavior.
 
-# REVIEW PROCESS
+# Diff
 
-1. **Understand the change**: Read the diff and commits above to understand the intent.
+The implementer's work lives on this branch (`{{BRANCH}}`), already committed.
+Review it against the branch's fork point:
 
-2. **Analyze for improvements**: Look for opportunities to:
-   - Reduce unnecessary complexity and nesting
-   - Eliminate redundant code and abstractions
-   - Improve readability through clear variable and function names
-   - Consolidate related logic
-   - Remove unnecessary comments that describe obvious code
-   - Avoid nested ternary operators - prefer switch statements or if/else chains
-   - Choose clarity over brevity - explicit code is often better than overly compact code
+```bash
+git log {{BASE_BRANCH}}..HEAD --oneline
+git diff {{BASE_BRANCH}}...HEAD
+```
 
-3. **Check correctness**:
-   - Does the implementation match the intent? Are edge cases handled?
-   - Are new/changed behaviours covered by tests?
-   - Are there unsafe casts, `any` types, or unchecked assumptions?
-   - Does the change introduce injection vulnerabilities, credential leaks, or other security issues?
+# Review Process
 
-4. **Maintain balance**: Avoid over-simplification that could:
-   - Reduce code clarity or maintainability
-   - Create overly clever solutions that are hard to understand
-   - Combine too many concerns into single functions or components
-   - Remove helpful abstractions that improve code organization
-   - Make the code harder to debug or extend
+1. Read the GitHub issue and linked PRD/spec thoroughly.
+2. Read repo standards and local guidance:
+   - `AGENTS.md`
+   - `CONTEXT.md` if present
+   - relevant files under `docs/adr/` if present
+   - `docs/standards/python-docstrings.md` if present
+   - relevant test/style/config files
+3. Read the diff carefully.
+4. Verify the implementation satisfies the issue and linked PRD.
+5. Stress-test edge cases.
+6. Think about clarity, maintainability, and consistency while preserving behavior.
+7. Identify scope creep, missing requirements, behavioral regressions, brittle
+   tests, or maintainability problems.
 
-5. **Apply project standards**: Follow the coding standards defined in @.sandcastle/CODING_STANDARDS.md
+Use the /review skill's two-axis format to record findings before you fix them:
 
-6. **Preserve functionality**: Never change what the code does - only how it does it. All original features, outputs, and behaviors must remain intact.
+## Standards
+Report violations of documented repo standards, local code conventions, or clear
+maintainability risks introduced by the diff. Cite file/line and the relevant
+standard when possible.
 
-# EXECUTION
+## Spec
+Check whether the implementation fully satisfies the issue and any linked PRD
+requirements. Report missing requirements, partial implementation, wrong
+behavior, or scope creep. Cite issue or PRD text where possible.
 
-If you find improvements to make:
+Lead with findings, ordered by severity. If there are no findings, say that
+clearly and mention remaining test gaps or residual risk.
 
-1. Make the changes directly on this branch
-2. Run tests and type checking to ensure nothing is broken
-3. Commit describing the refinements
+# Fix Process
 
-If the code is already clean and well-structured, do nothing.
+Now fix every valid finding. Use the /tdd skill strictly:
 
-Once complete, output <promise>COMPLETE</promise>.
+1. For each behavioral or spec finding, first add or update a focused failing test.
+2. Implement the smallest correct fix.
+3. Run the targeted test and get it green.
+4. Repeat one finding at a time.
+5. Refactor only while tests are green.
+6. Keep tests behavior-focused through public interfaces. Do not create artificial
+   test seams just to test internals.
+
+For standards-only findings that do not need tests, make the smallest code cleanup
+and run the nearest relevant verification.
+
+# Verification
+
+Before committing:
+- Run the smallest meaningful pytest scope for the touched code.
+- Run `uv run python -m compileall -q src tests` if Python code changed.
+- Run any additional focused checks the findings specifically require.
+- Do not run full training jobs or W&B-backed commands.
+
+If verification fails, fix it before proceeding. If you are genuinely blocked,
+explain the blocker and stop — do not fabricate a fix.
+
+# Commit
+
+When all valid findings are fixed and verification passes, make one follow-up
+local commit with a conventional message:
+
+- Prefer `fix: address review findings for issue #{{ISSUE_NUMBER}}`.
+- Mention the issue number in the body if useful.
+
+If nothing needed fixing, make no commit.
+
+Do **not** push the branch, create a PR, post comments, close the issue, or edit
+labels — the merge phase merges the branch and closes the issue after this phase.
+
+When done, output `<promise>COMPLETE</promise>`.

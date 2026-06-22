@@ -1,35 +1,10 @@
-FROM ghcr.io/astral-sh/uv:0.9.16 AS uv
-
 FROM node:22-bookworm
-
-COPY --from=uv /uv /uvx /bin/
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-  ca-certificates \
   git \
   curl \
   jq \
-  build-essential \
-  pkg-config \
-  python3-dev \
-  libegl1 \
-  libfontconfig1 \
-  libfreetype6 \
-  libgl1 \
-  libglib2.0-0 \
-  libglx-mesa0 \
-  libice6 \
-  libosmesa6 \
-  libsm6 \
-  libx11-6 \
-  libxcursor1 \
-  libxext6 \
-  libxi6 \
-  libxinerama1 \
-  libxrandr2 \
-  libxrender1 \
-  libxxf86vm1 \
   && rm -rf /var/lib/apt/lists/*
 
 # Install GitHub CLI
@@ -50,15 +25,9 @@ ARG AGENT_GID=1000
 RUN groupmod -o -g $AGENT_GID node && usermod -o -u $AGENT_UID -g $AGENT_GID -d /home/agent -m -l agent node
 
 # Install Codex CLI (run as root before USER agent)
-RUN npm install -g @openai/codex \
-  && uv python install 3.11 \
-  && ln -sf /usr/bin/python3.11 /usr/local/bin/python
+RUN npm install -g @openai/codex
 
 ENV CODEX_HOME=/home/agent/.codex
-ENV JAX_PLATFORMS=cpu
-ENV MUJOCO_GL=osmesa
-ENV PYGAME_HIDE_SUPPORT_PROMPT=1
-ENV WANDB_MODE=disabled
 
 USER ${AGENT_UID}:${AGENT_GID}
 
