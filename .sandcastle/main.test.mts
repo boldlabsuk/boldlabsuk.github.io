@@ -61,7 +61,7 @@ test('ensureDockerImageBuilt does not build when the image exists', () => {
       'docker',
       'image',
       'inspect',
-      'sandcastle:llm-hanabi',
+      'sandcastle:bold_website',
       '--format',
       '{{.Id}}',
     ],
@@ -78,7 +78,7 @@ test('ensureDockerImageBuilt builds when Docker reports the image is absent', ()
       if (command === 'docker') {
         const error = new Error('Command failed: docker image inspect');
         (error as Error & {stderr: Buffer}).stderr = Buffer.from(
-          'Error: No such image: sandcastle:llm-hanabi',
+          'Error: No such image: sandcastle:bold_website',
         );
         throw error;
       }
@@ -92,7 +92,7 @@ test('ensureDockerImageBuilt builds when Docker reports the image is absent', ()
       'docker',
       'image',
       'inspect',
-      'sandcastle:llm-hanabi',
+      'sandcastle:bold_website',
       '--format',
       '{{.Id}}',
     ],
@@ -102,11 +102,11 @@ test('ensureDockerImageBuilt builds when Docker reports the image is absent', ()
       'docker',
       'build-image',
       '--image-name',
-      'sandcastle:llm-hanabi',
+      'sandcastle:bold_website',
     ],
   ]);
   assert.deepEqual(logs, [
-    'Docker image sandcastle:llm-hanabi is missing; building it now...',
+    'Docker image sandcastle:bold_website is missing; building it now...',
   ]);
 });
 
@@ -126,7 +126,7 @@ test('ensureDockerImageBuilt does not build when Docker inspection fails for ano
         },
         () => {},
       ),
-    /Could not inspect Docker image sandcastle:llm-hanabi/,
+    /Could not inspect Docker image sandcastle:bold_website/,
   );
 
   assert.deepEqual(calls, [
@@ -134,7 +134,7 @@ test('ensureDockerImageBuilt does not build when Docker inspection fails for ano
       'docker',
       'image',
       'inspect',
-      'sandcastle:llm-hanabi',
+      'sandcastle:bold_website',
       '--format',
       '{{.Id}}',
     ],
@@ -485,7 +485,7 @@ test('runCycle retries once when the Docker provider reports the image missing',
     if (!failedOnce) {
       failedOnce = true;
       throw new Error(
-        "Provider 'docker' create failed: Image 'sandcastle:llm-hanabi' not found locally. Build it first with 'sandcastle docker build-image'.",
+        "Provider 'docker' create failed: Image 'sandcastle:bold_website' not found locally. Build it first with 'sandcastle docker build-image'.",
       );
     }
     return options.name === 'implement' ? IMPLEMENT_DONE : {stdout: '', commits: [], iterations: []};
@@ -511,7 +511,7 @@ test('runCycle retries once when the Docker provider reports the image missing',
   );
 });
 
-test('runCycle runs the planner on gpt-5.4 and the work phases on gpt-5.5', async () => {
+test('runCycle runs all phases on gpt-5.5 with phase-specific effort', async () => {
   const {fn, calls} = makeFakeRun({
     planner: {stdout: PLAN_ONE, commits: [], iterations: []},
     implement: IMPLEMENT_DONE,
@@ -530,11 +530,11 @@ test('runCycle runs the planner on gpt-5.4 and the work phases on gpt-5.5', asyn
 
   const agentFor = (name: string) => calls.find((c) => c.name === name).agent;
   assert.deepEqual(agentFor('planner'), PLANNER_AGENT);
-  assert.deepEqual(PLANNER_AGENT, {model: 'gpt-5.4', effort: 'medium'});
+  assert.deepEqual(PLANNER_AGENT, {model: 'gpt-5.5', effort: 'low'});
   assert.deepEqual(agentFor('implement'), WORKER_AGENT);
   assert.deepEqual(agentFor('review'), WORKER_AGENT);
   assert.deepEqual(agentFor('merge'), WORKER_AGENT);
-  assert.deepEqual(WORKER_AGENT, {model: 'gpt-5.5', effort: 'medium'});
+  assert.deepEqual(WORKER_AGENT, {model: 'gpt-5.5', effort: 'high'});
 });
 
 test('runCycles stops as soon as a cycle plans no issues', async () => {

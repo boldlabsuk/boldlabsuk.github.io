@@ -1,5 +1,5 @@
 /**
- * @fileoverview Run the Sandcastle agent loop against the llm-hanabi repository.
+ * @fileoverview Run the Sandcastle agent loop against the BOLD Website repository.
  *
  * Sandcastle launches a Codex coding agent inside a Docker sandbox, points it at
  * a prompt file, and lets it iterate on the repository. This single module owns
@@ -27,13 +27,10 @@
  *   Normal mode for a specific issue (bypasses the planner, one cycle):
  *     npm run sandcastle -- --issue 37
  *
- *   Restrict planner candidates to children of a given PRD:
- *     npm run sandcastle -- --prd 50
- *
  * Normal mode follows Matt Pocock's parallel-cycle model: a planner picks all
  * unblocked issues, each is implemented and reviewed/fixed on its own branch,
  * then ONE merge agent merges every completed branch into the current host
- * branch and closes its issue. Nothing is pushed — review the finished PRD and
+ * branch and closes its issue. Nothing is pushed — review the finished work and
  * `git push` by hand. Smoke mode remains isolated in Sandcastle's temporary
  * worktree.
  *
@@ -53,7 +50,7 @@ import {
 } from '@commander-js/extra-typings';
 
 /** Name (and tag) of the Docker image used for the agent sandbox. */
-const DOCKER_IMAGE_NAME = 'sandcastle:llm-hanabi';
+const DOCKER_IMAGE_NAME = 'sandcastle:bold_website';
 
 /**
  * Shell command run inside the sandbox once it becomes ready.
@@ -68,16 +65,10 @@ const PREPARE_CODEX_HOME_COMMAND =
   'set -eu && rm -rf /home/agent/.codex && mkdir -p /home/agent/.codex && for item in auth.json config.toml AGENTS.md rules; do if [ -e "/home/agent/.codex-host/$item" ]; then cp -R "/home/agent/.codex-host/$item" /home/agent/.codex/; fi; done && if id agent >/dev/null 2>&1; then chown -R agent:agent /home/agent/.codex 2>/dev/null || true; fi && chmod -R u+rwX /home/agent/.codex && test -s /home/agent/.codex/auth.json && test -s /home/agent/.codex/config.toml';
 
 /** Installs Node dependencies inside the sandbox (skipped in smoke mode). */
-const INSTALL_NODE_DEPENDENCIES_COMMAND = 'npm ci';
-
-/** Installs Python dependencies inside the sandbox (skipped in smoke mode). */
-const INSTALL_PYTHON_DEPENDENCIES_COMMAND = 'uv sync --locked';
+const INSTALL_NODE_DEPENDENCIES_COMMAND = 'npm install';
 
 /** npm can be slow after a fresh Docker image rebuild. */
 const INSTALL_NODE_DEPENDENCIES_TIMEOUT_MS = 180_000;
-
-/** uv may need to build or verify a fresh Linux virtualenv in Docker. */
-const INSTALL_PYTHON_DEPENDENCIES_TIMEOUT_MS = 300_000;
 
 /** Prompt files for each pipeline phase. */
 const PLAN_PROMPT_FILE = './.sandcastle/plan-prompt.md';
@@ -582,17 +573,17 @@ function buildSandbox(githubToken: string) {
 
 /** A Codex model plus reasoning effort, named so phases can pick deliberately. */
 interface AgentSpec {
-  /** Codex model id (e.g. `gpt-5.4`). */
+  /** Codex model id (e.g. `gpt-5.5`). */
   readonly model: string;
   /** Reasoning effort level. */
   readonly effort: 'low' | 'medium' | 'high' | 'xhigh';
 }
 
-/** Planning is lightweight analysis — a smaller, cheaper model is enough. */
-export const PLANNER_AGENT: AgentSpec = {model: 'gpt-5.4', effort: 'medium'};
+/** Planning is lightweight analysis. */
+export const PLANNER_AGENT: AgentSpec = {model: 'gpt-5.5', effort: 'low'};
 
 /** Implement/review/edit do the real engineering work. */
-export const WORKER_AGENT: AgentSpec = {model: 'gpt-5.5', effort: 'medium'};
+export const WORKER_AGENT: AgentSpec = {model: 'gpt-5.5', effort: 'high'};
 
 /**
  * Builds a Codex agent from an {@link AgentSpec}.
@@ -607,10 +598,9 @@ function buildAgent(spec: AgentSpec) {
 /**
  * Builds the sandbox-ready hooks.
  *
- * @param installDeps When true, install Node and Python dependencies after the
- *     Codex home is prepared. The planner phase skips this (analysis only);
- *     implement/review need the project environment. With branch-strategy
- *     worktree reuse the install is a fast verify on later phases.
+ * @param installDeps When true, install Node dependencies after the Codex home
+ *     is prepared. The planner phase skips this analysis-only step;
+ *     implement/review need the project environment.
  */
 function buildHooks(installDeps: boolean) {
   const onSandboxReady = [
@@ -620,10 +610,6 @@ function buildHooks(installDeps: boolean) {
           {
             command: INSTALL_NODE_DEPENDENCIES_COMMAND,
             timeoutMs: INSTALL_NODE_DEPENDENCIES_TIMEOUT_MS,
-          },
-          {
-            command: INSTALL_PYTHON_DEPENDENCIES_COMMAND,
-            timeoutMs: INSTALL_PYTHON_DEPENDENCIES_TIMEOUT_MS,
           },
         ]
       : []),
@@ -870,7 +856,7 @@ async function selectIssues(
  * Works each selected issue through {@link processIssue} under a concurrency
  * limit, then runs ONE merge agent over every issue that produced commits. The
  * merge agent merges into the local base branch and closes the issues itself;
- * the host never pushes — you review the finished PRD and push by hand.
+ * the host never pushes — you review the finished work and push by hand.
  *
  * @return The number of issues planned this cycle (0 ⇒ the outer loop stops).
  */
@@ -933,9 +919,9 @@ export async function runCycle(deps: CycleDeps): Promise<number> {
   // Runs in a merge-to-head worktree cut from the base branch, so its merge
   // commit folds back onto the host's checked-out branch. The agent merges each
   // branch, resolves conflicts, re-verifies tests, and closes the issues (and any
-  // parent PRD it completes) itself. Following Matt Pocock's model the host never
+  // linked parent issue it completes) itself. Following Matt Pocock's model the host never
   // pushes — completed work stays committed locally for you to review and push by
-  // hand once the whole PRD is finished.
+  // hand once the whole batch is finished.
   if (completed.length === 0) {
     console.log('No issues completed this cycle; nothing to merge.');
     return issues.length;
@@ -957,7 +943,7 @@ export async function runCycle(deps: CycleDeps): Promise<number> {
   });
 
   console.log(
-    `Cycle merged ${completed.length} issue(s) locally and closed them. Nothing pushed — review and push by hand when the PRD is complete.`,
+    `Cycle merged ${completed.length} issue(s) locally and closed them. Nothing pushed — review and push by hand when the batch is complete.`,
   );
   return issues.length;
 }

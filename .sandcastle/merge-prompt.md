@@ -1,24 +1,31 @@
-# TASK
+# Task
 
 Merge the following branches into the current branch:
 
 {{BRANCHES}}
 
+Read `AGENTS.md`, `CONTEXT.md`, and relevant files under `docs/agents/` before
+resolving conflicts.
+
 For each branch:
 
-1. Run `git merge <branch> --no-ff --no-edit`
-2. If there are merge conflicts, resolve them intelligently by reading both sides and choosing the correct resolution.
-3. After resolving conflicts, verify with the smallest relevant `uv run pytest` scope for the merged code, plus `uv run python -m compileall -q src tests` if Python changed. Do not run the recursive `h_group` test targets or full training/W&B jobs.
-4. If tests fail, fix the issues before proceeding to the next branch.
+1. Run `git merge <branch> --no-ff --no-edit`.
+2. If there are merge conflicts, resolve them by reading both sides and choosing
+   the correct result for this repository.
+3. Run `npm run lint`, `npm run test`, and `npm run build`.
+4. If a check fails, fix the issue before proceeding to the next branch.
 
-After all branches are merged, make a single commit summarizing the merge. Do not push — the work stays local and is reviewed and pushed by hand once the whole PRD is complete.
+After all branches are merged, run `npm run lint`, `npm run test`, and
+`npm run build` again. Make a single local commit summarizing the merge only
+after those checks pass.
 
-# CLOSE ISSUES
+# Close Issues
 
-For each branch that was merged, close its issue. If there are any parent issues (such as PRDs) which closing the issue would complete, close those too.
+Only after all merged work passes verification, close each completed issue with
+a concise comment.
 
-Here are all the issues:
+Issues:
 
 {{ISSUES}}
 
-Once you've merged everything you can, output <promise>COMPLETE</promise>.
+Do not push. Once complete, output `<promise>COMPLETE</promise>`.

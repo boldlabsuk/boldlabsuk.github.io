@@ -8,8 +8,12 @@ Public website language for presenting the BOLD Institute's people, research, ne
 A public profile entry for someone associated with the institute.
 _Avoid_: Member record
 
+**Website Roster**:
+The set of people intended to appear on the public Our People page. It contains people from the main spreadsheet sheet with profile pictures, excluding Slack-only additions and rows explicitly marked not to list on the BOLD website.
+_Avoid_: All spreadsheet rows, Slack additions
+
 **People Section**:
-A public grouping on the Our People page. The canonical People Sections are PIs, Postdocs, DPhil Students, Master's Students, Associate Members, and Alumni; every person belongs to exactly one People Section in this taxonomy.
+A public grouping on the Our People page. The canonical People Sections are Principal Investigator, Postdoc, PhD Student, Masters Student, Associate Members, and Alumni; every person belongs to exactly one People Section in this taxonomy.
 _Avoid_: Role filter, group bucket
 
 **Person Listing**:
