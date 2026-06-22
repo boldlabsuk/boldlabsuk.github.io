@@ -22,7 +22,7 @@ export function PersonDetailPage({ slug }: { slug: string }) {
       <section className="section-band detail-layout">
         <aside className="profile-panel">
           <Avatar person={person} size="large" />
-          <SocialLinks links={person.links} />
+          <SocialLinks links={person.links} personName={person.name} />
         </aside>
         <div className="detail-main">
           <p className="detail-lede">{person.bio}</p>

@@ -2,6 +2,7 @@ import type { PersonListing as PersonListingViewModel } from '../../domain/peopl
 import { ExternalLink } from '../primitives/ExternalLink'
 import { Avatar } from './Avatar'
 import { SocialLinks } from './SocialLinks'
+import { getPersonPrimaryLinkName } from './socialLinkItems'
 
 export function PersonListing({
   listing,
@@ -10,12 +11,16 @@ export function PersonListing({
 }) {
   const avatar = <Avatar person={listing} />
   const name = <>{listing.name}</>
+  const primaryLinkName = getPersonPrimaryLinkName({
+    personName: listing.name,
+    primaryPersonLink: listing.primaryPersonLink,
+  })
 
   return (
     <article className="person-listing">
       {listing.primaryPersonLink ? (
         <ExternalLink
-          ariaLabel={`Visit ${listing.name}`}
+          ariaLabel={primaryLinkName ?? undefined}
           href={listing.primaryPersonLink}
         >
           {avatar}
@@ -26,7 +31,12 @@ export function PersonListing({
       <div className="person-listing-body">
         <h3>
           {listing.primaryPersonLink ? (
-            <ExternalLink href={listing.primaryPersonLink}>{name}</ExternalLink>
+            <ExternalLink
+              ariaLabel={primaryLinkName ?? undefined}
+              href={listing.primaryPersonLink}
+            >
+              {name}
+            </ExternalLink>
           ) : (
             name
           )}
@@ -35,7 +45,7 @@ export function PersonListing({
         {listing.affiliation && (
           <p className="person-affiliation">{listing.affiliation}</p>
         )}
-        <SocialLinks links={listing.links} compact />
+        <SocialLinks links={listing.links} personName={listing.name} compact />
       </div>
     </article>
   )
