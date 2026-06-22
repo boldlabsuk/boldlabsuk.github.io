@@ -21,6 +21,21 @@ export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
   const rosterBySlug = new Map(roster.map((person) => [person.slug, person]))
 
   sourcePeople
+    .filter(isSupplementalAlumniSourcePerson)
+    .forEach((sourcePerson) => {
+      const slug = getCanonicalPersonSlug(sourcePerson.name)
+
+      if (rosterBySlug.has(slug)) {
+        return
+      }
+
+      const person = buildPerson(sourcePerson)
+
+      roster.push(person)
+      rosterBySlug.set(person.slug, person)
+    })
+
+  sourcePeople
     .filter(isSupplementalSourcePerson)
     .forEach((sourcePerson) => {
       const person = rosterBySlug.get(getCanonicalPersonSlug(sourcePerson.name))
@@ -67,10 +82,7 @@ function isWebsiteRosterSourcePerson(sourcePerson: SourcePerson) {
 
   return (
     source === 'main' &&
-    Boolean(sourcePerson.name.trim()) &&
-    Boolean(sourcePerson.role.trim()) &&
-    Boolean(sourcePerson.profilePicture?.trim()) &&
-    sourcePerson.listOnBoldWebsite?.trim().toLowerCase() !== 'no'
+    hasWebsiteRosterRequiredFields(sourcePerson)
   )
 }
 
@@ -78,9 +90,32 @@ function isSupplementalSourcePerson(sourcePerson: SourcePerson) {
   const source = normalizeSourceName(sourcePerson.source)
 
   return (
-    (source.includes('foerster') || source === 'flair') &&
+    isSupplementalRosterSource(source) &&
     Boolean(sourcePerson.name.trim()) &&
     Boolean(sourcePerson.socialLinks ?? sourcePerson['social-links'])
+  )
+}
+
+function isSupplementalAlumniSourcePerson(sourcePerson: SourcePerson) {
+  const source = normalizeSourceName(sourcePerson.source)
+
+  return (
+    isSupplementalRosterSource(source) &&
+    isExplicitAlumniMarker(sourcePerson.alumni) &&
+    hasWebsiteRosterRequiredFields(sourcePerson)
+  )
+}
+
+function isSupplementalRosterSource(source: string) {
+  return source.includes('foerster') || source === 'flair'
+}
+
+function hasWebsiteRosterRequiredFields(sourcePerson: SourcePerson) {
+  return (
+    Boolean(sourcePerson.name.trim()) &&
+    Boolean(sourcePerson.role.trim()) &&
+    Boolean(sourcePerson.profilePicture?.trim()) &&
+    sourcePerson.listOnBoldWebsite?.trim().toLowerCase() !== 'no'
   )
 }
 
