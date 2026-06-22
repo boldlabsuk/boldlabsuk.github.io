@@ -12,16 +12,6 @@ const labels: Record<PersonSocialLinkKey, string> = {
   email: 'Email',
 }
 
-const compactLabels: Record<PersonSocialLinkKey, string> = {
-  website: 'Site',
-  googleScholar: 'Scholar',
-  linkedin: 'LinkedIn',
-  github: 'GitHub',
-  twitter: 'X',
-  bluesky: 'Bluesky',
-  email: 'Email',
-}
-
 export type PersonSocialLinkItem = {
   key: string
   href: string
@@ -33,11 +23,9 @@ export type PersonSocialLinkItem = {
 export function getPersonSocialLinkItems({
   links,
   personName,
-  compact = false,
 }: {
   links?: Person['links']
   personName: string
-  compact?: boolean
 }): PersonSocialLinkItem[] {
   if (!links) {
     return []
@@ -50,7 +38,7 @@ export function getPersonSocialLinkItems({
     .map(([key, href]) => ({
       key,
       href,
-      label: compact ? compactLabels[key] : labels[key],
+      label: labels[key],
       accessibleName: `${labels[key]} for ${personName}`,
       isEmail: href.startsWith('mailto:'),
     }))

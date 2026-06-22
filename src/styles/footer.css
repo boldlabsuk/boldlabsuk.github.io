@@ -32,13 +32,11 @@
 
 .footer-brand {
   color: var(--surface);
-  font-size: 20px;
-  font-weight: 850;
 }
 
-.footer-brand .brand-mark {
-  background: var(--surface);
-  color: var(--ink);
+.footer-brand .brand-logo {
+  width: min(220px, 100%);
+  height: auto;
 }
 
 .footer-summary p {

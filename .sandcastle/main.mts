@@ -89,7 +89,6 @@ const SMOKE_COMPLETION_SIGNAL = '__SANDCASTLE_SMOKE_DO_NOT_STOP__';
 /**
  * Maximum number of issues worked concurrently within a cycle. The executor is a
  * real concurrency-limited pool (mirroring Matt Pocock's `run.ts`), but this is
- * pinned to 1 so issues are implemented and reviewed strictly one at a time.
  */
 const MAX_PARALLEL = 1;
 

@@ -5,10 +5,12 @@ export function ExternalLink({
   href,
   children,
   ariaLabel,
+  title,
 }: {
   href: string
   children: ReactNode
   ariaLabel?: string
+  title?: string
 }) {
   return (
     <a
@@ -16,6 +18,7 @@ export function ExternalLink({
       href={href}
       rel="noreferrer"
       target={isExternalUrl(href) ? '_blank' : undefined}
+      title={title}
     >
       {children}
     </a>

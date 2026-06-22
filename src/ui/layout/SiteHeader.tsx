@@ -12,13 +12,7 @@ export function SiteHeader({
   return (
     <header className="site-header">
       <a className="brand" href="/" aria-label={`${siteMeta.name} home`}>
-        <span className="brand-mark" aria-hidden="true">
-          B
-        </span>
-        <span className="brand-text">
-          <strong>{siteMeta.shortName}</strong>
-          <small>AI Institute</small>
-        </span>
+        <img className="brand-logo" src="/bold_full_vector_logo.svg" alt="" />
       </a>
 
       <button

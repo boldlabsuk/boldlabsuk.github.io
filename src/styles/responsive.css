@@ -14,8 +14,7 @@
   }
 
   .four-up,
-  .people-grid,
-  .person-listing-grid {
+  .people-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -111,8 +110,9 @@
 }
 
 @media (max-width: 560px) {
-  .brand-text small {
-    display: none;
+  .brand .brand-logo {
+    width: 190px;
+    height: 52px;
   }
 
   .home-hero-copy {
@@ -143,8 +143,7 @@
 
   .four-up,
   .two-up,
-  .people-grid,
-  .person-listing-grid {
+  .people-grid {
     grid-template-columns: 1fr;
   }
 

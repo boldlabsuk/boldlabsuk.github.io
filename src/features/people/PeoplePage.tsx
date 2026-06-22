@@ -24,7 +24,7 @@ export function PeoplePage() {
 
   return (
     <>
-      <section className="section-band page-content">
+      <section className="section-band page-content people-page-content">
         <div className="filter-panel" aria-label="People filters">
           <SearchInput
             id="people-search"

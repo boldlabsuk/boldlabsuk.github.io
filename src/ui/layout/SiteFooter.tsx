@@ -7,10 +7,7 @@ export function SiteFooter() {
       <div className="footer-inner">
         <div className="footer-summary">
           <a className="footer-brand" href="/">
-            <span className="brand-mark" aria-hidden="true">
-              B
-            </span>
-            <span>{siteMeta.name}</span>
+            <img className="brand-logo" src="/bold_full_vector_logo.svg" alt="" />
           </a>
           <p>{siteMeta.description}</p>
           <a href={`mailto:${siteMeta.contactEmail}`}>{siteMeta.contactEmail}</a>

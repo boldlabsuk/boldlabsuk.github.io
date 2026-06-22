@@ -1,3 +1,7 @@
+.people-page-content {
+  padding-top: clamp(32px, 4vw, 56px);
+}
+
 .people-directory {
   display: grid;
   gap: 36px;
@@ -19,18 +23,25 @@
 }
 
 .person-listing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
-  gap: 24px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .person-listing {
   display: grid;
-  grid-template-rows: minmax(2.8em, auto) auto minmax(2.8em, auto) 34px;
+  flex: 0 1 154px;
+  max-width: 154px;
   justify-items: center;
   align-items: start;
-  gap: 8px;
+  gap: 7px;
   min-width: 0;
+  padding: 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
   text-align: center;
 }
 
@@ -42,7 +53,7 @@
 }
 
 .person-listing .avatar {
-  width: clamp(92px, 12vw, 124px);
+  width: 106px;
   border-radius: 0;
 }
 
@@ -179,6 +190,13 @@
   min-height: 34px;
   min-width: 34px;
   padding: 0;
+  background: var(--surface);
+  color: var(--ink-soft);
+}
+
+.social-links-compact a:hover,
+.social-links-compact a:focus-visible {
+  background: var(--wash);
 }
 
 .social-link-icon {

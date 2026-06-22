@@ -29,7 +29,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 28px;
-  min-height: 74px;
+  min-height: 67px;
   padding: 0 clamp(18px, 4vw, 48px);
   border-bottom: 1px solid rgba(216, 222, 230, 0.92);
   background: rgba(251, 250, 246, 0.9);
@@ -40,39 +40,14 @@
 .footer-brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
   color: var(--ink);
   text-decoration: none;
 }
 
-.brand-mark {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 8px;
-  background: var(--ink);
-  color: var(--paper);
-  font-weight: 850;
-}
-
-.brand-text strong,
-.brand-text small {
-  display: block;
-  line-height: 1;
-}
-
-.brand-text strong {
-  font-size: 18px;
-}
-
-.brand-text small {
-  margin-top: 5px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 780;
-  text-transform: uppercase;
+.brand .brand-logo {
+  width: clamp(202px, 26vw, 271px);
+  height: 60px;
+  object-fit: contain;
 }
 
 .menu-toggle {
