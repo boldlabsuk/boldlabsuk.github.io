@@ -166,6 +166,63 @@ test('Website Roster parses public profile links from source social-links text',
   })
 })
 
+test('Website Roster expands spreadsheet affiliation shorthand for public display', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Oxford Shorthand',
+      role: 'Postdoc',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'oxford-shorthand.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'Imperial Shorthand',
+      role: 'Postdoc',
+      homeInstitution: 'Imperial',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'imperial-shorthand.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'UCL Shorthand',
+      role: 'PhD student',
+      homeInstitution: 'UCL',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'ucl-shorthand.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+  ])
+
+  assert.deepEqual(roster.map((person) => person.affiliation), [
+    'University of Oxford',
+    'Imperial College London',
+    'University College London',
+  ])
+})
+
+test('Website Roster recognizes Bluesky profile links', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Bluesky Researcher',
+      role: 'Postdoc',
+      homeInstitution: 'Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'bluesky-researcher.jpg',
+      listOnBoldWebsite: 'YES',
+      socialLinks: 'https://bsky.app/profile/bluesky-researcher.bsky.social',
+    },
+  ])
+
+  assert.deepEqual(roster[0]?.links, {
+    bluesky: 'https://bsky.app/profile/bluesky-researcher.bsky.social',
+  })
+})
+
 test('Website Roster classifies first-party social subdomain URLs as social links', () => {
   const roster = buildWebsiteRoster([
     {

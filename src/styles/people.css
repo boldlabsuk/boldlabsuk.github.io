@@ -1,48 +1,54 @@
 .people-directory {
   display: grid;
-  gap: 48px;
+  gap: 36px;
 }
 
 .people-section {
   display: grid;
-  gap: 18px;
+  gap: 20px;
+}
+
+.people-section + .people-section {
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
 }
 
 .people-section h2 {
   margin: 0;
+  text-align: center;
 }
 
 .person-listing-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
+  gap: 24px 18px;
 }
 
 .person-listing {
   display: grid;
-  grid-template-columns: clamp(72px, 18vw, 88px) minmax(0, 1fr);
-  gap: 16px;
-  align-items: center;
-  min-height: 124px;
+  grid-template-rows: minmax(2.8em, auto) auto minmax(2.8em, auto) 34px;
+  justify-items: center;
+  align-items: start;
+  gap: 8px;
   min-width: 0;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
+  text-align: center;
 }
 
 .person-listing > a {
   display: block;
   color: inherit;
   text-decoration: none;
+  outline-offset: 4px;
 }
 
 .person-listing .avatar {
-  border-radius: 8px;
+  width: clamp(92px, 12vw, 124px);
+  border-radius: 0;
 }
 
 .person-listing:focus-within {
-  box-shadow: var(--shadow);
+  outline: 2px solid var(--blue);
+  outline-offset: 5px;
 }
 
 .person-listing-body {
@@ -54,8 +60,9 @@
 
 .person-listing h3 {
   margin: 0;
-  font-size: 19px;
-  line-height: 1.18;
+  align-self: end;
+  font-size: 16px;
+  line-height: 1.22;
   overflow-wrap: anywhere;
 }
 
@@ -120,6 +127,7 @@
 .person-affiliation {
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.25;
   overflow-wrap: anywhere;
 }
 
@@ -162,13 +170,30 @@
 }
 
 .social-links-compact {
+  justify-content: center;
   gap: 6px;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .social-links-compact a {
-  min-height: 28px;
+  min-height: 34px;
   min-width: 34px;
-  padding: 0 8px;
-  font-size: 12px;
+  padding: 0;
+}
+
+.social-link-icon {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+}
+
+.social-link-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
 }

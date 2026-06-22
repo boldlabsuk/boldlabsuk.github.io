@@ -8,6 +8,7 @@ const labels: Record<PersonSocialLinkKey, string> = {
   linkedin: 'LinkedIn',
   github: 'GitHub',
   twitter: 'X',
+  bluesky: 'Bluesky',
   email: 'Email',
 }
 
@@ -17,6 +18,7 @@ const compactLabels: Record<PersonSocialLinkKey, string> = {
   linkedin: 'LinkedIn',
   github: 'GitHub',
   twitter: 'X',
+  bluesky: 'Bluesky',
   email: 'Email',
 }
 

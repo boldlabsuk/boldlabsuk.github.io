@@ -9,6 +9,7 @@ export type PersonLinkSet = {
   linkedin?: string
   github?: string
   twitter?: string
+  bluesky?: string
   email?: string
 }
 
