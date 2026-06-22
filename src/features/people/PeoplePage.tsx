@@ -89,7 +89,7 @@ export function PeoplePage() {
                 className="people-section"
                 key={peopleSection.title}
               >
-                <h2>{peopleSection.title}</h2>
+                <h2>{peopleSection.label}</h2>
                 <div className="person-listing-grid">
                   {peopleSection.people.map((listing) => (
                     <PersonListing key={listing.slug} listing={listing} />

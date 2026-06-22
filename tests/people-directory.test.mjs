@@ -77,6 +77,24 @@ test('People Directory renders non-empty People Sections in canonical order', ()
   )
 })
 
+test('People Directory exposes plural public People Section headings', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people,
+    filters: emptyFilters,
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => section.label),
+    [
+      'Principal Investigators',
+      'Postdocs',
+      'PhD Students',
+      'Masters Students',
+      'Associate Members',
+    ],
+  )
+})
+
 test('People Directory maps every Person into exactly one People Section', () => {
   const directory = buildPeopleDirectoryViewModel({
     people,

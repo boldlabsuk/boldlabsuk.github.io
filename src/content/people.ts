@@ -1,4 +1,4 @@
-import ourPeople from './our_people.json' with { type: 'json' }
+import ourPeople from '../../our_people.json' with { type: 'json' }
 import type { Person, PersonLinkSet } from './types.ts'
 
 export type SourcePerson = {
@@ -19,7 +19,7 @@ export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
     .map((sourcePerson) => {
       const name = sourcePerson.name.trim()
       const role = sourcePerson.role.trim()
-      const affiliation = sourcePerson.homeInstitution?.trim()
+      const affiliation = normalizeAffiliation(sourcePerson.homeInstitution)
       const slug = slugify(name)
 
       return {
@@ -48,6 +48,22 @@ function isWebsiteRosterSourcePerson(sourcePerson: SourcePerson) {
     Boolean(sourcePerson.profilePicture?.trim()) &&
     sourcePerson.listOnBoldWebsite?.trim().toLowerCase() !== 'no'
   )
+}
+
+function normalizeAffiliation(homeInstitution?: string) {
+  const affiliation = homeInstitution?.trim()
+
+  if (!affiliation) {
+    return undefined
+  }
+
+  const expandedAffiliations: Record<string, string> = {
+    Oxford: 'University of Oxford',
+    Imperial: 'Imperial College London',
+    UCL: 'University College London',
+  }
+
+  return expandedAffiliations[affiliation] ?? affiliation
 }
 
 function normalizeResearchAreas(researchInterestKeywords: string[] | string) {
@@ -119,6 +135,10 @@ function normalizePublicPersonLink(value: string) {
     isHostnameOrSubdomain(hostname, 'twitter.com')
   ) {
     return { key: 'twitter' as const, href }
+  }
+
+  if (isHostnameOrSubdomain(hostname, 'bsky.app')) {
+    return { key: 'bluesky' as const, href }
   }
 
   return { key: 'website' as const, href }

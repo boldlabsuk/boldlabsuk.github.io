@@ -18,7 +18,7 @@ export function Avatar({
       <img
         className={`avatar avatar-${size}`}
         src={image}
-        alt={`${person.name}, ${person.role}`}
+        alt={person.name}
       />
     )
   }
@@ -26,7 +26,7 @@ export function Avatar({
   return (
     <div
       className={`avatar avatar-placeholder avatar-${size}`}
-      aria-label={`${person.name}, ${person.role}`}
+      aria-label={person.name}
       role="img"
     >
       {getInitials(person.name)}

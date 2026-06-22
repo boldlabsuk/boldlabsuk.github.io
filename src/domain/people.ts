@@ -15,6 +15,15 @@ export const peopleSectionOrder = [
 
 export type PeopleSection = (typeof peopleSectionOrder)[number]
 
+export const peopleSectionLabels: Record<PeopleSection, string> = {
+  'Principal Investigator': 'Principal Investigators',
+  Postdoc: 'Postdocs',
+  'PhD Student': 'PhD Students',
+  'Masters Student': 'Masters Students',
+  'Associate Members': 'Associate Members',
+  Alumni: 'Alumni',
+}
+
 export type PeopleDirectoryFilters = {
   query: string
   section: string
@@ -35,6 +44,7 @@ export type PersonListing = {
 
 export type PeopleDirectorySection = {
   title: PeopleSection
+  label: string
   people: PersonListing[]
 }
 
@@ -90,6 +100,7 @@ export function buildPeopleDirectoryViewModel({
   const sections = peopleSectionOrder
     .map((section) => ({
       title: section,
+      label: peopleSectionLabels[section],
       people: matchedPeople
         .filter((person) => getPeopleSection(person) === section)
         .map((person) => ({
@@ -133,6 +144,7 @@ export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
     links.github,
     links.linkedin,
     links.twitter,
+    links.bluesky,
   ]
 
   return candidates.find((href): href is string => Boolean(href?.trim())) ?? null

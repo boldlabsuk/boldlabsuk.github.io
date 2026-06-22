@@ -18,6 +18,18 @@ export function PersonListing({
 
   return (
     <article className="person-listing">
+      <h3>
+        {listing.primaryPersonLink ? (
+          <ExternalLink
+            ariaLabel={primaryLinkName ?? undefined}
+            href={listing.primaryPersonLink}
+          >
+            {name}
+          </ExternalLink>
+        ) : (
+          name
+        )}
+      </h3>
       {listing.primaryPersonLink ? (
         <ExternalLink
           ariaLabel={primaryLinkName ?? undefined}
@@ -28,25 +40,10 @@ export function PersonListing({
       ) : (
         avatar
       )}
-      <div className="person-listing-body">
-        <h3>
-          {listing.primaryPersonLink ? (
-            <ExternalLink
-              ariaLabel={primaryLinkName ?? undefined}
-              href={listing.primaryPersonLink}
-            >
-              {name}
-            </ExternalLink>
-          ) : (
-            name
-          )}
-        </h3>
-        <p className="person-role">{listing.role}</p>
-        {listing.affiliation && (
-          <p className="person-affiliation">{listing.affiliation}</p>
-        )}
-        <SocialLinks links={listing.links} personName={listing.name} compact />
-      </div>
+      {listing.affiliation && (
+        <p className="person-affiliation">{listing.affiliation}</p>
+      )}
+      <SocialLinks links={listing.links} personName={listing.name} compact />
     </article>
   )
 }

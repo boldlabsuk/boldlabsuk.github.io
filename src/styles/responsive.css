@@ -190,15 +190,11 @@
 
 @media (max-width: 420px) {
   .person-listing {
-    grid-template-columns: 64px minmax(0, 1fr);
-    gap: 12px;
-    align-items: start;
-    min-height: auto;
-    padding: 12px;
+    gap: 7px;
   }
 
   .person-listing h3 {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .social-links-compact a {
