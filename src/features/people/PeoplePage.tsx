@@ -8,7 +8,6 @@ import { allFilterValue } from '../../domain/shared'
 import { PersonListing } from '../../ui/cards/PersonListing'
 import { SearchInput } from '../../ui/forms/SearchInput'
 import { SelectFilter } from '../../ui/forms/SelectFilter'
-import { PageHero } from '../../ui/layout/PageHero'
 import { EmptyState } from '../../ui/primitives/EmptyState'
 
 export function PeoplePage() {
@@ -25,12 +24,6 @@ export function PeoplePage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Our People"
-        title="Our People"
-        description="Meet the researchers, engineers, students, fellows, and collaborators building the institute."
-      />
-
       <section className="section-band page-content">
         <div className="filter-panel" aria-label="People filters">
           <SearchInput

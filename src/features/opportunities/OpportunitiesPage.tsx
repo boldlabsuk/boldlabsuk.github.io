@@ -1,20 +1,12 @@
 import { involvementRoutes, opportunities, siteMeta } from '../../content'
 import { InvolvementCard } from '../../ui/cards/InvolvementCard'
 import { OpportunityCard } from '../../ui/cards/OpportunityCard'
-import { PageHero } from '../../ui/layout/PageHero'
 import { SectionHeader } from '../../ui/layout/SectionHeader'
 import { EmptyState } from '../../ui/primitives/EmptyState'
 
 export function OpportunitiesPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Opportunities"
-        title="Opportunities"
-        description="Join, visit, collaborate, or work with us."
-        secondaryDescription="We welcome outstanding students, researchers, engineers, fellows, and collaborators who want to help shape the next generation of AI research."
-      />
-
       <section className="section-band page-content">
         <SectionHeader
           eyebrow="Ways to Get Involved"
