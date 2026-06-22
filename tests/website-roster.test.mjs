@@ -142,6 +142,58 @@ test('Website Roster maps unsupported profile source formats to generated web-sa
   )
 })
 
+test('Website Roster carries explicit source alumni markers into the Alumni People Section', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Flagged Alumni',
+      role: 'Former PI',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'flagged-alumni.jpg',
+      listOnBoldWebsite: 'YES',
+      alumni: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'Current PI',
+      role: 'BOLD PI',
+      homeInstitution: 'Imperial College London',
+      researchInterestKeywords: ['Agents'],
+      profilePicture: 'current-pi.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'Unmarked Alumni Role',
+      role: 'Alumni',
+      homeInstitution: 'University College London',
+      researchInterestKeywords: ['Discovery'],
+      profilePicture: 'unmarked-alumni-role.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+  ])
+
+  const directory = buildPeopleDirectoryViewModel({
+    people: roster,
+    filters: emptyFilters,
+  })
+  const listings = directory.sections.flatMap((section) => section.people)
+
+  assert.equal(listings.length, roster.length)
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['Principal Investigator', ['current-pi']],
+      ['Associate Members', ['unmarked-alumni-role']],
+      ['Alumni', ['flagged-alumni']],
+    ],
+  )
+})
+
 test('Website Roster parses public profile links from source social-links text', () => {
   const roster = buildWebsiteRoster([
     {

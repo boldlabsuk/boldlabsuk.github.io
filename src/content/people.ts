@@ -11,6 +11,7 @@ export type SourcePerson = {
   listOnBoldWebsite?: string
   socialLinks?: string
   'social-links'?: string
+  alumni?: boolean | string
 }
 
 export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
@@ -27,6 +28,7 @@ export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
         name,
         role,
         group: role,
+        ...(isExplicitAlumniMarker(sourcePerson.alumni) ? { alumni: true } : {}),
         affiliation: affiliation || undefined,
         bio: '',
         image: buildProfileAssetUrl(slug),
@@ -48,6 +50,18 @@ function isWebsiteRosterSourcePerson(sourcePerson: SourcePerson) {
     Boolean(sourcePerson.profilePicture?.trim()) &&
     sourcePerson.listOnBoldWebsite?.trim().toLowerCase() !== 'no'
   )
+}
+
+function isExplicitAlumniMarker(value: SourcePerson['alumni']) {
+  if (typeof value === 'boolean') {
+    return value
+  }
+
+  if (typeof value !== 'string') {
+    return false
+  }
+
+  return /^(?:1|alumni|true|y|yes)$/i.test(value.trim())
 }
 
 function normalizeAffiliation(homeInstitution?: string) {
