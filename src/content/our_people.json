@@ -1,0 +1,176 @@
+[
+  {
+    "source": "main",
+    "name": "Jakob Foerster",
+    "role": "BOLD PI",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning",
+      "Open-Ended Learning",
+      "Meta-Learning"
+    ],
+    "profilePicture": "jakob-foerster.jpg",
+    "listOnBoldWebsite": "YES"
+  },
+  {
+    "source": "main",
+    "name": "Yulin Wang",
+    "role": "Postdoc",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Agent Learning",
+      "Evaluation"
+    ],
+    "profilePicture": "yulin-wang.jpg",
+    "listOnBoldWebsite": ""
+  },
+  {
+    "source": "main",
+    "name": "Dylan Cope",
+    "role": "Postdoc",
+    "homeInstitution": "Imperial College London",
+    "researchInterestKeywords": [
+      "AI Safety",
+      "Evaluation",
+      "Multi-Agent Systems"
+    ],
+    "profilePicture": "dylan-cope.jpg",
+    "listOnBoldWebsite": "YES"
+  },
+  {
+    "source": "main",
+    "name": "Lukas Seier",
+    "role": "PhD student",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "Robot Learning",
+      "Reinforcement Learning",
+      "World Models"
+    ],
+    "profilePicture": "lukas-seier.jpg",
+    "listOnBoldWebsite": ""
+  },
+  {
+    "source": "main",
+    "name": "Bidipta Sarkar",
+    "role": "PhD student",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning",
+      "Language Agents",
+      "Open-Ended Learning"
+    ],
+    "profilePicture": "bidipta-sarkar.jpg",
+    "listOnBoldWebsite": "YES"
+  },
+  {
+    "source": "main",
+    "name": "Zilin Wang",
+    "role": "PhD student",
+    "homeInstitution": "University College London",
+    "researchInterestKeywords": [
+      "Embodied AI",
+      "Generalisation",
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "zilin-wang.jpg",
+    "listOnBoldWebsite": "YES"
+  },
+  {
+    "source": "main",
+    "name": "Sam Coward",
+    "role": "PhD student",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "Open-Ended Learning",
+      "Evolutionary Systems",
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "sam-coward.jpg",
+    "listOnBoldWebsite": ""
+  },
+  {
+    "source": "main",
+    "name": "Matthew Jackson",
+    "role": "Current Masters Student, but inc. PhD this fall with Jakob+Shimon",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "Offline Reinforcement Learning",
+      "World Models",
+      "Video Models"
+    ],
+    "profilePicture": "matthew-jackson.jpg",
+    "listOnBoldWebsite": "YES"
+  },
+  {
+    "source": "main",
+    "name": "Clarisse Wibault",
+    "role": "Master Student",
+    "homeInstitution": "University College London",
+    "researchInterestKeywords": [
+      "Goal-Conditioned Learning",
+      "Representation Learning",
+      "Offline Reinforcement Learning"
+    ],
+    "profilePicture": "clarisse-wibault.jpg",
+    "listOnBoldWebsite": ""
+  },
+  {
+    "source": "main",
+    "name": "Shashank Reddy Chirra",
+    "role": "Research visitor",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "Language Agents",
+      "Coordination",
+      "Evaluation"
+    ],
+    "profilePicture": "shashank-reddy-chirra.jpg",
+    "listOnBoldWebsite": "YES"
+  },
+  {
+    "source": "main",
+    "name": "Jarek Liesen",
+    "role": "Research assistant",
+    "homeInstitution": "Imperial College London",
+    "researchInterestKeywords": [
+      "Offline Reinforcement Learning",
+      "Benchmarks",
+      "Evaluation"
+    ],
+    "profilePicture": "jarek-liesen.jpg",
+    "listOnBoldWebsite": ""
+  },
+  {
+    "source": "main",
+    "name": "Hannah Erlebach",
+    "role": "Intern",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": [
+      "AI Safety",
+      "Agent Evaluation",
+      "Research Tooling"
+    ],
+    "profilePicture": "hannah-erlebach.jpg",
+    "listOnBoldWebsite": "YES"
+  },
+  {
+    "source": "main",
+    "name": "Opted Out Source Row",
+    "role": "PhD student",
+    "homeInstitution": "University of Oxford",
+    "researchInterestKeywords": ["Evaluation"],
+    "profilePicture": "opted-out-source-row.jpg",
+    "listOnBoldWebsite": "No"
+  },
+  {
+    "source": "slack",
+    "name": "Slack Only Source Row",
+    "role": "Research operations",
+    "homeInstitution": "BOLD Institute",
+    "researchInterestKeywords": ["Operations"],
+    "profilePicture": "slack-only-source-row.jpg",
+    "listOnBoldWebsite": "YES"
+  }
+]

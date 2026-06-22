@@ -15,7 +15,7 @@ dist-ssr
 # Local source material for roster/profile processing.
 # Contains internal contact data and raw assets; publish sanitized outputs only.
 context/
-our_people.json
+/our_people.json
 
 # Editor directories and files
 .vscode/*
