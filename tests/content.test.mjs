@@ -2,26 +2,39 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 import {
-  blogPosts,
+  involvementRoutes,
   navigation,
+  newsPosts,
+  opportunities,
+  papers,
   people,
-  publications,
-  researchPillars,
   siteMeta,
 } from '../src/content.ts'
 
-test('BOLD presents a static AI lab website with the required sections', () => {
-  assert.equal(siteMeta.name, 'BOLD')
-  assert.match(siteMeta.expandedName, /British Open-Ended Learning & Discovery/)
+test('BOLD presents the v2 institute information architecture', () => {
+  assert.equal(siteMeta.name, 'BOLD Institute')
+  assert.match(siteMeta.description, /three university AI labs/)
 
   assert.deepEqual(
     navigation.map((item) => item.label),
-    ['Research', 'People', 'Blog', 'Publications'],
+    ['Our People', 'News', 'Papers', 'Opportunities'],
   )
 
-  assert.ok(researchPillars.length >= 3)
-  assert.ok(people.length >= 4)
-  assert.ok(blogPosts.length >= 3)
-  assert.ok(publications.length >= 5)
-  assert.ok(blogPosts.every((post) => /^\d{4}-\d{2}-\d{2}$/.test(post.isoDate)))
+  assert.deepEqual(
+    navigation.map((item) => item.href),
+    ['/people', '/news', '/papers', '/opportunities'],
+  )
+})
+
+test('structured content supports people, news, papers, and opportunities', () => {
+  assert.ok(people.length >= 10)
+  assert.ok(newsPosts.length >= 6)
+  assert.ok(papers.length >= 7)
+  assert.ok(involvementRoutes.length === 6)
+  assert.ok(opportunities.length >= 1)
+
+  assert.ok(people.every((person) => person.slug && person.researchAreas.length))
+  assert.ok(newsPosts.every((post) => /^\d{4}-\d{2}-\d{2}$/.test(post.date)))
+  assert.ok(papers.every((paper) => paper.id && paper.links))
+  assert.ok(involvementRoutes.every((route) => route.href.includes(`#${route.id}`)))
 })

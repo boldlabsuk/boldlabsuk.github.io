@@ -1,8 +1,19 @@
 # BOLD Website
 
-Static prototype for BOLD, the British Open-Ended Learning & Discovery AI lab.
+Static Vite/React prototype for BOLD Institute, a unified AI research institute
+in England formed from three university AI labs.
 
-The site is intentionally public and static: no login, no backend, and no private data. It presents the lab mission, research pillars, student researcher profiles, blog-style updates, and a publication index.
+## Routes
+
+- `/` - homepage and hero landing page
+- `/people` - people directory
+- `/people/[slug]` - optional person profile pages
+- `/news` - news, articles, announcements, and research updates
+- `/news/[slug]` - individual news posts
+- `/papers` - publication and research output archive
+- `/opportunities` - join, visit, collaborate, and contact routes
+
+The Vercel rewrite in `vercel.json` serves the app shell for direct route visits.
 
 ## Local Development
 
@@ -19,4 +30,5 @@ npm run lint
 npm run build
 ```
 
-The content model lives in `src/content.ts`; the React shell consumes that model in `src/App.tsx`.
+Structured placeholder content lives in `src/content.ts`; route-aware page and
+component code lives in `src/App.tsx`.
