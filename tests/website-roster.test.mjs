@@ -74,6 +74,71 @@ const foersterMembersPageFixture = [
   ['Alumni', 'Noah Sarfati', 'noah-sarfati', 'Noah Sarfati', 'Alumni'],
 ]
 
+const foersterExpectedPublicLinkTypesBySlug = {
+  'jakob-foerster': ['github', 'googleScholar', 'twitter', 'website'],
+  'yulin-wang': ['googleScholar', 'website'],
+  'dylan-cope': ['github', 'googleScholar', 'twitter', 'website'],
+  'johannes-forkel': ['googleScholar'],
+  'lukas-seier': ['github', 'googleScholar', 'website'],
+  'shashank-reddy-chirra': [
+    'github',
+    'googleScholar',
+    'twitter',
+    'website',
+  ],
+  'alistair-letcher': ['github', 'googleScholar', 'twitter', 'website'],
+  'theo-wolf': ['github', 'googleScholar', 'twitter', 'website'],
+  'antonio-leon-villares': ['github', 'googleScholar', 'website'],
+  'austin-tudor-david-andrews': [
+    'github',
+    'googleScholar',
+    'twitter',
+    'website',
+  ],
+  'jarek-liesen': ['github', 'googleScholar', 'twitter', 'website'],
+  'ravi-hammond': ['github', 'googleScholar', 'linkedin', 'twitter'],
+  'j-rosser': ['github', 'googleScholar', 'twitter', 'website'],
+  'hannah-erlebach': ['github', 'googleScholar', 'twitter', 'website'],
+  'harry-mayne': ['github', 'googleScholar', 'twitter', 'website'],
+  'darius-muglich': ['github', 'googleScholar'],
+  'bidipta-sarkar': ['github', 'googleScholar', 'twitter', 'website'],
+  'thom-foster': ['github', 'googleScholar', 'twitter', 'website'],
+  'clarisse-wibault': ['github'],
+  'zilin-wang': ['github', 'googleScholar', 'twitter', 'website'],
+  'sam-coward': ['github', 'googleScholar', 'twitter', 'website'],
+  'michael-matthews': ['github', 'googleScholar', 'twitter', 'website'],
+  'uljad-berdica': ['github', 'googleScholar', 'twitter', 'website'],
+  'jonny-cook': ['github', 'googleScholar', 'twitter'],
+  'michael-beukman': ['github', 'googleScholar', 'twitter', 'website'],
+  'alex-goldie': ['github', 'twitter'],
+  'matthew-jackson': ['github', 'googleScholar', 'twitter', 'website'],
+  'qizhen-zhang-irene': ['github', 'googleScholar', 'twitter', 'website'],
+  'silvia-sapora': ['github', 'googleScholar', 'twitter'],
+  'andrei-lupu': ['github', 'googleScholar', 'twitter'],
+  'alexander-rutherford': ['github', 'googleScholar', 'twitter', 'website'],
+  'ola-kalisz': ['github', 'googleScholar', 'twitter', 'website'],
+  'aramis-marti-shahandeh': ['github'],
+  'samuel-simons': ['github', 'googleScholar', 'twitter'],
+  'satyam-agarwal': ['github'],
+  'yuhe-gao': ['github'],
+  'nathan-monette': ['github', 'googleScholar', 'twitter', 'website'],
+  'elif-akata': ['googleScholar', 'twitter', 'website'],
+  'tim-franzmeyer': ['github', 'googleScholar', 'twitter', 'website'],
+  'ben-ellis': ['github', 'googleScholar', 'twitter'],
+  'chris-lu': ['github', 'googleScholar', 'twitter', 'website'],
+  'timon-willi': ['googleScholar', 'twitter'],
+  'christian-schroeder-de-witt': [
+    'github',
+    'googleScholar',
+    'twitter',
+    'website',
+  ],
+  'jia-wan': ['github', 'twitter'],
+  'kang-li': ['github', 'twitter'],
+  'matthias-hericks': ['github', 'twitter'],
+  'noah-sarfati': ['github'],
+}
+
 test('Website Roster derives public Person Listings from central source rows', () => {
   const roster = buildWebsiteRoster([
     {
@@ -1035,6 +1100,26 @@ test('Foerster members page comparison is represented in the Website Roster', ()
       'alexander-rutherford': 'PhD Student',
       'kang-li': 'PhD Student',
     },
+  )
+  assert.deepEqual(
+    Object.fromEntries(
+      Object.entries(foersterExpectedPublicLinkTypesBySlug).map(
+        ([slug, expectedPublicLinkTypes]) => [
+          slug,
+          Object.keys(listingBySlug[slug]?.links ?? {})
+            .filter((linkType) => expectedPublicLinkTypes.includes(linkType))
+            .sort(),
+        ],
+      ),
+    ),
+    Object.fromEntries(
+      Object.entries(foersterExpectedPublicLinkTypesBySlug).map(
+        ([slug, expectedPublicLinkTypes]) => [
+          slug,
+          [...expectedPublicLinkTypes].sort(),
+        ],
+      ),
+    ),
   )
 })
 
