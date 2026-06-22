@@ -1190,5 +1190,96 @@
     "profilePicture": "tim-franzmeyer.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://www.robots.ox.ac.uk/~frtim/; https://twitter.com/frtimlive; https://scholar.google.com/citations?user=Jvv1rkkAAAAJ; https://github.com/fratim"
+  },
+  {
+    "source": "foerster-alumni",
+    "name": "Ben Ellis",
+    "role": "Research Scientist @ Reflection AI; DPhil 2021-2025",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "ben-ellis.jpg",
+    "listOnBoldWebsite": "YES",
+    "alumni": true,
+    "socialLinks": "https://twitter.com/benjamin_ellis3; https://scholar.google.com/citations?user=NPEI4IsAAAAJ&hl=en; https://github.com/benellis3"
+  },
+  {
+    "source": "foerster-alumni",
+    "name": "Chris Lu",
+    "role": "Research Scientist @ OpenAI; DPhil 2021-2025",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "chris-lu.jpg",
+    "listOnBoldWebsite": "YES",
+    "alumni": true,
+    "socialLinks": "https://chrislu.page/; https://twitter.com/_chris_lu_; https://scholar.google.com/citations?user=4WLoIRsAAAAJ&hl=en; https://github.com/luchris429"
+  },
+  {
+    "source": "foerster-alumni",
+    "name": "Timon Willi",
+    "role": "Research Scientist @ Meta; DPhil 2021-2025",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "timon-willi.jpg",
+    "listOnBoldWebsite": "YES",
+    "alumni": true,
+    "socialLinks": "https://twitter.com/TimonWilli; https://scholar.google.com/citations?user=Dn-udzAAAAAJ"
+  },
+  {
+    "source": "foerster-alumni",
+    "name": "Christian Schroeder de Witt",
+    "role": "Postdoc @ TVG, Oxford; Postdoc 2021-2023",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "christian-schroeder.jpg",
+    "listOnBoldWebsite": "YES",
+    "alumni": true,
+    "socialLinks": "https://www.schroederdewitt.com/; https://twitter.com/casdewitt; https://scholar.google.com/citations?user=DE60h_0AAAAJ; https://github.com/schroederdewitt"
+  },
+  {
+    "source": "foerster-alumni",
+    "name": "Jia Wan",
+    "role": "PhD @ MIT; MSc 2022-2023",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "jia-wan.jpg",
+    "listOnBoldWebsite": "YES",
+    "alumni": true,
+    "socialLinks": "https://twitter.com/Jia_Wan_; https://github.com/jw3479"
+  },
+  {
+    "source": "foerster-alumni",
+    "name": "Matthias Hericks",
+    "role": "Data Scientist @ BCG; MSc 2021-2022",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "matthias-hericks.jpg",
+    "listOnBoldWebsite": "YES",
+    "alumni": true,
+    "socialLinks": "https://twitter.com/matthiashericks; https://github.com/hericks"
+  },
+  {
+    "source": "foerster-alumni",
+    "name": "Noah Sarfati",
+    "role": "Applied Scientist @ Amazon; MSc 2021-2022",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "noah-sarfati.jpg",
+    "listOnBoldWebsite": "YES",
+    "alumni": true,
+    "socialLinks": "https://github.com/NoahSfi"
   }
 ]

@@ -73,7 +73,7 @@ test('People Directory renders non-empty People Sections in canonical order', ()
 
   assert.deepEqual(
     directory.sections.map((section) => section.title),
-    peopleSectionOrder.filter((section) => section !== 'Alumni'),
+    peopleSectionOrder,
   )
 })
 
@@ -91,6 +91,7 @@ test('People Directory exposes plural public People Section headings', () => {
       'PhD Students',
       'Masters Students',
       'Associate Members',
+      'Alumni',
     ],
   )
 })
@@ -117,7 +118,7 @@ test('People Directory maps every Person into exactly one People Section', () =>
       'PhD Student': 52,
       'Masters Student': 7,
       'Associate Members': 14,
-      Alumni: 0,
+      Alumni: 7,
     },
   )
   assert.deepEqual(
