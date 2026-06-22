@@ -26,7 +26,7 @@ export function SocialLinks({
             href={item.href}
             key={item.key}
           >
-            <SocialLinkIcon icon={item.key} />
+            {compact ? <SocialLinkIcon icon={item.key} /> : item.label}
           </a>
         ) : (
           <ExternalLink
@@ -34,7 +34,7 @@ export function SocialLinks({
             href={item.href}
             key={item.key}
           >
-            <SocialLinkIcon icon={item.key} />
+            {compact ? <SocialLinkIcon icon={item.key} /> : item.label}
           </ExternalLink>
         ),
       )}
