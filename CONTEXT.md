@@ -52,6 +52,10 @@ _Avoid_: Modal, popup, role listing
 An Expression of Interest for a research collaboration, which may represent an individual, group, company, or institution and should be framed around collaboration fit rather than personal hiring credentials.
 _Avoid_: Job application, student application, resume-first collaboration form
 
+**Expression of Interest Register**:
+The central reviewable collection of submitted Expressions of Interest across all Opportunities routes, filterable by route while keeping intake in one operational place.
+_Avoid_: Separate role inboxes, per-route spreadsheet silos
+
 **Homepage Closing Proof**:
 The final homepage proof layer focused on operational credibility: high-impact collaborative research at scale, frontier lab and startup experience, open-source and open-science commitment, and a lean day-0 merger model.
 _Avoid_: Repeated quote sections, opportunity CTA grid as the page ending
