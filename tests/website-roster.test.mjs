@@ -166,6 +166,30 @@ test('Website Roster parses public profile links from source social-links text',
   })
 })
 
+test('Website Roster parses labeled and pipe-separated source profile links', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Spreadsheet Linked',
+      role: 'Postdoc',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'spreadsheet-linked.jpg',
+      listOnBoldWebsite: 'YES',
+      socialLinks:
+        'website: spreadsheet.example | X: https://x.com/spreadsheet_ai | Scholar: https://scholar.google.co.uk/citations?user=spreadsheet | LinkedIn: https://www.linkedin.com/in/spreadsheet',
+    },
+  ])
+
+  assert.deepEqual(roster[0]?.links, {
+    website: 'https://spreadsheet.example',
+    twitter: 'https://x.com/spreadsheet_ai',
+    googleScholar:
+      'https://scholar.google.co.uk/citations?user=spreadsheet',
+    linkedin: 'https://www.linkedin.com/in/spreadsheet',
+  })
+})
+
 test('Website Roster expands spreadsheet affiliation shorthand for public display', () => {
   const roster = buildWebsiteRoster([
     {
@@ -347,14 +371,17 @@ test('Person Listing compact links remain available for parsed public links', ()
   const links = getPersonSocialLinkItems({
     links: roster[0]?.links,
     personName: 'Compact Linked',
-    compact: true,
   })
 
   assert.deepEqual(
     links.map((link) => [link.label, link.href, link.isEmail]),
     [
-      ['Site', 'https://compact.example', false],
-      ['Scholar', 'https://scholar.google.com/citations?user=compact', false],
+      ['Website', 'https://compact.example', false],
+      [
+        'Google Scholar',
+        'https://scholar.google.com/citations?user=compact',
+        false,
+      ],
       ['GitHub', 'https://github.com/compact-linked', false],
       ['LinkedIn', 'https://www.linkedin.com/in/compact-linked', false],
       ['X', 'https://x.com/compact_linked', false],
@@ -407,41 +434,28 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(directory.totalPeople, 12)
-  assert.equal(directory.visiblePeopleCount, 12)
+  assert.equal(directory.totalPeople, 75)
+  assert.equal(directory.visiblePeopleCount, 75)
   assert.deepEqual(
-    directory.sections.map((section) => [
-      section.title,
-      section.people.map((listing) => listing.slug),
-    ]),
-    [
-      ['Principal Investigator', ['jakob-foerster']],
-      ['Postdoc', ['yulin-wang', 'dylan-cope']],
-      [
-        'PhD Student',
-        ['lukas-seier', 'bidipta-sarkar', 'zilin-wang', 'sam-coward'],
-      ],
-      ['Masters Student', ['matthew-jackson', 'clarisse-wibault']],
-      [
-        'Associate Members',
-        ['shashank-reddy-chirra', 'jarek-liesen', 'hannah-erlebach'],
-      ],
-    ],
+    Object.fromEntries(
+      directory.sections.map((section) => [section.title, section.people.length]),
+    ),
+    {
+      'Principal Investigator': 3,
+      Postdoc: 7,
+      'PhD Student': 47,
+      'Masters Student': 7,
+      'Associate Members': 11,
+    },
   )
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 75)
   assert.deepEqual(
-    listings.map((listing) => listing.peopleSection),
+    directory.sections.map((section) => section.title),
     [
       'Principal Investigator',
       'Postdoc',
-      'Postdoc',
-      'PhD Student',
-      'PhD Student',
-      'PhD Student',
       'PhD Student',
       'Masters Student',
-      'Masters Student',
-      'Associate Members',
-      'Associate Members',
       'Associate Members',
     ],
   )
@@ -454,8 +468,19 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
         listing.image?.startsWith('/profile-assets/'),
     ),
   )
-  assert.ok(listings.every((listing) => listing.primaryPersonLink === null))
-  assert.ok(listings.every((listing) => listing.links === undefined))
+  const listingBySlug = Object.fromEntries(
+    listings.map((listing) => [listing.slug, listing]),
+  )
+
+  assert.equal(
+    listingBySlug['nathan-monette']?.primaryPersonLink,
+    'https://nmonette.github.io',
+  )
+  assert.equal(
+    listingBySlug['shashank-reddy-chirra']?.primaryPersonLink,
+    'https://shshnkreddy.github.io',
+  )
+  assert.equal(listingBySlug['gregory-levy']?.primaryPersonLink, null)
   assert.ok(
     listings.every(
       (listing) =>
@@ -480,7 +505,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     filters: {
       query: '',
       section: allFilterValue,
-      area: 'Evaluation',
+      area: 'Reinforcement Learning',
       affiliation: allFilterValue,
     },
   })
@@ -529,10 +554,11 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [
       ['Postdoc', ['yulin-wang']],
       ['PhD Student', ['zilin-wang']],
+      ['Associate Members', ['jiankai-wang']],
     ],
   )
-  assert.equal(matchingDirectory.visiblePeopleCount, 2)
-  assert.equal(matchingDirectory.totalPeople, 12)
+  assert.equal(matchingDirectory.visiblePeopleCount, 3)
+  assert.equal(matchingDirectory.totalPeople, 75)
 
   assert.deepEqual(
     areaDirectory.sections.map((section) => [
@@ -540,11 +566,25 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['Postdoc', ['yulin-wang', 'dylan-cope']],
-      ['Associate Members', ['shashank-reddy-chirra', 'jarek-liesen']],
+      [
+        'PhD Student',
+        [
+          'alex-goldie',
+          'george-nigmatulin',
+          'keyue-jiang',
+          'kang-li',
+          'austin-tudor-david-andrews',
+          'antoine-gorceix',
+          'hannah-janmohamed',
+          'michael-matthews',
+          'theo-wolf',
+        ],
+      ],
+      ['Masters Student', ['nathan-monette', 'jacinto-suner']],
+      ['Associate Members', ['aya-kayal', 'erik-feng', 'junming-an']],
     ],
   )
-  assert.equal(areaDirectory.visiblePeopleCount, 4)
+  assert.equal(areaDirectory.visiblePeopleCount, 14)
 
   assert.deepEqual(
     affiliationDirectory.sections.map((section) => [
@@ -552,32 +592,56 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['Postdoc', ['dylan-cope']],
-      ['Associate Members', ['jarek-liesen']],
+      ['Principal Investigator', ['antoine-cully']],
+      ['Postdoc', ['paul-templier', 'cong-sun']],
+      [
+        'PhD Student',
+        [
+          'konstantinos-mitsides',
+          'runjun-mao',
+          'richard-bornemann',
+          'hannah-janmohamed',
+          'lisa-coiffard',
+        ],
+      ],
+      ['Associate Members', ['george-mavroghenis', 'jiankai-wang', 'oscar-pang']],
     ],
   )
-  assert.equal(affiliationDirectory.visiblePeopleCount, 2)
+  assert.equal(affiliationDirectory.visiblePeopleCount, 11)
 
   assert.deepEqual(
     sectionDirectory.sections.map((section) => [
       section.title,
       section.people.map((listing) => listing.slug),
     ]),
-    [['Masters Student', ['matthew-jackson', 'clarisse-wibault']]],
+    [
+      [
+        'Masters Student',
+        [
+          'nathan-monette',
+          'aneesh-muppidi',
+          'yuhe-gao',
+          'aramis-marti-shahandeh',
+          'jacinto-suner',
+          'samuel-simons',
+          'ali-farhat',
+        ],
+      ],
+    ],
   )
-  assert.equal(sectionDirectory.visiblePeopleCount, 2)
+  assert.equal(sectionDirectory.visiblePeopleCount, 7)
 
   assert.deepEqual(
     combinedDirectory.sections.map((section) => [
       section.title,
       section.people.map((listing) => listing.slug),
     ]),
-    [['PhD Student', ['zilin-wang']]],
+    [],
   )
-  assert.equal(combinedDirectory.visiblePeopleCount, 1)
-  assert.equal(combinedDirectory.totalPeople, 12)
+  assert.equal(combinedDirectory.visiblePeopleCount, 0)
+  assert.equal(combinedDirectory.totalPeople, 75)
 
   assert.deepEqual(emptyDirectory.sections, [])
   assert.equal(emptyDirectory.visiblePeopleCount, 0)
-  assert.equal(emptyDirectory.totalPeople, 12)
+  assert.equal(emptyDirectory.totalPeople, 75)
 })

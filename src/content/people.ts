@@ -83,7 +83,7 @@ function parsePublicPersonLinks(sourceLinks?: string) {
 
   const links: PersonLinkSet = {}
 
-  for (const value of sourceLinks.split(/[\n;,]+|\s+(?=https?:\/\/|www\.|@)/i)) {
+  for (const value of sourceLinks.split(/[\n;,|]+|\s+(?=https?:\/\/|www\.|@)/i)) {
     const link = normalizePublicPersonLink(value)
 
     if (link && !links[link.key]) {
@@ -95,7 +95,7 @@ function parsePublicPersonLinks(sourceLinks?: string) {
 }
 
 function normalizePublicPersonLink(value: string) {
-  const trimmedValue = value.trim()
+  const trimmedValue = cleanPublicLinkValue(value)
 
   if (!trimmedValue || isPlaceholderLinkValue(trimmedValue)) {
     return undefined
@@ -118,7 +118,7 @@ function normalizePublicPersonLink(value: string) {
 
   const hostname = new URL(href).hostname.toLowerCase().replace(/^www\./, '')
 
-  if (isHostnameOrSubdomain(hostname, 'scholar.google.com')) {
+  if (/^scholar\.google\./.test(hostname)) {
     return { key: 'googleScholar' as const, href }
   }
 
@@ -145,7 +145,23 @@ function normalizePublicPersonLink(value: string) {
 }
 
 function isPlaceholderLinkValue(value: string) {
-  return /^(?:n\/a|na|none|null|nil|-|--|no|nope|placeholder)$/i.test(value)
+  return /^(?:n\s*\/\s*a|na|none|null|nil|-|--|no|nope|placeholder)$/i.test(
+    value,
+  )
+}
+
+function cleanPublicLinkValue(value: string) {
+  return value
+    .trim()
+    .replace(
+      /^(?:website|site|x|twitter|scholar|google scholar|linkedin|github)\s*:\s*/i,
+      '',
+    )
+    .replace(
+      /\s+\((?:website|site|x|twitter|scholar|google scholar|linkedin|github)\)\s*$/i,
+      '',
+    )
+    .trim()
 }
 
 function normalizePublicUrl(value: string) {

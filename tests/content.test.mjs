@@ -78,8 +78,8 @@ test('launch routes exclude news and papers while content remains available', ()
 
 test('related content omits removed placeholder Person names and unmapped Person IDs', () => {
   assert.deepEqual(
-    getAuthors(['jakob-foerster', 'amara-singh', 'missing-person']),
-    ['Jakob Foerster'],
+    getAuthors(['tim-rocktaschel', 'amara-singh', 'missing-person']),
+    ['Tim Rocktäschel'],
   )
   assert.equal(getPerson('amara-singh'), undefined)
 

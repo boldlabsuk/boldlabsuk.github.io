@@ -1,176 +1,1086 @@
 [
   {
     "source": "main",
-    "name": "Jakob Foerster",
-    "role": "BOLD PI",
-    "homeInstitution": "University of Oxford",
-    "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning",
-      "Open-Ended Learning",
-      "Meta-Learning"
-    ],
-    "profilePicture": "jakob-foerster.jpg",
-    "listOnBoldWebsite": "YES"
-  },
-  {
-    "source": "main",
-    "name": "Yulin Wang",
-    "role": "Postdoc",
-    "homeInstitution": "University of Oxford",
-    "researchInterestKeywords": [
-      "Reinforcement Learning",
-      "Agent Learning",
-      "Evaluation"
-    ],
-    "profilePicture": "yulin-wang.jpg",
-    "listOnBoldWebsite": ""
-  },
-  {
-    "source": "main",
-    "name": "Dylan Cope",
-    "role": "Postdoc",
-    "homeInstitution": "Imperial College London",
-    "researchInterestKeywords": [
-      "AI Safety",
-      "Evaluation",
-      "Multi-Agent Systems"
-    ],
-    "profilePicture": "dylan-cope.jpg",
-    "listOnBoldWebsite": "YES"
-  },
-  {
-    "source": "main",
-    "name": "Lukas Seier",
+    "name": "Antonio León Villares",
     "role": "PhD student",
-    "homeInstitution": "University of Oxford",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Robot Learning",
+      "LLMs",
+      "Geometric Deep Learning"
+    ],
+    "profilePicture": "me-fr - Antonio León Villares.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://alv31415.github.io"
+  },
+  {
+    "source": "main",
+    "name": "Darius Muglich",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "reinforcement learning",
+      "multi-agent reinforcement learning",
+      "optimization",
+      "representation learning",
+      "generalization"
+    ],
+    "profilePicture": "headshot - Darius Muglich.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=EOXzZqoAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Nathan Monette",
+    "role": "Master Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
       "Reinforcement Learning",
+      "Exploration",
+      "Curriculum Learning",
+      "Game Theory",
+      "Robustness"
+    ],
+    "profilePicture": "IMG_8274 - Nathan Monette.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "website: nmonette.github.io, x: https://x.com/nathanrmonette, scholar: https://scholar.google.com/citations?user=t_pLFtsAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Paul Templier",
+    "role": "Postdoc",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Evolution",
+      "RL",
+      "Multi-agent",
+      "Behaviour Diversity"
+    ],
+    "profilePicture": "cv - Paul Templier.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://templierpaul.github.io/, https://bsky.app/profile/templierpaul.bsky.social"
+  },
+  {
+    "source": "main",
+    "name": "Alexey Zakharov",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement learning",
+      "world models",
+      "vision-language-action models"
+    ],
+    "profilePicture": "logo6 - Alex Lev.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://azak.cc/, https://scholar.google.com/citations?user=x17I0JcAAAAJ&hl=en, https://x.com/az_prd"
+  },
+  {
+    "source": "main",
+    "name": "Alex Goldie",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Algorithm Discovery",
+      "Automated Research",
+      "Meta-Learning",
+      "Reinforcement Learning",
+      "LLMs"
+    ],
+    "profilePicture": "IMG_2696 - Alex Goldie.heic",
+    "listOnBoldWebsite": "",
+    "socialLinks": "alexgoldie.github.io,https://x.com/AlexDGoldie, https://scholar.google.com/citations?user=wogOjBsAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Jarek Liesen",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Offline RL",
       "World Models"
     ],
-    "profilePicture": "lukas-seier.jpg",
-    "listOnBoldWebsite": ""
+    "profilePicture": "IMG_1725_square - Jarek Li.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://jarek.ai, https://x.com/JarekLiesen, https://scholar.google.com/citations?user=fIJ-WPcAAAAJ"
   },
   {
     "source": "main",
-    "name": "Bidipta Sarkar",
+    "name": "Konstantinos Mitsides",
     "role": "PhD student",
-    "homeInstitution": "University of Oxford",
+    "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning",
-      "Language Agents",
-      "Open-Ended Learning"
+      "open-endedness",
+      "unsupervised environment design",
+      "reinforcement learning",
+      "evolutionary computation"
     ],
-    "profilePicture": "bidipta-sarkar.jpg",
-    "listOnBoldWebsite": "YES"
+    "profilePicture": "profile_pic - Konstantinos Mitsides.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://konstantinosmitsides.github.io/ ,  https://x.com/k_mitsides,   https://scholar.google.com/citations?user=wGBxqc8AAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Ravi Hammond",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning Human-AI Coordination"
+    ],
+    "profilePicture": "241337107_10159795827958909_7158950244190791044_n (1) - Ravi Hammond.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://ravihammond.com/, https://x.com/ravihammond, https://scholar.google.com/citations?user=OGyagjQAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "George Nigmatulin",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Generative AI",
+      "Reinforcement Learning",
+      "Quantitative Finance"
+    ],
+    "profilePicture": "F1BDBCB2-E266-4878-A296-64571292F119 3 - George Nigmatulin.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://george-nigm.github.io/"
+  },
+  {
+    "source": "main",
+    "name": "Keyue Jiang",
+    "role": "PhD student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Diffusion Models",
+      "LLMs"
+    ],
+    "profilePicture": "garyball - Keyue Jiang.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://garyball.github.io/"
+  },
+  {
+    "source": "main",
+    "name": "Aya Kayal",
+    "role": "Visitor",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "LLMs",
+      "exploration",
+      "sequential decision making"
+    ],
+    "profilePicture": "aya new pic - Aya Kayal.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=2f2nQOQAAAAJ&hl=en&oi=ao"
+  },
+  {
+    "source": "main",
+    "name": "Kang Li",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Foundation Model"
+    ],
+    "profilePicture": "Snipaste_2026-06-15_14-26-28 - kang.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Jakob Hartmann",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Deep Reinforcement Learning",
+      "Multi-Agent Systems",
+      "Collective Intelligence"
+    ],
+    "profilePicture": "picture_jakob_hartmann - Jakob Hartmann.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "LinkedIn: https://www.linkedin.com/in/jakobhartmann99, Google Scholar: https://scholar.google.com/citations?user=1Ptmm2EAAAAJ, GitHub: https://github.com/jakobhartmann"
+  },
+  {
+    "source": "main",
+    "name": "Gregory Levy",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "complexity/information theory",
+      "causal inference",
+      "regularisation"
+    ],
+    "profilePicture": "professional headshot - Greg Levy.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "(need to update - will provide soon)"
   },
   {
     "source": "main",
     "name": "Zilin Wang",
     "role": "PhD student",
-    "homeInstitution": "University College London",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Embodied AI",
-      "Generalisation",
-      "Reinforcement Learning"
+      "Deep Reinforcement Learning",
+      "Autonomous Driving",
+      "Planning",
+      "Generative Models"
     ],
-    "profilePicture": "zilin-wang.jpg",
-    "listOnBoldWebsite": "YES"
+    "profilePicture": "zilin_picture - Zilin Wang.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=rVky_6EAAAAJ"
   },
   {
     "source": "main",
-    "name": "Sam Coward",
+    "name": "Alistair Letcher",
     "role": "PhD student",
-    "homeInstitution": "University of Oxford",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Open-Ended Learning",
-      "Evolutionary Systems",
-      "Reinforcement Learning"
+      "rl",
+      "safety",
+      "alignment",
+      "learning theory",
+      "game theory"
     ],
-    "profilePicture": "sam-coward.jpg",
-    "listOnBoldWebsite": ""
+    "profilePicture": "israel2-square - Alistair Letcher.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://aletcher.github.io/ (website), https://scholar.google.com/citations?user=o28w0mwAAAAJ (scholar), https://x.com/_aletcher (X)"
   },
   {
     "source": "main",
-    "name": "Matthew Jackson",
-    "role": "Current Masters Student, but inc. PhD this fall with Jakob+Shimon",
-    "homeInstitution": "University of Oxford",
+    "name": "Evangelos Chatzaroulas",
+    "role": "Visitor",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Offline Reinforcement Learning",
-      "World Models",
-      "Video Models"
+      "model-based rl",
+      "zero-shot rl",
+      "test-time planning",
+      "meta-rl",
+      "generalist agents"
     ],
-    "profilePicture": "matthew-jackson.jpg",
-    "listOnBoldWebsite": "YES"
+    "profilePicture": "IMG_3812 - Evangelos Chatzaroulas (Angel).JPEG",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=H0FOMNcAAAAJ"
   },
   {
     "source": "main",
-    "name": "Clarisse Wibault",
+    "name": "Yulin Wang",
+    "role": "Postdoc",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI4Science",
+      "Computer Vision"
+    ],
+    "profilePicture": "yulin_wang - Yulin Wang.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://wyl.cool/; https://scholar.google.com/citations?user=gBP38gcAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Michael Beukman",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Open Ended RL",
+      "Scaling RL",
+      "UED"
+    ],
+    "profilePicture": "IMG_3688 - Michael Beukman.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://x.com/mcbeukman, https://scholar.google.com/citations?user=CaRgqC4AAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Austin Tudor David Andrews",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Machine Learning Architectures",
+      "Reinforcement Learning",
+      "Neuroscience",
+      "NeuroAI"
+    ],
+    "profilePicture": "IMG_7827 (2) - Austin Andrews.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://austinandrews.co.uk, https://scholar.google.com/citations?user=I2BmrSwAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Bidipta Sarkar",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "EGGROLL",
+      "Evolution",
+      "Foundation Models"
+    ],
+    "profilePicture": "Bidipta_Sarkar_600_600 - Bidipta Sarkar.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://bsarkar321.github.io https://twitter.com/bidiptas13 https://scholar.google.com/citations?user=wr9RgmcAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Runjun Mao",
+    "role": "PhD student",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Deep RL",
+      "Robotics"
+    ],
+    "profilePicture": "Weixin Image_20260615151806_73_2 - Runjun Mao.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "None"
+  },
+  {
+    "source": "main",
+    "name": "James Harvey",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Continual learning",
+      "meta learning",
+      "world models",
+      "reinforcement learning",
+      "LLMs"
+    ],
+    "profilePicture": "IMG_1949 - James Harvey.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://x.com/jamesha46471726?s=11&t=UPshzKmD0hwVfVX0lgSyUw"
+  },
+  {
+    "source": "main",
+    "name": "Aneesh Muppidi",
     "role": "Master Student",
-    "homeInstitution": "University College London",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Goal-Conditioned Learning",
-      "Representation Learning",
-      "Offline Reinforcement Learning"
+      "Robotics",
+      "off-policy RL"
     ],
-    "profilePicture": "clarisse-wibault.jpg",
-    "listOnBoldWebsite": ""
+    "profilePicture": "PNG image - Aneesh Muppidi.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "aneeshers.github.io"
+  },
+  {
+    "source": "main",
+    "name": "Nagham Osman",
+    "role": "PhD student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Generative Models",
+      "Graph Machine Learning",
+      "Diffusion Models",
+      "Geometric Deep Learning",
+      "Molecular Machine Learning"
+    ],
+    "profilePicture": "headshot - 2026 - close - Nagham Osman.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "LinkedIn: https://www.linkedin.com/in/nagham-osman-4711731a3/ ; website: https://nagham-osman.github.io/ ; scholar: https://scholar.google.com/citations?user=6vFD59wAAAAJ&hl=en ; X: https://x.com/osman_nagham"
+  },
+  {
+    "source": "main",
+    "name": "Richard Bornemann",
+    "role": "PhD student",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Open-Endedness",
+      "Goal-conditioned reinforcement learning",
+      "autonomous scientific discovery",
+      "autonomous design of reward functions and optimisation metrics"
+    ],
+    "profilePicture": "250226_ICL_DeptComp_RBornemann_002 - Richard Bornemann.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=7ZsIrPEAAAAJ&hl=de&oi=sra"
+  },
+  {
+    "source": "main",
+    "name": "Tim Rocktäschel",
+    "role": "BOLD PI",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Open-Endedness"
+    ],
+    "profilePicture": "tim_rocktaeschel_square_zoom - Tim Rocktäschel.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://x.com/_rockt https://www.linkedin.com/in/rockt/ https://rockt.ai/"
+  },
+  {
+    "source": "main",
+    "name": "Alisia Lupidi",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Automated Discovery",
+      "Open-endedness",
+      "self-improvement",
+      "co-scientist"
+    ],
+    "profilePicture": "Screenshot 2026-06-15 at 16.11.15 - Alisia Lupidi.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://uk.linkedin.com/in/alisia-maria-lupidi"
+  },
+  {
+    "source": "main",
+    "name": "Valentin Mohl",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "LLMs",
+      "MARL",
+      "Fine-Tuning",
+      "Trading",
+      "Mechanistic Interpretability"
+    ],
+    "profilePicture": "IMG_20250609_103933_685 - Valentin Mohl.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://github.com/vmohl"
+  },
+  {
+    "source": "main",
+    "name": "Nathan Herr",
+    "role": "PhD student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Language Model Reasoning",
+      "In-Context Learning",
+      "Model Adaptation",
+      "Exploration",
+      "Search"
+    ],
+    "profilePicture": "WhatsApp Image 2026-06-15 at 16.23.12 - Nathan Herr.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://www.linkedin.com/in/nathan-herr-006/, https://scholar.google.com/citations?user=zLT4AOQAAAAJ&hl=en,"
   },
   {
     "source": "main",
     "name": "Shashank Reddy Chirra",
-    "role": "Research visitor",
-    "homeInstitution": "University of Oxford",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Language Agents",
-      "Coordination",
-      "Evaluation"
+      "multi-agent rl",
+      "human-AI coordination",
+      "meta-learning"
     ],
-    "profilePicture": "shashank-reddy-chirra.jpg",
-    "listOnBoldWebsite": "YES"
+    "profilePicture": "IMG_0877 - Shashank Reddy.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "Scholar: https://scholar.google.co.uk/citations?user=sJMID3oAAAAJ&hl=en; Website: https://shshnkreddy.github.io/"
   },
   {
     "source": "main",
-    "name": "Jarek Liesen",
-    "role": "Research assistant",
-    "homeInstitution": "Imperial College London",
+    "name": "Alexander Rutherford",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Offline Reinforcement Learning",
-      "Benchmarks",
-      "Evaluation"
+      "RL",
+      "Open-Ended Learning",
+      "UED"
     ],
-    "profilePicture": "jarek-liesen.jpg",
-    "listOnBoldWebsite": ""
+    "profilePicture": "prof_pic - Alexander Rutherford.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "amacrutherford.com; https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Yuhe Gao",
+    "role": "Master Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "MARL",
+      "AI4Science",
+      "Safety"
+    ],
+    "profilePicture": "0ce70c43588c05e0c44b612ff31289c0 - Yuhe Gao.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://github.com/yhg01"
+  },
+  {
+    "source": "main",
+    "name": "Aramis Marti-Shahandeh",
+    "role": "Master Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Learning from first principles"
+    ],
+    "profilePicture": "IMG_1268 2 - Aramis Marti.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "n/a"
+  },
+  {
+    "source": "main",
+    "name": "George Mavroghenis",
+    "role": "research assistant - but starting PhD in October!",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "robotics",
+      "world models",
+      "RL",
+      "LLMs",
+      "robust adaptation"
+    ],
+    "profilePicture": "IMG_3912 - George Mavroghenis.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "n / a"
+  },
+  {
+    "source": "main",
+    "name": "Antoine Gorceix",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Multi-Agent Systems",
+      "Open-Ended Learning",
+      "Large Language Models",
+      "World Models"
+    ],
+    "profilePicture": "Photo_Antoine_Gorceix - Antoine G.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://www.linkedin.com/in/antoine- gorceix-3a91531a0/"
+  },
+  {
+    "source": "main",
+    "name": "Clarisse Wibault",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Offline",
+      "Goal-Conditioned",
+      "Hierarchical Reinforcement Learning"
+    ],
+    "profilePicture": "ClarisseWibault - C Wibault.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://clarisse-wibault.github.io/clarissewibault/, https://x.com/ClarisseWibault, https://scholar.google.com/citations?user=kGeNzbEAAAAJ&hl=en&oi=ao"
+  },
+  {
+    "source": "main",
+    "name": "Satyam Agarwal",
+    "role": "Engineering 4YP Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Finance",
+      "World-models",
+      "forecasting",
+      "ml acceleration"
+    ],
+    "profilePicture": "Satyam Agarwal Headshot 11-25 - Satyam Agarwal.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://sat-a.github.io/"
+  },
+  {
+    "source": "main",
+    "name": "J Rosser",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Data attribution",
+      "Interpretability",
+      "AGI Safety"
+    ],
+    "profilePicture": "PXL_20260602_152809534~2 - J Rosser.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://jrosser.co.uk, https://x.com/jrosseruk, https://scholar.google.com/citations?user=OVXyJ5MAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Antoine Cully",
+    "role": "BOLD PI",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Open-ended learning",
+      "robot learning",
+      "resilient robotics",
+      "Quality Diversity",
+      "Artificial Creativity"
+    ],
+    "profilePicture": "DSC06481_(2000) - Antoine Cully.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "antoinecully.com"
+  },
+  {
+    "source": "main",
+    "name": "Cong Sun",
+    "role": "Postdoc",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Computer Vision",
+      "Robotics",
+      "Anomaly Detection"
+    ],
+    "profilePicture": "profile - Cong Sun.JPG",
+    "listOnBoldWebsite": "",
+    "socialLinks": "n/a"
+  },
+  {
+    "source": "main",
+    "name": "Jiankai Wang",
+    "role": "Research Assistant",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "World model",
+      "reinforcement learning",
+      "damage adaptation"
+    ],
+    "profilePicture": "250226_ICL_DeptComp_JW_006 - Jiankai Wang.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://www.linkedin.com/in/jiankai-wang"
+  },
+  {
+    "source": "main",
+    "name": "Uljad Berdica",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "RL",
+      "LLM reasoning",
+      "World Models"
+    ],
+    "profilePicture": "Uljad_FLAIR - Uljad Berdica.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://uljad.com/, https://github.com/uljad, https://twitter.com/uljadb99,  https://www.linkedin.com/in/uljad, https://scholar.google.com/citations?user=Hha-A2UAAAAJ&hl"
+  },
+  {
+    "source": "main",
+    "name": "Francesco Capuano",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "World modeling",
+      "model-based RL",
+      "Robot Learning"
+    ],
+    "profilePicture": "IMG_6964 - Francesco Capuano.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano"
+  },
+  {
+    "source": "main",
+    "name": "Oscar Pang",
+    "role": "Research Engineer",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Model Predictive Control",
+      "Sim-to-Real",
+      "Real-time Embedded System",
+      "Trajectory Optimization",
+      "Autonomous Systems"
+    ],
+    "profilePicture": "oscar_pang - Oscar Pang.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://www.linkedin.com/in/oscarkfpang/"
+  },
+  {
+    "source": "main",
+    "name": "Anya Sims",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "LLMs",
+      "RL",
+      "RSI"
+    ],
+    "profilePicture": "IMG_3477 - Anya Sims.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://anyasims.github.io/, https://scholar.google.com/citations?user=MSQalu0AAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Thom Foster",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "RL",
+      "AI Scientist",
+      "Curriculum"
+    ],
+    "profilePicture": "T017NU4E8E9-U067AKSSM60-35b917e9850f-512 - Thom Foster.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=eqgV1JgAAAAJ&hl=en&authuser=1"
+  },
+  {
+    "source": "main",
+    "name": "Jess Carr",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "ABM",
+      "foundation models",
+      "complexity economics"
+    ],
+    "profilePicture": "94DC0228-5A8A-4F5C-AB17-5632DC952A5C_4_5005_c - Jess Carr.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "n/a"
+  },
+  {
+    "source": "main",
+    "name": "Jacinto Suner",
+    "role": "Master Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI for Science",
+      "Foundation Models",
+      "Reinforcement Learning",
+      "Embodied AI",
+      "Robot Learning"
+    ],
+    "profilePicture": "Foto Jacinto 2 - Jacinto Suñer Soler.JPG",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://www.linkedin.com/in/jacinto-suner-soler/"
+  },
+  {
+    "source": "main",
+    "name": "Ola Kalisz",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "opponent shaping",
+      "antibody design",
+      "viral escape",
+      "game theory",
+      "MARL"
+    ],
+    "profilePicture": "flair_photo - Ola Kalisz.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://olakalisz.github.io ; https://x.com/OlaKalisz8 ; https://scholar.google.com/citations?hl=en&user=vVecmyEAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Hannah Janmohamed",
+    "role": "PhD student",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Quality-Diversity",
+      "Reinforcement Learning",
+      "Open-Ended Learning",
+      "Robotics",
+      "Co-Scientist"
+    ],
+    "profilePicture": "R0001134 - Hannah Janmohamed.JPG",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://x.com/hannah_janmo, https://scholar.google.com/citations?user=LIzoINkAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Silvia Sapora",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "RL",
+      "meta learning",
+      "llms",
+      "imitation learning"
+    ],
+    "profilePicture": "oxford_stats_pic - Silvia Sapora.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://silviasapora.github.io/ , https://scholar.google.com/citations?user=FxdgVLkAAAAJ , https://x.com/silviasapora"
+  },
+  {
+    "source": "main",
+    "name": "Samuel Simons",
+    "role": "Current Masters Student, but inc. PhD this fall with Jakob+Shimon",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "RL",
+      "Meta-Learning",
+      "Exploration",
+      "Open-Ended Learning"
+    ],
+    "profilePicture": "bold_headshot - Samuel Simons.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://x.com/sjsimons04"
+  },
+  {
+    "source": "main",
+    "name": "Ali Farhat",
+    "role": "Master Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Offline RL",
+      "Algorithm search"
+    ],
+    "profilePicture": "linked in - Ali Farhat.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://www.linkedin.com/in/ali-d-farhat/"
+  },
+  {
+    "source": "main",
+    "name": "Lukas Seier",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning",
+      "Complex Systems"
+    ],
+    "profilePicture": "lukasseier_profile - Lukas Seier.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://lukasseier.com/, https://x.com/l_seier, https://scholar.google.com/citations?user=E1qVdMgAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Lisa Coiffard",
+    "role": "PhD student",
+    "homeInstitution": "Imperial",
+    "researchInterestKeywords": [
+      "Robotics",
+      "Open-ended learning",
+      "Robot learning"
+    ],
+    "profilePicture": "250226_ICL_DeptComp_LC_002 - Lisa.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "@lisa_coiffard"
+  },
+  {
+    "source": "main",
+    "name": "Sumeet Motwani",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Long-horizon reasoning and RL"
+    ],
+    "profilePicture": "prof_pic - Sumeet Motwani.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://sumeetmotwani.com/ | https://x.com/sumeetrm | https://scholar.google.com/citations?user=zrKaZuMAAAAJ&hl=en&oi=ao"
   },
   {
     "source": "main",
     "name": "Hannah Erlebach",
-    "role": "Intern",
-    "homeInstitution": "University of Oxford",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "AI Safety",
-      "Agent Evaluation",
-      "Research Tooling"
+      "cooperative AI",
+      "representational alignment",
+      "bounded rationality",
+      "AI safety"
     ],
-    "profilePicture": "hannah-erlebach.jpg",
-    "listOnBoldWebsite": "YES"
+    "profilePicture": "DSCF5387 - Hannah Erlebach.JPG",
+    "listOnBoldWebsite": "",
+    "socialLinks": "hannaherlebach.com"
   },
   {
     "source": "main",
-    "name": "Opted Out Source Row",
+    "name": "Michael Matthews",
     "role": "PhD student",
-    "homeInstitution": "University of Oxford",
-    "researchInterestKeywords": ["Evaluation"],
-    "profilePicture": "opted-out-source-row.jpg",
-    "listOnBoldWebsite": "No"
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "pp2 - Mikey Matthews.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://www.mtmatthews.com/"
   },
   {
-    "source": "slack",
-    "name": "Slack Only Source Row",
-    "role": "Research operations",
-    "homeInstitution": "BOLD Institute",
-    "researchInterestKeywords": ["Operations"],
-    "profilePicture": "slack-only-source-row.jpg",
-    "listOnBoldWebsite": "YES"
+    "source": "main",
+    "name": "Harry Mayne",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI safety",
+      "LLM self-explanations",
+      "HCI"
+    ],
+    "profilePicture": "Screenshot 2026-02-26 at 09.59.42 - Harry Mayne.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "www.harrymayne.com, harrymayne5, https://scholar.google.com/citations?user=XdD4wp4AAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Jonny Cook",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "RL",
+      "LLMs",
+      "Reasoning",
+      "Meta-Learning"
+    ],
+    "profilePicture": "IMG_0119 - Jonathan Cook.JPG",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://x.com/jonnycoook?s=11, https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Erik Feng",
+    "role": "Visiting Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Evolution Strategies",
+      "Meta-Learning"
+    ],
+    "profilePicture": "IMG_2008 - Erik F..jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://github.com/phangzs/"
+  },
+  {
+    "source": "main",
+    "name": "Elif Akata",
+    "role": "Visitor",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "LLMs",
+      "Human-Centered AI"
+    ],
+    "profilePicture": "profile - Elif Akata.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://eliaka.github.io/, https://x.com/elifakata, https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao"
+  },
+  {
+    "source": "main",
+    "name": "Simon Bührer",
+    "role": "Visitor",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Hardware-Aware Neural Network Acceleration",
+      "Binary Neural Networks",
+      "Differentiable Logic Gate Networks",
+      "FPGA-Based ML Hardware",
+      "Neuromorphic Computing"
+    ],
+    "profilePicture": "DSC00483_small - Simon Bührer.png",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://simonbuehrer.com/"
+  },
+  {
+    "source": "main",
+    "name": "Johannes Forkel",
+    "role": "Postdoc",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "MARL",
+      "Human-AI Coordination"
+    ],
+    "profilePicture": "IMG_0245 - Johannes Forkel.JPG",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=aENyqu4AAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Tingchen Fu",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "research agent",
+      "language model post-training",
+      "agentic language model"
+    ],
+    "profilePicture": "b8f6ef66a27db8360c9da493bddd3f24 - Tingchen Fu.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://scholar.google.com/citations?user=bv_8Q_kAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Branton DeMoss",
+    "role": "Postdoc",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Complexity",
+      "compression",
+      "generalization"
+    ],
+    "profilePicture": "brantonhat - Branton DeMoss.jpeg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "brantondemoss.com/research"
+  },
+  {
+    "source": "main",
+    "name": "Laura Toni",
+    "role": "BOLD PI",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "RL",
+      "Diffusion models",
+      "LLMs",
+      "Graph-ML"
+    ],
+    "profilePicture": "download - Laura.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://profiles.ucl.ac.uk/55855-laura-toni"
+  },
+  {
+    "source": "main",
+    "name": "Eltayeb Ahmed",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "RL",
+      "Reasoning",
+      "LLMs",
+      "RLVR",
+      "Exploration"
+    ],
+    "profilePicture": "me_subfusc_cropped_small - Eltayeb Ahmed.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=4PAd9qgAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Theo Wolf",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "World Models",
+      "Simulation",
+      "Control",
+      "Sustainability"
+    ],
+    "profilePicture": "matric high res square - Theo Wolf.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://theo-wolf.com, https://x.com/TheoW0lf, https://scholar.google.com/citations?user=TRAhumoAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Mattie Fellows",
+    "role": "Postdoc",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcment Learning",
+      "Bayesian",
+      "Evolution",
+      "Theory"
+    ],
+    "profilePicture": "mattie - Mattie Fellows.pdf",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=7TVJf1gAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Dylan Cope",
+    "role": "Postdoc",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "multi-agent reinforcement learning",
+      "cooperative AI",
+      "evolutionary computation",
+      "emergent communication"
+    ],
+    "profilePicture": "PXL_20230617_215900573.MP - Copy - Dylan Cope.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "dylancope.com"
+  },
+  {
+    "source": "main",
+    "name": "Junming An",
+    "role": "Intern",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Multi-Agent Systems",
+      "Robotics and Autonomous Systems",
+      "High-Performance Computing"
+    ],
+    "profilePicture": "junming an - JUNMING AN.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://x.com/AdamAn1202"
+  },
+  {
+    "source": "main",
+    "name": "Alfie Lamerton",
+    "role": "Academic Collaborator",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "power concentration",
+      "AI safety",
+      "democracy"
+    ],
+    "profilePicture": "me-cropped-square - Alfie Lamerton.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://alfielamerton.co.uk/; https://x.com/alfie_lamerton; https://scholar.google.com/citations?user=zJlvbNcAAAAJ&hl=en;"
   }
 ]

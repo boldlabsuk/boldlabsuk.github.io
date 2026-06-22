@@ -106,24 +106,31 @@ test('People Directory maps every Person into exactly one People Section', () =>
   assert.equal(new Set(listings.map((listing) => listing.slug)).size, people.length)
   assert.deepEqual(
     Object.fromEntries(
-      people.map((person) => [
-        person.slug,
-        listings.find((listing) => listing.slug === person.slug)?.peopleSection,
+      peopleSectionOrder.map((section) => [
+        section,
+        listings.filter((listing) => listing.peopleSection === section).length,
       ]),
     ),
     {
-      'jakob-foerster': 'Principal Investigator',
-      'yulin-wang': 'Postdoc',
-      'dylan-cope': 'Postdoc',
-      'lukas-seier': 'PhD Student',
-      'bidipta-sarkar': 'PhD Student',
-      'zilin-wang': 'PhD Student',
-      'sam-coward': 'PhD Student',
-      'matthew-jackson': 'Masters Student',
-      'clarisse-wibault': 'Masters Student',
-      'shashank-reddy-chirra': 'Associate Members',
-      'jarek-liesen': 'Associate Members',
-      'hannah-erlebach': 'Associate Members',
+      'Principal Investigator': 3,
+      Postdoc: 7,
+      'PhD Student': 47,
+      'Masters Student': 7,
+      'Associate Members': 11,
+      Alumni: 0,
+    },
+  )
+  assert.deepEqual(
+    Object.fromEntries(
+      ['tim-rocktaschel', 'nathan-monette', 'alfie-lamerton'].map((slug) => [
+        slug,
+        listings.find((listing) => listing.slug === slug)?.peopleSection,
+      ]),
+    ),
+    {
+      'tim-rocktaschel': 'Principal Investigator',
+      'nathan-monette': 'Masters Student',
+      'alfie-lamerton': 'Associate Members',
     },
   )
 })
@@ -181,9 +188,17 @@ test('People Directory preserves content order within each People Section', () =
       .find((section) => section.title === 'Associate Members')
       ?.people.map((listing) => listing.slug),
     [
-      'shashank-reddy-chirra',
-      'jarek-liesen',
-      'hannah-erlebach',
+      'aya-kayal',
+      'evangelos-chatzaroulas',
+      'george-mavroghenis',
+      'satyam-agarwal',
+      'jiankai-wang',
+      'oscar-pang',
+      'erik-feng',
+      'elif-akata',
+      'simon-buhrer',
+      'junming-an',
+      'alfie-lamerton',
     ],
   )
 })
@@ -192,7 +207,7 @@ test('People Directory filter options expose public People Sections and remainin
   const options = getPeopleFilterOptions()
 
   assert.deepEqual(options.sections, peopleSectionOrder)
-  assert.ok(options.areas.includes('Evaluation'))
+  assert.ok(options.areas.includes('Reinforcement Learning'))
   assert.ok(options.affiliations.includes('University of Oxford'))
 })
 
