@@ -1,5 +1,5 @@
 import { people, roleOrder } from '../content.ts'
-import type { Person } from '../content.ts'
+import type { Person, PersonLinkSet } from '../content.ts'
 import { sortedNews } from './news.ts'
 import { sortedPapers } from './papers.ts'
 import { allFilterValue, unique } from './shared.ts'
@@ -23,8 +23,14 @@ export type PeopleDirectoryFilters = {
 }
 
 export type PersonListing = {
-  person: Person
+  slug: string
+  name: string
+  role: string
+  affiliation?: string
+  image?: string
+  links?: PersonLinkSet
   peopleSection: PeopleSection
+  primaryPersonLink: string | null
 }
 
 export type PeopleDirectorySection = {
@@ -103,8 +109,14 @@ export function buildPeopleDirectoryViewModel({
       people: matchedPeople
         .filter((person) => getPeopleSection(person) === section)
         .map((person) => ({
-          person,
+          slug: person.slug,
+          name: person.name,
+          role: person.role,
+          affiliation: person.affiliation,
+          image: person.image,
+          links: person.links,
           peopleSection: section,
+          primaryPersonLink: getPrimaryPersonLink(person),
         })),
     }))
     .filter((section) => section.people.length > 0)
@@ -122,6 +134,24 @@ export function getPeopleSection(person: Pick<Person, 'group' | 'alumni'>) {
   }
 
   return groupToPeopleSection[person.group] ?? 'Associate Members'
+}
+
+export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
+  const links = person.links
+
+  if (!links) {
+    return null
+  }
+
+  const candidates = [
+    links.website,
+    links.googleScholar,
+    links.github,
+    links.linkedin,
+    links.twitter,
+  ]
+
+  return candidates.find((href): href is string => Boolean(href?.trim())) ?? null
 }
 
 export function filterPeople({

@@ -4,7 +4,8 @@
 .opportunity-link-grid,
 .involvement-grid,
 .current-opportunity-list,
-.people-grid {
+.people-grid,
+.person-listing-grid {
   display: grid;
   gap: 16px;
 }
@@ -67,6 +68,7 @@
 .article-card:hover,
 .paper-card:hover,
 .person-card:hover,
+.person-listing:hover,
 .opportunity-link-card:hover,
 .current-opportunity-card:hover,
 .involvement-card:hover {
