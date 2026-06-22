@@ -1,5 +1,5 @@
-import { newsPosts, newsTypeLabels } from '../content'
-import type { NewsPost, NewsPostType } from '../content'
+import { newsPosts, newsTypeLabels } from '../content.ts'
+import type { NewsPost, NewsPostType } from '../content.ts'
 
 export type NewsFilters = {
   query: string

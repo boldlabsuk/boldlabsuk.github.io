@@ -1,6 +1,6 @@
-import { paperTypeLabels, papers } from '../content'
-import type { Paper, PaperType } from '../content'
-import { allFilterValue, unique } from './shared'
+import { paperTypeLabels, papers } from '../content.ts'
+import type { Paper, PaperType } from '../content.ts'
+import { allFilterValue, unique } from './shared.ts'
 
 export type PaperFilters = {
   query: string
