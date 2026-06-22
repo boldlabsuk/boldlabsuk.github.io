@@ -33,6 +33,7 @@ export function HomePage() {
         </div>
         <div
           className="home-hero-visual"
+          role="img"
           aria-label="Abstract research graphic showing open-ended learning loops"
         >
           <div className="learning-field" aria-hidden="true">

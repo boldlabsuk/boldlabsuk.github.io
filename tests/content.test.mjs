@@ -65,7 +65,7 @@ test('homepage presents the BOLD Institute Bet positioning and proof metrics', (
 
   assert.deepEqual(
     homepageContent.proofMetrics.map((metric) => metric.value),
-    ['3', 'GBP37m+', '3'],
+    ['3', '37m GBP+', '3'],
   )
 
   assert.deepEqual(

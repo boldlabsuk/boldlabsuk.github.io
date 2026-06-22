@@ -39,7 +39,7 @@ export const homepageContent = {
       detail: 'Oxford, UCL, and Imperial working as one institute.',
     },
     {
-      value: 'GBP37m+',
+      value: '37m GBP+',
       label: 'committed industry co-investment',
       detail: 'Serious backing for ambitious, long-horizon research.',
     },
