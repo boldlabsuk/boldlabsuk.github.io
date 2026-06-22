@@ -1,3 +1,17 @@
+.people-directory {
+  display: grid;
+  gap: 48px;
+}
+
+.people-section {
+  display: grid;
+  gap: 18px;
+}
+
+.people-section h2 {
+  margin: 0;
+}
+
 .people-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }

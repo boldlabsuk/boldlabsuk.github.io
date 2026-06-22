@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { people } from '../../content'
 import {
-  filterPeople,
+  buildPeopleDirectoryViewModel,
   getPeopleFilterOptions,
 } from '../../domain/people'
 import { allFilterValue } from '../../domain/shared'
@@ -13,12 +13,15 @@ import { EmptyState } from '../../ui/primitives/EmptyState'
 
 export function PeoplePage() {
   const [query, setQuery] = useState('')
-  const [group, setGroup] = useState(allFilterValue)
+  const [section, setSection] = useState(allFilterValue)
   const [area, setArea] = useState(allFilterValue)
   const [affiliation, setAffiliation] = useState(allFilterValue)
 
-  const { groups, areas, affiliations } = getPeopleFilterOptions()
-  const filteredPeople = filterPeople({ query, group, area, affiliation })
+  const { sections, areas, affiliations } = getPeopleFilterOptions()
+  const directory = buildPeopleDirectoryViewModel({
+    people,
+    filters: { query, section, area, affiliation },
+  })
 
   return (
     <>
@@ -38,11 +41,11 @@ export function PeoplePage() {
             placeholder="Search people"
           />
           <SelectFilter
-            id="people-group"
-            label="Role/group"
-            value={group}
-            options={[allFilterValue, ...groups]}
-            onChange={setGroup}
+            id="people-section"
+            label="People Section"
+            value={section}
+            options={[allFilterValue, ...sections]}
+            onChange={setSection}
           />
           <SelectFilter
             id="people-area"
@@ -63,7 +66,7 @@ export function PeoplePage() {
             type="button"
             onClick={() => {
               setQuery('')
-              setGroup(allFilterValue)
+              setSection(allFilterValue)
               setArea(allFilterValue)
               setAffiliation(allFilterValue)
             }}
@@ -73,13 +76,26 @@ export function PeoplePage() {
         </div>
 
         <div className="result-count" aria-live="polite">
-          Showing {filteredPeople.length} of {people.length} people
+          Showing {directory.visiblePeopleCount} of {directory.totalPeople} people
         </div>
 
-        {filteredPeople.length > 0 ? (
-          <div className="people-grid">
-            {filteredPeople.map((person) => (
-              <PersonCard key={person.slug} person={person} />
+        {directory.sections.length > 0 ? (
+          <div className="people-directory">
+            {directory.sections.map((peopleSection) => (
+              <section
+                className="people-section"
+                key={peopleSection.title}
+              >
+                <h2>{peopleSection.title}</h2>
+                <div className="people-grid">
+                  {peopleSection.people.map((listing) => (
+                    <PersonCard
+                      key={listing.person.slug}
+                      person={listing.person}
+                    />
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         ) : (
