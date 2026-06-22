@@ -8,7 +8,6 @@ export const newsPosts: NewsPost[] = [
     date: '2026-06-15',
     excerpt:
       'The new institute brings together researchers, engineers, students, and fellows into a single collaborative AI research environment.',
-    authorIds: ['amara-singh', 'oliver-hart'],
     tags: ['Institute', 'Collaboration', 'Launch'],
     featured: true,
     content:
@@ -21,7 +20,6 @@ export const newsPosts: NewsPost[] = [
     date: '2026-06-03',
     excerpt:
       'A short argument for measuring discovery, robustness, and governance together instead of treating them as separate workstreams.',
-    authorIds: ['eve-morrison', 'amara-singh'],
     tags: ['Evaluation', 'AI Safety', 'Open-Ended Learning'],
     featured: true,
     content:
@@ -34,7 +32,6 @@ export const newsPosts: NewsPost[] = [
     date: '2026-05-24',
     excerpt:
       'How shared infrastructure, tooling, and engineering practice support ambitious academic AI research.',
-    authorIds: ['samira-patel', 'thomas-okoro'],
     tags: ['Research Engineering', 'Infrastructure', 'ML Systems'],
     featured: true,
     content:
@@ -47,7 +44,6 @@ export const newsPosts: NewsPost[] = [
     date: '2026-05-10',
     excerpt:
       'A preview of work on richer capability profiles for agents that continue adapting after deployment.',
-    authorIds: ['eve-morrison'],
     tags: ['Evaluation', 'Continual Learning', 'Agents'],
     content:
       'Benchmark scores are useful, but they often compress the behaviour of adaptive systems too aggressively.\n\nBehavioural portfolios report a model or agent through multiple lenses: capability range, uncertainty, failure modes, environment coverage, and change over time.\n\nOur early prototypes focus on language-guided agents and embodied systems where the same headline score can hide important differences in risk and reliability.',
@@ -59,7 +55,6 @@ export const newsPosts: NewsPost[] = [
     date: '2026-04-28',
     excerpt:
       'New student projects will use shared experiment templates to make exploratory AI research easier to reproduce.',
-    authorIds: ['jules-chen', 'nina-berg'],
     tags: ['Students', 'Research Operations', 'Infrastructure'],
     content:
       'The institute is introducing shared discovery-loop templates for student projects across the three founding labs.\n\nEach template includes a clear research question, baseline implementation, experiment logging, evaluation checklist, and reporting format. Students can adapt the template while still producing outputs that other teams can inspect and extend.\n\nThe first cohort will focus on interactive environments, generative model evaluation, and world-model diagnostics.',

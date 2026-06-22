@@ -10,7 +10,35 @@ import {
   people,
   siteMeta,
 } from '../src/content.ts'
+import { getPaperFilterOptions } from '../src/domain/papers.ts'
+import { getAuthors, getPerson } from '../src/domain/people.ts'
 import { parseRoute } from '../src/routing/routes.ts'
+
+const placeholderPersonNames = [
+  'Amara Singh',
+  'Jules Chen',
+  'Marcus Adeyemi',
+  'Eve Morrison',
+  'Thomas Okoro',
+  'Leo Williams',
+  'Nina Berg',
+  'Marta Garcia',
+  'Oliver Hart',
+  'Samira Patel',
+]
+
+const placeholderPersonIds = [
+  'amara-singh',
+  'jules-chen',
+  'marcus-adeyemi',
+  'eve-morrison',
+  'thomas-okoro',
+  'leo-williams',
+  'nina-berg',
+  'marta-garcia',
+  'oliver-hart',
+  'samira-patel',
+]
 
 test('BOLD presents the v2 institute information architecture', () => {
   assert.equal(siteMeta.name, 'BOLD Institute')
@@ -46,4 +74,28 @@ test('launch routes exclude news and papers while content remains available', ()
     name: 'not-found',
   })
   assert.deepEqual(parseRoute('/papers'), { name: 'not-found' })
+})
+
+test('related content omits removed placeholder Person names and unmapped Person IDs', () => {
+  assert.deepEqual(
+    getAuthors(['jakob-foerster', 'amara-singh', 'missing-person']),
+    ['Jakob Foerster'],
+  )
+  assert.equal(getPerson('amara-singh'), undefined)
+
+  const publicPaperAuthorNames = [
+    ...papers.flatMap((paper) => paper.authors),
+    ...getPaperFilterOptions().authors,
+  ]
+  const relatedPersonIds = [
+    ...newsPosts.flatMap((post) => post.authorIds ?? []),
+    ...papers.flatMap((paper) => paper.authorIds ?? []),
+  ]
+
+  for (const placeholderName of placeholderPersonNames) {
+    assert.ok(!publicPaperAuthorNames.includes(placeholderName))
+  }
+  for (const placeholderId of placeholderPersonIds) {
+    assert.ok(!relatedPersonIds.includes(placeholderId))
+  }
 })

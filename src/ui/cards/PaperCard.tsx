@@ -21,7 +21,9 @@ export function PaperCard({ paper }: { paper: Paper }) {
           paper.title
         )}
       </h3>
-      <p className="authors">{paper.authors.join(', ')}</p>
+      {paper.authors.length > 0 && (
+        <p className="authors">{paper.authors.join(', ')}</p>
+      )}
       <p>{paper.summary ?? paper.abstract}</p>
       <TagList tags={paper.researchAreas.slice(0, 3)} />
       <PaperLinks paper={paper} />

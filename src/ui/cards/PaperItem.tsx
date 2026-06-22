@@ -22,7 +22,9 @@ export function PaperItem({ paper }: { paper: Paper }) {
             paper.title
           )}
         </h4>
-        <p className="authors">{paper.authors.join(', ')}</p>
+        {paper.authors.length > 0 && (
+          <p className="authors">{paper.authors.join(', ')}</p>
+        )}
         {(paper.summary || paper.abstract) && (
           <p>{paper.summary ?? paper.abstract}</p>
         )}
