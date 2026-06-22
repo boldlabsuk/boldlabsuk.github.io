@@ -55,8 +55,10 @@ export type PeopleDirectoryViewModel = {
 }
 
 const groupToPeopleSection: Record<string, PeopleSection> = {
+  Faculty: 'Principal Investigator',
   'BOLD PI': 'Principal Investigator',
   Postdoc: 'Postdoc',
+  'DPhil Student': 'PhD Student',
   'PhD student': 'PhD Student',
   'Master Student': 'Masters Student',
   'Current Masters Student, but inc. PhD this fall with Jakob+Shimon':

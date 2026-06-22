@@ -112,11 +112,11 @@ test('People Directory maps every Person into exactly one People Section', () =>
       ]),
     ),
     {
-      'Principal Investigator': 3,
+      'Principal Investigator': 4,
       Postdoc: 7,
-      'PhD Student': 47,
+      'PhD Student': 52,
       'Masters Student': 7,
-      'Associate Members': 11,
+      'Associate Members': 14,
       Alumni: 0,
     },
   )
@@ -199,6 +199,9 @@ test('People Directory preserves content order within each People Section', () =
       'simon-buhrer',
       'junming-an',
       'alfie-lamerton',
+      'garrett-deceuninck-ziviani',
+      'maksymilian-wolski',
+      'tim-franzmeyer',
     ],
   )
 })
