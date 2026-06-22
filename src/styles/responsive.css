@@ -3,14 +3,14 @@
     grid-template-columns: 1fr;
   }
 
-  .home-hero-media {
-    min-height: 420px;
+  .home-hero-visual {
+    min-height: auto;
   }
 
-  .home-hero-media::before {
-    background:
-      linear-gradient(0deg, rgba(8, 17, 31, 0.74), rgba(8, 17, 31, 0.18)),
-      linear-gradient(90deg, #08111f 0%, rgba(8, 17, 31, 0.18) 100%);
+  .learning-field {
+    width: min(680px, 100%);
+    margin: 0;
+    aspect-ratio: 1.45;
   }
 
   .four-up,
@@ -59,6 +59,8 @@
 
   .section-header,
   .identity-section,
+  .home-section-header,
+  .credibility-inner,
   .detail-layout,
   .contact-section,
   .footer-inner,
@@ -119,6 +121,10 @@
     padding-top: 70px;
   }
 
+  .home-hero {
+    min-height: auto;
+  }
+
   .hero-actions {
     display: grid;
   }
@@ -131,14 +137,34 @@
     grid-template-columns: 1fr;
   }
 
-  .home-hero-media {
-    min-height: 330px;
+  .hero-metrics div {
+    padding: 18px 0;
   }
 
-  .hero-graphic {
-    right: 18px;
-    bottom: 18px;
-    width: calc(100% - 36px);
+  .hero-metrics div + div {
+    padding-left: 0;
+    border-top: 1px solid #cfd6db;
+    border-left: 0;
+  }
+
+  .learning-field {
+    aspect-ratio: 0.95;
+  }
+
+  .bet-list,
+  .direction-item {
+    grid-template-columns: 1fr;
+  }
+
+  .bet-item,
+  .bet-item + .bet-item {
+    padding-right: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .bet-item + .bet-item {
+    border-top: 1px solid #cfd6db;
   }
 
   .four-up,

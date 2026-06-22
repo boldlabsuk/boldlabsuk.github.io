@@ -1,123 +1,113 @@
-import { heroImage } from '../../assets/images'
-import { involvementRoutes, siteMeta } from '../../content'
-import { SectionHeader } from '../../ui/layout/SectionHeader'
-import { FeatureCard } from '../../ui/primitives/FeatureCard'
+import { homepageContent } from '../../content'
 
 export function HomePage() {
   return (
     <>
       <section className="home-hero" aria-labelledby="home-hero-title">
         <div className="home-hero-copy">
-          <p className="eyebrow">{siteMeta.expandedName}</p>
-          <h1 id="home-hero-title">{siteMeta.missionPhrase}</h1>
-          <p className="hero-lede">{siteMeta.mission}</p>
+          <p className="eyebrow">{homepageContent.hero.eyebrow}</p>
+          <h1 id="home-hero-title">{homepageContent.hero.headline}</h1>
+          <p className="hero-lede">{homepageContent.hero.lede}</p>
           <div className="hero-actions" aria-label="Primary actions">
-            <a className="button button-primary" href="/people">
-              Meet Our People
-            </a>
-            <a className="button button-secondary" href="/opportunities">
-              Work With Us
-            </a>
+            {homepageContent.hero.actions.map((action, index) => (
+              <a
+                className={`button ${index === 0 ? 'button-primary' : 'button-secondary'}`}
+                href={action.href}
+                key={action.label}
+              >
+                {action.label}
+              </a>
+            ))}
           </div>
           <dl className="hero-metrics" aria-label="Institute highlights">
-            <div>
-              <dt>3</dt>
-              <dd>university labs</dd>
-            </div>
-            <div>
-              <dt>12</dt>
-              <dd>research themes</dd>
-            </div>
-            <div>
-              <dt>6</dt>
-              <dd>routes to join</dd>
-            </div>
+            {homepageContent.proofMetrics.map((metric) => (
+              <div key={metric.label}>
+                <dt>{metric.value}</dt>
+                <dd>
+                  <strong>{metric.label}</strong>
+                  <span>{metric.detail}</span>
+                </dd>
+              </div>
+            ))}
           </dl>
         </div>
-        <div className="home-hero-media" aria-label="Institute research setting">
-          <img
-            src={heroImage}
-            alt="Researchers collaborating in a bright university AI lab"
-          />
-          <div className="hero-graphic" aria-hidden="true">
-            <span className="graphic-node node-a" />
-            <span className="graphic-node node-b" />
-            <span className="graphic-node node-c" />
-            <span className="graphic-node node-d" />
-            <span className="graphic-line line-a" />
-            <span className="graphic-line line-b" />
-            <span className="graphic-line line-c" />
+        <div
+          className="home-hero-visual"
+          role="img"
+          aria-label="Abstract research graphic showing open-ended learning loops"
+        >
+          <div className="learning-field" aria-hidden="true">
+            <span className="field-ring ring-a" />
+            <span className="field-ring ring-b" />
+            <span className="field-ring ring-c" />
+            <span className="field-path path-a" />
+            <span className="field-path path-b" />
+            <span className="field-path path-c" />
+            <span className="field-node node-a" />
+            <span className="field-node node-b" />
+            <span className="field-node node-c" />
+            <span className="field-node node-d" />
+            <span className="field-testbed" />
           </div>
         </div>
       </section>
 
-      <section className="section-band feature-link-section">
-        <SectionHeader
-          eyebrow="Institute"
-          title="One institute, clear routes in."
-          description="The launch site is organised around the people and opportunities that make the research programme legible."
-        />
-        <div className="feature-card-grid two-up">
-          <FeatureCard
-            href="/people"
-            kicker="Directory"
-            title="Our People"
-            description="Meet the researchers, engineers, students, and fellows building the institute."
-            variant="teal"
-          />
-          <FeatureCard
-            href="/opportunities"
-            kicker="Join"
-            title="Opportunities"
-            description="Learn how to join, visit, collaborate, or get involved."
-            variant="slate"
-          />
+      <section className="home-section bet-section" aria-labelledby="bet-title">
+        <div className="home-section-header">
+          <p className="eyebrow">The Institute Bet</p>
+          <h2 id="bet-title">The next paradigm will not come from scale alone.</h2>
         </div>
-      </section>
-
-      <section className="statement-section">
-        <p>{siteMeta.statement}</p>
-      </section>
-
-      <section className="section-band identity-section">
-        <div className="identity-copy">
-          <p className="eyebrow">About</p>
-          <h2>A unified environment for long-term AI research.</h2>
-          <p>{siteMeta.identity}</p>
-        </div>
-        <div className="identity-panel" aria-label="Institute structure">
-          <div>
-            <span>01</span>
-            <strong>Academic depth</strong>
-            <p>Research groups remain connected to university strengths.</p>
-          </div>
-          <div>
-            <span>02</span>
-            <strong>Engineering excellence</strong>
-            <p>Shared systems make ambitious programmes reproducible.</p>
-          </div>
-          <div>
-            <span>03</span>
-            <strong>Scientific ambition</strong>
-            <p>Long-horizon projects are coordinated at institute scale.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-band opportunities-preview">
-        <SectionHeader
-          eyebrow="Opportunities"
-          title="Ways to work with us."
-          description="Find the route that best matches your stage, expertise, and proposed contribution."
-          cta={{ label: 'See all opportunities', href: '/opportunities' }}
-        />
-        <div className="opportunity-link-grid">
-          {involvementRoutes.map((route) => (
-            <a className="opportunity-link-card" href={route.href} key={route.id}>
-              <span>{route.shortTitle}</span>
-              <p>{route.summary}</p>
-            </a>
+        <div className="bet-list">
+          {homepageContent.instituteBet.map((bet, index) => (
+            <article className="bet-item" key={bet.title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{bet.title}</h3>
+              <p>{bet.body}</p>
+            </article>
           ))}
+        </div>
+      </section>
+
+      <section
+        className="home-section directions-section"
+        aria-labelledby="directions-title"
+      >
+        <div className="home-section-header">
+          <p className="eyebrow">Research Directions</p>
+          <h2 id="directions-title">Three directions, one programme.</h2>
+          <p>
+            Each direction is designed to test the Institute Bet from a different
+            scientific angle while sharing systems, infrastructure, and critical
+            mass.
+          </p>
+        </div>
+        <ol className="direction-list">
+          {homepageContent.researchDirections.map((direction) => (
+            <li className="direction-item" key={direction.name}>
+              <h3>{direction.name}</h3>
+              <p>{direction.description}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section
+        className="home-section credibility-section"
+        aria-labelledby="credibility-title"
+      >
+        <div className="credibility-inner">
+          <div className="credibility-copy">
+            <p className="eyebrow">{homepageContent.credibility.eyebrow}</p>
+            <h2 id="credibility-title">
+              {homepageContent.credibility.headline}
+            </h2>
+            <blockquote>{homepageContent.credibility.statement}</blockquote>
+          </div>
+          <ul className="credibility-list">
+            {homepageContent.credibility.points.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
         </div>
       </section>
     </>

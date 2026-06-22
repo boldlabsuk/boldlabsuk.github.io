@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 import {
+  homepageContent,
   involvementRoutes,
   navigation,
   newsPosts,
@@ -12,7 +13,7 @@ import {
 } from '../src/content.ts'
 import { getPaperFilterOptions } from '../src/domain/papers.ts'
 import { getAuthors, getPerson } from '../src/domain/people.ts'
-import { parseRoute } from '../src/routing/routes.ts'
+import { getRouteMeta, parseRoute } from '../src/routing/routes.ts'
 
 const placeholderPersonNames = [
   'Amara Singh',
@@ -42,7 +43,7 @@ const placeholderPersonIds = [
 
 test('BOLD presents the v2 institute information architecture', () => {
   assert.equal(siteMeta.name, 'BOLD Institute')
-  assert.match(siteMeta.description, /three university AI labs/)
+  assert.match(siteMeta.description, /focused, critical-mass AI research institute/)
 
   assert.deepEqual(
     navigation.map((item) => item.label),
@@ -53,6 +54,62 @@ test('BOLD presents the v2 institute information architecture', () => {
     navigation.map((item) => item.href),
     ['/people', '/opportunities'],
   )
+})
+
+test('homepage presents the BOLD Institute Bet positioning and proof metrics', () => {
+  assert.equal(homepageContent.hero.headline, 'Build the next paradigm in AI.')
+  assert.match(
+    homepageContent.hero.lede,
+    /Oxford, UCL, and Imperial/,
+  )
+
+  assert.deepEqual(
+    homepageContent.proofMetrics.map((metric) => metric.value),
+    ['3', '37m GBP+', '3'],
+  )
+
+  assert.deepEqual(
+    homepageContent.proofMetrics.map((metric) => metric.label),
+    [
+      'universities',
+      'committed industry co-investment',
+      'Research Directions',
+    ],
+  )
+
+  assert.match(
+    getRouteMeta({ name: 'home' }).description,
+    /fundamental AI breakthroughs from Britain/,
+  )
+})
+
+test('homepage content exposes the approved CTAs, Institute Bet, and Research Directions', () => {
+  const homepageText = JSON.stringify(homepageContent)
+
+  assert.deepEqual(
+    homepageContent.hero.actions.map((action) => action.label),
+    ['Join BOLD', 'Partner with us'],
+  )
+
+  assert.equal(homepageContent.instituteBet.length, 2)
+  assert.match(homepageContent.instituteBet[0].body, /breakthroughs are still possible/)
+  assert.match(homepageContent.instituteBet[1].body, /focused, agile, critical-mass/)
+
+  assert.deepEqual(
+    homepageContent.researchDirections.map((direction) => direction.name),
+    [
+      'Beyond Backpropagation',
+      'Human-Centric Learning & Discovery',
+      'Embodied Learning',
+    ],
+  )
+
+  assert.match(homepageText, /gradients are unavailable/)
+  assert.match(homepageText, /collaborate with people/)
+  assert.match(homepageText, /deployment beyond the datacentre/)
+  assert.ok(!homepageText.includes('Research. Build. Transform.'))
+  assert.ok(!homepageText.includes('12 research themes'))
+  assert.ok(!homepageText.includes('6 routes to join'))
 })
 
 test('structured content supports people, news, papers, and opportunities', () => {
