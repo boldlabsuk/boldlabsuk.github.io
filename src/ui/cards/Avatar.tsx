@@ -2,11 +2,13 @@ import { profileImages } from '../../assets/images'
 import type { Person } from '../../content'
 import { getInitials } from '../../lib/format'
 
+type AvatarPerson = Pick<Person, 'image' | 'name' | 'role'>
+
 export function Avatar({
   person,
   size = 'standard',
 }: {
-  person: Person
+  person: AvatarPerson
   size?: 'standard' | 'large'
 }) {
   const image = person.image ? profileImages[person.image] : undefined

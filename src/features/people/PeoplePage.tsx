@@ -5,7 +5,7 @@ import {
   getPeopleFilterOptions,
 } from '../../domain/people'
 import { allFilterValue } from '../../domain/shared'
-import { PersonCard } from '../../ui/cards/PersonCard'
+import { PersonListing } from '../../ui/cards/PersonListing'
 import { SearchInput } from '../../ui/forms/SearchInput'
 import { SelectFilter } from '../../ui/forms/SelectFilter'
 import { PageHero } from '../../ui/layout/PageHero'
@@ -87,12 +87,9 @@ export function PeoplePage() {
                 key={peopleSection.title}
               >
                 <h2>{peopleSection.title}</h2>
-                <div className="people-grid">
+                <div className="person-listing-grid">
                   {peopleSection.people.map((listing) => (
-                    <PersonCard
-                      key={listing.person.slug}
-                      person={listing.person}
-                    />
+                    <PersonListing key={listing.slug} listing={listing} />
                   ))}
                 </div>
               </section>
