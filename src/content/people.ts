@@ -1,5 +1,5 @@
 import ourPeople from './our_people.json' with { type: 'json' }
-import type { Person } from './types.ts'
+import type { Person, PersonLinkSet } from './types.ts'
 
 export type SourcePerson = {
   source: string
@@ -9,6 +9,8 @@ export type SourcePerson = {
   researchInterestKeywords: string[] | string
   profilePicture?: string
   listOnBoldWebsite?: string
+  socialLinks?: string
+  'social-links'?: string
 }
 
 export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
@@ -28,6 +30,9 @@ export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
         affiliation: affiliation || undefined,
         bio: '',
         image: buildProfileAssetUrl(slug),
+        links: parsePublicPersonLinks(
+          sourcePerson.socialLinks ?? sourcePerson['social-links'],
+        ),
         researchAreas: normalizeResearchAreas(
           sourcePerson.researchInterestKeywords,
         ),
@@ -53,6 +58,110 @@ function normalizeResearchAreas(researchInterestKeywords: string[] | string) {
   return keywords
     .map((keyword) => keyword.trim())
     .filter((keyword): keyword is string => Boolean(keyword))
+}
+
+function parsePublicPersonLinks(sourceLinks?: string) {
+  if (!sourceLinks?.trim()) {
+    return undefined
+  }
+
+  const links: PersonLinkSet = {}
+
+  for (const value of sourceLinks.split(/[\n;,]+|\s+(?=https?:\/\/|www\.|@)/i)) {
+    const link = normalizePublicPersonLink(value)
+
+    if (link && !links[link.key]) {
+      links[link.key] = link.href
+    }
+  }
+
+  return Object.keys(links).length > 0 ? links : undefined
+}
+
+function normalizePublicPersonLink(value: string) {
+  const trimmedValue = value.trim()
+
+  if (!trimmedValue || isPlaceholderLinkValue(trimmedValue)) {
+    return undefined
+  }
+
+  const handle = trimmedValue.match(/^@([A-Za-z0-9_]{1,15})$/)
+
+  if (handle) {
+    return {
+      key: 'twitter' as const,
+      href: `https://x.com/${handle[1]}`,
+    }
+  }
+
+  const href = normalizePublicUrl(trimmedValue)
+
+  if (!href) {
+    return undefined
+  }
+
+  const hostname = new URL(href).hostname.toLowerCase().replace(/^www\./, '')
+
+  if (isHostnameOrSubdomain(hostname, 'scholar.google.com')) {
+    return { key: 'googleScholar' as const, href }
+  }
+
+  if (isHostnameOrSubdomain(hostname, 'github.com')) {
+    return { key: 'github' as const, href }
+  }
+
+  if (isHostnameOrSubdomain(hostname, 'linkedin.com')) {
+    return { key: 'linkedin' as const, href }
+  }
+
+  if (
+    isHostnameOrSubdomain(hostname, 'x.com') ||
+    isHostnameOrSubdomain(hostname, 'twitter.com')
+  ) {
+    return { key: 'twitter' as const, href }
+  }
+
+  return { key: 'website' as const, href }
+}
+
+function isPlaceholderLinkValue(value: string) {
+  return /^(?:n\/a|na|none|null|nil|-|--|no|nope|placeholder)$/i.test(value)
+}
+
+function normalizePublicUrl(value: string) {
+  if (isEmailLikeValue(value) || value.toLowerCase().startsWith('mailto:')) {
+    return undefined
+  }
+
+  const maybeUrl = /^https?:\/\//i.test(value) ? value : `https://${value}`
+
+  try {
+    const url = new URL(maybeUrl)
+
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+      return undefined
+    }
+
+    if (!isDomainLikeHostname(url.hostname)) {
+      return undefined
+    }
+
+    return url.toString().replace(/\/$/, '')
+  } catch {
+    return undefined
+  }
+}
+
+function isEmailLikeValue(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
+
+function isDomainLikeHostname(hostname: string) {
+  return hostname.includes('.') && !hostname.startsWith('.') && !hostname.endsWith('.')
+}
+
+function isHostnameOrSubdomain(hostname: string, domain: string) {
+  return hostname === domain || hostname.endsWith(`.${domain}`)
 }
 
 function slugify(value: string) {
