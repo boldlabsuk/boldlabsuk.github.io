@@ -166,6 +166,27 @@ test('Website Roster parses public profile links from source social-links text',
   })
 })
 
+test('Website Roster classifies first-party social subdomain URLs as social links', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Regional Social',
+      role: 'Postdoc',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'regional-social.jpg',
+      listOnBoldWebsite: 'YES',
+      socialLinks:
+        'https://uk.linkedin.com/in/regional-social; regional-social.example',
+    },
+  ])
+
+  assert.deepEqual(roster[0]?.links, {
+    linkedin: 'https://uk.linkedin.com/in/regional-social',
+    website: 'https://regional-social.example',
+  })
+})
+
 test('Website Roster parsed links feed Primary Person Link priority', () => {
   const roster = buildWebsiteRoster([
     {

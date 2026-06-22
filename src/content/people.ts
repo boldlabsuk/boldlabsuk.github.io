@@ -102,19 +102,22 @@ function normalizePublicPersonLink(value: string) {
 
   const hostname = new URL(href).hostname.toLowerCase().replace(/^www\./, '')
 
-  if (hostname === 'scholar.google.com') {
+  if (isHostnameOrSubdomain(hostname, 'scholar.google.com')) {
     return { key: 'googleScholar' as const, href }
   }
 
-  if (hostname === 'github.com') {
+  if (isHostnameOrSubdomain(hostname, 'github.com')) {
     return { key: 'github' as const, href }
   }
 
-  if (hostname === 'linkedin.com') {
+  if (isHostnameOrSubdomain(hostname, 'linkedin.com')) {
     return { key: 'linkedin' as const, href }
   }
 
-  if (hostname === 'x.com' || hostname === 'twitter.com') {
+  if (
+    isHostnameOrSubdomain(hostname, 'x.com') ||
+    isHostnameOrSubdomain(hostname, 'twitter.com')
+  ) {
     return { key: 'twitter' as const, href }
   }
 
@@ -155,6 +158,10 @@ function isEmailLikeValue(value: string) {
 
 function isDomainLikeHostname(hostname: string) {
   return hostname.includes('.') && !hostname.startsWith('.') && !hostname.endsWith('.')
+}
+
+function isHostnameOrSubdomain(hostname: string, domain: string) {
+  return hostname === domain || hostname.endsWith(`.${domain}`)
 }
 
 function slugify(value: string) {
