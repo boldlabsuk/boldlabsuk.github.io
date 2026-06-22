@@ -20,10 +20,11 @@
 
 .person-listing {
   display: grid;
-  grid-template-columns: 88px minmax(0, 1fr);
+  grid-template-columns: clamp(72px, 18vw, 88px) minmax(0, 1fr);
   gap: 16px;
   align-items: center;
   min-height: 124px;
+  min-width: 0;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -40,6 +41,10 @@
   border-radius: 8px;
 }
 
+.person-listing:focus-within {
+  box-shadow: var(--shadow);
+}
+
 .person-listing-body {
   display: grid;
   min-width: 0;
@@ -51,6 +56,7 @@
   margin: 0;
   font-size: 19px;
   line-height: 1.18;
+  overflow-wrap: anywhere;
 }
 
 .person-listing h3 a {
@@ -108,11 +114,13 @@
 .person-role {
   color: var(--ink-soft);
   font-weight: 780;
+  overflow-wrap: anywhere;
 }
 
 .person-affiliation {
   color: var(--muted);
   font-size: 13px;
+  overflow-wrap: anywhere;
 }
 
 .person-bio {
@@ -134,7 +142,9 @@
 .social-links a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 34px;
+  max-width: 100%;
   padding: 0 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -158,6 +168,7 @@
 
 .social-links-compact a {
   min-height: 28px;
+  min-width: 34px;
   padding: 0 8px;
   font-size: 12px;
 }

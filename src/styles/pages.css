@@ -65,6 +65,7 @@
 .search-input,
 .select-filter {
   display: grid;
+  min-width: 0;
   gap: 6px;
 }
 
@@ -97,6 +98,7 @@
 }
 
 .button-filter-reset {
+  min-height: 44px;
   border-color: var(--line);
   background: var(--surface);
   color: var(--ink);

@@ -75,12 +75,22 @@ export function PeoplePage() {
           </button>
         </div>
 
-        <div className="result-count" aria-live="polite">
+        <div
+          className="result-count"
+          id="people-result-count"
+          role="status"
+          aria-atomic="true"
+          aria-live="polite"
+        >
           Showing {directory.visiblePeopleCount} of {directory.totalPeople} people
         </div>
 
         {directory.sections.length > 0 ? (
-          <div className="people-directory">
+          <div
+            className="people-directory"
+            id="people-results"
+            aria-describedby="people-result-count"
+          >
             {directory.sections.map((peopleSection) => (
               <section
                 className="people-section"
@@ -96,7 +106,15 @@ export function PeoplePage() {
             ))}
           </div>
         ) : (
-          <EmptyState message="No people match the selected filters." />
+          <div
+            id="people-results"
+            role="status"
+            aria-atomic="true"
+            aria-live="polite"
+            aria-describedby="people-result-count"
+          >
+            <EmptyState message="No people match the selected filters." />
+          </div>
         )}
       </section>
     </>

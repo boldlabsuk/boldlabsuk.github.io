@@ -20,7 +20,7 @@ export function PersonCard({ person }: { person: Person }) {
         )}
         <p className="person-bio">{person.bio}</p>
         <TagList tags={person.researchAreas.slice(0, 3)} />
-        <SocialLinks links={person.links} compact />
+        <SocialLinks links={person.links} personName={person.name} compact />
       </div>
     </article>
   )

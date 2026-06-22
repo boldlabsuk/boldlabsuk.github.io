@@ -1,52 +1,40 @@
 import type { Person } from '../../content'
 import { ExternalLink } from '../primitives/ExternalLink'
+import { getPersonSocialLinkItems } from './socialLinkItems'
 
 export function SocialLinks({
   links,
+  personName,
   compact = false,
 }: {
   links?: Person['links']
+  personName: string
   compact?: boolean
 }) {
-  if (!links) {
-    return null
-  }
+  const items = getPersonSocialLinkItems({ links, personName, compact })
 
-  const labels: Record<keyof NonNullable<Person['links']>, string> = {
-    website: 'Site',
-    googleScholar: 'Scholar',
-    linkedin: 'LinkedIn',
-    github: 'GitHub',
-    twitter: 'X',
-    email: 'Email',
-  }
-
-  const entries = Object.entries(links).filter((entry): entry is [string, string] =>
-    Boolean(entry[1]),
-  )
-
-  if (entries.length === 0) {
+  if (items.length === 0) {
     return null
   }
 
   return (
     <div className={compact ? 'social-links social-links-compact' : 'social-links'}>
-      {entries.map(([key, href]) =>
-        href.startsWith('mailto:') ? (
+      {items.map((item) =>
+        item.isEmail ? (
           <a
-            aria-label={`${labels[key as keyof typeof labels]} for profile`}
-            href={href}
-            key={key}
+            aria-label={item.accessibleName}
+            href={item.href}
+            key={item.key}
           >
-            {labels[key as keyof typeof labels]}
+            {item.label}
           </a>
         ) : (
           <ExternalLink
-            ariaLabel={`${labels[key as keyof typeof labels]} for profile`}
-            href={href}
-            key={key}
+            ariaLabel={item.accessibleName}
+            href={item.href}
+            key={item.key}
           >
-            {labels[key as keyof typeof labels]}
+            {item.label}
           </ExternalLink>
         ),
       )}

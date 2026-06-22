@@ -170,6 +170,10 @@
     align-items: stretch;
   }
 
+  .button-filter-reset {
+    width: 100%;
+  }
+
   .filter-bar {
     width: 100%;
   }
@@ -181,5 +185,24 @@
   .current-opportunity-card dl div {
     grid-template-columns: 1fr;
     gap: 2px;
+  }
+}
+
+@media (max-width: 420px) {
+  .person-listing {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .person-listing h3 {
+    font-size: 17px;
+  }
+
+  .social-links-compact a {
+    min-height: 32px;
+    min-width: 40px;
   }
 }
