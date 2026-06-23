@@ -8,6 +8,8 @@ export const expressionOfInterestFormConfig: ExpressionOfInterestFormConfig = {
   routeParameterName: 'route',
 }
 
+const tallyHostnames = new Set(['tally.so', 'www.tally.so'])
+
 export function getExpressionOfInterestEmbedUrl(
   route: Pick<OpportunityRoute, 'prefillValue'>,
   config: ExpressionOfInterestFormConfig | null | undefined = expressionOfInterestFormConfig,
@@ -16,20 +18,28 @@ export function getExpressionOfInterestEmbedUrl(
     return undefined
   }
 
+  const routeParameterName = config.routeParameterName.trim()
+  if (!routeParameterName) {
+    return undefined
+  }
+
   const formId = getTallyFormId(config)
   if (!formId) {
     return undefined
   }
 
-  const embedUrl = new URL(`https://tally.so/embed/${formId}`)
-  embedUrl.searchParams.set(config.routeParameterName, route.prefillValue)
+  const embedUrl = new URL(
+    `https://tally.so/embed/${encodeURIComponent(formId)}`,
+  )
+  embedUrl.searchParams.set(routeParameterName, route.prefillValue)
 
   return embedUrl.toString()
 }
 
 function getTallyFormId(config: ExpressionOfInterestFormConfig) {
-  if (config.formId) {
-    return config.formId
+  const configuredFormId = normalizeTallyFormId(config.formId)
+  if (configuredFormId) {
+    return configuredFormId
   }
 
   if (!config.formUrl) {
@@ -43,7 +53,23 @@ function getTallyFormId(config: ExpressionOfInterestFormConfig) {
     return undefined
   }
 
-  const [, pathKind, formId] = formUrl.pathname.split('/')
+  if (!tallyHostnames.has(formUrl.hostname)) {
+    return undefined
+  }
 
-  return pathKind === 'r' || pathKind === 'embed' ? formId : undefined
+  const [pathKind, formId] = formUrl.pathname.split('/').filter(Boolean)
+
+  if (pathKind !== 'r' && pathKind !== 'embed') {
+    return undefined
+  }
+
+  return normalizeTallyFormId(formId)
+}
+
+function normalizeTallyFormId(formId: string | undefined) {
+  const normalizedFormId = formId?.trim()
+
+  return normalizedFormId && !/[/?#]/.test(normalizedFormId)
+    ? normalizedFormId
+    : undefined
 }

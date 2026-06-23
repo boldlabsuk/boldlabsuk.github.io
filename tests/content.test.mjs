@@ -202,6 +202,26 @@ test('Opportunity Routes share one Tally form with route-specific prefill values
   )
 })
 
+test('Expression of Interest embed URL requires complete Tally configuration', () => {
+  const route = opportunityRoutes[0]
+
+  assert.equal(getExpressionOfInterestEmbedUrl(route, null), undefined)
+  assert.equal(
+    getExpressionOfInterestEmbedUrl(route, {
+      formUrl: 'https://example.com/r/A7aa0W',
+      routeParameterName: 'route',
+    }),
+    undefined,
+  )
+  assert.equal(
+    getExpressionOfInterestEmbedUrl(route, {
+      formUrl: 'https://tally.so/r/A7aa0W',
+      routeParameterName: '',
+    }),
+    undefined,
+  )
+})
+
 test('related content omits removed placeholder Person names and unmapped Person IDs', () => {
   assert.deepEqual(
     getAuthors(['tim-rocktaschel', 'amara-singh', 'missing-person']),
