@@ -1279,7 +1279,15 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     listingBySlug['roberta-raileanu']?.primaryPersonLink,
     'https://rraileanu.github.io',
   )
-  assert.equal(listingBySlug['gregory-levy']?.primaryPersonLink, null)
+  assert.deepEqual(people.find((person) => person.slug === 'gregory-levy')?.links, {
+    website: 'https://gregorylevy.github.io',
+    linkedin: 'https://www.linkedin.com/in/greg-levy-3779071a3',
+    github: 'https://github.com/gregorylevy',
+  })
+  assert.equal(
+    listingBySlug['gregory-levy']?.primaryPersonLink,
+    'https://gregorylevy.github.io',
+  )
   assert.ok(
     listings.every(
       (listing) =>
