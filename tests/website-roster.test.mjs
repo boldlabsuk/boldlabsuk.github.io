@@ -1259,9 +1259,9 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(people.length, 95)
+  assert.equal(people.length, 106)
   assert.equal(people.filter((person) => person.alumni).length, 7)
-  assert.equal(directory.totalPeople, 88)
+  assert.equal(directory.totalPeople, 99)
   assert.deepEqual(
     [
       ...new Set(
@@ -1272,7 +1272,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     ],
     [],
   )
-  assert.equal(directory.visiblePeopleCount, 88)
+  assert.equal(directory.visiblePeopleCount, 99)
   assert.deepEqual(
     Object.fromEntries(
       directory.sections.map((section) => [section.title, section.people.length]),
@@ -1282,12 +1282,12 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 1,
-      'PhD Student': 53,
-      'Masters Student': 6,
-      'Associate Members': 12,
+      'PhD Student': 54,
+      'Masters Student': 10,
+      'Associate Members': 18,
     },
   )
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 88)
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 99)
   assert.deepEqual(
     directory.sections.map((section) => section.title),
     [
@@ -1320,6 +1320,85 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   const listingBySlug = Object.fromEntries(
     listings.map((listing) => [listing.slug, listing]),
   )
+  const expectedNewPublicSlugs = [
+    'kevin-buhler',
+    'colin-lu',
+    'luca-furieri',
+    'kristen-menou',
+    'marek-masiak',
+    'edan-toledo',
+    'juan-agustin-duque',
+    'arina-kosovskaia',
+    'borja-gonzalez-leon',
+    'aaron-rose',
+    'henry-heppe',
+  ]
+  const expectedHiddenNewSlugs = [
+    'ahmet-hamdi-guzel',
+    'labeebah-islaam',
+    'lize-alberts',
+    'aniket-chatterjee',
+    'garrett-deceuninck-ziviani',
+    'utkarsh-gupta',
+    'xi-xiong',
+    'benjamin-moll',
+  ]
+
+  assert.deepEqual(
+    expectedNewPublicSlugs.map((slug) => [
+      slug,
+      listingBySlug[slug]?.peopleSection,
+    ]),
+    [
+      ['kevin-buhler', 'Masters Student'],
+      ['colin-lu', 'Associate Members'],
+      ['luca-furieri', 'Associate Members'],
+      ['kristen-menou', 'Associate Members'],
+      ['marek-masiak', 'PhD Student'],
+      ['edan-toledo', 'Associate Members'],
+      ['juan-agustin-duque', 'Associate Members'],
+      ['arina-kosovskaia', 'Masters Student'],
+      ['borja-gonzalez-leon', 'Associate Members'],
+      ['aaron-rose', 'Masters Student'],
+      ['henry-heppe', 'Masters Student'],
+    ],
+  )
+  assert.deepEqual(
+    expectedHiddenNewSlugs.map((slug) => listingBySlug[slug]),
+    expectedHiddenNewSlugs.map(() => undefined),
+  )
+  assert.deepEqual(people.find((person) => person.slug === 'kevin-buhler')?.links, {
+    website: 'https://kevinbuhler.com',
+    linkedin: 'https://www.linkedin.com/in/kevin-buhler',
+    github: 'https://github.com/kevbuh',
+  })
+  assert.deepEqual(people.find((person) => person.slug === 'colin-lu')?.links, {
+    website: 'https://simplegeometry.github.io',
+    twitter: 'https://x.com/_colin_lu',
+  })
+  assert.deepEqual(people.find((person) => person.slug === 'marek-masiak')?.links, {
+    linkedin: 'https://www.linkedin.com/in/marekmasiak',
+    twitter: 'https://x.com/marekmmas',
+    googleScholar: 'https://scholar.google.com/citations?user=XBUX-cwAAAAJ',
+  })
+  assert.deepEqual(people.find((person) => person.slug === 'edan-toledo')?.links, {
+    twitter: 'https://x.com/EdanToledo',
+    googleScholar:
+      'https://scholar.google.com/citations?user=_bLUH-MAAAAJ&hl=en&oi=ao',
+  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'borja-gonzalez-leon')?.links,
+    {
+      website: 'https://borjagleon.com',
+      twitter: 'https://x.com/borruell',
+      googleScholar:
+        'https://scholar.google.es/citations?user=sJiadiMAAAAJ&hl=en',
+      linkedin: 'https://www.linkedin.com/in/borja-gonzalez-leon',
+    },
+  )
+  assert.deepEqual(people.find((person) => person.slug === 'henry-heppe')?.links, {
+    github: 'https://github.com/henry-heppe',
+  })
 
   assert.equal(
     listingBySlug['nathan-monette']?.primaryPersonLink,
@@ -1435,7 +1514,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ],
   )
   assert.equal(matchingDirectory.visiblePeopleCount, 3)
-  assert.equal(matchingDirectory.totalPeople, 88)
+  assert.equal(matchingDirectory.totalPeople, 99)
 
   assert.deepEqual(
     areaDirectory.sections.map((section) => [
@@ -1492,11 +1571,15 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
           'jacinto-suner',
           'samuel-simons',
           'ali-farhat',
+          'kevin-buhler',
+          'arina-kosovskaia',
+          'aaron-rose',
+          'henry-heppe',
         ],
       ],
     ],
   )
-  assert.equal(sectionDirectory.visiblePeopleCount, 6)
+  assert.equal(sectionDirectory.visiblePeopleCount, 10)
 
   assert.deepEqual(
     combinedDirectory.sections.map((section) => [
@@ -1506,9 +1589,9 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [],
   )
   assert.equal(combinedDirectory.visiblePeopleCount, 0)
-  assert.equal(combinedDirectory.totalPeople, 88)
+  assert.equal(combinedDirectory.totalPeople, 99)
 
   assert.deepEqual(emptyDirectory.sections, [])
   assert.equal(emptyDirectory.visiblePeopleCount, 0)
-  assert.equal(emptyDirectory.totalPeople, 88)
+  assert.equal(emptyDirectory.totalPeople, 99)
 })

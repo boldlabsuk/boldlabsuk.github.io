@@ -331,9 +331,9 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 1,
-      'PhD Student': 53,
-      'Masters Student': 6,
-      'Associate Members': 12,
+      'PhD Student': 54,
+      'Masters Student': 10,
+      'Associate Members': 18,
     },
   )
   assert.deepEqual(
@@ -404,6 +404,27 @@ test('People Directory treats explicit alumni flags as non-directory people', ()
   assert.equal(directory.visiblePeopleCount, 1)
 })
 
+test('People Directory maps canonical source role values to matching People Sections', () => {
+  assert.equal(
+    getPeopleSection({
+      group: 'PhD Student',
+    }),
+    'PhD Student',
+  )
+  assert.equal(
+    getPeopleSection({
+      group: 'Masters Student',
+    }),
+    'Masters Student',
+  )
+  assert.equal(
+    getPeopleSection({
+      group: 'Associate Members',
+    }),
+    'Associate Members',
+  )
+})
+
 test('People Directory preserves content order within each People Section', () => {
   const directory = buildPeopleDirectoryViewModel({
     people,
@@ -453,6 +474,12 @@ test('People Directory preserves content order within each People Section', () =
       'alfie-lamerton',
       'maksymilian-wolski',
       'tim-franzmeyer',
+      'colin-lu',
+      'luca-furieri',
+      'kristen-menou',
+      'edan-toledo',
+      'juan-agustin-duque',
+      'borja-gonzalez-leon',
     ],
   )
 })

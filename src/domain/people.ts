@@ -123,11 +123,14 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
   Postdoc: 'Postdoc',
   'Research Engineer': 'Research Engineers',
   'Research Engineers': 'Research Engineers',
+  'PhD Student': 'PhD Student',
   'DPhil Student': 'PhD Student',
   'PhD student': 'PhD Student',
+  'Masters Student': 'Masters Student',
   'Master Student': 'Masters Student',
   'Current Masters Student, but inc. PhD this fall with Jakob+Shimon':
     'Masters Student',
+  'Associate Members': 'Associate Members',
 }
 
 function createPeopleActiveFilterPill(

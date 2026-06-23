@@ -1228,6 +1228,256 @@
     "socialLinks": "https://www.robots.ox.ac.uk/~frtim/; https://twitter.com/frtimlive; https://scholar.google.com/citations?user=Jvv1rkkAAAAJ; https://github.com/fratim"
   },
   {
+    "source": "main",
+    "name": "Ahmet Hamdi Guzel",
+    "role": "PhD Student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "World Models"
+    ],
+    "profilePicture": "website_photo - A. H. Guzel.png",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://x.com/ahguzelUK"
+  },
+  {
+    "source": "main",
+    "name": "Kevin Buhler",
+    "role": "Masters Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "kevin - Kevin Buhler.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://kevinbuhler.com/, https://www.linkedin.com/in/kevin-buhler/, https://github.com/kevbuh"
+  },
+  {
+    "source": "main",
+    "name": "Colin Lu",
+    "role": "Associate Members",
+    "homeInstitution": "MILA",
+    "researchInterestKeywords": [
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "prof_pic - Colin Lu.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://simplegeometry.github.io/, https://x.com/_colin_lu"
+  },
+  {
+    "source": "main",
+    "name": "Luca Furieri",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Planning & Control",
+      "Optimization",
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "Luca - Luca Furieri.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=Sxta_doAAAAJ&hl=it"
+  },
+  {
+    "source": "main",
+    "name": "Kristen Menou",
+    "role": "Associate Members",
+    "homeInstitution": "Toronto",
+    "researchInterestKeywords": [
+      "AI for Science",
+      "Automated Discovery"
+    ],
+    "profilePicture": "K_Menou_headshot  - Kristen Menou.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://kmenou.github.io/aips_website/"
+  },
+  {
+    "source": "main",
+    "name": "Labeebah Islaam",
+    "role": "Masters Student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "World Models",
+      "Open-Ended Learning"
+    ],
+    "profilePicture": "Screenshot_2026-06-23-10-19-11-50_254de13a4bc8758c9908fff1f73e3725 - Labeebah Islaam.jpg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://www.linkedin.com/in/labeebah-islaam"
+  },
+  {
+    "source": "main",
+    "name": "Lize Alberts",
+    "role": "Associate Members",
+    "homeInstitution": "VU Amsterdam",
+    "researchInterestKeywords": [
+      "Human-AI Interaction",
+      "Generative Models"
+    ],
+    "profilePicture": "PXL_20260527_084223160~4 - Lize Alberts.jpg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://research.vu.nl/en/persons/lize-alberts/"
+  },
+  {
+    "source": "main",
+    "name": "Aniket Chatterjee",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI for Science",
+      "Reinforcement Learning",
+      "Interpretability"
+    ],
+    "profilePicture": "citations - Aniket Chatterjee.jpeg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://scholar.google.com/citations?view_op=list_works&hl=en&user=kHwm9EsAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Garrett Deceuninck-Ziviani",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Human-AI Interaction"
+    ],
+    "profilePicture": "IMG_3525 original - Garrett Deceuninck-Ziviani (Garrett D).jpg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "N/A"
+  },
+  {
+    "source": "main",
+    "name": "Marek Masiak",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Interpretability",
+      "AI Safety & Governance"
+    ],
+    "profilePicture": "WhatsApp Image 2026-04-01 at 03.02.36 copy - Marek Masiak.png",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.linkedin.com/in/marekmasiak/, https://x.com/marekmmas, https://scholar.google.com/citations?user=XBUX-cwAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Edan Toledo",
+    "role": "Associate Members",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Automated Discovery"
+    ],
+    "profilePicture": "1769554552588 - Edan Toledo.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://x.com/EdanToledo, https://scholar.google.com/citations?user=_bLUH-MAAAAJ&hl=en&oi=ao"
+  },
+  {
+    "source": "main",
+    "name": "Utkarsh Gupta",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Automated Discovery",
+      "Reinforcement Learning",
+      "World Models"
+    ],
+    "profilePicture": "_1 - Utkarsh Gupta.PNG",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://sites.google.com/view/utkarshgupta1496/home"
+  },
+  {
+    "source": "main",
+    "name": "Juan Agustin Duque",
+    "role": "Associate Members",
+    "homeInstitution": "MILA",
+    "researchInterestKeywords": [
+      "Evolutionary Computation",
+      "Game Theory",
+      "Multi-Agent Systems"
+    ],
+    "profilePicture": "Passport_photo - Juan Agustin Duque.JPG",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=Ugv5DHgAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Arina Kosovskaia",
+    "role": "Masters Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Machine Learning",
+      "Generative Models"
+    ],
+    "profilePicture": "2026-06-23 13.03.42 - Arina Kosovskaia.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.linkedin.com/in/arinakosovskaia/"
+  },
+  {
+    "source": "main",
+    "name": "Xi Xiong",
+    "role": "Associate Members",
+    "homeInstitution": "Tongji",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "World Models"
+    ],
+    "profilePicture": "Xi_Xiong - Xi Xiong.jpg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://xi-xiong.github.io"
+  },
+  {
+    "source": "main",
+    "name": "Borja Gonzalez Leon",
+    "role": "Associate Members",
+    "homeInstitution": "Iconic",
+    "researchInterestKeywords": [
+      "Open-Ended Learning"
+    ],
+    "profilePicture": "photo_2025-08-17_23-05-21 - Borja Gonzalez Leon.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://borjagleon.com/, https://x.com/borruell, https://scholar.google.es/citations?user=sJiadiMAAAAJ&hl=en, https://www.linkedin.com/in/borja-gonzalez-leon/"
+  },
+  {
+    "source": "main",
+    "name": "Benjamin Moll",
+    "role": "Associate Members",
+    "homeInstitution": "LSE",
+    "researchInterestKeywords": [
+      "Financial AI",
+      "Complex Systems",
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "moll1 - Benjamin Moll.jpg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://benjaminmoll.com/, https://x.com/ben_moll, https://scholar.google.com/citations?user=Ud7FiiEAAAAJ&hl=en"
+  },
+  {
+    "source": "main",
+    "name": "Aaron Rose",
+    "role": "Masters Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Foundation Models",
+      "Financial AI"
+    ],
+    "profilePicture": "IMG_3003 - Aaron Rose.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?hl=en&user=l2LSjZsAAAAJ"
+  },
+  {
+    "source": "main",
+    "name": "Henry Heppe",
+    "role": "Masters Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Open-Ended Learning"
+    ],
+    "profilePicture": "Foto Henry Heppe small - Henry Heppe.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://github.com/henry-heppe"
+  },
+  {
     "source": "foerster-alumni",
     "name": "Ben Ellis",
     "role": "Research Scientist @ Reflection AI; DPhil 2021-2025",
