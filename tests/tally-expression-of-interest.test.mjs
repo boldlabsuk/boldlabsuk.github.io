@@ -215,7 +215,7 @@ test('Tally verifier accepts a representative configured generic public form pay
       type: 'TEXT',
       payload: {
         title:
-          'BOLD has received your Expression of Interest. We review Expressions of Interest periodically. Formal applications may still need to happen through university, departmental, placement, or employment processes.',
+          'BOLD has received your Expression of Interest. We review Expressions of Interest periodically and will contact you if there is a strong fit with current BOLD priorities, supervision capacity, or open opportunities. Formal applications may still need to happen through university, departmental, placement, or employment processes.',
       },
     },
   ]
@@ -226,6 +226,94 @@ test('Tally verifier accepts a representative configured generic public form pay
       workspaceId: '3NbqgN',
       name: 'BOLD Expression of Interest',
       blocks: sharedBlocks,
+      integrations: [],
+    }),
+  )
+
+  const result = verifyTallyExpressionOfInterestPayload(payload)
+
+  assert.equal(result.ready, true)
+  assert.deepEqual(result.failures, [])
+})
+
+test('Tally verifier accepts confirmation copy that reviews submissions periodically', () => {
+  const payload = extractTallyPayload(
+    nextDataHtml({
+      formId: 'A7aa0W',
+      workspaceId: '3NbqgN',
+      name: 'BOLD Expression of Interest',
+      blocks: [
+        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'HIDDEN_FIELDS',
+          payload: { hiddenFields: [{ name: 'route' }] },
+        },
+        {
+          type: 'INPUT_TEXT',
+          payload: {
+            title: 'Full name, email, current role/title, current organization/institution, and location/time zone',
+          },
+        },
+        {
+          type: 'TEXTAREA',
+          payload: {
+            title:
+              'Fit statement: 200-400 words on why BOLD, this route, and the research or technical fit',
+          },
+        },
+        {
+          type: 'TEXTAREA',
+          payload: {
+            title:
+              'Relevant links and free-form Research Direction Interest, not a fixed multiple-choice taxonomy',
+          },
+        },
+        {
+          type: 'FILE_UPLOAD',
+          payload: {
+            title: 'CV/resume upload',
+            allowedFiles: { 'application/*': ['.pdf'] },
+            hasMaxFileSize: true,
+            maxFileSize: 10,
+            maxFileSizeUnit: 'MB',
+          },
+        },
+        {
+          type: 'CHECKBOXES',
+          payload: {
+            title:
+              'Optional location, timing, or eligibility constraints and desired timing',
+          },
+        },
+        {
+          type: 'TEXTAREA',
+          payload: {
+            title:
+              'What would you like to work on with BOLD? Describe the project, research direction, technical work, visit, or collaboration you have in mind.',
+          },
+        },
+        {
+          type: 'TEXTAREA',
+          payload: {
+            title:
+              'Current application or Formal Application Path status, if relevant.',
+          },
+        },
+        {
+          type: 'TEXTAREA',
+          payload: {
+            title:
+              'Relevant BOLD people or groups whose work connects to your interests.',
+          },
+        },
+        {
+          type: 'TEXT',
+          payload: {
+            title:
+              'BOLD has received your Expression of Interest. We review submissions periodically and will contact you if there is a strong fit with current BOLD priorities, supervision capacity, or open opportunities. Formal applications may still need to be completed through university, departmental, placement, or employment processes.',
+          },
+        },
+      ],
       integrations: [],
     }),
   )

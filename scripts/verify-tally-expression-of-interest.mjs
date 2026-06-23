@@ -179,9 +179,7 @@ export function verifyTallyExpressionOfInterestPayload(payload) {
   }
 
   if (
-    !/BOLD has received your Expression of Interest/i.test(summary.blockText) ||
-    !/review Expressions of Interest periodically/i.test(summary.blockText) ||
-    !/Formal applications? may still need/i.test(summary.blockText)
+    !hasRequiredConfirmationCopy(summary.blockText)
   ) {
     failures.push('missing non-promissory confirmation copy')
   }
@@ -301,6 +299,22 @@ function summarizeResearchDirectionInterest(blocks) {
     freeForm: freeForm && !fixedChoice,
     fixedChoice,
   }
+}
+
+function hasRequiredConfirmationCopy(blockText) {
+  return (
+    /BOLD has received your Expression of Interest/i.test(blockText) &&
+    /review (Expressions of Interest|submissions) periodically/i.test(
+      blockText,
+    ) &&
+    /strong fit with current BOLD priorities, supervision capacity, or open opportunities/i.test(
+      blockText,
+    ) &&
+    /Formal applications? may still need/i.test(blockText) &&
+    /university, departmental, placement, or employment processes/i.test(
+      blockText,
+    )
+  )
 }
 
 async function main() {

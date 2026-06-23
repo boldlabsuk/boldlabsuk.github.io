@@ -31,11 +31,9 @@ field and should not depend on route-specific conditional sections for the MVP.
 ## Current status
 
 The live form exists and the public embed confirms the form ID, title, hidden
-`route` field, generic baseline fields, and CV/resume upload field. Issue #24 is
-not complete in the public form yet: the public payload still exposes a visible
-`Desired role` field and does not expose the required confirmation copy. The
-CV/resume upload block is configured for PDF files only with a 10 MB limit in the
-public payload.
+`route` field, generic baseline fields, PDF-only 10 MB CV/resume upload setting,
+no visible `Desired role` field, and the required non-promissory confirmation
+copy.
 
 Completing the setup requires access to the BOLD-owned Tally workspace. Agents
 without that access can verify the public embed contract, but cannot configure
@@ -49,15 +47,14 @@ exposed in the unauthenticated public payload, so the verifier reports the publi
 `integrations` count for context but does not treat it as a public readiness
 failure.
 
-Fresh public verification on 2026-06-23 confirms this is still the active
-blocker: every accepted route embed returns HTTP 200 with the shared form ID,
-hidden `route` field, generic baseline fields, and PDF-only 10 MB CV/resume
-upload settings, but the form is not ready because the public payload still
-contains a visible `Desired role` field and does not expose the required
-confirmation copy.
+Fresh public verification on 2026-06-23 confirms every accepted route embed
+returns HTTP 200 with the shared form ID, hidden `route` field, generic baseline
+fields, PDF-only 10 MB CV/resume upload settings, no visible `Desired role`
+field, no route-specific conditional sections, and the required confirmation
+copy.
 
 Run `node scripts/verify-tally-expression-of-interest.mjs` to repeat the public
-verification. The script exits nonzero until the public payload exposes the
+verification. The script exits nonzero if the public payload stops exposing the
 generic baseline fields, PDF-only 10 MB CV/resume upload settings, confirmation
 copy, no visible `Desired role` field, and the rest of the publicly visible form
 contract needed for issue #24.
@@ -133,8 +130,7 @@ Operational requirements:
 
 ## Public verification on 2026-06-23
 
-The public Tally payloads at these URLs currently expose the same visible form
-structure:
+The public Tally payloads at these URLs expose the same visible form structure:
 
 - `https://tally.so/embed/A7aa0W?route=phd-students`
 - `https://tally.so/embed/A7aa0W?route=visiting-students`
@@ -149,15 +145,16 @@ The exposed structure is:
 - form ID: `A7aa0W`
 - workspace ID: `3NbqgN`
 - one hidden field named `route`
-- one visible `Desired role` field, which should be removed
 - generic visible baseline fields for name, email, current role/title, current
   organization/institution, location/time zone, fit statement, relevant links,
   Research Direction Interest, practical constraints, desired timing, intended
   work with BOLD, Formal Application Path status, and relevant BOLD people or
   groups
 - one CV/resume upload field configured for PDF files only with a 10 MB maximum
+- no visible `Desired role` field
 - no required route-specific conditional sections
-- no visible confirmation copy
+- confirmation copy that confirms receipt, periodic review, strong-fit contact
+  criteria, and the separate Formal Application Path caveat
 - `integrations` is exposed as an empty array
 
 The unauthenticated Tally forms API at `https://api.tally.so/forms/A7aa0W`
@@ -168,13 +165,7 @@ Sheets sync or email notifications are configured, though issue #24 comments
 report that both are connected.
 
 The verifier script was run against the live embed routes on 2026-06-23 and
-returned the same blocker for every route: HTTP 200 with form `A7aa0W`, hidden
-field `route`, generic baseline blocks, a `FILE_UPLOAD` block configured for PDF
-files only with a 10 MB maximum, a prohibited visible `Desired role` field,
-missing confirmation copy, and `integrations=0` for owner-only context.
-
-Latest agent verification on 2026-06-23 found no Tally owner credentials or
-automation token in the workspace. The remaining owner-side actions are to
-remove the visible `Desired role` field from form `A7aa0W` and configure the
-non-promissory confirmation copy above, then rerun
-`node scripts/verify-tally-expression-of-interest.mjs`.
+returned ready for every route: HTTP 200 with form `A7aa0W`, hidden field
+`route`, generic baseline blocks, a `FILE_UPLOAD` block configured for PDF files
+only with a 10 MB maximum, no prohibited visible `Desired role` field, the
+required confirmation copy, and `integrations=0` for owner-only context.
