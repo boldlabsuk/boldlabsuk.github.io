@@ -123,10 +123,6 @@ export type OpportunityRoute = {
   howThisWorks: string
   formPrompt?: string
   formComingSoon: string
-  metadata: {
-    title: string
-    description: string
-  }
 }
 
 export type ExpressionOfInterestFormConfig = {

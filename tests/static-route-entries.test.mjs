@@ -43,12 +43,6 @@ test('static route generation creates deployable SPA entry files', async () => {
   assert.deepEqual(routes, [
     '/people',
     '/opportunities',
-    '/opportunities/phd-students',
-    '/opportunities/visiting-students',
-    '/opportunities/masters-students',
-    '/opportunities/research-engineers',
-    '/opportunities/fellows',
-    '/opportunities/collaborators',
     '/people/ada-lovelace',
   ])
   assert.equal(await readFile(join(distDir, '404.html'), 'utf8'), indexHtml)
@@ -58,17 +52,14 @@ test('static route generation creates deployable SPA entry files', async () => {
     indexHtml,
   )
   assert.equal(
-    await readFile(
-      join(distDir, 'opportunities/phd-students/index.html'),
-      'utf8',
-    ),
-    indexHtml,
-  )
-  assert.equal(
     await readFile(join(distDir, 'people/ada-lovelace/index.html'), 'utf8'),
     indexHtml,
   )
 
+  await assert.rejects(
+    stat(join(distDir, 'opportunities/phd-students/index.html')),
+    /ENOENT/,
+  )
   await assert.rejects(
     stat(join(distDir, 'people/hidden-person/index.html')),
     /ENOENT/,

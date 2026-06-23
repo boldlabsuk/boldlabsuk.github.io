@@ -32,7 +32,7 @@ export const homepageContent = {
     lede: siteMeta.mission,
     actions: [
       { label: 'Join BOLD', href: '/opportunities' },
-      { label: 'Partner with us', href: '/opportunities#collaborators' },
+      { label: 'Partner with us', href: '/opportunities' },
     ],
   },
   proofMetrics: [

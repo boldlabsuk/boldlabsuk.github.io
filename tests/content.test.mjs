@@ -98,6 +98,10 @@ test('homepage content exposes the approved CTAs, Institute Bet, and Research Di
     homepageContent.hero.actions.map((action) => action.label),
     ['Join BOLD', 'Partner with us'],
   )
+  assert.deepEqual(
+    homepageContent.hero.actions.map((action) => action.href),
+    ['/opportunities', '/opportunities'],
+  )
 
   assert.equal(homepageContent.instituteBet.length, 2)
   assert.match(homepageContent.instituteBet[0].body, /breakthroughs are still possible/)
@@ -132,7 +136,7 @@ test('structured content supports people, news, papers, and opportunities', () =
   assert.ok(papers.every((paper) => paper.id && paper.links))
   assert.ok(
     involvementRoutes.every(
-      (route) => route.href === `/opportunities/${route.id}`,
+      (route) => route.href === '/opportunities',
     ),
   )
 })
@@ -145,7 +149,7 @@ test('launch routes exclude news and papers while content remains available', ()
   assert.deepEqual(parseRoute('/papers'), { name: 'not-found' })
 })
 
-test('Opportunity Routes have stable labels, parsing, and metadata', () => {
+test('Opportunity Routes remain structured content while child URLs are not public routes', () => {
   const approvedRoutes = [
     ['phd-students', 'PhD Students'],
     ['visiting-students', 'Visiting Students'],
@@ -166,15 +170,13 @@ test('Opportunity Routes have stable labels, parsing, and metadata', () => {
     assert.ok(route.status)
     assert.ok(route.prefillValue)
     assert.ok(route.formalApplicationPath)
-    assert.ok(route.metadata.title.includes(route.title))
-    assert.ok(route.metadata.description)
+    assert.equal('metadata' in route, false)
     assert.deepEqual(parseRoute(`/opportunities/${route.slug}`), {
-      name: 'opportunity-route',
-      slug: route.slug,
+      name: 'not-found',
     })
-    assert.match(getRouteMeta({ name: 'opportunity-route', slug: route.slug }).title, /BOLD Institute/)
   }
 
+  assert.deepEqual(parseRoute('/opportunities'), { name: 'opportunities' })
   assert.deepEqual(parseRoute('/opportunities/not-a-route'), {
     name: 'not-found',
   })

@@ -10,7 +10,7 @@ export function OpportunitiesPage() {
           eyebrow="Opportunities"
           title="Express interest in joining, visiting, working with, or collaborating with BOLD."
           titleElement="h1"
-          description="BOLD reviews serious Expressions of Interest through a small set of approved Opportunity Routes. Choose the route that best matches the relationship you want to explore; detailed guidance and any Formal Application Path boundaries live on the dedicated Expression of Interest page."
+          description="BOLD reviews serious Expressions of Interest through a small set of approved Opportunity Routes. Choose the route that best matches the relationship you want to explore; detailed guidance and any Formal Application Path boundaries live on this Opportunities page."
         />
       </div>
 
@@ -51,7 +51,7 @@ function OpportunityRouteIndexEntry({ route }: { route: OpportunityRoute }) {
 
       <a
         className="button button-primary"
-        href={`/opportunities/${route.slug}`}
+        href={`/opportunities#${route.slug}`}
         aria-label={`Express interest in ${route.title}`}
       >
         {route.primaryActionLabel}

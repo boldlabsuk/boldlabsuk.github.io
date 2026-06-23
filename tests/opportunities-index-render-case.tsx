@@ -14,7 +14,7 @@ assert.match(
 
 for (const route of opportunityRoutes) {
   const renderedTitle = escapeHtml(route.title)
-  const renderedHref = escapeHtml(`/opportunities/${route.slug}`)
+  const renderedHref = escapeHtml(`/opportunities#${route.slug}`)
   const renderedAction = escapeHtml(route.primaryActionLabel)
 
   assert.ok(route.location)
@@ -46,8 +46,9 @@ for (const route of opportunityRoutes) {
   )
 }
 
-assert.match(opportunitiesIndex, /dedicated Expression of Interest page/)
+assert.match(opportunitiesIndex, /this Opportunities page/)
 assert.doesNotMatch(opportunitiesIndex, /stable anchor/)
+assert.doesNotMatch(opportunitiesIndex, /\/opportunities\/phd-students/)
 assert.doesNotMatch(opportunitiesIndex, />Apply now</)
 assert.equal(
   opportunitiesIndex.match(/>Express interest<\/a>/g)?.length ?? 0,
