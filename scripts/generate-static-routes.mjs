@@ -2,7 +2,13 @@ import { copyFile, mkdir, readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-export const staticAppRoutes = ['/people', '/opportunities']
+import { opportunityRoutes } from '../src/content.ts'
+
+export const staticAppRoutes = [
+  '/people',
+  '/opportunities',
+  ...opportunityRoutes.map((route) => `/opportunities/${route.slug}`),
+]
 
 const defaultPeopleSourcePath = new URL('../our_people.json', import.meta.url)
 

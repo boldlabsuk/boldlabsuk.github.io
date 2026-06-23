@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { HomePage } from '../features/home/HomePage'
 import { NotFoundPage } from '../features/not-found/NotFoundPage'
+import { OpportunityRoutePage } from '../features/opportunities/OpportunityRoutePage'
 import { OpportunitiesPage } from '../features/opportunities/OpportunitiesPage'
 import { PeoplePage } from '../features/people/PeoplePage'
 import { PersonDetailPage } from '../features/people/PersonDetailPage'
@@ -51,6 +52,9 @@ function App() {
           <PersonDetailPage slug={route.slug} />
         )}
         {route.name === 'opportunities' && <OpportunitiesPage />}
+        {route.name === 'opportunity-route' && (
+          <OpportunityRoutePage slug={route.slug} />
+        )}
         {route.name === 'not-found' && <NotFoundPage />}
       </main>
       <SiteFooter isBrandLinkEnabled={!isHomeRoute} />

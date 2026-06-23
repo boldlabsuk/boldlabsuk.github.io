@@ -1,4 +1,3 @@
-import { siteMeta } from '../../content'
 import type { InvolvementRoute } from '../../content'
 
 export function InvolvementCard({ route }: { route: InvolvementRoute }) {
@@ -14,7 +13,9 @@ export function InvolvementCard({ route }: { route: InvolvementRoute }) {
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <a href={`mailto:${siteMeta.contactEmail}`}>Contact intake</a>
+      <a href={route.href} aria-label={`Express interest in ${route.title}`}>
+        Express interest
+      </a>
     </article>
   )
 }

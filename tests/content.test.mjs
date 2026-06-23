@@ -6,6 +6,7 @@ import {
   involvementRoutes,
   navigation,
   newsPosts,
+  opportunityRoutes,
   opportunities,
   papers,
   people,
@@ -127,7 +128,11 @@ test('structured content supports people, news, papers, and opportunities', () =
   assert.ok(people.every((person) => person.slug && person.researchAreas.length))
   assert.ok(newsPosts.every((post) => /^\d{4}-\d{2}-\d{2}$/.test(post.date)))
   assert.ok(papers.every((paper) => paper.id && paper.links))
-  assert.ok(involvementRoutes.every((route) => route.href.includes(`#${route.id}`)))
+  assert.ok(
+    involvementRoutes.every(
+      (route) => route.href === `/opportunities/${route.id}`,
+    ),
+  )
 })
 
 test('launch routes exclude news and papers while content remains available', () => {
@@ -136,6 +141,41 @@ test('launch routes exclude news and papers while content remains available', ()
     name: 'not-found',
   })
   assert.deepEqual(parseRoute('/papers'), { name: 'not-found' })
+})
+
+test('Opportunity Routes have stable labels, parsing, and metadata', () => {
+  const approvedRoutes = [
+    ['phd-students', 'PhD Students'],
+    ['visiting-students', 'Visiting Students'],
+    ['masters-students', "Master's Students"],
+    ['research-engineers', 'Research Engineers'],
+    ['fellows', 'Fellows and Experienced Researchers'],
+    ['collaborators', 'Collaborators'],
+  ]
+
+  assert.deepEqual(
+    opportunityRoutes.map((route) => [route.slug, route.title]),
+    approvedRoutes,
+  )
+
+  for (const route of opportunityRoutes) {
+    assert.equal(route.primaryActionLabel, 'Express interest')
+    assert.ok(route.shortSummary)
+    assert.ok(route.status)
+    assert.ok(route.prefillValue)
+    assert.ok(route.formalApplicationPath)
+    assert.ok(route.metadata.title.includes(route.title))
+    assert.ok(route.metadata.description)
+    assert.deepEqual(parseRoute(`/opportunities/${route.slug}`), {
+      name: 'opportunity-route',
+      slug: route.slug,
+    })
+    assert.match(getRouteMeta({ name: 'opportunity-route', slug: route.slug }).title, /BOLD Institute/)
+  }
+
+  assert.deepEqual(parseRoute('/opportunities/not-a-route'), {
+    name: 'not-found',
+  })
 })
 
 test('related content omits removed placeholder Person names and unmapped Person IDs', () => {
