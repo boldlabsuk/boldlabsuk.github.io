@@ -38,11 +38,6 @@ export const opportunityRoutes: OpportunityRoute[] = [
       'Useful responses mention research interests, current or proposed programme timing, possible supervisors or groups, and why BOLD is the right fit.',
     formComingSoon:
       'The embedded Expression of Interest form for PhD Students is being prepared. Check back soon to share your fit statement, timing, links, and CV.',
-    metadata: {
-      title: 'PhD Students Expression of Interest | BOLD Lab',
-      description:
-        'Express interest in doctoral research connected to BOLD while distinguishing the intake from formal university PhD applications.',
-    },
   },
   {
     slug: 'visiting-students',
@@ -75,11 +70,6 @@ export const opportunityRoutes: OpportunityRoute[] = [
       'Useful responses include your current institution and programme, proposed visit dates and duration, a focused project idea, and any possible BOLD host or group.',
     formComingSoon:
       'The embedded Expression of Interest form for Visiting Students is being prepared. Check back soon to share proposed dates, project shape, host fit, links, and CV.',
-    metadata: {
-      title: 'Visiting Students Expression of Interest | BOLD Lab',
-      description:
-        'Express interest in a focused student research visit with BOLD and understand how it relates to formal visiting arrangements.',
-    },
   },
   {
     slug: 'masters-students',
@@ -112,11 +102,6 @@ export const opportunityRoutes: OpportunityRoute[] = [
       "Useful responses include your current Master's programme, project window, relevant coursework or prior projects, and the project shape you are seeking.",
     formComingSoon:
       "The embedded Expression of Interest form for Master's Students is being prepared. Check back soon to share your programme, project window, technical interests, links, and CV.",
-    metadata: {
-      title: "Master's Students Expression of Interest | BOLD Lab",
-      description:
-        "Express interest in BOLD-aligned Master's projects while keeping formal project allocation separate.",
-    },
   },
   {
     slug: 'research-engineers',
@@ -145,13 +130,10 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Use the Expression of Interest to share the technical areas, projects, links, and working-mode constraints that would help BOLD assess fit. Formal employment steps happen only through a separate hiring process.',
+    formPrompt:
+      'Useful responses mention ML systems, research infrastructure, evaluation tooling, data platforms, project links, availability, and working-mode constraints.',
     formComingSoon:
       'The embedded Expression of Interest form for Research Engineers is being prepared. Check back soon to share systems interests, project links, availability, working mode, and CV.',
-    metadata: {
-      title: 'Research Engineers Expression of Interest | BOLD Lab',
-      description:
-        'Express interest in research engineering at BOLD across ML systems, infrastructure, evaluation tooling, data platforms, and platform work.',
-    },
   },
   {
     slug: 'fellows',
@@ -180,13 +162,10 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Submit an Expression of Interest to outline your agenda, proposed contribution, timing, and route shape. Any formal fellowship, visiting, institutional, or employment path remains separate.',
+    formPrompt:
+      'Useful responses emphasize your research agenda, proposed contribution to BOLD, representative outputs, timing, and the relationship shape you are seeking.',
     formComingSoon:
       'The embedded Expression of Interest form for Fellows and Experienced Researchers is being prepared. Check back soon to share your agenda, outputs, route shape, timing, and CV.',
-    metadata: {
-      title: 'Fellows and Experienced Researchers Expression of Interest | BOLD Lab',
-      description:
-        'Express interest in a fellowship, visiting, collaboration, or longer-term research relationship with BOLD.',
-    },
   },
   {
     slug: 'collaborators',
@@ -215,13 +194,10 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Submit a Collaborator Expression of Interest so BOLD can assess collaboration fit and capacity. This route is organization-aware and does not treat a CV as the primary evidence by default.',
+    formPrompt:
+      'Useful responses describe the proposed collaboration, scientific motivation, expected outputs, relevant people, timing, and any funding, data, or partnership considerations.',
     formComingSoon:
       'The embedded Expression of Interest form for Collaborators is being prepared. Check back soon to share the proposed collaboration, scientific motivation, relevant people, timing, and links.',
-    metadata: {
-      title: 'Collaborators Expression of Interest | BOLD Lab',
-      description:
-        'Express collaboration interest in BOLD as an individual, group, company, or institution without treating the route as a job application.',
-    },
   },
 ]
 
@@ -229,7 +205,7 @@ export const involvementRoutes: InvolvementRoute[] = opportunityRoutes.map((rout
   id: route.slug,
   title: route.title,
   shortTitle: route.shortTitle,
-  href: `/opportunities/${route.slug}`,
+  href: '/opportunities',
   summary: route.shortSummary,
   guidance: route.whoThisIsFor,
 }))

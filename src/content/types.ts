@@ -121,12 +121,8 @@ export type OpportunityRoute = {
   whoThisIsFor: string[]
   whatWeLookFor: string[]
   howThisWorks: string
-  formPrompt?: string
+  formPrompt: string
   formComingSoon: string
-  metadata: {
-    title: string
-    description: string
-  }
 }
 
 export type ExpressionOfInterestFormConfig = {

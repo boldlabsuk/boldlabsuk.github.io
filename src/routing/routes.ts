@@ -1,10 +1,9 @@
-import { opportunityRoutes, people, siteMeta } from '../content.ts'
+import { people, siteMeta } from '../content.ts'
 
 export type Route =
   | { name: 'home' }
   | { name: 'people'; slug?: string }
   | { name: 'opportunities' }
-  | { name: 'opportunity-route'; slug: string }
   | { name: 'not-found' }
 
 export type Meta = {
@@ -28,26 +27,12 @@ export function parseRoute(pathname: string): Route {
     return { name: 'opportunities' }
   }
 
-  if (segments.length === 2 && segments[0] === 'opportunities') {
-    const opportunityRoute = opportunityRoutes.find(
-      (route) => route.slug === segments[1],
-    )
-
-    return opportunityRoute
-      ? { name: 'opportunity-route', slug: opportunityRoute.slug }
-      : { name: 'not-found' }
-  }
-
   return { name: 'not-found' }
 }
 
 export function getActiveSection(route: Route) {
   if (route.name === 'home' || route.name === 'not-found') {
     return '/'
-  }
-
-  if (route.name === 'opportunity-route') {
-    return '/opportunities'
   }
 
   return `/${route.name}`
@@ -68,19 +53,6 @@ export function getRouteMeta(route: Route): Meta {
         }
   }
 
-  if (route.name === 'opportunity-route') {
-    const opportunityRoute = opportunityRoutes.find(
-      (item) => item.slug === route.slug,
-    )
-
-    return opportunityRoute
-      ? opportunityRoute.metadata
-      : {
-          title: `Opportunity Route Not Found | ${siteMeta.name}`,
-          description: 'The requested Opportunity Route could not be found.',
-        }
-  }
-
   const routeMeta: Record<Route['name'], Meta> = {
     home: {
       title: `Home | ${siteMeta.name}`,
@@ -94,10 +66,6 @@ export function getRouteMeta(route: Route): Meta {
     opportunities: {
       title: `Opportunities | ${siteMeta.name}`,
       description: 'Join, visit, collaborate, or work with the lab.',
-    },
-    'opportunity-route': {
-      title: `Opportunity Route | ${siteMeta.name}`,
-      description: 'Express interest in joining, visiting, or collaborating with BOLD.',
     },
     'not-found': {
       title: `Page Not Found | ${siteMeta.name}`,

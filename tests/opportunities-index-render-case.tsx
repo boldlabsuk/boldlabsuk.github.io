@@ -2,10 +2,31 @@ import assert from 'node:assert/strict'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-import { opportunityRoutes } from '../src/content'
+import {
+  expressionOfInterestFormConfig,
+  getExpressionOfInterestEmbedUrl,
+  opportunityRoutes,
+} from '../src/content'
 import { OpportunitiesPage } from '../src/features/opportunities/OpportunitiesPage'
 
 const opportunitiesIndex = renderToStaticMarkup(createElement(OpportunitiesPage))
+const selectedRoute = opportunityRoutes.find(
+  (route) => route.slug === 'research-engineers',
+)
+
+assert.ok(selectedRoute)
+
+const selectedOpportunitiesIndex = renderToStaticMarkup(
+  createElement(OpportunitiesPage, {
+    initialSelectedRouteSlug: selectedRoute.slug,
+  }),
+)
+const fallbackOpportunitiesIndex = renderToStaticMarkup(
+  createElement(OpportunitiesPage, {
+    formConfig: null,
+    initialSelectedRouteSlug: selectedRoute.slug,
+  }),
+)
 
 assert.match(
   opportunitiesIndex,
@@ -14,7 +35,7 @@ assert.match(
 
 for (const route of opportunityRoutes) {
   const renderedTitle = escapeHtml(route.title)
-  const renderedHref = escapeHtml(`/opportunities/${route.slug}`)
+  const renderedHref = '#express-interest'
   const renderedAction = escapeHtml(route.primaryActionLabel)
 
   assert.ok(route.location)
@@ -46,13 +67,39 @@ for (const route of opportunityRoutes) {
   )
 }
 
-assert.match(opportunitiesIndex, /dedicated Expression of Interest page/)
+assert.match(opportunitiesIndex, /this Opportunities page/)
+assert.match(opportunitiesIndex, /id="express-interest"/)
+assert.match(opportunitiesIndex, />Select a role</)
 assert.doesNotMatch(opportunitiesIndex, /stable anchor/)
+assert.doesNotMatch(opportunitiesIndex, /\/opportunities\/phd-students/)
+assert.doesNotMatch(opportunitiesIndex, /<iframe/)
 assert.doesNotMatch(opportunitiesIndex, />Apply now</)
 assert.equal(
   opportunitiesIndex.match(/>Express interest<\/a>/g)?.length ?? 0,
   opportunityRoutes.length,
 )
+
+assert.match(selectedOpportunitiesIndex, />Research Engineers</)
+assert.match(selectedOpportunitiesIndex, /For engineers who want technical systems work/)
+assert.match(selectedOpportunitiesIndex, /ML systems, research infrastructure/)
+assert.match(selectedOpportunitiesIndex, /Changing route resets the embedded form/)
+assert.match(
+  selectedOpportunitiesIndex,
+  new RegExp(
+    escapeRegExp(
+      escapeHtml(
+        getExpressionOfInterestEmbedUrl(
+          selectedRoute,
+          expressionOfInterestFormConfig,
+        ) ?? '',
+      ),
+    ),
+  ),
+)
+
+assert.match(fallbackOpportunitiesIndex, /Form coming soon/)
+assert.match(fallbackOpportunitiesIndex, /embedded Expression of Interest form/)
+assert.doesNotMatch(fallbackOpportunitiesIndex, /<iframe/)
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')

@@ -140,7 +140,7 @@ test('structured content supports people, news, papers, and opportunities', () =
   assert.ok(papers.every((paper) => paper.id && paper.links))
   assert.ok(
     involvementRoutes.every(
-      (route) => route.href === `/opportunities/${route.id}`,
+      (route) => route.href === '/opportunities',
     ),
   )
 })
@@ -153,7 +153,7 @@ test('launch routes exclude news and papers while content remains available', ()
   assert.deepEqual(parseRoute('/papers'), { name: 'not-found' })
 })
 
-test('Opportunity Routes have stable labels, parsing, and metadata', () => {
+test('Opportunity Routes remain structured content while child URLs are not public routes', () => {
   const approvedRoutes = [
     ['phd-students', 'PhD Students'],
     ['visiting-students', 'Visiting Students'],
@@ -174,15 +174,14 @@ test('Opportunity Routes have stable labels, parsing, and metadata', () => {
     assert.ok(route.status)
     assert.ok(route.prefillValue)
     assert.ok(route.formalApplicationPath)
-    assert.ok(route.metadata.title.includes(route.title))
-    assert.ok(route.metadata.description)
+    assert.ok(route.formPrompt)
+    assert.equal('metadata' in route, false)
     assert.deepEqual(parseRoute(`/opportunities/${route.slug}`), {
-      name: 'opportunity-route',
-      slug: route.slug,
+      name: 'not-found',
     })
-    assert.match(getRouteMeta({ name: 'opportunity-route', slug: route.slug }).title, /BOLD Lab/)
   }
 
+  assert.deepEqual(parseRoute('/opportunities'), { name: 'opportunities' })
   assert.deepEqual(parseRoute('/opportunities/not-a-route'), {
     name: 'not-found',
   })
