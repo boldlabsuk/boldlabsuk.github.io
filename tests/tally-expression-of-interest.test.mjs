@@ -15,6 +15,103 @@ function nextDataHtml(pageProps) {
   })}</script>`
 }
 
+function representativeConfiguredBlocks({
+  includeFileUpload = true,
+  includePracticalConstraints = true,
+  includeWorkWithBold = true,
+} = {}) {
+  return [
+    { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+    {
+      type: 'HIDDEN_FIELDS',
+      payload: { hiddenFields: [{ name: 'route' }] },
+    },
+    {
+      type: 'INPUT_TEXT',
+      payload: {
+        title: 'Full name, email, current role/title, current organization/institution, and location/time zone',
+      },
+    },
+    {
+      type: 'TEXTAREA',
+      payload: {
+        title:
+          'Fit statement: 200-400 words on why BOLD, this route, and the research or technical fit',
+      },
+    },
+    {
+      type: 'TEXTAREA',
+      payload: {
+        title:
+          'Relevant links and free-form Research Direction Interest, including papers, projects, or portfolios',
+      },
+    },
+    ...(includePracticalConstraints
+      ? [
+          {
+            type: 'TEXTAREA',
+            payload: {
+              title: 'Optional location, timing, or eligibility constraints',
+            },
+          },
+        ]
+      : []),
+    ...(includeFileUpload
+      ? [
+          {
+            type: 'FILE_UPLOAD',
+            payload: {
+              title: 'CV/resume upload',
+              allowedFiles: { 'application/*': ['.pdf'] },
+              hasMaxFileSize: true,
+              maxFileSize: 10,
+              maxFileSizeUnit: 'MB',
+            },
+          },
+        ]
+      : [
+          {
+            type: 'TEXT',
+            payload: {
+              title:
+                'CV/resume upload accepts PDF only and has a 10 MB file upload limit.',
+            },
+          },
+        ]),
+    {
+      type: 'INPUT_TEXT',
+      payload: { title: 'Desired timing' },
+    },
+    ...(includeWorkWithBold
+      ? [
+          {
+            type: 'TEXTAREA',
+            payload: {
+              title: 'What would you like to work on with BOLD?',
+            },
+          },
+        ]
+      : []),
+    {
+      type: 'TEXTAREA',
+      payload: {
+        title: 'Current application or Formal Application Path status',
+      },
+    },
+    {
+      type: 'TEXTAREA',
+      payload: { title: 'Relevant BOLD people or groups' },
+    },
+    {
+      type: 'TEXT',
+      payload: {
+        title:
+          'BOLD has received your Expression of Interest. We review Expressions of Interest periodically and will contact you if there is a strong fit with current BOLD priorities, supervision capacity, or open opportunities. Formal applications may still need to happen through university, departmental, placement, or employment processes.',
+      },
+    },
+  ]
+}
+
 test('Tally verifier builds the shared form embed URLs for every Opportunity Route', () => {
   assert.deepEqual(ACCEPTED_TALLY_ROUTES, [
     'phd-students',
@@ -359,4 +456,65 @@ test('Tally verifier rejects CV/resume uploads without PDF-only and 10 MB constr
   assert.equal(result.ready, false)
   assert.match(result.failures.join('\n'), /PDF-only CV\/resume setting/)
   assert.match(result.failures.join('\n'), /10 MB upload limit/)
+})
+
+test('Tally verifier rejects text-only CV/resume upload guidance without a configured upload block', () => {
+  const payload = extractTallyPayload(
+    nextDataHtml({
+      formId: 'A7aa0W',
+      workspaceId: '3NbqgN',
+      name: 'BOLD Expression of Interest',
+      blocks: representativeConfiguredBlocks({ includeFileUpload: false }),
+      integrations: [],
+    }),
+  )
+
+  const result = verifyTallyExpressionOfInterestPayload(payload)
+
+  assert.equal(result.ready, false)
+  assert.match(result.failures.join('\n'), /missing CV\/resume upload field/)
+  assert.match(result.failures.join('\n'), /PDF-only CV\/resume setting/)
+  assert.match(result.failures.join('\n'), /10 MB upload limit/)
+})
+
+test('Tally verifier does not let desired timing stand in for practical constraints', () => {
+  const payload = extractTallyPayload(
+    nextDataHtml({
+      formId: 'A7aa0W',
+      workspaceId: '3NbqgN',
+      name: 'BOLD Expression of Interest',
+      blocks: representativeConfiguredBlocks({
+        includePracticalConstraints: false,
+      }),
+      integrations: [],
+    }),
+  )
+
+  const result = verifyTallyExpressionOfInterestPayload(payload)
+
+  assert.equal(result.ready, false)
+  assert.match(
+    result.failures.join('\n'),
+    /missing baseline field: optional practical constraints/,
+  )
+})
+
+test('Tally verifier requires the work-with-BOLD prompt, not just generic project links', () => {
+  const payload = extractTallyPayload(
+    nextDataHtml({
+      formId: 'A7aa0W',
+      workspaceId: '3NbqgN',
+      name: 'BOLD Expression of Interest',
+      blocks: representativeConfiguredBlocks({ includeWorkWithBold: false }),
+      integrations: [],
+    }),
+  )
+
+  const result = verifyTallyExpressionOfInterestPayload(payload)
+
+  assert.equal(result.ready, false)
+  assert.match(
+    result.failures.join('\n'),
+    /missing baseline field: what the respondent wants to work on with BOLD/,
+  )
 })

@@ -15,21 +15,24 @@ export const ACCEPTED_TALLY_ROUTES = [
 const baselineChecks = [
   ['full name', /full\s+name/i],
   ['email', /\bemail\b/i],
-  ['current role/title', /current\s+role|role\/title|title/i],
+  ['current role/title', /current\s+role|role\/title/i],
   [
     'current organization/institution',
     /current\s+organi[sz]ation|current\s+institution|organi[sz]ation\/institution/i,
   ],
-  ['location/time zone', /location|time\s*zone/i],
+  ['location/time zone', /location\s*\/\s*time\s*zone|location.*time\s*zone/i],
   ['fit statement', /fit\s+statement/i],
   ['200-400 word fit prompt', /200\s*-\s*400|200[^.]*400/i],
   ['relevant links', /relevant\s+links/i],
   ['free-form Research Direction Interest', /research\s+direction\s+interest/i],
-  ['optional practical constraints', /constraints|timing|eligibility/i],
+  [
+    'optional practical constraints',
+    /location,\s*timing,\s*or\s*eligibility\s+constraints|location\s*\/\s*timing\s*\/\s*eligibility\s+constraints|practical\s+constraints/i,
+  ],
   ['desired timing', /desired\s+timing|ideally\s+start/i],
   [
     'what the respondent wants to work on with BOLD',
-    /work\s+on\s+with\s+BOLD|project|technical\s+work|collaboration/i,
+    /what\s+(would|do)\s+you\s+(like|want)\s+to\s+work\s+on\s+with\s+BOLD|work\s+on\s+with\s+BOLD/i,
   ],
   [
     'current application or Formal Application Path status',
@@ -110,6 +113,7 @@ export function summarizeTallyPayload(payload) {
   const fileUploads = blocks
     .filter((block) => block.type === 'FILE_UPLOAD')
     .map((block) => summarizeFileUpload(block.payload))
+  const hasFileUpload = fileUploads.length > 0
   const hasPdfOnlyFileUpload = fileUploads.some((upload) => upload.pdfOnly)
   const hasTenMbFileUploadLimit = fileUploads.some(
     (upload) => upload.hasTenMbLimit,
@@ -123,13 +127,9 @@ export function summarizeTallyPayload(payload) {
     hiddenFields,
     blockTypes,
     blockText,
-    hasFileUpload:
-      blockTypes.some((type) => /file/i.test(type)) ||
-      /CV\/resume upload|file upload/i.test(blockText),
-    hasPdfOnlyFileUpload:
-      hasPdfOnlyFileUpload ||
-      /PDF only|Accepts PDF|PDF CV\/resume/i.test(blockText),
-    hasTenMbFileUploadLimit: hasTenMbFileUploadLimit || /10\s*MB/i.test(blockText),
+    hasFileUpload,
+    hasPdfOnlyFileUpload,
+    hasTenMbFileUploadLimit,
     researchDirectionInterest,
     integrationsCount: integrations.length,
     visibleTextBlockCount: blocks.filter((block) => block.type === 'TEXT')
@@ -164,11 +164,11 @@ export function verifyTallyExpressionOfInterestPayload(payload) {
   }
 
   if (!summary.hasPdfOnlyFileUpload) {
-    failures.push('missing PDF-only CV/resume setting or guidance')
+    failures.push('missing PDF-only CV/resume setting')
   }
 
   if (!summary.hasTenMbFileUploadLimit) {
-    failures.push('missing 10 MB upload limit setting or guidance')
+    failures.push('missing 10 MB upload limit setting')
   }
 
   if (
@@ -178,9 +178,7 @@ export function verifyTallyExpressionOfInterestPayload(payload) {
     failures.push('Research Direction Interest must be free-form')
   }
 
-  if (
-    !hasRequiredConfirmationCopy(summary.blockText)
-  ) {
+  if (!hasRequiredConfirmationCopy(summary.blockText)) {
     failures.push('missing non-promissory confirmation copy')
   }
 
