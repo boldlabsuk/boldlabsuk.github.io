@@ -24,12 +24,18 @@ Accepted route values:
 The website implementation should use one shared Tally form and pass the selected
 Opportunity Route through the `route` hidden field or prefill parameter.
 
+The Tally form should remain generic. The website owns Opportunity Route
+Selection, so the live Tally form must not include a visible `Desired role`
+field and should not depend on route-specific conditional sections for the MVP.
+
 ## Current status
 
-The live form exists and the public embed confirms the form ID, title, and hidden
-`route` field. The rest of issue #24 is not complete in the public form yet:
-baseline fields, CV/resume upload, route-specific conditional sections, and
-confirmation copy are not publicly visible.
+The live form exists and the public embed confirms the form ID, title, hidden
+`route` field, generic baseline fields, and CV/resume upload field. Issue #24 is
+not complete in the public form yet: the public payload still exposes a visible
+`Desired role` field, does not visibly communicate PDF-only upload or the 10 MB
+upload limit, does not expose the required confirmation copy, and does not expose
+integration evidence.
 
 Completing the setup requires access to the BOLD-owned Tally workspace. Agents
 without that access can verify the public embed contract, but cannot configure
@@ -43,9 +49,14 @@ exposed in the unauthenticated public payload, so they still need confirmation
 inside the Tally workspace before the issue can be treated as complete.
 
 Fresh public verification on 2026-06-23 confirms this is still the active
-blocker: every accepted route embed returns HTTP 200, but the exposed form
-payload still contains only the title, one hidden `route` field, and one empty
-text block.
+blocker: every accepted route embed returns HTTP 200 with the shared form ID and
+hidden `route` field, but the visible `Desired role` field and remaining public
+configuration gaps mean the form is not ready.
+
+Run `node scripts/verify-tally-expression-of-interest.mjs` to repeat the public
+verification. The script exits nonzero until the public payload exposes the
+generic baseline fields, PDF CV/resume guidance, confirmation copy, no visible
+`Desired role` field, and integration evidence needed for issue #24.
 
 ## Tally owner setup checklist
 
@@ -54,12 +65,11 @@ Use this checklist in the Tally workspace before treating issue #24 as complete:
 - Add the shared baseline fields listed below.
 - Keep `route` as a hidden or pre-filled field populated from the website embed
   URL.
-- Add route-specific conditional sections for all accepted route values.
+- Remove any visible `Desired role` field.
+- Do not add route-specific conditional sections for the MVP; route-specific
+  context belongs on the website above the embedded form.
 - Configure the CV/resume upload as PDF-only with the 10 MB free-plan limit
   communicated in the form.
-- Require CV/resume upload for PhD Students, Visiting Students, Master's
-  Students, Research Engineers, and Fellows and Experienced Researchers.
-- Keep CV/resume upload optional for Collaborators.
 - Avoid detailed immigration or visa questions, demographic questions, and
   equal-opportunities monitoring questions.
 - Configure the non-promissory confirmation state below.
@@ -86,8 +96,10 @@ The form should collect this baseline for every Expression of Interest:
 - Free-form Research Direction Interest
 - PDF CV/resume upload
 - Optional location, timing, or eligibility constraints
-- Consent for BOLD to store and review the submission
-- Optional future-opportunities opt-in
+- Desired timing
+- What the respondent wants to work on with BOLD
+- Current application or Formal Application Path status
+- Relevant BOLD people or groups
 
 The form must not ask for detailed immigration or visa status, demographic
 questions, or equal-opportunities monitoring questions in the MVP.
@@ -96,32 +108,6 @@ questions, or equal-opportunities monitoring questions in the MVP.
 
 - Accept PDF only.
 - Communicate Tally's free-plan upload limit of 10 MB per file.
-- Require CV/resume upload for `phd-students`, `visiting-students`,
-  `masters-students`, `research-engineers`, and `fellows`.
-- Make CV/resume upload optional for `collaborators`.
-
-## Route-specific conditional sections
-
-Each route should show 3-5 conditional questions:
-
-- PhD Students: current/proposed programme and institution, intended start
-  timing, research interests, possible supervisors or groups, formal application
-  stage.
-- Visiting Students: current institution and programme, proposed visit dates and
-  duration, possible BOLD host or group, focused project idea, funding or timing
-  constraints.
-- Master's Students: current Master's programme, project window, technical or
-  research interests, relevant coursework or prior projects, desired project
-  shape.
-- Research Engineers: systems or infrastructure areas of interest, examples of
-  ML systems/research infrastructure/evaluation/data tooling/platform work,
-  relevant code or project links, availability and working mode constraints.
-- Fellows and Experienced Researchers: current role and institution, research
-  agenda, proposed contribution to BOLD, representative outputs,
-  visiting/collaboration/longer-term interest and timing.
-- Collaborators: individual/group/company/institutional interest type, proposed
-  collaboration and scientific motivation, expected outputs, relevant people,
-  timing, and any funding, data, or partnership considerations.
 
 ## Confirmation and integrations
 
@@ -159,10 +145,16 @@ The exposed structure is:
 - form ID: `A7aa0W`
 - workspace ID: `3NbqgN`
 - one hidden field named `route`
-- one empty visible text block
-- no visible baseline fields
-- no CV/resume upload field
-- no route-specific conditional sections
+- one visible `Desired role` field, which should be removed
+- generic visible baseline fields for name, email, current role/title, current
+  organization/institution, location/time zone, fit statement, relevant links,
+  Research Direction Interest, practical constraints, desired timing, intended
+  work with BOLD, Formal Application Path status, and relevant BOLD people or
+  groups
+- one CV/resume upload field
+- no required route-specific conditional sections
+- no visible PDF-only or 10 MB upload-limit guidance
+- no visible confirmation copy
 - `integrations` is exposed as an empty array
 
 The unauthenticated Tally forms API at `https://api.tally.so/forms/A7aa0W`
@@ -170,3 +162,9 @@ returned `401 Unauthorized`, so completing the live form configuration requires
 Tally owner access. The empty public embed `integrations` array is not enough to
 confirm whether owner-side Google Sheets sync or email notifications are
 configured.
+
+The verifier script was run against the live embed routes on 2026-06-23 and
+returned the same blocker for every route: HTTP 200 with form `A7aa0W`, hidden
+field `route`, generic baseline blocks, a `FILE_UPLOAD` block, a prohibited
+visible `Desired role` field, missing visible PDF-only and 10 MB upload-limit
+guidance, missing confirmation copy, and `integrations=0`.
