@@ -42,6 +42,11 @@ same account acting as the intake email. Those owner-side settings are not
 exposed in the unauthenticated public payload, so they still need confirmation
 inside the Tally workspace before the issue can be treated as complete.
 
+Fresh public verification on 2026-06-23 confirms this is still the active
+blocker: every accepted route embed returns HTTP 200, but the exposed form
+payload still contains only the title, one hidden `route` field, and one empty
+text block.
+
 ## Tally owner setup checklist
 
 Use this checklist in the Tally workspace before treating issue #24 as complete:
