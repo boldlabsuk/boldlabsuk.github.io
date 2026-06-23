@@ -93,6 +93,30 @@ const shuffleFixturePeople = [
     researchAreas: ['Agents'],
   },
   {
+    slug: 'adjunct-one',
+    name: 'Adjunct One',
+    role: 'Adjunct Faculty',
+    group: 'Adjunct Faculty',
+    bio: 'Studies open-ended learning.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'adjunct-two',
+    name: 'Adjunct Two',
+    role: 'Adjunct Faculty',
+    group: 'Adjunct Faculty',
+    bio: 'Studies reinforcement learning.',
+    researchAreas: ['Agents'],
+  },
+  {
+    slug: 'adjunct-three',
+    name: 'Adjunct Three',
+    role: 'Adjunct Faculty',
+    group: 'Adjunct Faculty',
+    bio: 'Studies foundation models.',
+    researchAreas: ['Evaluation'],
+  },
+  {
     slug: 'alumni-hidden',
     name: 'Alumni Hidden',
     role: 'Former PI',
@@ -147,7 +171,7 @@ function createDeterministicRandom(values) {
   }
 }
 
-test('shufflePeopleWithinSections shuffles public People Sections without changing section order or counts', () => {
+test('shufflePeopleWithinSections keeps static People Sections ordered while shuffling randomized sections', () => {
   const sourceOrder = shuffleFixturePeople.map((person) => person.slug)
   const shuffledPeople = shufflePeopleWithinSections(
     shuffleFixturePeople,
@@ -164,12 +188,13 @@ test('shufflePeopleWithinSections shuffles public People Sections without changi
   )
   assert.deepEqual(
     directory.sections.map((section) => section.title),
-    ['Principal Investigator', 'Postdoc', 'PhD Student'],
+    ['Principal Investigator', 'Adjunct Faculty', 'Postdoc', 'PhD Student'],
   )
   assert.deepEqual(
     directory.sections.map((section) => [section.title, section.people.length]),
     [
       ['Principal Investigator', 3],
+      ['Adjunct Faculty', 3],
       ['Postdoc', 3],
       ['PhD Student', 1],
     ],
@@ -180,13 +205,14 @@ test('shufflePeopleWithinSections shuffles public People Sections without changi
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['Principal Investigator', ['pi-three', 'pi-one', 'pi-two']],
-      ['Postdoc', ['postdoc-two', 'postdoc-one', 'postdoc-three']],
+      ['Principal Investigator', ['pi-one', 'pi-two', 'pi-three']],
+      ['Adjunct Faculty', ['adjunct-one', 'adjunct-two', 'adjunct-three']],
+      ['Postdoc', ['postdoc-three', 'postdoc-one', 'postdoc-two']],
       ['PhD Student', ['phd-one']],
     ],
   )
-  assert.equal(directory.totalPeople, 7)
-  assert.equal(directory.visiblePeopleCount, 7)
+  assert.equal(directory.totalPeople, 10)
+  assert.equal(directory.visiblePeopleCount, 10)
 })
 
 test('People Directory filters preserve shuffled relative order within matching People Sections', () => {
@@ -208,13 +234,44 @@ test('People Directory filters preserve shuffled relative order within matching 
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['Principal Investigator', ['pi-three', 'pi-one']],
-      ['Postdoc', ['postdoc-two', 'postdoc-one']],
+      ['Principal Investigator', ['pi-one', 'pi-three']],
+      ['Adjunct Faculty', ['adjunct-one', 'adjunct-three']],
+      ['Postdoc', ['postdoc-one', 'postdoc-two']],
       ['PhD Student', ['phd-one']],
     ],
   )
-  assert.equal(directory.totalPeople, 7)
-  assert.equal(directory.visiblePeopleCount, 5)
+  assert.equal(directory.totalPeople, 10)
+  assert.equal(directory.visiblePeopleCount, 7)
+})
+
+test('shufflePeopleWithinSections applies static public PI and Adjunct Faculty roster ordering', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: shufflePeopleWithinSections(
+      people,
+      createDeterministicRandom([0.6, 0.2, 0.8, 0.1]),
+    ),
+    filters: emptyFilters,
+  })
+
+  assert.deepEqual(
+    directory.sections
+      .find((section) => section.title === 'Principal Investigator')
+      ?.people.map((listing) => listing.slug),
+    [
+      'jakob-foerster',
+      'tim-rocktaschel',
+      'ani-calinescu',
+      'antoine-cully',
+      'laura-toni',
+      'shimon-whiteson',
+    ],
+  )
+  assert.deepEqual(
+    directory.sections
+      .find((section) => section.title === 'Adjunct Faculty')
+      ?.people.map((listing) => listing.slug),
+    ['roberta-raileanu', 'ed-grefenstette', 'jack-parker-holder'],
+  )
 })
 
 test('People Directory renders non-empty People Sections in canonical order', () => {

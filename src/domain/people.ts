@@ -26,6 +26,22 @@ export const peopleSectionLabels: Record<PeopleSection, string> = {
   'Associate Members': 'Associate Members',
 }
 
+const staticPeopleSectionOrders: Partial<Record<PeopleSection, readonly string[]>> = {
+  'Principal Investigator': [
+    'jakob-foerster',
+    'tim-rocktaschel',
+    'ani-calinescu',
+    'antoine-cully',
+    'laura-toni',
+    'shimon-whiteson',
+  ],
+  'Adjunct Faculty': [
+    'roberta-raileanu',
+    'ed-grefenstette',
+    'jack-parker-holder',
+  ],
+}
+
 export type PeopleDirectoryFilters = {
   query: string
   section: string
@@ -111,9 +127,38 @@ export function shufflePeopleWithinSections(
 
   return [
     ...peopleSectionOrder.flatMap((section) =>
-      shuffleItems(peopleBySection[section], random),
+      orderPeopleWithinSection(peopleBySection[section], section, random),
     ),
     ...nonDirectoryPeople,
+  ]
+}
+
+function orderPeopleWithinSection(
+  people: Person[],
+  section: PeopleSection,
+  random: () => number,
+) {
+  const staticOrder = staticPeopleSectionOrders[section]
+
+  return staticOrder
+    ? orderStaticPeopleSection(people, staticOrder)
+    : shuffleItems(people, random)
+}
+
+function orderStaticPeopleSection(
+  people: Person[],
+  orderedSlugs: readonly string[],
+) {
+  const peopleBySlug = new Map(people.map((person) => [person.slug, person]))
+  const orderedSlugSet = new Set(orderedSlugs)
+
+  return [
+    ...orderedSlugs.flatMap((slug) => {
+      const person = peopleBySlug.get(slug)
+
+      return person ? [person] : []
+    }),
+    ...people.filter((person) => !orderedSlugSet.has(person.slug)),
   ]
 }
 
