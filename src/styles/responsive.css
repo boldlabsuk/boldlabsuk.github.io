@@ -1,16 +1,15 @@
 @media (max-width: 1120px) {
-  .home-hero {
+  .home-hero-main {
     grid-template-columns: 1fr;
   }
 
   .home-hero-visual {
+    justify-items: start;
     min-height: auto;
   }
 
-  .learning-field {
-    width: min(680px, 100%);
-    margin: 0;
-    aspect-ratio: 1.45;
+  .home-hero-image {
+    width: min(620px, 100%);
   }
 
   .four-up,
@@ -60,7 +59,6 @@
   .section-header,
   .identity-section,
   .home-section-header,
-  .credibility-inner,
   .detail-layout,
   .contact-section,
   .footer-inner,
@@ -117,10 +115,6 @@
     height: 52px;
   }
 
-  .home-hero-copy {
-    padding-top: 70px;
-  }
-
   .home-hero {
     min-height: auto;
   }
@@ -147,12 +141,8 @@
     border-left: 0;
   }
 
-  .learning-field {
-    aspect-ratio: 0.95;
-  }
-
   .bet-list,
-  .direction-item {
+  .direction-list {
     grid-template-columns: 1fr;
   }
 
@@ -224,6 +214,6 @@
 
   .social-links-compact a {
     min-height: 32px;
-    min-width: 40px;
+    min-width: 32px;
   }
 }

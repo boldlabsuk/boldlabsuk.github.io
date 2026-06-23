@@ -17,7 +17,7 @@ The primary public audiences the BOLD homepage must persuade: incoming members a
 _Avoid_: General website visitors, casual AI audience
 
 **Landing Page Persuasion Order**:
-The homepage hierarchy that leads with scientific ambition for incoming members, then uses proof of credibility, scale, and execution for government and industry funders.
+The homepage hierarchy that leads with scientific ambition for incoming members, then uses proof of scale, the Institute Bet, and Research Directions for government and industry funders before closing with the site footer.
 _Avoid_: Funder-first grant pitch, generic recruitment page
 
 **National Mission Framing**:
@@ -33,7 +33,7 @@ The homepage's non-photographic visual language: typography-led sections with fl
 _Avoid_: People-photo hero, generic stock lab imagery, decorative card-heavy template graphics
 
 **Homepage Proof Metrics**:
-The early stats that prove the Institute Bet: 3 universities, 37m GBP+ committed industry co-investment, and 3 Research Directions.
+The early stats that prove the Institute Bet: 3 universities, 2 Institute Bets, and 3 Research Directions.
 _Avoid_: 12 research themes, 6 routes to join, decorative vanity metrics
 
 **Homepage CTA Strategy**:
@@ -43,6 +43,10 @@ _Avoid_: Repeated buttons to the same destination, every section as a conversion
 **Expression of Interest**:
 A route-level intake submission for someone who wants to join, visit, work with, or collaborate with BOLD before there is necessarily a formal advertised role or university application path.
 _Avoid_: Application, job application, sign-up
+
+**Formal Application Path**:
+The official admissions, hiring, placement, or institutional process required outside BOLD's Expression of Interest intake for routes such as PhD, Master's, visiting, or employment opportunities.
+_Avoid_: Expression of Interest, BOLD intake form, informal inquiry
 
 **Expression of Interest Page**:
 A public Opportunities page for one route that explains the route and collects an Expression of Interest from a prospective incoming member or collaborator.
@@ -60,16 +64,28 @@ _Avoid_: Job application, student application, resume-first collaboration form
 The central reviewable collection of submitted Expressions of Interest across all Opportunities routes, filterable by route while keeping intake in one operational place.
 _Avoid_: Separate role inboxes, per-route spreadsheet silos
 
-**Homepage Closing Proof**:
-The final homepage proof layer focused on operational credibility: high-impact collaborative research at scale, frontier lab and startup experience, open-source and open-science commitment, and a lean day-0 merger model.
-_Avoid_: Repeated quote sections, opportunity CTA grid as the page ending
+**Opportunities Index**:
+The careers-style Opportunities landing page that summarizes available BOLD routes and sends visitors to the relevant Expression of Interest Page.
+_Avoid_: Guidance card grid, full application page, repeated route detail
+
+**Opportunity Route**:
+A public route through which someone can express interest in joining, visiting, working with, or collaborating with BOLD.
+_Avoid_: Job role, vacancy, application category
+
+**Opportunities Voice**:
+The public tone for Opportunities copy: selective but not exclusionary, serious and ambitious without sounding arrogant, corporate, or like a generic HR funnel.
+_Avoid_: Gatekeeping language, generic recruitment copy, overpromising fit
+
+**Research Direction Interest**:
+An applicant's free-form description of how their interests relate to BOLD's Research Directions, without forcing them to choose a fixed research category.
+_Avoid_: Research direction checkbox, single-theme classification
 
 **Institute Bet**:
 The public two-part argument that fundamental AI breakthroughs are still possible, and that academia needs a more focused, agile, critical-mass mode of research to pursue them.
 _Avoid_: Research theme, slogan, About section
 
 **Research Direction**:
-A public-facing area of BOLD's scientific programme. The canonical Research Directions are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied Learning; on the homepage they appear as a flat explanatory sequence tied to the Institute Bet, not as repeated CTA cards.
+A public-facing area of BOLD's scientific programme. The canonical Research Directions are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied Learning; on the homepage they appear as three equal pillar cards tied to the Institute Bet.
 _Avoid_: Research theme, paper category, card grid
 
 **Beyond Backpropagation**:

@@ -217,6 +217,7 @@ test('Website Roster derives public Person Listings from central source rows', (
   assert.deepEqual(peopleSectionOrder, [
     'Principal Investigator',
     'Postdoc',
+    'Research Engineers',
     'PhD Student',
     'Masters Student',
     'Associate Members',
@@ -1130,27 +1131,29 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(directory.totalPeople, 91)
-  assert.equal(directory.visiblePeopleCount, 91)
+  assert.equal(directory.totalPeople, 93)
+  assert.equal(directory.visiblePeopleCount, 93)
   assert.deepEqual(
     Object.fromEntries(
       directory.sections.map((section) => [section.title, section.people.length]),
     ),
     {
-      'Principal Investigator': 4,
+      'Principal Investigator': 6,
       Postdoc: 7,
-      'PhD Student': 52,
-      'Masters Student': 7,
-      'Associate Members': 14,
+      'Research Engineers': 1,
+      'PhD Student': 53,
+      'Masters Student': 6,
+      'Associate Members': 13,
       Alumni: 7,
     },
   )
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 91)
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 93)
   assert.deepEqual(
     directory.sections.map((section) => section.title),
     [
       'Principal Investigator',
       'Postdoc',
+      'Research Engineers',
       'PhD Student',
       'Masters Student',
       'Associate Members',
@@ -1177,6 +1180,14 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   assert.equal(
     listingBySlug['shashank-reddy-chirra']?.primaryPersonLink,
     'https://shshnkreddy.github.io',
+  )
+  assert.equal(
+    listingBySlug['ani-calinescu']?.primaryPersonLink,
+    'https://www.cs.ox.ac.uk/people/ani.calinescu',
+  )
+  assert.equal(
+    listingBySlug['shimon-whiteson']?.primaryPersonLink,
+    'https://whirl.cs.ox.ac.uk',
   )
   assert.equal(listingBySlug['gregory-levy']?.primaryPersonLink, null)
   assert.ok(
@@ -1256,7 +1267,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ],
   )
   assert.equal(matchingDirectory.visiblePeopleCount, 3)
-  assert.equal(matchingDirectory.totalPeople, 91)
+  assert.equal(matchingDirectory.totalPeople, 93)
 
   assert.deepEqual(
     areaDirectory.sections.map((section) => [
@@ -1264,6 +1275,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       section.people.map((listing) => listing.slug),
     ]),
     [
+      ['Principal Investigator', ['shimon-whiteson']],
       [
         'PhD Student',
         [
@@ -1282,7 +1294,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       ['Associate Members', ['aya-kayal', 'erik-feng', 'junming-an']],
     ],
   )
-  assert.equal(areaDirectory.visiblePeopleCount, 14)
+  assert.equal(areaDirectory.visiblePeopleCount, 15)
 
   assert.deepEqual(
     affiliationDirectory.sections.map((section) => [
@@ -1292,6 +1304,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [
       ['Principal Investigator', ['antoine-cully']],
       ['Postdoc', ['paul-templier', 'cong-sun']],
+      ['Research Engineers', ['oscar-pang']],
       [
         'PhD Student',
         [
@@ -1302,7 +1315,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
           'lisa-coiffard',
         ],
       ],
-      ['Associate Members', ['george-mavroghenis', 'jiankai-wang', 'oscar-pang']],
+      ['Associate Members', ['george-mavroghenis', 'jiankai-wang']],
     ],
   )
   assert.equal(affiliationDirectory.visiblePeopleCount, 11)
@@ -1317,7 +1330,6 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
         'Masters Student',
         [
           'nathan-monette',
-          'aneesh-muppidi',
           'yuhe-gao',
           'aramis-marti-shahandeh',
           'jacinto-suner',
@@ -1327,7 +1339,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       ],
     ],
   )
-  assert.equal(sectionDirectory.visiblePeopleCount, 7)
+  assert.equal(sectionDirectory.visiblePeopleCount, 6)
 
   assert.deepEqual(
     combinedDirectory.sections.map((section) => [
@@ -1337,9 +1349,9 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [],
   )
   assert.equal(combinedDirectory.visiblePeopleCount, 0)
-  assert.equal(combinedDirectory.totalPeople, 91)
+  assert.equal(combinedDirectory.totalPeople, 93)
 
   assert.deepEqual(emptyDirectory.sections, [])
   assert.equal(emptyDirectory.visiblePeopleCount, 0)
-  assert.equal(emptyDirectory.totalPeople, 91)
+  assert.equal(emptyDirectory.totalPeople, 93)
 })

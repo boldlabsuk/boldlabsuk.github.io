@@ -11,6 +11,10 @@
   background: var(--paper);
 }
 
+main > .section-band:first-child {
+  padding-top: var(--hero-top-gap);
+}
+
 .muted-band {
   background: var(--wash);
 }

@@ -6,9 +6,9 @@ export const siteMeta = {
   expandedName: 'British Open-Ended Learning & Discovery Institute',
   description:
     'A focused, critical-mass AI research institute across Oxford, UCL, and Imperial pursuing fundamental AI breakthroughs from Britain.',
-  missionPhrase: 'Build the next paradigm in AI.',
+  missionPhrase: 'Building the next AI paradigm.',
   mission:
-    'BOLD brings Oxford, UCL, and Imperial into one focused, critical-mass AI research institute pursuing fundamental breakthroughs from Britain.',
+    'BOLD brings Oxford, UCL, and Imperial together into one focused, critical-mass research institute pursuing fundamental AI breakthroughs in Britain.',
   identity:
     'Our institute brings together three leading university AI labs into a single collaborative research environment. We combine academic depth, engineering excellence, and long-term scientific ambition.',
   statement:
@@ -16,9 +16,12 @@ export const siteMeta = {
   contactEmail: 'contact@example.ac.uk',
   copyrightYear: '2026',
   socialLinks: [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com' },
-    { label: 'GitHub', href: 'https://github.com' },
-    { label: 'X', href: 'https://x.com' },
+    {
+      label: 'LinkedIn',
+      href:
+        'https://www.linkedin.com/company/british-open-ended-learning-discovery-lab',
+    },
+    { label: 'X', href: 'https://x.com/bold_lab_ai' },
   ],
 }
 
@@ -35,13 +38,13 @@ export const homepageContent = {
   proofMetrics: [
     {
       value: '3',
-      label: 'universities',
+      label: 'Universities',
       detail: 'Oxford, UCL, and Imperial working as one institute.',
     },
     {
-      value: '37m GBP+',
-      label: 'committed industry co-investment',
-      detail: 'Serious backing for ambitious, long-horizon research.',
+      value: '2',
+      label: 'Bets',
+      detail: 'Breakthroughs remain possible, and academia needs a new model.',
     },
     {
       value: '3',
@@ -78,18 +81,6 @@ export const homepageContent = {
         'Resource-agile systems for autonomous skill discovery, resilient adaptation, and deployment beyond the datacentre.',
     },
   ],
-  credibility: {
-    eyebrow: 'Operational Credibility',
-    headline: 'Built to execute from day 0.',
-    statement:
-      'A single focused, critical-mass agile lab under one ambitious research vision: the next AI paradigm built from Britain.',
-    points: [
-      'High-impact collaborative research at institute scale.',
-      'Frontier lab and startup experience in the operating model.',
-      'Open-source and open-science commitment for public-interest progress.',
-      'A lean merger model that turns university depth into one coherent lab.',
-    ],
-  },
 }
 
 export const navigation: NavigationItem[] = [

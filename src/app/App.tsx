@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { HomePage } from '../features/home/HomePage'
 import { NotFoundPage } from '../features/not-found/NotFoundPage'
 import { OpportunitiesPage } from '../features/opportunities/OpportunitiesPage'
@@ -16,11 +16,18 @@ import '../styles/site.css'
 
 function App() {
   const route = useMemo(() => parseRoute(window.location.pathname), [])
+  const isHomeRoute = route.name === 'home'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHomeHeroLogoVisible, setIsHomeHeroLogoVisible] =
+    useState(isHomeRoute)
 
   useEffect(() => {
     setDocumentMeta(getRouteMeta(route))
   }, [route])
+
+  const handleHomeHeroLogoVisibilityChange = useCallback((isVisible: boolean) => {
+    setIsHomeHeroLogoVisible(isVisible)
+  }, [])
 
   return (
     <div className="app-shell">
@@ -29,12 +36,16 @@ function App() {
       </a>
       <SiteHeader
         activeSection={getActiveSection(route)}
-        brandVariant={route.name === 'home' ? 'icon' : 'full'}
+        showBrandLogo={!isHomeRoute || !isHomeHeroLogoVisible}
         isMenuOpen={isMenuOpen}
         onMenuToggle={() => setIsMenuOpen((open) => !open)}
       />
       <main id="main-content">
-        {route.name === 'home' && <HomePage />}
+        {route.name === 'home' && (
+          <HomePage
+            onHeroLogoVisibilityChange={handleHomeHeroLogoVisibilityChange}
+          />
+        )}
         {route.name === 'people' && !route.slug && <PeoplePage />}
         {route.name === 'people' && route.slug && (
           <PersonDetailPage slug={route.slug} />
@@ -42,7 +53,7 @@ function App() {
         {route.name === 'opportunities' && <OpportunitiesPage />}
         {route.name === 'not-found' && <NotFoundPage />}
       </main>
-      <SiteFooter />
+      <SiteFooter isBrandLinkEnabled={!isHomeRoute} />
     </div>
   )
 }

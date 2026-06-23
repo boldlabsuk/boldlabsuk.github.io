@@ -1,7 +1,9 @@
 .page-hero {
   position: relative;
   overflow: clip;
-  padding-top: clamp(80px, 10vw, 132px);
+  padding-right: var(--content-edge);
+  padding-left: var(--content-edge);
+  padding-top: var(--hero-top-gap);
   padding-bottom: clamp(66px, 8vw, 104px);
   background: var(--ink);
   color: var(--surface);

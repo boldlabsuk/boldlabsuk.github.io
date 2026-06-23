@@ -88,6 +88,7 @@ test('People Directory exposes plural public People Section headings', () => {
     [
       'Principal Investigators',
       'Postdocs',
+      'Research Engineers',
       'PhD Students',
       'Masters Students',
       'Associate Members',
@@ -113,23 +114,30 @@ test('People Directory maps every Person into exactly one People Section', () =>
       ]),
     ),
     {
-      'Principal Investigator': 4,
+      'Principal Investigator': 6,
       Postdoc: 7,
-      'PhD Student': 52,
-      'Masters Student': 7,
-      'Associate Members': 14,
+      'Research Engineers': 1,
+      'PhD Student': 53,
+      'Masters Student': 6,
+      'Associate Members': 13,
       Alumni: 7,
     },
   )
   assert.deepEqual(
     Object.fromEntries(
-      ['tim-rocktaschel', 'nathan-monette', 'alfie-lamerton'].map((slug) => [
+      [
+        'tim-rocktaschel',
+        'oscar-pang',
+        'nathan-monette',
+        'alfie-lamerton',
+      ].map((slug) => [
         slug,
         listings.find((listing) => listing.slug === slug)?.peopleSection,
       ]),
     ),
     {
       'tim-rocktaschel': 'Principal Investigator',
+      'oscar-pang': 'Research Engineers',
       'nathan-monette': 'Masters Student',
       'alfie-lamerton': 'Associate Members',
     },
@@ -186,6 +194,26 @@ test('People Directory preserves content order within each People Section', () =
 
   assert.deepEqual(
     directory.sections
+      .find((section) => section.title === 'Principal Investigator')
+      ?.people.map((listing) => listing.slug),
+    [
+      'jakob-foerster',
+      'ani-calinescu',
+      'tim-rocktaschel',
+      'antoine-cully',
+      'laura-toni',
+      'shimon-whiteson',
+    ],
+  )
+  assert.equal(
+    directory.sections
+      .find((section) => section.title === 'PhD Student')
+      ?.people.at(0)?.slug,
+    'ravi-hammond',
+  )
+
+  assert.deepEqual(
+    directory.sections
       .find((section) => section.title === 'Associate Members')
       ?.people.map((listing) => listing.slug),
     [
@@ -194,7 +222,6 @@ test('People Directory preserves content order within each People Section', () =
       'george-mavroghenis',
       'satyam-agarwal',
       'jiankai-wang',
-      'oscar-pang',
       'erik-feng',
       'elif-akata',
       'simon-buhrer',
@@ -243,7 +270,7 @@ test('People Directory People Section filter hides empty People Sections', () =>
     people: filterFixturePeople,
     filters: {
       ...emptyFilters,
-      section: 'Associate Members',
+      section: 'Research Engineers',
     },
   })
 
@@ -252,7 +279,7 @@ test('People Directory People Section filter hides empty People Sections', () =>
       section.title,
       section.people.map((listing) => listing.slug),
     ]),
-    [['Associate Members', ['riley-associate']]],
+    [['Research Engineers', ['riley-associate']]],
   )
   assert.equal(directory.visiblePeopleCount, 1)
 })
@@ -294,8 +321,8 @@ test('People Directory affiliation filter keeps grouped matching Person Listings
       section.people.map((listing) => listing.slug),
     ]),
     [
+      ['Research Engineers', ['riley-associate']],
       ['PhD Student', ['devon-dphil']],
-      ['Associate Members', ['riley-associate']],
     ],
   )
   assert.equal(directory.visiblePeopleCount, 2)
@@ -390,12 +417,12 @@ test('People Directory exposes Primary Person Link priority for Person Listings'
     [
       ['Website Link', 'https://example.ac.uk/website-link'],
       ['Scholar Link', 'https://scholar.google.com/scholar-link'],
+      ['No Link', null],
       ['Social Link', 'https://github.com/social-link'],
       [
         'Blank Preferred Link',
         'https://www.linkedin.com/in/blank-preferred-link',
       ],
-      ['No Link', null],
     ],
   )
 })

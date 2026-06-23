@@ -51,6 +51,34 @@ assert.match(compactLinks, /data-social-link-key="github"/)
 assert.match(compactLinks, /data-social-link-key="twitter"/)
 assert.match(compactLinks, /data-social-link-key="bluesky"/)
 assert.match(compactLinks, /data-social-link-key="email"/)
+assert.match(
+  compactLinks,
+  /social-link-icon social-link-icon-brand social-link-icon-googleScholar/,
+)
+assert.match(
+  compactLinks,
+  /social-link-icon social-link-icon-brand social-link-icon-github/,
+)
+assert.match(
+  compactLinks,
+  /social-link-icon social-link-icon-brand social-link-icon-linkedin/,
+)
+assert.match(
+  compactLinks,
+  /social-link-icon social-link-icon-brand social-link-icon-twitter/,
+)
+assert.match(
+  compactLinks,
+  /social-link-icon social-link-icon-brand social-link-icon-bluesky/,
+)
+assert.match(
+  compactLinks,
+  /social-link-icon social-link-icon-lucide social-link-icon-website/,
+)
+assert.match(
+  compactLinks,
+  /social-link-icon social-link-icon-lucide social-link-icon-email/,
+)
 assert.match(compactLinks, /href="https:\/\/example\.ac\.uk\/icon-person"/)
 assert.match(compactLinks, /href="https:\/\/scholar\.google\.com\/icon-person"/)
 assert.match(compactLinks, /href="mailto:icon\.person@example\.ac\.uk"/)

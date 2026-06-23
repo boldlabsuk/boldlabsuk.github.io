@@ -1,6 +1,18 @@
 [
   {
     "source": "main",
+    "name": "Ravi Hammond",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning Human-AI Coordination"
+    ],
+    "profilePicture": "241337107_10159795827958909_7158950244190791044_n (1) - Ravi Hammond.jpg",
+    "listOnBoldWebsite": "",
+    "socialLinks": "https://ravihammond.com/, https://www.linkedin.com/in/ravihammond/, https://x.com/ravihammond, https://scholar.google.com/citations?user=OGyagjQAAAAJ, https://github.com/ravihammond"
+  },
+  {
+    "source": "main",
     "name": "Antonio León Villares",
     "role": "PhD student",
     "homeInstitution": "Oxford",
@@ -116,18 +128,6 @@
     "profilePicture": "profile_pic - Konstantinos Mitsides.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://konstantinosmitsides.github.io/ ,  https://x.com/k_mitsides,   https://scholar.google.com/citations?user=wGBxqc8AAAAJ&hl=en"
-  },
-  {
-    "source": "main",
-    "name": "Ravi Hammond",
-    "role": "PhD student",
-    "homeInstitution": "Oxford",
-    "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning Human-AI Coordination"
-    ],
-    "profilePicture": "241337107_10159795827958909_7158950244190791044_n (1) - Ravi Hammond.jpg",
-    "listOnBoldWebsite": "",
-    "socialLinks": "https://ravihammond.com/, https://www.linkedin.com/in/ravihammond/, https://x.com/ravihammond, https://scholar.google.com/citations?user=OGyagjQAAAAJ, https://github.com/ravihammond"
   },
   {
     "source": "main",
@@ -348,7 +348,7 @@
   {
     "source": "main",
     "name": "Aneesh Muppidi",
-    "role": "Master Student",
+    "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Robotics",
@@ -388,6 +388,32 @@
     "profilePicture": "250226_ICL_DeptComp_RBornemann_002 - Richard Bornemann.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://scholar.google.com/citations?user=7ZsIrPEAAAAJ&hl=de&oi=sra"
+  },
+  {
+    "source": "main",
+    "name": "Jakob Foerster",
+    "role": "Faculty",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Reinforcement Learning"
+    ],
+    "profilePicture": "jakob-foerster.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.jakobfoerster.com/; https://twitter.com/j_foerst; https://scholar.google.com/citations?user=6z4lQzMAAAAJ&hl=en; https://github.com/jakobnicolaus"
+  },
+  {
+    "source": "main",
+    "name": "Ani Calinescu",
+    "role": "BOLD PI",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Agent-based modelling",
+      "Complex networked systems",
+      "Digital twins"
+    ],
+    "profilePicture": "ani-calinescu.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.cs.ox.ac.uk/people/ani.calinescu/; https://scholar.google.co.uk/citations?user=aCljaCYAAAAJ&hl=en&oi=ao"
   },
   {
     "source": "main",
@@ -994,6 +1020,20 @@
   },
   {
     "source": "main",
+    "name": "Shimon Whiteson",
+    "role": "BOLD PI",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Deep Reinforcement Learning",
+      "Reinforcement Learning",
+      "Machine Learning"
+    ],
+    "profilePicture": "shimon-whiteson.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://whirl.cs.ox.ac.uk/; https://scholar.google.nl/citations?user=9zeEI-cAAAAJ&hl=en&oi=ao"
+  },
+  {
+    "source": "main",
     "name": "Eltayeb Ahmed",
     "role": "PhD student",
     "homeInstitution": "Oxford",
@@ -1082,18 +1122,6 @@
     "profilePicture": "me-cropped-square - Alfie Lamerton.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://alfielamerton.co.uk/; https://x.com/alfie_lamerton; https://scholar.google.com/citations?user=zJlvbNcAAAAJ&hl=en;"
-  },
-  {
-    "source": "main",
-    "name": "Jakob Foerster",
-    "role": "Faculty",
-    "homeInstitution": "Oxford",
-    "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
-    ],
-    "profilePicture": "jakob-foerster.jpg",
-    "listOnBoldWebsite": "YES",
-    "socialLinks": "https://www.jakobfoerster.com/; https://twitter.com/j_foerst; https://scholar.google.com/citations?user=6z4lQzMAAAAJ&hl=en; https://github.com/jakobnicolaus"
   },
   {
     "source": "main",

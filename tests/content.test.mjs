@@ -57,7 +57,7 @@ test('BOLD presents the v2 institute information architecture', () => {
 })
 
 test('homepage presents the BOLD Institute Bet positioning and proof metrics', () => {
-  assert.equal(homepageContent.hero.headline, 'Build the next paradigm in AI.')
+  assert.equal(homepageContent.hero.headline, 'Building the next AI paradigm.')
   assert.match(
     homepageContent.hero.lede,
     /Oxford, UCL, and Imperial/,
@@ -65,16 +65,21 @@ test('homepage presents the BOLD Institute Bet positioning and proof metrics', (
 
   assert.deepEqual(
     homepageContent.proofMetrics.map((metric) => metric.value),
-    ['3', '37m GBP+', '3'],
+    ['3', '2', '3'],
   )
 
   assert.deepEqual(
     homepageContent.proofMetrics.map((metric) => metric.label),
     [
-      'universities',
-      'committed industry co-investment',
+      'Universities',
+      'Bets',
       'Research Directions',
     ],
+  )
+
+  assert.match(
+    homepageContent.proofMetrics[1].detail,
+    /Breakthroughs remain possible/,
   )
 
   assert.match(

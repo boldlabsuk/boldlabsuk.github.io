@@ -190,13 +190,21 @@
   min-height: 34px;
   min-width: 34px;
   padding: 0;
-  background: var(--surface);
+  border-color: transparent;
+  background: transparent;
   color: var(--ink-soft);
 }
 
 .social-links-compact a:hover,
 .social-links-compact a:focus-visible {
-  background: var(--wash);
+  border-color: transparent;
+  background: transparent;
+  color: var(--blue);
+}
+
+.social-links-compact a:active {
+  color: var(--ink);
+  transform: scale(0.92);
 }
 
 .social-link-icon {
@@ -207,11 +215,30 @@
 }
 
 .social-link-icon svg {
+  display: block;
   width: 18px;
   height: 18px;
+}
+
+.social-link-icon-lucide svg {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.8;
+}
+
+.social-link-icon-brand svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.social-link-icon-googleScholar svg {
+  width: 19px;
+  height: 19px;
+}
+
+.social-link-icon-bluesky svg {
+  width: 19px;
+  height: 17px;
 }

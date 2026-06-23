@@ -1,33 +1,26 @@
 import { navigation, siteMeta } from '../../content'
 
-type BrandVariant = 'full' | 'icon'
-
 export function SiteHeader({
   activeSection,
-  brandVariant,
+  showBrandLogo,
   isMenuOpen,
   onMenuToggle,
 }: {
   activeSection: string
-  brandVariant: BrandVariant
+  showBrandLogo: boolean
   isMenuOpen: boolean
   onMenuToggle: () => void
 }) {
-  const brandLogo =
-    brandVariant === 'icon'
-      ? {
-          className: 'brand-logo brand-logo-icon',
-          src: '/bold-butterfly-logo.svg',
-        }
-      : {
-          className: 'brand-logo',
-          src: '/bold_full_vector_logo.svg',
-        }
-
   return (
     <header className="site-header">
-      <a className="brand" href="/" aria-label={`${siteMeta.name} home`}>
-        <img className={brandLogo.className} src={brandLogo.src} alt="" />
+      <a
+        aria-hidden={showBrandLogo ? undefined : true}
+        aria-label={showBrandLogo ? `${siteMeta.name} home` : undefined}
+        className={showBrandLogo ? 'brand' : 'brand brand-hidden'}
+        href="/"
+        tabIndex={showBrandLogo ? undefined : -1}
+      >
+        <img className="brand-logo" src="/bold_full_vector_logo.svg" alt="" />
       </a>
 
       <button

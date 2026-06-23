@@ -7,6 +7,7 @@ import { allFilterValue, unique } from './shared.ts'
 export const peopleSectionOrder = [
   'Principal Investigator',
   'Postdoc',
+  'Research Engineers',
   'PhD Student',
   'Masters Student',
   'Associate Members',
@@ -18,6 +19,7 @@ export type PeopleSection = (typeof peopleSectionOrder)[number]
 export const peopleSectionLabels: Record<PeopleSection, string> = {
   'Principal Investigator': 'Principal Investigators',
   Postdoc: 'Postdocs',
+  'Research Engineers': 'Research Engineers',
   'PhD Student': 'PhD Students',
   'Masters Student': 'Masters Students',
   'Associate Members': 'Associate Members',
@@ -58,6 +60,8 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
   Faculty: 'Principal Investigator',
   'BOLD PI': 'Principal Investigator',
   Postdoc: 'Postdoc',
+  'Research Engineer': 'Research Engineers',
+  'Research Engineers': 'Research Engineers',
   'DPhil Student': 'PhD Student',
   'PhD student': 'PhD Student',
   'Master Student': 'Masters Student',
