@@ -36,6 +36,12 @@ without that access can verify the public embed contract, but cannot configure
 fields, conditional logic, file-upload rules, confirmation behavior, owner email
 notifications, or Google Sheets integration.
 
+Issue #24 comments report that the BOLD-owned account owns the form, Google
+Sheets integration is connected, and self email notifications are enabled to the
+same account acting as the intake email. Those owner-side settings are not
+exposed in the unauthenticated public payload, so they still need confirmation
+inside the Tally workspace before the issue can be treated as complete.
+
 ## Tally owner setup checklist
 
 Use this checklist in the Tally workspace before treating issue #24 as complete:
@@ -132,17 +138,30 @@ Operational requirements:
 
 ## Public verification on 2026-06-23
 
-The public Tally payload at `https://tally.so/embed/A7aa0W?route=phd-students`
-currently exposes:
+The public Tally payloads at these URLs currently expose the same visible form
+structure:
+
+- `https://tally.so/embed/A7aa0W?route=phd-students`
+- `https://tally.so/embed/A7aa0W?route=visiting-students`
+- `https://tally.so/embed/A7aa0W?route=masters-students`
+- `https://tally.so/embed/A7aa0W?route=research-engineers`
+- `https://tally.so/embed/A7aa0W?route=fellows`
+- `https://tally.so/embed/A7aa0W?route=collaborators`
+
+The exposed structure is:
 
 - form title: `BOLD Expression of Interest`
 - form ID: `A7aa0W`
 - workspace ID: `3NbqgN`
 - one hidden field named `route`
+- one empty visible text block
 - no visible baseline fields
 - no CV/resume upload field
 - no route-specific conditional sections
-- no public integration metadata
+- `integrations` is exposed as an empty array
 
-The unauthenticated Tally forms API returned `401 Unauthorized`, so completing
-the live form configuration requires Tally owner access.
+The unauthenticated Tally forms API at `https://api.tally.so/forms/A7aa0W`
+returned `401 Unauthorized`, so completing the live form configuration requires
+Tally owner access. The empty public embed `integrations` array is not enough to
+confirm whether owner-side Google Sheets sync or email notifications are
+configured.
