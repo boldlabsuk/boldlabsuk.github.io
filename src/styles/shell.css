@@ -47,12 +47,13 @@
 .site-header .brand {
   margin-left: -1.5px;
   opacity: 1;
-  transition: opacity 160ms ease;
+  visibility: visible;
 }
 
 .site-header .brand-hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 .brand .brand-logo {

@@ -1,78 +1,205 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { RefObject } from 'react'
 import { homepageContent } from '../../content'
+import {
+  getLogoAnimationTransform,
+  getLogoScrollProgress,
+  resolveLogoScrollRange,
+  type LogoAnimationRect,
+  type LogoScrollRange,
+} from './logoScrollAnimation'
 
-const stickyHeaderOffsetPx = 67
-const siteHeaderSelector = '.site-header'
-// Increase this to make the navbar logo fade in earlier.
-const navbarLogoRevealOffsetPx = 20
-// The logo SVG has transparent space below the visible BOLD lettering.
-const boldLogoTextVisualBottomRatio = 619 / 788
+type HomeLogoPhase = 'hero' | 'transition' | 'complete'
+
+type LogoAnimationMeasurement = {
+  range: LogoScrollRange
+  startRect: LogoAnimationRect
+  targetRect: LogoAnimationRect
+}
 
 export function HomePage({
-  onHeroLogoVisibilityChange,
+  headerLogoRef,
+  onLogoAnimationCompleteChange,
 }: {
-  onHeroLogoVisibilityChange?: (isVisible: boolean) => void
+  headerLogoRef: RefObject<HTMLImageElement | null>
+  onLogoAnimationCompleteChange?: (isComplete: boolean) => void
 }) {
   const heroLogoRef = useRef<HTMLImageElement>(null)
+  const overlayLogoRef = useRef<HTMLImageElement>(null)
+  const [logoPhase, setLogoPhase] = useState<HomeLogoPhase>('hero')
 
   useEffect(() => {
     const heroLogo = heroLogoRef.current
+    const headerLogo = headerLogoRef.current
+    const overlayLogo = overlayLogoRef.current
 
-    if (!heroLogo || !onHeroLogoVisibilityChange) {
+    if (!heroLogo || !headerLogo || !overlayLogo) {
       return
     }
 
+    const reducedMotionQuery = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    )
+    const siteHeader = headerLogo.closest('.site-header')
+    let measurement: LogoAnimationMeasurement | null = null
     let animationFrameId: number | null = null
+    let lastLogoPhase: HomeLogoPhase | null = null
 
-    const getStickyHeaderBottom = () => {
-      const siteHeader = document.querySelector(siteHeaderSelector)
-
-      return (
-        siteHeader?.getBoundingClientRect().bottom ?? stickyHeaderOffsetPx
-      )
+    const hideOverlayLogo = () => {
+      overlayLogo.style.opacity = '0'
+      overlayLogo.style.visibility = 'hidden'
     }
 
-    const updateLogoVisibilityFromRect = () => {
+    const setNextLogoPhase = (nextLogoPhase: HomeLogoPhase) => {
+      if (lastLogoPhase === nextLogoPhase) {
+        return
+      }
+
+      lastLogoPhase = nextLogoPhase
+      setLogoPhase(nextLogoPhase)
+      onLogoAnimationCompleteChange?.(nextLogoPhase === 'complete')
+    }
+
+    const measureLogoAnimation = () => {
+      const range = resolveLogoScrollRange({
+        widthPx: window.innerWidth,
+        heightPx: window.innerHeight,
+      })
+      const scrollY = window.scrollY
+      const heroRect = heroLogo.getBoundingClientRect()
+      const headerRect = headerLogo.getBoundingClientRect()
+
+      if (
+        heroRect.width <= 0 ||
+        heroRect.height <= 0 ||
+        headerRect.width <= 0 ||
+        headerRect.height <= 0
+      ) {
+        measurement = null
+        hideOverlayLogo()
+        return
+      }
+
+      measurement = {
+        range,
+        startRect: {
+          top: heroRect.top + scrollY - range.startDelayPx,
+          left: heroRect.left,
+          width: heroRect.width,
+          height: heroRect.height,
+        },
+        targetRect: {
+          top: headerRect.top,
+          left: headerRect.left,
+          width: headerRect.width,
+          height: headerRect.height,
+        },
+      }
+
+      overlayLogo.style.width = `${measurement.startRect.width}px`
+      overlayLogo.style.height = `${measurement.startRect.height}px`
+    }
+
+    const updateLogoAnimation = () => {
       animationFrameId = null
-      const rect = heroLogo.getBoundingClientRect()
-      const stickyHeaderBottom = getStickyHeaderBottom()
-      const visibleBoldTextBottom =
-        rect.top + rect.height * boldLogoTextVisualBottomRatio
 
-      onHeroLogoVisibilityChange(
-        visibleBoldTextBottom > stickyHeaderBottom + navbarLogoRevealOffsetPx &&
-          rect.top < window.innerHeight &&
-          rect.right > 0 &&
-          rect.left < window.innerWidth,
-      )
+      if (!measurement) {
+        measureLogoAnimation()
+      }
+
+      if (!measurement) {
+        setNextLogoPhase('hero')
+        return
+      }
+
+      const progress = getLogoScrollProgress(window.scrollY, measurement.range)
+
+      if (reducedMotionQuery.matches) {
+        hideOverlayLogo()
+        setNextLogoPhase(progress >= 1 ? 'complete' : 'hero')
+        return
+      }
+
+      if (progress <= 0) {
+        hideOverlayLogo()
+        setNextLogoPhase('hero')
+        return
+      }
+
+      if (progress >= 1) {
+        hideOverlayLogo()
+        setNextLogoPhase('complete')
+        return
+      }
+
+      const transform = getLogoAnimationTransform({
+        startRect: measurement.startRect,
+        targetRect: measurement.targetRect,
+        progress,
+      })
+
+      overlayLogo.style.opacity = '1'
+      overlayLogo.style.visibility = 'visible'
+      overlayLogo.style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`
+      setNextLogoPhase('transition')
     }
 
-    const scheduleLogoVisibilityUpdate = () => {
+    const scheduleLogoAnimationUpdate = () => {
       if (animationFrameId !== null) {
         return
       }
 
-      animationFrameId = window.requestAnimationFrame(updateLogoVisibilityFromRect)
+      animationFrameId = window.requestAnimationFrame(updateLogoAnimation)
     }
 
-    scheduleLogoVisibilityUpdate()
+    const scheduleLogoAnimationMeasure = () => {
+      measurement = null
+      scheduleLogoAnimationUpdate()
+    }
 
-    heroLogo.addEventListener('load', scheduleLogoVisibilityUpdate)
-    window.addEventListener('scroll', scheduleLogoVisibilityUpdate, {
+    const resizeObserver =
+      typeof ResizeObserver === 'undefined'
+        ? null
+        : new ResizeObserver(scheduleLogoAnimationMeasure)
+
+    measureLogoAnimation()
+    scheduleLogoAnimationUpdate()
+
+    heroLogo.addEventListener('load', scheduleLogoAnimationMeasure)
+    headerLogo.addEventListener('load', scheduleLogoAnimationMeasure)
+    window.addEventListener('scroll', scheduleLogoAnimationUpdate, {
       passive: true,
     })
-    window.addEventListener('resize', scheduleLogoVisibilityUpdate)
+    window.addEventListener('resize', scheduleLogoAnimationMeasure)
+    window.addEventListener('orientationchange', scheduleLogoAnimationMeasure)
+    reducedMotionQuery.addEventListener('change', scheduleLogoAnimationUpdate)
+    resizeObserver?.observe(heroLogo)
+    resizeObserver?.observe(headerLogo)
+
+    if (siteHeader) {
+      resizeObserver?.observe(siteHeader)
+    }
 
     return () => {
       if (animationFrameId !== null) {
         window.cancelAnimationFrame(animationFrameId)
       }
 
-      heroLogo.removeEventListener('load', scheduleLogoVisibilityUpdate)
-      window.removeEventListener('scroll', scheduleLogoVisibilityUpdate)
-      window.removeEventListener('resize', scheduleLogoVisibilityUpdate)
+      heroLogo.removeEventListener('load', scheduleLogoAnimationMeasure)
+      headerLogo.removeEventListener('load', scheduleLogoAnimationMeasure)
+      window.removeEventListener('scroll', scheduleLogoAnimationUpdate)
+      window.removeEventListener('resize', scheduleLogoAnimationMeasure)
+      window.removeEventListener('orientationchange', scheduleLogoAnimationMeasure)
+      reducedMotionQuery.removeEventListener(
+        'change',
+        scheduleLogoAnimationUpdate,
+      )
+      resizeObserver?.disconnect()
+      onLogoAnimationCompleteChange?.(false)
     }
-  }, [onHeroLogoVisibilityChange])
+  }, [headerLogoRef, onLogoAnimationCompleteChange])
+
+  const isHeroLogoVisuallyHidden = logoPhase !== 'hero'
 
   return (
     <>
@@ -80,7 +207,11 @@ export function HomePage({
         <div className="home-hero-brand">
           <img
             ref={heroLogoRef}
-            className="home-hero-logo"
+            className={
+              isHeroLogoVisuallyHidden
+                ? 'home-hero-logo home-hero-logo-hidden'
+                : 'home-hero-logo'
+            }
             src="/bold_full_vector_logo.svg"
             alt=""
           />
@@ -120,6 +251,13 @@ export function HomePage({
           </div>
         </div>
       </section>
+      <img
+        ref={overlayLogoRef}
+        className="home-logo-transition"
+        src="/bold_full_vector_logo.svg"
+        alt=""
+        aria-hidden="true"
+      />
 
       <section className="home-section bet-section" aria-labelledby="bet-title">
         <div className="home-section-header">

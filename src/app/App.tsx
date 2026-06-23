@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { HomePage } from '../features/home/HomePage'
 import { NotFoundPage } from '../features/not-found/NotFoundPage'
 import { OpportunitiesPage } from '../features/opportunities/OpportunitiesPage'
@@ -17,17 +17,21 @@ import '../styles/site.css'
 function App() {
   const route = useMemo(() => parseRoute(window.location.pathname), [])
   const isHomeRoute = route.name === 'home'
+  const headerLogoRef = useRef<HTMLImageElement | null>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isHomeHeroLogoVisible, setIsHomeHeroLogoVisible] =
-    useState(isHomeRoute)
+  const [isHomeLogoAnimationComplete, setIsHomeLogoAnimationComplete] =
+    useState(false)
 
   useEffect(() => {
     setDocumentMeta(getRouteMeta(route))
   }, [route])
 
-  const handleHomeHeroLogoVisibilityChange = useCallback((isVisible: boolean) => {
-    setIsHomeHeroLogoVisible(isVisible)
-  }, [])
+  const handleHomeLogoAnimationCompleteChange = useCallback(
+    (isComplete: boolean) => {
+      setIsHomeLogoAnimationComplete(isComplete)
+    },
+    [],
+  )
 
   return (
     <div className="app-shell">
@@ -36,14 +40,18 @@ function App() {
       </a>
       <SiteHeader
         activeSection={getActiveSection(route)}
-        showBrandLogo={!isHomeRoute || !isHomeHeroLogoVisible}
+        brandLogoRef={headerLogoRef}
+        showBrandLogo={!isHomeRoute || isHomeLogoAnimationComplete}
         isMenuOpen={isMenuOpen}
         onMenuToggle={() => setIsMenuOpen((open) => !open)}
       />
       <main id="main-content">
         {route.name === 'home' && (
           <HomePage
-            onHeroLogoVisibilityChange={handleHomeHeroLogoVisibilityChange}
+            headerLogoRef={headerLogoRef}
+            onLogoAnimationCompleteChange={
+              handleHomeLogoAnimationCompleteChange
+            }
           />
         )}
         {route.name === 'people' && !route.slug && <PeoplePage />}

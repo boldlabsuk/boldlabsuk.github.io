@@ -29,6 +29,25 @@
   margin: clamp(-36px, -3vw, -18px) 0 clamp(-62px, -5vw, -24px);
 }
 
+.home-hero-brand .home-hero-logo-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.home-logo-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 45;
+  max-width: none;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0) scale(1);
+  transform-origin: top left;
+  visibility: hidden;
+  opacity: 0;
+  will-change: transform;
+}
+
 .home-hero-subtitle {
   max-width: 100%;
   margin: 0;
@@ -330,4 +349,10 @@
 
 .direction-item p {
   max-width: 760px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-logo-transition {
+    display: none;
+  }
 }

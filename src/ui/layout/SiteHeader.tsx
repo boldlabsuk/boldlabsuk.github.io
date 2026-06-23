@@ -1,12 +1,15 @@
+import type { Ref } from 'react'
 import { navigation, siteMeta } from '../../content'
 
 export function SiteHeader({
   activeSection,
+  brandLogoRef,
   showBrandLogo,
   isMenuOpen,
   onMenuToggle,
 }: {
   activeSection: string
+  brandLogoRef?: Ref<HTMLImageElement>
   showBrandLogo: boolean
   isMenuOpen: boolean
   onMenuToggle: () => void
@@ -20,7 +23,12 @@ export function SiteHeader({
         href="/"
         tabIndex={showBrandLogo ? undefined : -1}
       >
-        <img className="brand-logo" src="/bold_full_vector_logo.svg" alt="" />
+        <img
+          ref={brandLogoRef}
+          className="brand-logo"
+          src="/bold_full_vector_logo.svg"
+          alt=""
+        />
       </a>
 
       <button
