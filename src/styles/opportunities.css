@@ -4,8 +4,16 @@
 }
 
 .opportunities-index-intro {
-  width: min(1120px, 100%);
+  width: min(1200px, 100%);
   margin: 0 auto;
+}
+
+.opportunities-index-intro h1 {
+  max-width: 1120px;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(32px, 4.5vw, 58px);
+  line-height: 1.02;
 }
 
 .opportunity-route-index {
@@ -39,18 +47,6 @@
 
 .opportunity-route-index-main p {
   color: var(--muted);
-}
-
-.opportunity-route-status {
-  width: fit-content;
-  padding: 5px 9px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--ink-soft);
-  font-size: 12px;
-  font-weight: 850;
-  line-height: 1;
-  text-transform: uppercase;
 }
 
 .opportunity-route-index-entry .button {

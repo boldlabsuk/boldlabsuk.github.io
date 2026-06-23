@@ -8,7 +8,6 @@ import type {
   ExpressionOfInterestFormConfig,
   OpportunityRoute,
 } from '../../content'
-import { SectionHeader } from '../../ui/layout/SectionHeader'
 
 const tallyEmbedScriptId = 'tally-embed-script'
 const tallyEmbedScriptSrc = 'https://tally.so/widgets/embed.js'
@@ -37,12 +36,7 @@ export function OpportunitiesPage({
   return (
     <section className="section-band page-content opportunities-index-page">
       <div className="opportunities-index-intro">
-        <SectionHeader
-          eyebrow="Opportunities"
-          title="Express interest in joining, visiting, working with, or collaborating with BOLD."
-          titleElement="h1"
-          description="BOLD reviews serious Expressions of Interest through a small set of approved Opportunity Routes. Choose the route that best matches the relationship you want to explore; detailed guidance and any Formal Application Path boundaries live on this Opportunities page."
-        />
+        <h1>Interested in joining, visiting, or collaborating with BOLD?</h1>
       </div>
 
       <div className="opportunity-route-index" aria-label="Opportunity Routes">
@@ -76,7 +70,6 @@ function OpportunityRouteIndexEntry({
     <article className="opportunity-route-index-entry" id={route.slug}>
       <div className="opportunity-route-index-main">
         <div className="opportunity-route-index-heading">
-          <p className="opportunity-route-status">{route.status}</p>
           <h3>{route.title}</h3>
         </div>
         <p>{route.shortSummary}</p>

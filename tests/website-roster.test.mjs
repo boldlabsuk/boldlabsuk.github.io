@@ -836,7 +836,7 @@ test('Every Website Roster Person resolves to an existing generated public image
   await Promise.all(
     people.map(async (person) => {
       assert.ok(person.image, `${person.name} is missing a profile image URL`)
-      assert.match(person.image, /^\/profile-assets\/[a-z0-9-]+\.webp$/)
+      assert.match(person.image, /^\/profile-assets\/[A-Za-z0-9-]+\.(?:jpe?g|png|webp)$/)
       await access(join(process.cwd(), 'public', person.image))
     }),
   )
@@ -916,7 +916,7 @@ test('Full Website Roster includes the missing active Foerster People once in th
       name,
       role,
       peopleSection,
-      image: `/profile-assets/${slug}.webp`,
+      image: expectedProfileAssetUrl(slug),
     })),
   )
 
@@ -1093,7 +1093,7 @@ test('Foerster members page comparison is represented in the Website Roster', ()
         rosterSlug,
         name: expectedName,
         peopleSection,
-        image: `/profile-assets/${rosterSlug}.webp`,
+        image: expectedProfileAssetUrl(rosterSlug),
       }),
     ),
   )
@@ -1167,6 +1167,30 @@ test('Foerster members page comparison is represented in the Website Roster', ()
     ),
   )
 })
+
+function expectedProfileAssetUrl(slug) {
+  if (slug === 'ani-calinescu') {
+    return '/profile-assets/ani-calinescu-new.jpg'
+  }
+
+  if (slug === 'antoine-cully') {
+    return '/profile-assets/Antoine-Cully-new.png'
+  }
+
+  if (slug === 'jakob-foerster') {
+    return '/profile-assets/jakob-foerster-new.png'
+  }
+
+  if (slug === 'ravi-hammond') {
+    return '/profile-assets/ravi-hammond.png'
+  }
+
+  if (slug === 'shimon-whiteson') {
+    return '/profile-assets/shimon-whiteson-new.jpg'
+  }
+
+  return `/profile-assets/${slug}.webp`
+}
 
 test('Full Website Roster builds the real sectioned People Directory', () => {
   const directory = buildPeopleDirectoryViewModel({

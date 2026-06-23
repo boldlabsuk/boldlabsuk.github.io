@@ -30,7 +30,12 @@ const fallbackOpportunitiesIndex = renderToStaticMarkup(
 
 assert.match(
   opportunitiesIndex,
-  /<h1>Express interest in joining, visiting, working with, or collaborating with BOLD\.<\/h1>/,
+  /<h1>Interested in joining, visiting, or collaborating with BOLD\?<\/h1>/,
+)
+assert.doesNotMatch(opportunitiesIndex, />Opportunities<\/p>/)
+assert.doesNotMatch(
+  opportunitiesIndex,
+  /BOLD reviews serious Expressions of Interest/,
 )
 
 for (const route of opportunityRoutes) {
@@ -48,7 +53,7 @@ for (const route of opportunityRoutes) {
     opportunitiesIndex,
     new RegExp(`href="${renderedHref}"[^>]*>${escapeRegExp(renderedAction)}</a>`),
   )
-  assert.match(opportunitiesIndex, new RegExp(`>${escapeRegExp(route.status)}<`))
+  assert.doesNotMatch(opportunitiesIndex, new RegExp(`>${escapeRegExp(route.status)}<`))
   assert.doesNotMatch(opportunitiesIndex, new RegExp(escapeRegExp(escapeHtml(route.location))))
   assert.doesNotMatch(opportunitiesIndex, new RegExp(escapeRegExp(escapeHtml(route.timing))))
   assert.doesNotMatch(
@@ -67,7 +72,7 @@ for (const route of opportunityRoutes) {
   )
 }
 
-assert.match(opportunitiesIndex, /this Opportunities page/)
+assert.doesNotMatch(opportunitiesIndex, /this Opportunities page/)
 assert.match(opportunitiesIndex, /id="express-interest"/)
 assert.match(opportunitiesIndex, /aria-label="Expression of Interest form"/)
 assert.match(opportunitiesIndex, /aria-label="Select a role"/)

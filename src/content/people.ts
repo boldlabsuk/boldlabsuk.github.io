@@ -325,6 +325,26 @@ function slugify(value: string) {
 }
 
 export function buildProfileAssetUrl(personSlug: string) {
+  if (personSlug === 'ani-calinescu') {
+    return '/profile-assets/ani-calinescu-new.jpg'
+  }
+
+  if (personSlug === 'antoine-cully') {
+    return '/profile-assets/Antoine-Cully-new.png'
+  }
+
+  if (personSlug === 'jakob-foerster') {
+    return '/profile-assets/jakob-foerster-new.png'
+  }
+
+  if (personSlug === 'ravi-hammond') {
+    return '/profile-assets/ravi-hammond.png'
+  }
+
+  if (personSlug === 'shimon-whiteson') {
+    return '/profile-assets/shimon-whiteson-new.jpg'
+  }
+
   return `/profile-assets/${personSlug}.webp`
 }
 

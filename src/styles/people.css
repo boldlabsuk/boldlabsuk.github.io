@@ -104,6 +104,12 @@
   background: var(--wash);
 }
 
+.avatar-uncropped {
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: contain;
+}
+
 .avatar-large {
   border-radius: 8px;
 }

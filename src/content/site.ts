@@ -8,7 +8,7 @@ export const siteMeta = {
     'A focused, critical-mass AI research lab across Oxford, UCL, and Imperial pursuing fundamental AI breakthroughs from Britain.',
   missionPhrase: 'Building the next AI paradigm.',
   mission:
-    'BOLD brings key researchers in fundamental AI from Oxford, UCL, and Imperial into a focused, critical-mass UK AI Research Lab dedicated to driving breakthroughs in alternatives to backpropagation, human-centric learning, and embodiment.',
+    'BOLD brings together key researchers in fundamental AI from Oxford, UCL, and Imperial College into one focused, critical-mass UK AI Research Lab, dedicated to paradigm breaking discoveries in fundamental AI. Our initial research pillars are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied AI.',
   identity:
     'Our lab brings together three leading university AI labs into a single collaborative research environment. We combine academic depth, engineering excellence, and long-term scientific ambition.',
   statement:
