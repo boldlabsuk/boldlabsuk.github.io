@@ -131,6 +131,7 @@ function ExpressionOfInterestPanel({
 function FormGuidance({ route }: { route: OpportunityRoute }) {
   return (
     <>
+      {route.formPrompt ? <p>{route.formPrompt}</p> : null}
       <p>{getCvGuidance(route)}</p>
       <p>
         We review Expressions of Interest periodically and contact people if
@@ -143,8 +144,8 @@ function FormGuidance({ route }: { route: OpportunityRoute }) {
 
 function getCvGuidance(route: OpportunityRoute) {
   return route.slug === 'collaborators'
-    ? 'For collaborators, a PDF CV/resume is optional; proposal details, relevant people, and links can be more useful.'
-    : 'Prepare a PDF CV/resume before you submit; the intake form is PDF-only for CV/resume uploads.'
+    ? 'For collaborators, a PDF CV/resume is optional; proposal details, relevant people, and links can be more useful. If you upload a CV/resume, the intake form accepts PDF only, up to 10 MB per file.'
+    : 'A PDF CV/resume is required before you submit; the intake form accepts PDF only for CV/resume uploads, up to 10 MB per file.'
 }
 
 function getPlaceFactLabel(slug: string) {

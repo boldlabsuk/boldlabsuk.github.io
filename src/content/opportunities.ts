@@ -19,12 +19,12 @@ export const opportunityRoutes: OpportunityRoute[] = [
     location: 'Oxford, UCL, Imperial, or affiliated BOLD groups',
     timing: 'Formal programme timelines vary by university and department',
     formalApplicationPath:
-      'A BOLD Expression of Interest is not a PhD application; formal admission remains through the relevant university or department.',
+      'Expressing interest in BOLD is not a PhD application; formal admission remains through the relevant university or department.',
     prefillValue: 'phd-students',
     primaryActionLabel: 'Express interest',
     whoThisIsFor: [
       'Prospective doctoral students developing a focused AI research agenda.',
-      'Applicants considering BOLD-aligned supervisors, groups, or programmes.',
+      'Applicants considering possible supervisors or groups connected to BOLD without needing to choose from a fixed list.',
       'Candidates preparing for or already navigating formal university processes.',
     ],
     whatWeLookFor: [
@@ -34,6 +34,8 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Share an Expression of Interest so BOLD can review research fit and possible supervision alignment. You may still need to complete university, departmental, or funding applications separately.',
+    formPrompt:
+      'Useful responses mention research interests, current or proposed programme timing, possible supervisors or groups, and why BOLD is the right fit.',
     formComingSoon:
       'The embedded Expression of Interest form for PhD Students is being prepared. Check back soon to share your fit statement, timing, links, and CV.',
     metadata: {
@@ -54,7 +56,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     location: 'In-person visit with a BOLD host where capacity allows',
     timing: 'Proposed visit dates and duration should be included',
     formalApplicationPath:
-      'An Expression of Interest helps assess host fit; any institutional visiting process, funding approval, or placement paperwork remains separate.',
+      'Expressing interest helps BOLD assess host fit; any institutional visiting process, funding approval, or placement paperwork remains separate.',
     prefillValue: 'visiting-students',
     primaryActionLabel: 'Express interest',
     whoThisIsFor: [
@@ -69,6 +71,8 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Use the Expression of Interest to outline the visit, project, timing, and possible host fit. Formal visiting arrangements may still need to be handled through institutional processes.',
+    formPrompt:
+      'Useful responses include your current institution and programme, proposed visit dates and duration, a focused project idea, and any possible BOLD host or group.',
     formComingSoon:
       'The embedded Expression of Interest form for Visiting Students is being prepared. Check back soon to share proposed dates, project shape, host fit, links, and CV.',
     metadata: {
@@ -89,7 +93,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     location: 'BOLD groups where supervision capacity is available',
     timing: 'Project windows depend on programme requirements and supervisor capacity',
     formalApplicationPath:
-      'A BOLD Expression of Interest does not replace your university programme, module, or project allocation process.',
+      'Expressing interest in BOLD does not replace your university programme, module, or project allocation process.',
     prefillValue: 'masters-students',
     primaryActionLabel: 'Express interest',
     whoThisIsFor: [
@@ -104,6 +108,8 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Submit an Expression of Interest so BOLD can understand your programme, project window, and fit. Formal project allocation or academic approval remains with the relevant programme.',
+    formPrompt:
+      "Useful responses include your current Master's programme, project window, relevant coursework or prior projects, and the project shape you are seeking.",
     formComingSoon:
       "The embedded Expression of Interest form for Master's Students is being prepared. Check back soon to share your programme, project window, technical interests, links, and CV.",
     metadata: {
