@@ -12,7 +12,6 @@ export const peopleSectionOrder = [
   'PhD Student',
   'Masters Student',
   'Associate Members',
-  'Alumni',
 ] as const
 
 export type PeopleSection = (typeof peopleSectionOrder)[number]
@@ -25,7 +24,6 @@ export const peopleSectionLabels: Record<PeopleSection, string> = {
   'PhD Student': 'PhD Students',
   'Masters Student': 'Masters Students',
   'Associate Members': 'Associate Members',
-  Alumni: 'Alumni',
 }
 
 export type PeopleDirectoryFilters = {
@@ -73,11 +71,15 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
 }
 
 export function getPeopleFilterOptions() {
+  const directoryPeople = people.filter((person) => getPeopleSection(person) !== null)
+
   return {
     sections: [...peopleSectionOrder],
-    areas: unique(people.flatMap((person) => person.researchAreas)),
+    areas: unique(directoryPeople.flatMap((person) => person.researchAreas)),
     affiliations: unique(
-      people.flatMap((person) => (person.affiliation ? [person.affiliation] : [])),
+      directoryPeople.flatMap((person) =>
+        person.affiliation ? [person.affiliation] : [],
+      ),
     ),
   }
 }
@@ -89,8 +91,13 @@ export function buildPeopleDirectoryViewModel({
   people: Person[]
   filters: PeopleDirectoryFilters
 }): PeopleDirectoryViewModel {
-  const matchedPeople = people.filter((person) => {
+  const directoryPeople = people.flatMap((person) => {
     const peopleSection = getPeopleSection(person)
+
+    return peopleSection ? [{ person, peopleSection }] : []
+  })
+
+  const matchedPeople = directoryPeople.filter(({ person, peopleSection }) => {
     const matchesQuery = person.name
       .toLowerCase()
       .includes(filters.query.trim().toLowerCase())
@@ -111,8 +118,8 @@ export function buildPeopleDirectoryViewModel({
       title: section,
       label: peopleSectionLabels[section],
       people: matchedPeople
-        .filter((person) => getPeopleSection(person) === section)
-        .map((person) => ({
+        .filter((directoryPerson) => directoryPerson.peopleSection === section)
+        .map(({ person }) => ({
           slug: person.slug,
           name: person.name,
           role: person.role,
@@ -127,14 +134,14 @@ export function buildPeopleDirectoryViewModel({
 
   return {
     sections,
-    totalPeople: people.length,
+    totalPeople: directoryPeople.length,
     visiblePeopleCount: matchedPeople.length,
   }
 }
 
 export function getPeopleSection(person: Pick<Person, 'group' | 'alumni'>) {
   if (person.alumni) {
-    return 'Alumni'
+    return null
   }
 
   return groupToPeopleSection[person.group] ?? 'Associate Members'

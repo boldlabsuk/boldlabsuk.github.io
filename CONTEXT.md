@@ -109,11 +109,11 @@ A public profile entry for someone associated with the lab.
 _Avoid_: Member record
 
 **Website Roster**:
-The set of people intended to appear on the public Our People page. It contains people from the main spreadsheet sheet with profile pictures, excluding Slack-only additions and rows explicitly marked not to list on the BOLD website.
+The source-backed set of people imported into website content for public people data and attribution. It contains people from the main spreadsheet sheet with profile pictures, excluding Slack-only additions and rows explicitly marked not to list on the BOLD website; entries marked as alumni are retained in content but omitted from the public Our People directory.
 _Avoid_: All spreadsheet rows, Slack additions
 
 **People Section**:
-A public grouping on the Our People page. The canonical People Sections are Principal Investigator, Adjunct Faculty, Postdoc, Research Engineers, PhD Student, Masters Student, Associate Members, and Alumni; every person belongs to exactly one People Section in this taxonomy, while public section headings may use plural display labels.
+A public grouping on the Our People page. The canonical People Sections are Principal Investigator, Adjunct Faculty, Postdoc, Research Engineers, PhD Student, Masters Student, and Associate Members; alumni-marked people do not have a public directory People Section, while public section headings may use plural display labels.
 _Avoid_: Role filter, group bucket
 
 **Person Listing**:

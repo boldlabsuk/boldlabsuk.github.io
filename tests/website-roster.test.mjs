@@ -7,6 +7,7 @@ import { join } from 'node:path'
 import { buildWebsiteRoster, people } from '../src/content/people.ts'
 import {
   buildPeopleDirectoryViewModel,
+  getPrimaryPersonLink,
   peopleSectionOrder,
 } from '../src/domain/people.ts'
 import { allFilterValue } from '../src/domain/shared.ts'
@@ -222,7 +223,6 @@ test('Website Roster derives public Person Listings from central source rows', (
     'PhD Student',
     'Masters Student',
     'Associate Members',
-    'Alumni',
   ])
   assert.deepEqual(
     directory.sections.map((section) => [
@@ -264,7 +264,7 @@ test('Website Roster maps unsupported profile source formats to generated web-sa
   )
 })
 
-test('Website Roster carries explicit source alumni markers into the Alumni People Section', () => {
+test('Website Roster retains explicit source alumni markers outside the public directory', () => {
   const roster = buildWebsiteRoster([
     {
       source: 'main',
@@ -302,7 +302,9 @@ test('Website Roster carries explicit source alumni markers into the Alumni Peop
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(listings.length, roster.length)
+  assert.equal(roster.find((person) => person.slug === 'flagged-alumni')?.alumni, true)
+  assert.equal(listings.length, 2)
+  assert.equal(directory.totalPeople, 2)
   assert.deepEqual(
     directory.sections.map((section) => [
       section.title,
@@ -311,7 +313,6 @@ test('Website Roster carries explicit source alumni markers into the Alumni Peop
     [
       ['Principal Investigator', ['current-pi']],
       ['Associate Members', ['unmarked-alumni-role']],
-      ['Alumni', ['flagged-alumni']],
     ],
   )
 })
@@ -376,16 +377,15 @@ test('Website Roster only creates supplemental Alumni from the explicit alumni s
       ['explicit-alumni', { github: 'https://github.com/explicit-alumni' }],
     ],
   )
+  assert.equal(roster.find((person) => person.slug === 'explicit-alumni')?.alumni, true)
   assert.deepEqual(
     directory.sections.map((section) => [
       section.title,
       section.people.map((listing) => listing.slug),
     ]),
-    [
-      ['PhD Student', ['current-linked-person']],
-      ['Alumni', ['explicit-alumni']],
-    ],
+    [['PhD Student', ['current-linked-person']]],
   )
+  assert.equal(directory.totalPeople, 1)
 })
 
 test('Website Roster parses public profile links from source social-links text', () => {
@@ -972,7 +972,7 @@ test('Full Website Roster includes the missing active Foerster People once in th
   )
 })
 
-test('Full Website Roster includes scoped Foerster alumni once in Alumni without duplicating Kang Li', () => {
+test('Full Website Roster retains scoped Foerster alumni without listing them publicly', () => {
   const directory = buildPeopleDirectoryViewModel({
     people,
     filters: emptyFilters,
@@ -1012,25 +1012,31 @@ test('Full Website Roster includes scoped Foerster alumni once in Alumni without
     [1, 1, 1, 1, 1, 1, 1],
   )
   assert.deepEqual(
-    scopedFoersterAlumni.map(([slug, name, role]) => ({
-      slug,
-      name: listingBySlug[slug]?.name,
-      role: listingBySlug[slug]?.role,
-      peopleSection: listingBySlug[slug]?.peopleSection,
-      image: listingBySlug[slug]?.image,
-    })),
+    scopedFoersterAlumni.map(([slug]) => {
+      const person = people.find((person) => person.slug === slug)
+
+      return {
+        slug,
+        name: person?.name,
+        role: person?.role,
+        alumni: person?.alumni,
+        image: person?.image,
+        listed: Boolean(listingBySlug[slug]),
+      }
+    }),
     scopedFoersterAlumni.map(([slug, name, role]) => ({
       slug,
       name,
       role,
-      peopleSection: 'Alumni',
+      alumni: true,
       image: `/profile-assets/${slug}.webp`,
+      listed: false,
     })),
   )
   assert.equal(people.filter((person) => person.slug === 'kang-li').length, 1)
   assert.equal(listingBySlug['kang-li']?.peopleSection, 'PhD Student')
   assert.equal(
-    listingBySlug['chris-lu']?.primaryPersonLink,
+    getPrimaryPersonLink(people.find((person) => person.slug === 'chris-lu')),
     'https://chrislu.page',
   )
   assert.deepEqual(people.find((person) => person.slug === 'noah-sarfati')?.links, {
@@ -1048,6 +1054,15 @@ test('Foerster members page comparison is represented in the Website Roster', ()
       .flatMap((section) => section.people)
       .map((listing) => [listing.slug, listing]),
   )
+  const rosterBySlug = Object.fromEntries(
+    people.map((person) => [person.slug, person]),
+  )
+  const publicFoersterRows = foersterMembersPageFixture.filter(
+    ([, , , , peopleSection]) => peopleSection !== 'Alumni',
+  )
+  const alumniFoersterRows = foersterMembersPageFixture.filter(
+    ([, , , , peopleSection]) => peopleSection === 'Alumni',
+  )
 
   assert.equal(foersterMembersPageFixture.length, 51)
   assert.deepEqual(
@@ -1057,7 +1072,7 @@ test('Foerster members page comparison is represented in the Website Roster', ()
     Array.from({ length: foersterMembersPageFixture.length }, () => 1),
   )
   assert.deepEqual(
-    foersterMembersPageFixture.map(
+    publicFoersterRows.map(
       ([sourceSection, sourceName, rosterSlug, expectedName, peopleSection]) => {
         const listing = listingBySlug[rosterSlug]
 
@@ -1071,7 +1086,7 @@ test('Foerster members page comparison is represented in the Website Roster', ()
         }
       },
     ),
-    foersterMembersPageFixture.map(
+    publicFoersterRows.map(
       ([sourceSection, sourceName, rosterSlug, expectedName, peopleSection]) => ({
         sourceSection,
         sourceName,
@@ -1079,6 +1094,34 @@ test('Foerster members page comparison is represented in the Website Roster', ()
         name: expectedName,
         peopleSection,
         image: `/profile-assets/${rosterSlug}.webp`,
+      }),
+    ),
+  )
+  assert.deepEqual(
+    alumniFoersterRows.map(
+      ([sourceSection, sourceName, rosterSlug, expectedName]) => {
+        const person = rosterBySlug[rosterSlug]
+
+        return {
+          sourceSection,
+          sourceName,
+          rosterSlug,
+          name: person?.name,
+          alumni: person?.alumni,
+          image: person?.image,
+          listed: Boolean(listingBySlug[rosterSlug]),
+        }
+      },
+    ),
+    alumniFoersterRows.map(
+      ([sourceSection, sourceName, rosterSlug, expectedName]) => ({
+        sourceSection,
+        sourceName,
+        rosterSlug,
+        name: expectedName,
+        alumni: true,
+        image: `/profile-assets/${rosterSlug}.webp`,
+        listed: false,
       }),
     ),
   )
@@ -1108,7 +1151,7 @@ test('Foerster members page comparison is represented in the Website Roster', ()
       Object.entries(foersterExpectedPublicLinkTypesBySlug).map(
         ([slug, expectedPublicLinkTypes]) => [
           slug,
-          Object.keys(listingBySlug[slug]?.links ?? {})
+          Object.keys(rosterBySlug[slug]?.links ?? {})
             .filter((linkType) => expectedPublicLinkTypes.includes(linkType))
             .sort(),
         ],
@@ -1132,8 +1175,10 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(directory.totalPeople, 96)
-  assert.equal(directory.visiblePeopleCount, 96)
+  assert.equal(people.length, 96)
+  assert.equal(people.filter((person) => person.alumni).length, 7)
+  assert.equal(directory.totalPeople, 89)
+  assert.equal(directory.visiblePeopleCount, 89)
   assert.deepEqual(
     Object.fromEntries(
       directory.sections.map((section) => [section.title, section.people.length]),
@@ -1146,10 +1191,9 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'PhD Student': 53,
       'Masters Student': 6,
       'Associate Members': 13,
-      Alumni: 7,
     },
   )
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 96)
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 89)
   assert.deepEqual(
     directory.sections.map((section) => section.title),
     [
@@ -1160,8 +1204,15 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'PhD Student',
       'Masters Student',
       'Associate Members',
-      'Alumni',
     ],
+  )
+  const alumniSlugs = new Set(
+    people.filter((person) => person.alumni).map((person) => person.slug),
+  )
+
+  assert.equal(
+    listings.some((listing) => alumniSlugs.has(listing.slug)),
+    false,
   )
   assert.ok(
     listings.every(
@@ -1282,7 +1333,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ],
   )
   assert.equal(matchingDirectory.visiblePeopleCount, 3)
-  assert.equal(matchingDirectory.totalPeople, 96)
+  assert.equal(matchingDirectory.totalPeople, 89)
 
   assert.deepEqual(
     areaDirectory.sections.map((section) => [
@@ -1365,9 +1416,9 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [],
   )
   assert.equal(combinedDirectory.visiblePeopleCount, 0)
-  assert.equal(combinedDirectory.totalPeople, 96)
+  assert.equal(combinedDirectory.totalPeople, 89)
 
   assert.deepEqual(emptyDirectory.sections, [])
   assert.equal(emptyDirectory.visiblePeopleCount, 0)
-  assert.equal(emptyDirectory.totalPeople, 96)
+  assert.equal(emptyDirectory.totalPeople, 89)
 })

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { people } from '../src/content.ts'
 import {
   buildPeopleDirectoryViewModel,
+  getPeopleSection,
   getPeopleFilterOptions,
   peopleSectionOrder,
 } from '../src/domain/people.ts'
@@ -93,20 +94,23 @@ test('People Directory exposes plural public People Section headings', () => {
       'PhD Students',
       'Masters Students',
       'Associate Members',
-      'Alumni',
     ],
   )
 })
 
-test('People Directory maps every Person into exactly one People Section', () => {
+test('People Directory maps every public directory Person into exactly one People Section', () => {
   const directory = buildPeopleDirectoryViewModel({
     people,
     filters: emptyFilters,
   })
   const listings = directory.sections.flatMap((section) => section.people)
+  const publicDirectoryPeople = people.filter((person) => !person.alumni)
 
-  assert.equal(listings.length, people.length)
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, people.length)
+  assert.equal(listings.length, publicDirectoryPeople.length)
+  assert.equal(
+    new Set(listings.map((listing) => listing.slug)).size,
+    publicDirectoryPeople.length,
+  )
   assert.deepEqual(
     Object.fromEntries(
       peopleSectionOrder.map((section) => [
@@ -122,7 +126,6 @@ test('People Directory maps every Person into exactly one People Section', () =>
       'PhD Student': 53,
       'Masters Student': 6,
       'Associate Members': 13,
-      Alumni: 7,
     },
   )
   assert.deepEqual(
@@ -152,30 +155,31 @@ test('People Directory maps every Person into exactly one People Section', () =>
   )
 })
 
-test('People Directory uses explicit Alumni flags without mapping current roles to Alumni', () => {
+test('People Directory treats explicit alumni flags as non-directory people', () => {
+  const alumniFlaggedPi = {
+    slug: 'alumni-flagged-pi',
+    name: 'Alumni Flagged PI',
+    role: 'Former PI',
+    group: 'BOLD PI',
+    bio: 'Former lab lead.',
+    researchAreas: ['Evaluation'],
+    alumni: true,
+  }
+  const alumniGroupMember = {
+    slug: 'alumni-group-member',
+    name: 'Alumni Group Member',
+    role: 'Former member',
+    group: 'Alumni',
+    bio: 'Former lab member.',
+    researchAreas: ['Evaluation'],
+  }
   const directory = buildPeopleDirectoryViewModel({
-    people: [
-      {
-        slug: 'alumni-flagged-pi',
-        name: 'Alumni Flagged PI',
-        role: 'Former PI',
-        group: 'BOLD PI',
-        bio: 'Former lab lead.',
-        researchAreas: ['Evaluation'],
-        alumni: true,
-      },
-      {
-        slug: 'alumni-group-member',
-        name: 'Alumni Group Member',
-        role: 'Former member',
-        group: 'Alumni',
-        bio: 'Former lab member.',
-        researchAreas: ['Evaluation'],
-      },
-    ],
+    people: [alumniFlaggedPi, alumniGroupMember],
     filters: emptyFilters,
   })
 
+  assert.equal(getPeopleSection(alumniFlaggedPi), null)
+  assert.equal(getPeopleSection(alumniGroupMember), 'Associate Members')
   assert.deepEqual(
     directory.sections.map((section) => [
       section.title,
@@ -186,12 +190,10 @@ test('People Directory uses explicit Alumni flags without mapping current roles 
         'Associate Members',
         ['alumni-group-member'],
       ],
-      [
-        'Alumni',
-        ['alumni-flagged-pi'],
-      ],
     ],
   )
+  assert.equal(directory.totalPeople, 1)
+  assert.equal(directory.visiblePeopleCount, 1)
 })
 
 test('People Directory preserves content order within each People Section', () => {
@@ -252,6 +254,7 @@ test('People Directory filter options expose public People Sections and remainin
   const options = getPeopleFilterOptions()
 
   assert.deepEqual(options.sections, peopleSectionOrder)
+  assert.ok(!options.sections.includes('Alumni'))
   assert.ok(options.areas.includes('Reinforcement Learning'))
   assert.ok(options.affiliations.includes('University of Oxford'))
 })
@@ -272,11 +275,10 @@ test('People Directory search filters Person Listings while preserving People Se
     ]),
     [
       ['Principal Investigator', ['alex-principal']],
-      ['Alumni', ['alex-alumna']],
     ],
   )
-  assert.equal(directory.visiblePeopleCount, 2)
-  assert.equal(directory.totalPeople, filterFixturePeople.length)
+  assert.equal(directory.visiblePeopleCount, 1)
+  assert.equal(directory.totalPeople, 4)
 })
 
 test('People Directory People Section filter hides empty People Sections', () => {
@@ -320,6 +322,30 @@ test('People Directory research-area filter keeps grouped matching Person Listin
   assert.equal(directory.visiblePeopleCount, 2)
 })
 
+test('People Directory excludes alumni before research-area and affiliation filters', () => {
+  const areaDirectory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      area: 'Governance',
+    },
+  })
+  const affiliationDirectory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      affiliation: 'Public Interest AI Network',
+    },
+  })
+
+  assert.deepEqual(areaDirectory.sections, [])
+  assert.equal(areaDirectory.visiblePeopleCount, 0)
+  assert.equal(areaDirectory.totalPeople, 4)
+  assert.deepEqual(affiliationDirectory.sections, [])
+  assert.equal(affiliationDirectory.visiblePeopleCount, 0)
+  assert.equal(affiliationDirectory.totalPeople, 4)
+})
+
 test('People Directory affiliation filter keeps grouped matching Person Listings', () => {
   const directory = buildPeopleDirectoryViewModel({
     people: filterFixturePeople,
@@ -353,7 +379,7 @@ test('People Directory returns a no-results model when active filters match nobo
 
   assert.deepEqual(directory.sections, [])
   assert.equal(directory.visiblePeopleCount, 0)
-  assert.equal(directory.totalPeople, filterFixturePeople.length)
+  assert.equal(directory.totalPeople, 4)
 })
 
 test('People Directory exposes Primary Person Link priority for Person Listings', () => {
