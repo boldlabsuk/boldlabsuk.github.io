@@ -128,6 +128,12 @@ export type OpportunityRoute = {
   }
 }
 
+export type ExpressionOfInterestFormConfig = {
+  formUrl?: string
+  formId?: string
+  routeParameterName: string
+}
+
 export type InvolvementRoute = {
   id: string
   title: string

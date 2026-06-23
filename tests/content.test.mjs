@@ -3,6 +3,8 @@ import assert from 'node:assert/strict'
 
 import {
   homepageContent,
+  expressionOfInterestFormConfig,
+  getExpressionOfInterestEmbedUrl,
   involvementRoutes,
   navigation,
   newsPosts,
@@ -176,6 +178,28 @@ test('Opportunity Routes have stable labels, parsing, and metadata', () => {
   assert.deepEqual(parseRoute('/opportunities/not-a-route'), {
     name: 'not-found',
   })
+})
+
+test('Opportunity Routes share one Tally form with route-specific prefill values', () => {
+  assert.equal(
+    expressionOfInterestFormConfig.formUrl,
+    'https://tally.so/r/A7aa0W',
+  )
+  assert.equal(expressionOfInterestFormConfig.routeParameterName, 'route')
+
+  assert.deepEqual(
+    opportunityRoutes.map((route) =>
+      getExpressionOfInterestEmbedUrl(route, expressionOfInterestFormConfig),
+    ),
+    [
+      'https://tally.so/embed/A7aa0W?route=phd-students',
+      'https://tally.so/embed/A7aa0W?route=visiting-students',
+      'https://tally.so/embed/A7aa0W?route=masters-students',
+      'https://tally.so/embed/A7aa0W?route=research-engineers',
+      'https://tally.so/embed/A7aa0W?route=fellows',
+      'https://tally.so/embed/A7aa0W?route=collaborators',
+    ],
+  )
 })
 
 test('related content omits removed placeholder Person names and unmapped Person IDs', () => {
