@@ -106,6 +106,28 @@ export type Opportunity = {
   contactEmail?: string
 }
 
+export type OpportunityRoute = {
+  slug: string
+  title: string
+  shortTitle: string
+  shortSummary: string
+  positioning: string
+  status: string
+  location?: string
+  timing?: string
+  formalApplicationPath: string
+  prefillValue: string
+  primaryActionLabel: 'Express interest'
+  whoThisIsFor: string[]
+  whatWeLookFor: string[]
+  howThisWorks: string
+  formComingSoon: string
+  metadata: {
+    title: string
+    description: string
+  }
+}
+
 export type InvolvementRoute = {
   id: string
   title: string

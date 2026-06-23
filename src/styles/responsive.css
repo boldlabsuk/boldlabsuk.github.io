@@ -60,6 +60,7 @@
   .identity-section,
   .home-section-header,
   .detail-layout,
+  .opportunity-route-layout,
   .contact-section,
   .footer-inner,
   .footer-bottom {
@@ -77,7 +78,8 @@
   .paper-card-grid,
   .opportunity-link-grid,
   .involvement-grid,
-  .current-opportunity-list {
+  .current-opportunity-list,
+  .opportunity-facts {
     grid-template-columns: 1fr;
   }
 
@@ -200,6 +202,14 @@
   .current-opportunity-card dl div {
     grid-template-columns: 1fr;
     gap: 2px;
+  }
+
+  .opportunity-facts div {
+    min-height: auto;
+  }
+
+  .expression-interest-panel {
+    position: static;
   }
 }
 
