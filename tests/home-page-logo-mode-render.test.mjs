@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
 
-test('Home Page renders the logo overlay only in scroll animation mode', () => {
+test('Home Page renders the static hero logo without the transition overlay', () => {
   const result = spawnSync(
     './node_modules/.bin/tsx',
     [

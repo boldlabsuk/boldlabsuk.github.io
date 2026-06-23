@@ -1,35 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import type { RefObject } from 'react'
+import { useEffect, useRef } from 'react'
 import { homepageContent } from '../../content'
-import {
-  boldLogoAnimationConfig,
-  formatLogoTransform,
-  getScrollLockedLogoAlpha,
-  getTriggeredLogoAlpha,
-  getTriggeredLogoTargetAlpha,
-  interpolateLogoState,
-  isTriggeredLogoAnimationComplete,
-  resolveLogoAnimationTiming,
-  type LogoAnimationRect,
-  type LogoAnimationTiming,
-} from './logoScrollAnimation'
-import type { HomeLogoMode } from './homeLogoMode'
-
-type HomeLogoPhase = 'hero' | 'transition' | 'complete'
-
-type LogoAnimationMeasurement = {
-  timing: LogoAnimationTiming
-  startRect: LogoAnimationRect
-  targetRect: LogoAnimationRect
-}
-
-type TriggeredLogoAnimationRuntime = {
-  currentAlpha: number
-  targetAlpha: number
-  alphaAtAnimationStart: number
-  animationStartTimeMs: number
-  isPlaying: boolean
-}
 
 const stickyHeaderOffsetPx = 67
 const siteHeaderSelector = '.site-header'
@@ -39,25 +9,13 @@ const navbarLogoRevealOffsetPx = 20
 const boldLogoTextVisualBottomRatio = 619 / 788
 
 export function HomePage({
-  headerLogoRef,
-  logoMode,
   onHeroLogoVisibilityChange,
-  onLogoAnimationCompleteChange,
 }: {
-  headerLogoRef: RefObject<HTMLImageElement | null>
-  logoMode: HomeLogoMode
   onHeroLogoVisibilityChange?: (isVisible: boolean) => void
-  onLogoAnimationCompleteChange?: (isComplete: boolean) => void
 }) {
   const heroLogoRef = useRef<HTMLImageElement>(null)
-  const overlayLogoRef = useRef<HTMLImageElement>(null)
-  const [logoPhase, setLogoPhase] = useState<HomeLogoPhase>('hero')
 
   useEffect(() => {
-    if (logoMode !== 'legacy-reveal') {
-      return
-    }
-
     const heroLogo = heroLogoRef.current
 
     if (!heroLogo || !onHeroLogoVisibilityChange) {
@@ -92,9 +50,7 @@ export function HomePage({
         return
       }
 
-      animationFrameId = window.requestAnimationFrame(
-        updateLogoVisibilityFromRect,
-      )
+      animationFrameId = window.requestAnimationFrame(updateLogoVisibilityFromRect)
     }
 
     scheduleLogoVisibilityUpdate()
@@ -114,344 +70,7 @@ export function HomePage({
       window.removeEventListener('scroll', scheduleLogoVisibilityUpdate)
       window.removeEventListener('resize', scheduleLogoVisibilityUpdate)
     }
-  }, [logoMode, onHeroLogoVisibilityChange])
-
-  useEffect(() => {
-    if (logoMode !== 'scroll-animation') {
-      return
-    }
-
-    const heroLogo = heroLogoRef.current
-    const headerLogo = headerLogoRef.current
-    const overlayLogo = overlayLogoRef.current
-
-    if (!heroLogo || !headerLogo || !overlayLogo) {
-      return
-    }
-
-    const reducedMotionQuery = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    )
-    const animationMode = boldLogoAnimationConfig.mode
-    const siteHeader = headerLogo.closest('.site-header')
-    let measurement: LogoAnimationMeasurement | null = null
-    let animationFrameId: number | null = null
-    let lastLogoPhase: HomeLogoPhase | null = null
-    let triggeredAnimation: TriggeredLogoAnimationRuntime = {
-      currentAlpha: 0,
-      targetAlpha: 0,
-      alphaAtAnimationStart: 0,
-      animationStartTimeMs: 0,
-      isPlaying: false,
-    }
-
-    const hideOverlayLogo = () => {
-      overlayLogo.style.opacity = '0'
-      overlayLogo.style.visibility = 'hidden'
-    }
-
-    const setNextLogoPhase = (nextLogoPhase: HomeLogoPhase) => {
-      if (lastLogoPhase === nextLogoPhase) {
-        return
-      }
-
-      lastLogoPhase = nextLogoPhase
-      setLogoPhase(nextLogoPhase)
-      onLogoAnimationCompleteChange?.(nextLogoPhase === 'complete')
-    }
-
-    const getDefaultHeroStateScrollY = (
-      timing: LogoAnimationTiming,
-      scrollY: number,
-    ) =>
-      animationMode === 'scrollLockedManim'
-        ? timing.scrollLockedStartY
-        : scrollY
-
-    const measureLogoAnimation = (heroStateScrollY?: number) => {
-      const timing = resolveLogoAnimationTiming({
-        widthPx: window.innerWidth,
-        heightPx: window.innerHeight,
-      })
-      const scrollY = window.scrollY
-      const heroRect = heroLogo.getBoundingClientRect()
-      const headerRect = headerLogo.getBoundingClientRect()
-      const startScrollY =
-        heroStateScrollY ?? getDefaultHeroStateScrollY(timing, scrollY)
-
-      if (
-        heroRect.width <= 0 ||
-        heroRect.height <= 0 ||
-        headerRect.width <= 0 ||
-        headerRect.height <= 0
-      ) {
-        measurement = null
-        hideOverlayLogo()
-        return
-      }
-
-      measurement = {
-        timing,
-        startRect: {
-          top: heroRect.top + scrollY - startScrollY,
-          left: heroRect.left,
-          width: heroRect.width,
-          height: heroRect.height,
-        },
-        targetRect: {
-          top: headerRect.top,
-          left: headerRect.left,
-          width: headerRect.width,
-          height: headerRect.height,
-        },
-      }
-
-      overlayLogo.style.width = `${measurement.startRect.width}px`
-      overlayLogo.style.height = `${measurement.startRect.height}px`
-
-      return measurement
-    }
-
-    const applyLogoAlpha = (alpha: number) => {
-      if (!measurement) {
-        return false
-      }
-
-      const transform = interpolateLogoState({
-        startRect: measurement.startRect,
-        targetRect: measurement.targetRect,
-        alpha,
-      })
-
-      overlayLogo.style.opacity = '1'
-      overlayLogo.style.visibility = 'visible'
-      overlayLogo.style.transform = formatLogoTransform(transform)
-
-      return true
-    }
-
-    const resolveCurrentTriggeredAlpha = (nowMs: number) => {
-      if (!triggeredAnimation.isPlaying) {
-        return triggeredAnimation.currentAlpha
-      }
-
-      return getTriggeredLogoAlpha({
-        nowMs,
-        animationStartTimeMs: triggeredAnimation.animationStartTimeMs,
-        durationMs: boldLogoAnimationConfig.durationMs,
-        alphaAtAnimationStart: triggeredAnimation.alphaAtAnimationStart,
-        targetAlpha: triggeredAnimation.targetAlpha,
-        rateFunction: boldLogoAnimationConfig.rateFunction,
-      })
-    }
-
-    const retargetTriggeredAnimation = (
-      targetAlpha: number,
-      nowMs: number,
-    ) => {
-      const currentAlpha = resolveCurrentTriggeredAlpha(nowMs)
-
-      if (
-        targetAlpha === triggeredAnimation.targetAlpha &&
-        (triggeredAnimation.isPlaying || currentAlpha === targetAlpha)
-      ) {
-        return
-      }
-
-      if (currentAlpha === 0 || currentAlpha === 1) {
-        measureLogoAnimation(window.scrollY)
-      }
-
-      triggeredAnimation = {
-        currentAlpha,
-        targetAlpha,
-        alphaAtAnimationStart: currentAlpha,
-        animationStartTimeMs: nowMs,
-        isPlaying: currentAlpha !== targetAlpha,
-      }
-    }
-
-    const updateScrollLockedLogoAnimation = () => {
-      if (!measurement) {
-        setNextLogoPhase('hero')
-        return
-      }
-
-      const alpha = getScrollLockedLogoAlpha(
-        window.scrollY,
-        measurement.timing,
-        boldLogoAnimationConfig.rateFunction,
-      )
-
-      if (reducedMotionQuery.matches) {
-        hideOverlayLogo()
-        setNextLogoPhase(
-          window.scrollY >= measurement.timing.scrollLockedEndY
-            ? 'complete'
-            : 'hero',
-        )
-        return
-      }
-
-      if (alpha <= 0) {
-        hideOverlayLogo()
-        setNextLogoPhase('hero')
-        return
-      }
-
-      if (alpha >= 1) {
-        hideOverlayLogo()
-        setNextLogoPhase('complete')
-        return
-      }
-
-      applyLogoAlpha(alpha)
-      setNextLogoPhase('transition')
-    }
-
-    const updateTriggeredLogoAnimation = () => {
-      if (!measurement) {
-        setNextLogoPhase('hero')
-        return
-      }
-
-      const nowMs = performance.now()
-      const targetAlpha = getTriggeredLogoTargetAlpha(
-        window.scrollY,
-        measurement.timing,
-        triggeredAnimation.targetAlpha,
-      )
-
-      if (reducedMotionQuery.matches) {
-        triggeredAnimation = {
-          currentAlpha: targetAlpha,
-          targetAlpha,
-          alphaAtAnimationStart: targetAlpha,
-          animationStartTimeMs: nowMs,
-          isPlaying: false,
-        }
-        hideOverlayLogo()
-        setNextLogoPhase(targetAlpha >= 1 ? 'complete' : 'hero')
-        return
-      }
-
-      retargetTriggeredAnimation(targetAlpha, nowMs)
-
-      let alpha = resolveCurrentTriggeredAlpha(nowMs)
-
-      if (
-        triggeredAnimation.isPlaying &&
-        isTriggeredLogoAnimationComplete({
-          nowMs,
-          animationStartTimeMs: triggeredAnimation.animationStartTimeMs,
-          durationMs: boldLogoAnimationConfig.durationMs,
-        })
-      ) {
-        alpha = triggeredAnimation.targetAlpha
-        triggeredAnimation = {
-          ...triggeredAnimation,
-          currentAlpha: alpha,
-          isPlaying: false,
-        }
-      } else {
-        triggeredAnimation = {
-          ...triggeredAnimation,
-          currentAlpha: alpha,
-        }
-      }
-
-      if (alpha <= 0 && !triggeredAnimation.isPlaying) {
-        hideOverlayLogo()
-        setNextLogoPhase('hero')
-        return
-      }
-
-      if (alpha >= 1 && !triggeredAnimation.isPlaying) {
-        hideOverlayLogo()
-        setNextLogoPhase('complete')
-        return
-      }
-
-      applyLogoAlpha(alpha)
-      setNextLogoPhase('transition')
-
-      if (triggeredAnimation.isPlaying) {
-        scheduleLogoAnimationUpdate()
-      }
-    }
-
-    const updateLogoAnimation = () => {
-      animationFrameId = null
-
-      if (!measurement) {
-        measureLogoAnimation()
-      }
-
-      if (animationMode === 'triggeredManim') {
-        updateTriggeredLogoAnimation()
-        return
-      }
-
-      updateScrollLockedLogoAnimation()
-    }
-
-    const scheduleLogoAnimationUpdate = () => {
-      if (animationFrameId !== null) {
-        return
-      }
-
-      animationFrameId = window.requestAnimationFrame(updateLogoAnimation)
-    }
-
-    const scheduleLogoAnimationMeasure = () => {
-      measurement = null
-      scheduleLogoAnimationUpdate()
-    }
-
-    const resizeObserver =
-      typeof ResizeObserver === 'undefined'
-        ? null
-        : new ResizeObserver(scheduleLogoAnimationMeasure)
-
-    measureLogoAnimation()
-    scheduleLogoAnimationUpdate()
-
-    heroLogo.addEventListener('load', scheduleLogoAnimationMeasure)
-    headerLogo.addEventListener('load', scheduleLogoAnimationMeasure)
-    window.addEventListener('scroll', scheduleLogoAnimationUpdate, {
-      passive: true,
-    })
-    window.addEventListener('resize', scheduleLogoAnimationMeasure)
-    window.addEventListener('orientationchange', scheduleLogoAnimationMeasure)
-    reducedMotionQuery.addEventListener('change', scheduleLogoAnimationUpdate)
-    resizeObserver?.observe(heroLogo)
-    resizeObserver?.observe(headerLogo)
-
-    if (siteHeader) {
-      resizeObserver?.observe(siteHeader)
-    }
-
-    return () => {
-      if (animationFrameId !== null) {
-        window.cancelAnimationFrame(animationFrameId)
-      }
-
-      heroLogo.removeEventListener('load', scheduleLogoAnimationMeasure)
-      headerLogo.removeEventListener('load', scheduleLogoAnimationMeasure)
-      window.removeEventListener('scroll', scheduleLogoAnimationUpdate)
-      window.removeEventListener('resize', scheduleLogoAnimationMeasure)
-      window.removeEventListener('orientationchange', scheduleLogoAnimationMeasure)
-      reducedMotionQuery.removeEventListener(
-        'change',
-        scheduleLogoAnimationUpdate,
-      )
-      resizeObserver?.disconnect()
-      onLogoAnimationCompleteChange?.(false)
-    }
-  }, [headerLogoRef, logoMode, onLogoAnimationCompleteChange])
-
-  const isHeroLogoVisuallyHidden =
-    logoMode === 'scroll-animation' && logoPhase !== 'hero'
+  }, [onHeroLogoVisibilityChange])
 
   return (
     <>
@@ -459,11 +78,7 @@ export function HomePage({
         <div className="home-hero-brand">
           <img
             ref={heroLogoRef}
-            className={
-              isHeroLogoVisuallyHidden
-                ? 'home-hero-logo home-hero-logo-hidden'
-                : 'home-hero-logo'
-            }
+            className="home-hero-logo"
             src="/bold_full_vector_logo.svg"
             alt=""
           />
@@ -503,15 +118,6 @@ export function HomePage({
           </div>
         </div>
       </section>
-      {logoMode === 'scroll-animation' && (
-        <img
-          ref={overlayLogoRef}
-          className="home-logo-transition"
-          src="/bold_full_vector_logo.svg"
-          alt=""
-          aria-hidden="true"
-        />
-      )}
 
       <section className="home-section bet-section" aria-labelledby="bet-title">
         <div className="home-section-header">
@@ -553,7 +159,6 @@ export function HomePage({
           ))}
         </ol>
       </section>
-
     </>
   )
 }
