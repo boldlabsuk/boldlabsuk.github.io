@@ -160,12 +160,6 @@ export function verifyTallyExpressionOfInterestPayload(payload) {
     }
   }
 
-  if (summary.integrationsCount === 0) {
-    failures.push(
-      'public payload exposes no integrations; confirm Google Sheets sync and email notifications in Tally owner workspace',
-    )
-  }
-
   return {
     ready: failures.length === 0,
     failures,

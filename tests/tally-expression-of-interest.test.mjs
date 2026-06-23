@@ -83,7 +83,7 @@ test('Tally verifier rejects a visible Desired role field', () => {
           },
         },
       ],
-      integrations: [{ type: 'GOOGLE_SHEETS' }],
+      integrations: [],
     }),
   )
 
@@ -108,7 +108,7 @@ test('Tally verifier module can be imported without CLI argv', () => {
   assert.equal(result.status, 0, result.stderr)
 })
 
-test('Tally verifier accepts a representative configured generic public form payload', () => {
+test('Tally verifier accepts a representative configured generic public form payload without public integration evidence', () => {
   const sharedBlocks = [
     { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
     {
@@ -185,7 +185,7 @@ test('Tally verifier accepts a representative configured generic public form pay
       workspaceId: '3NbqgN',
       name: 'BOLD Expression of Interest',
       blocks: sharedBlocks,
-      integrations: [{ type: 'GOOGLE_SHEETS' }],
+      integrations: [],
     }),
   )
 

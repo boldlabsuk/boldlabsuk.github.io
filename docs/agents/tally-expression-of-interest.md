@@ -34,8 +34,7 @@ The live form exists and the public embed confirms the form ID, title, hidden
 `route` field, generic baseline fields, and CV/resume upload field. Issue #24 is
 not complete in the public form yet: the public payload still exposes a visible
 `Desired role` field, does not visibly communicate PDF-only upload or the 10 MB
-upload limit, does not expose the required confirmation copy, and does not expose
-integration evidence.
+upload limit, and does not expose the required confirmation copy.
 
 Completing the setup requires access to the BOLD-owned Tally workspace. Agents
 without that access can verify the public embed contract, but cannot configure
@@ -45,8 +44,9 @@ notifications, or Google Sheets integration.
 Issue #24 comments report that the BOLD-owned account owns the form, Google
 Sheets integration is connected, and self email notifications are enabled to the
 same account acting as the intake email. Those owner-side settings are not
-exposed in the unauthenticated public payload, so they still need confirmation
-inside the Tally workspace before the issue can be treated as complete.
+exposed in the unauthenticated public payload, so the verifier reports the public
+`integrations` count for context but does not treat it as a public readiness
+failure.
 
 Fresh public verification on 2026-06-23 confirms this is still the active
 blocker: every accepted route embed returns HTTP 200 with the shared form ID and
@@ -56,7 +56,8 @@ configuration gaps mean the form is not ready.
 Run `node scripts/verify-tally-expression-of-interest.mjs` to repeat the public
 verification. The script exits nonzero until the public payload exposes the
 generic baseline fields, PDF CV/resume guidance, confirmation copy, no visible
-`Desired role` field, and integration evidence needed for issue #24.
+`Desired role` field, and the rest of the publicly visible form contract needed
+for issue #24.
 
 ## Tally owner setup checklist
 
@@ -159,12 +160,13 @@ The exposed structure is:
 
 The unauthenticated Tally forms API at `https://api.tally.so/forms/A7aa0W`
 returned `401 Unauthorized`, so completing the live form configuration requires
-Tally owner access. The empty public embed `integrations` array is not enough to
-confirm whether owner-side Google Sheets sync or email notifications are
-configured.
+Tally owner access for settings that are not visible publicly. The empty public
+embed `integrations` array is not enough to confirm whether owner-side Google
+Sheets sync or email notifications are configured, though issue #24 comments
+report that both are connected.
 
 The verifier script was run against the live embed routes on 2026-06-23 and
 returned the same blocker for every route: HTTP 200 with form `A7aa0W`, hidden
 field `route`, generic baseline blocks, a `FILE_UPLOAD` block, a prohibited
 visible `Desired role` field, missing visible PDF-only and 10 MB upload-limit
-guidance, missing confirmation copy, and `integrations=0`.
+guidance, missing confirmation copy, and `integrations=0` for owner-only context.
