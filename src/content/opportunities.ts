@@ -39,7 +39,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formComingSoon:
       'The embedded Expression of Interest form for PhD Students is being prepared. Check back soon to share your fit statement, timing, links, and CV.',
     metadata: {
-      title: 'PhD Students Expression of Interest | BOLD Institute',
+      title: 'PhD Students Expression of Interest | BOLD Lab',
       description:
         'Express interest in doctoral research connected to BOLD while distinguishing the intake from formal university PhD applications.',
     },
@@ -76,7 +76,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formComingSoon:
       'The embedded Expression of Interest form for Visiting Students is being prepared. Check back soon to share proposed dates, project shape, host fit, links, and CV.',
     metadata: {
-      title: 'Visiting Students Expression of Interest | BOLD Institute',
+      title: 'Visiting Students Expression of Interest | BOLD Lab',
       description:
         'Express interest in a focused student research visit with BOLD and understand how it relates to formal visiting arrangements.',
     },
@@ -113,7 +113,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formComingSoon:
       "The embedded Expression of Interest form for Master's Students is being prepared. Check back soon to share your programme, project window, technical interests, links, and CV.",
     metadata: {
-      title: "Master's Students Expression of Interest | BOLD Institute",
+      title: "Master's Students Expression of Interest | BOLD Lab",
       description:
         "Express interest in BOLD-aligned Master's projects while keeping formal project allocation separate.",
     },
@@ -148,7 +148,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formComingSoon:
       'The embedded Expression of Interest form for Research Engineers is being prepared. Check back soon to share systems interests, project links, availability, working mode, and CV.',
     metadata: {
-      title: 'Research Engineers Expression of Interest | BOLD Institute',
+      title: 'Research Engineers Expression of Interest | BOLD Lab',
       description:
         'Express interest in research engineering at BOLD across ML systems, infrastructure, evaluation tooling, data platforms, and platform work.',
     },
@@ -183,7 +183,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formComingSoon:
       'The embedded Expression of Interest form for Fellows and Experienced Researchers is being prepared. Check back soon to share your agenda, outputs, route shape, timing, and CV.',
     metadata: {
-      title: 'Fellows and Experienced Researchers Expression of Interest | BOLD Institute',
+      title: 'Fellows and Experienced Researchers Expression of Interest | BOLD Lab',
       description:
         'Express interest in a fellowship, visiting, collaboration, or longer-term research relationship with BOLD.',
     },
@@ -218,7 +218,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formComingSoon:
       'The embedded Expression of Interest form for Collaborators is being prepared. Check back soon to share the proposed collaboration, scientific motivation, relevant people, timing, and links.',
     metadata: {
-      title: 'Collaborators Expression of Interest | BOLD Institute',
+      title: 'Collaborators Expression of Interest | BOLD Lab',
       description:
         'Express collaboration interest in BOLD as an individual, group, company, or institution without treating the route as a job application.',
     },
@@ -250,7 +250,7 @@ export const opportunities: Opportunity[] = [
     title: 'Visiting Student Placements',
     type: 'visiting-student',
     status: 'open',
-    location: 'BOLD Institute',
+    location: 'BOLD Lab',
     deadline: '2026-09-30',
     summary:
       'A small number of visiting student placements will be considered for projects aligned with evaluation, agents, robotics, and AI for discovery.',

@@ -89,11 +89,11 @@ export function getRouteMeta(route: Route): Meta {
     people: {
       title: `Our People | ${siteMeta.name}`,
       description:
-        'Meet the researchers, engineers, students, fellows, and collaborators building the institute.',
+        'Meet the researchers, engineers, students, fellows, and collaborators building the lab.',
     },
     opportunities: {
       title: `Opportunities | ${siteMeta.name}`,
-      description: 'Join, visit, collaborate, or work with the institute.',
+      description: 'Join, visit, collaborate, or work with the lab.',
     },
     'opportunity-route': {
       title: `Opportunity Route | ${siteMeta.name}`,

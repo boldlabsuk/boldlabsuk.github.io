@@ -44,9 +44,13 @@ const placeholderPersonIds = [
   'samira-patel',
 ]
 
-test('BOLD presents the v2 institute information architecture', () => {
-  assert.equal(siteMeta.name, 'BOLD Institute')
-  assert.match(siteMeta.description, /focused, critical-mass AI research institute/)
+test('BOLD presents the v2 lab information architecture', () => {
+  assert.equal(siteMeta.name, 'BOLD Lab')
+  assert.match(siteMeta.description, /focused, critical-mass AI research lab/)
+  assert.match(
+    siteMeta.fundingAcknowledgement,
+    /Engineering and Physical Sciences Research Council \(EPSRC\)/,
+  )
 
   assert.deepEqual(
     navigation.map((item) => item.label),
@@ -59,7 +63,7 @@ test('BOLD presents the v2 institute information architecture', () => {
   )
 })
 
-test('homepage presents the BOLD Institute Bet positioning and proof metrics', () => {
+test('homepage presents the BOLD Our Bets positioning and proof metrics', () => {
   assert.equal(homepageContent.hero.headline, 'Building the next AI paradigm.')
   assert.match(
     homepageContent.hero.lede,
@@ -91,17 +95,21 @@ test('homepage presents the BOLD Institute Bet positioning and proof metrics', (
   )
 })
 
-test('homepage content exposes the approved CTAs, Institute Bet, and Research Directions', () => {
+test('homepage content exposes the approved CTAs, Our Bets, and Research Directions', () => {
   const homepageText = JSON.stringify(homepageContent)
 
   assert.deepEqual(
     homepageContent.hero.actions.map((action) => action.label),
-    ['Join BOLD', 'Partner with us'],
+    ['Join BOLD', 'Meet the team'],
+  )
+  assert.deepEqual(
+    homepageContent.hero.actions.map((action) => action.href),
+    ['/opportunities', '/people'],
   )
 
-  assert.equal(homepageContent.instituteBet.length, 2)
-  assert.match(homepageContent.instituteBet[0].body, /breakthroughs are still possible/)
-  assert.match(homepageContent.instituteBet[1].body, /focused, agile, critical-mass/)
+  assert.equal(homepageContent.labBet.length, 2)
+  assert.match(homepageContent.labBet[0].body, /breakthroughs are still possible/)
+  assert.match(homepageContent.labBet[1].body, /focused, agile, critical-mass/)
 
   assert.deepEqual(
     homepageContent.researchDirections.map((direction) => direction.name),
@@ -139,7 +147,7 @@ test('structured content supports people, news, papers, and opportunities', () =
 
 test('launch routes exclude news and papers while content remains available', () => {
   assert.deepEqual(parseRoute('/news'), { name: 'not-found' })
-  assert.deepEqual(parseRoute('/news/bold-institute-launch'), {
+  assert.deepEqual(parseRoute('/news/bold-lab-launch'), {
     name: 'not-found',
   })
   assert.deepEqual(parseRoute('/papers'), { name: 'not-found' })
@@ -172,7 +180,7 @@ test('Opportunity Routes have stable labels, parsing, and metadata', () => {
       name: 'opportunity-route',
       slug: route.slug,
     })
-    assert.match(getRouteMeta({ name: 'opportunity-route', slug: route.slug }).title, /BOLD Institute/)
+    assert.match(getRouteMeta({ name: 'opportunity-route', slug: route.slug }).title, /BOLD Lab/)
   }
 
   assert.deepEqual(parseRoute('/opportunities/not-a-route'), {

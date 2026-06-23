@@ -1,18 +1,20 @@
 import type { NavigationItem } from './types.ts'
 
 export const siteMeta = {
-  name: 'BOLD Institute',
+  name: 'BOLD Lab',
   shortName: 'BOLD',
-  expandedName: 'British Open-Ended Learning & Discovery Institute',
+  expandedName: 'British Open-Ended Learning & Discovery Lab',
   description:
-    'A focused, critical-mass AI research institute across Oxford, UCL, and Imperial pursuing fundamental AI breakthroughs from Britain.',
+    'A focused, critical-mass AI research lab across Oxford, UCL, and Imperial pursuing fundamental AI breakthroughs from Britain.',
   missionPhrase: 'Building the next AI paradigm.',
   mission:
-    'BOLD brings Oxford, UCL, and Imperial together into one focused, critical-mass research institute pursuing fundamental AI breakthroughs in Britain.',
+    'BOLD brings key researchers in fundamental AI from Oxford, UCL, and Imperial into a focused, critical-mass UK AI Research Lab dedicated to driving breakthroughs in alternatives to backpropagation, human-centric learning, and embodiment.',
   identity:
-    'Our institute brings together three leading university AI labs into a single collaborative research environment. We combine academic depth, engineering excellence, and long-term scientific ambition.',
+    'Our lab brings together three leading university AI labs into a single collaborative research environment. We combine academic depth, engineering excellence, and long-term scientific ambition.',
   statement:
-    'We bring together researchers across universities to build a unified AI research institution with the scale, ambition, and depth needed for the next generation of AI.',
+    'We bring together researchers across universities to build a unified AI research lab with the scale, ambition, and depth needed for the next generation of AI.',
+  fundingAcknowledgement:
+    'Supported by funding from the Engineering and Physical Sciences Research Council (EPSRC).',
   contactEmail: 'contact@example.ac.uk',
   copyrightYear: '2026',
   socialLinks: [
@@ -32,14 +34,14 @@ export const homepageContent = {
     lede: siteMeta.mission,
     actions: [
       { label: 'Join BOLD', href: '/opportunities' },
-      { label: 'Partner with us', href: '/opportunities#collaborators' },
+      { label: 'Meet the team', href: '/people' },
     ],
   },
   proofMetrics: [
     {
       value: '3',
       label: 'Universities',
-      detail: 'Oxford, UCL, and Imperial working as one institute.',
+      detail: 'Oxford, UCL, and Imperial working as one lab.',
     },
     {
       value: '2',
@@ -52,7 +54,7 @@ export const homepageContent = {
       detail: 'A focused programme for open-ended learning and discovery.',
     },
   ],
-  instituteBet: [
+  labBet: [
     {
       title: 'Fundamental AI breakthroughs are still possible.',
       body:

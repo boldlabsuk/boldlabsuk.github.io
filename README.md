@@ -1,6 +1,6 @@
 # BOLD Website
 
-Static Vite/React prototype for BOLD Institute, a unified AI research institute
+Static Vite/React prototype for BOLD Lab, a unified AI research lab
 in England formed from three university AI labs.
 
 ## Routes

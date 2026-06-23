@@ -25,6 +25,10 @@ assert.doesNotMatch(landingFooter, /href="https:\/\/github\.com"/)
 assert.match(landingFooter, /data-social-link-key="linkedin"/)
 assert.match(landingFooter, /data-social-link-key="twitter"/)
 assert.doesNotMatch(landingFooter, /data-social-link-key="github"/)
+assert.match(
+  landingFooter,
+  /Supported by funding from the Engineering and Physical Sciences Research Council \(EPSRC\)\./,
+)
 
 const linkedFooter = renderToStaticMarkup(
   createElement(SiteFooter, { isBrandLinkEnabled: true }),

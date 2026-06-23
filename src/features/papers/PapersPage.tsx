@@ -43,14 +43,14 @@ export function PapersPage() {
       <PageHero
         eyebrow="Papers"
         title="Papers"
-        description="Explore publications and research outputs from across the institute."
+        description="Explore publications and research outputs from across the lab."
       />
 
       <section className="section-band page-content">
         <SectionHeader
           eyebrow="Featured"
           title="Selected publications."
-          description="Highlighted outputs from recent institute research programmes."
+          description="Highlighted outputs from recent lab research programmes."
         />
         <div className="paper-card-grid">
           {featuredPapers.map((paper) => (

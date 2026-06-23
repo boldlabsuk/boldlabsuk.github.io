@@ -85,6 +85,11 @@
     display: grid;
   }
 
+  .footer-funding {
+    justify-self: start;
+    text-align: left;
+  }
+
   .article-grid,
   .article-grid.two-up,
   .featured-news-layout,

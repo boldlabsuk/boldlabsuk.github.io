@@ -58,7 +58,8 @@ export function SiteFooter({
         <span>
           © {siteMeta.copyrightYear} {siteMeta.name}.
         </span>
-        <span>Unified university AI research institute.</span>
+        <span className="footer-funding">{siteMeta.fundingAcknowledgement}</span>
+        <span>Unified university AI research lab.</span>
       </div>
     </footer>
   )

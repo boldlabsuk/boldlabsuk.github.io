@@ -74,7 +74,7 @@ export function NewsPostPage({ slug }: { slug: string }) {
         <section className="section-band muted-band">
           <SectionHeader
             eyebrow="Related"
-            title="More from the institute."
+            title="More from the lab."
             description="Related posts selected by shared tags."
           />
           <div className="article-grid">

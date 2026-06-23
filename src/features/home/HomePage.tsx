@@ -103,7 +103,7 @@ export function HomePage({
                 </a>
               ))}
             </div>
-            <dl className="hero-metrics" aria-label="Institute highlights">
+            <dl className="hero-metrics" aria-label="Lab highlights">
               {homepageContent.proofMetrics.map((metric) => (
                 <div key={metric.label}>
                   <dt>{metric.value}</dt>
@@ -123,11 +123,11 @@ export function HomePage({
 
       <section className="home-section bet-section" aria-labelledby="bet-title">
         <div className="home-section-header">
-          <p className="eyebrow eyebrow-title-case">The Institute Bet</p>
+          <p className="eyebrow eyebrow-title-case">Our Bets</p>
           <h2 id="bet-title">The next paradigm will not come from scale alone.</h2>
         </div>
         <div className="bet-list">
-          {homepageContent.instituteBet.map((bet, index) => (
+          {homepageContent.labBet.map((bet, index) => (
             <article className="bet-item" key={bet.title}>
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{bet.title}</h3>
@@ -146,7 +146,7 @@ export function HomePage({
           <div className="home-section-summary">
             <p className="eyebrow eyebrow-title-case">Research Directions</p>
             <p>
-              Each direction is designed to test the Institute Bet from a different
+              Each direction is designed to test Our Bets from a different
               scientific angle while sharing systems, infrastructure, and critical
               mass.
             </p>
@@ -167,7 +167,7 @@ export function HomePage({
 }
 
 function HomeHeroSubtitle({ text }: { text: string }) {
-  if (text !== 'British Open-Ended Learning & Discovery Institute') {
+  if (text !== 'British Open-Ended Learning & Discovery Lab') {
     return text
   }
 
@@ -176,7 +176,7 @@ function HomeHeroSubtitle({ text }: { text: string }) {
       <span className="home-hero-subtitle-initial">B</span>ritish{' '}
       <span className="home-hero-subtitle-initial">O</span>pen-Ended{' '}
       <span className="home-hero-subtitle-initial">L</span>earning &{' '}
-      <span className="home-hero-subtitle-initial">D</span>iscovery Institute
+      <span className="home-hero-subtitle-initial">D</span>iscovery Lab
     </>
   )
 }

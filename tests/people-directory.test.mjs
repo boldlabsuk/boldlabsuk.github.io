@@ -40,7 +40,7 @@ const filterFixturePeople = [
     name: 'Devon DPhil',
     role: 'PhD student',
     group: 'PhD student',
-    affiliation: 'BOLD Institute',
+    affiliation: 'BOLD Lab',
     bio: 'Builds evaluation tools.',
     researchAreas: ['Evaluation'],
   },
@@ -49,7 +49,7 @@ const filterFixturePeople = [
     name: 'Riley Associate',
     role: 'Research Engineer',
     group: 'Research Engineers',
-    affiliation: 'BOLD Institute',
+    affiliation: 'BOLD Lab',
     bio: 'Builds research infrastructure.',
     researchAreas: ['Infrastructure'],
   },
@@ -59,7 +59,7 @@ const filterFixturePeople = [
     role: 'Alumna',
     group: 'Alumni',
     affiliation: 'Public Interest AI Network',
-    bio: 'Former institute researcher.',
+    bio: 'Former lab researcher.',
     researchAreas: ['Governance'],
     alumni: true,
   },
@@ -87,6 +87,7 @@ test('People Directory exposes plural public People Section headings', () => {
     directory.sections.map((section) => section.label),
     [
       'Principal Investigators',
+      'Adjunct Faculty',
       'Postdocs',
       'Research Engineers',
       'PhD Students',
@@ -115,6 +116,7 @@ test('People Directory maps every Person into exactly one People Section', () =>
     ),
     {
       'Principal Investigator': 6,
+      'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 1,
       'PhD Student': 53,
@@ -127,6 +129,9 @@ test('People Directory maps every Person into exactly one People Section', () =>
     Object.fromEntries(
       [
         'tim-rocktaschel',
+        'ed-grefenstette',
+        'jack-parker-holder',
+        'roberta-raileanu',
         'oscar-pang',
         'nathan-monette',
         'alfie-lamerton',
@@ -137,6 +142,9 @@ test('People Directory maps every Person into exactly one People Section', () =>
     ),
     {
       'tim-rocktaschel': 'Principal Investigator',
+      'ed-grefenstette': 'Adjunct Faculty',
+      'jack-parker-holder': 'Adjunct Faculty',
+      'roberta-raileanu': 'Adjunct Faculty',
       'oscar-pang': 'Research Engineers',
       'nathan-monette': 'Masters Student',
       'alfie-lamerton': 'Associate Members',
@@ -152,7 +160,7 @@ test('People Directory uses explicit Alumni flags without mapping current roles 
         name: 'Alumni Flagged PI',
         role: 'Former PI',
         group: 'BOLD PI',
-        bio: 'Former institute lead.',
+        bio: 'Former lab lead.',
         researchAreas: ['Evaluation'],
         alumni: true,
       },
@@ -161,7 +169,7 @@ test('People Directory uses explicit Alumni flags without mapping current roles 
         name: 'Alumni Group Member',
         role: 'Former member',
         group: 'Alumni',
-        bio: 'Former institute member.',
+        bio: 'Former lab member.',
         researchAreas: ['Evaluation'],
       },
     ],
@@ -204,6 +212,12 @@ test('People Directory preserves content order within each People Section', () =
       'laura-toni',
       'shimon-whiteson',
     ],
+  )
+  assert.deepEqual(
+    directory.sections
+      .find((section) => section.title === 'Adjunct Faculty')
+      ?.people.map((listing) => listing.slug),
+    ['ed-grefenstette', 'jack-parker-holder', 'roberta-raileanu'],
   )
   assert.equal(
     directory.sections
@@ -311,7 +325,7 @@ test('People Directory affiliation filter keeps grouped matching Person Listings
     people: filterFixturePeople,
     filters: {
       ...emptyFilters,
-      affiliation: 'BOLD Institute',
+      affiliation: 'BOLD Lab',
     },
   })
 
@@ -435,7 +449,7 @@ test('People Directory returns compact Person Listing output without biography o
         name: 'Compact Listing',
         role: 'Postdoc',
         group: 'Postdoc',
-        affiliation: 'BOLD Institute',
+        affiliation: 'BOLD Lab',
         bio: 'This biography belongs on the Person detail page only.',
         image: 'marcus',
         researchAreas: ['Evaluation', 'Agents'],
@@ -452,7 +466,7 @@ test('People Directory returns compact Person Listing output without biography o
     slug: 'compact-listing',
     name: 'Compact Listing',
     role: 'Postdoc',
-    affiliation: 'BOLD Institute',
+    affiliation: 'BOLD Lab',
     image: 'marcus',
     links: {
       website: 'https://example.ac.uk/compact-listing',

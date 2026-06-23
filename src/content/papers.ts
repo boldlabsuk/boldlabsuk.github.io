@@ -4,7 +4,7 @@ export const papers: Paper[] = [
   {
     id: 'autocurricula-tool-using-agents',
     title: 'Autocurricula for Tool-Using Language Agents',
-    authors: ['BOLD Institute'],
+    authors: ['BOLD Lab'],
     venue: 'International Conference on Learning Representations',
     year: 2026,
     date: '2026-05-20',
@@ -25,7 +25,7 @@ export const papers: Paper[] = [
   {
     id: 'failure-discovery-robotics',
     title: 'Failure Discovery in Open-Ended Robotics Environments',
-    authors: ['BOLD Institute'],
+    authors: ['BOLD Lab'],
     venue: 'Robotics: Science and Systems Workshop',
     year: 2026,
     date: '2026-04-12',
@@ -65,7 +65,7 @@ export const papers: Paper[] = [
   {
     id: 'research-ops-student-projects',
     title: 'Research Operations for Reproducible Student Projects',
-    authors: ['BOLD Institute'],
+    authors: ['BOLD Lab'],
     venue: 'Journal of Open Research Software',
     year: 2025,
     date: '2025-11-14',
@@ -114,7 +114,7 @@ export const papers: Paper[] = [
   {
     id: 'public-research-programme',
     title: 'Open-Ended Discovery as a Public Research Programme',
-    authors: ['BOLD Institute'],
+    authors: ['BOLD Lab'],
     venue: 'Position Paper',
     year: 2025,
     date: '2025-06-12',

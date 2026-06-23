@@ -30,7 +30,7 @@ const visibleBrandHeader = renderToStaticMarkup(
 )
 
 assert.match(visibleBrandHeader, /class="brand"/)
-assert.match(visibleBrandHeader, /aria-label="BOLD Institute home"/)
+assert.match(visibleBrandHeader, /aria-label="BOLD Lab home"/)
 assert.match(visibleBrandHeader, /src="\/bold_full_vector_logo\.svg"/)
 assert.match(visibleBrandHeader, /aria-current="page"/)
 assert.doesNotMatch(visibleBrandHeader, /favicon\.svg/)

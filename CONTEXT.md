@@ -1,24 +1,24 @@
 # BOLD Website
 
-Public website language for presenting the BOLD Institute's people, research, news, and opportunities.
+Public website language for presenting BOLD Lab's people, research, news, and opportunities.
 
 ## Language
 
-**BOLD Institute**:
-The public name for the British Open-ended Learning & Discovery Institute, presented as a national AI research lab for open-ended learning and discovery.
-_Avoid_: AI institute, university lab network
+**BOLD Lab**:
+The public name for the British Open-ended Learning & Discovery Lab, presented as a national AI research lab for open-ended learning and discovery.
+_Avoid_: AI centre, university lab network
 
-**Institute Positioning**:
+**Lab Positioning**:
 The public framing that BOLD brings together researchers across Oxford, UCL, and Imperial to pursue AI breakthroughs that cannot be reached by scale alone.
 _Avoid_: Research. Build. Transform., generic AI collaboration
 
 **Landing Page Audience**:
-The primary public audiences the BOLD homepage must persuade: incoming members across PIs, postdocs, engineers, fellows, and PhD students, plus government and industry funders.
+The primary public audiences the BOLD homepage must persuade: incoming members across PIs, postdocs, engineers, fellows, and PhD students.
 _Avoid_: General website visitors, casual AI audience
 
 **Landing Page Persuasion Order**:
-The homepage hierarchy that leads with scientific ambition for incoming members, then uses proof of scale, the Institute Bet, and Research Directions for government and industry funders before closing with the site footer.
-_Avoid_: Funder-first grant pitch, generic recruitment page
+The homepage hierarchy that leads with scientific ambition for incoming members, then uses proof of scale, Our Bets, and Research Directions before closing with the site footer.
+_Avoid_: Generic recruitment page
 
 **National Mission Framing**:
 The homepage treatment of Britain's role in BOLD: a supporting proof point for frontier AI ambition, not the primary headline or brand identity.
@@ -33,11 +33,11 @@ The homepage's non-photographic visual language: typography-led sections with fl
 _Avoid_: People-photo hero, generic stock lab imagery, decorative card-heavy template graphics
 
 **Homepage Proof Metrics**:
-The early stats that prove the Institute Bet: 3 universities, 2 Institute Bets, and 3 Research Directions.
+The early stats that prove Our Bets: 3 universities, 2 Bets, and 3 Research Directions.
 _Avoid_: 12 research themes, 6 routes to join, decorative vanity metrics
 
 **Homepage CTA Strategy**:
-The homepage uses two primary actions near the top, one for incoming members and one for funders or partners, then avoids repeated CTA blocks further down the page.
+The homepage uses primary actions near the top, then avoids repeated CTA blocks further down the page.
 _Avoid_: Repeated buttons to the same destination, every section as a conversion panel
 
 **Expression of Interest**:
@@ -48,12 +48,12 @@ _Avoid_: Application, job application, sign-up
 The official admissions, hiring, placement, or institutional process required outside BOLD's Expression of Interest intake for routes such as PhD, Master's, visiting, or employment opportunities.
 _Avoid_: Expression of Interest, BOLD intake form, informal inquiry
 
-**Expression of Interest Page**:
-A public Opportunities page for one route that explains the route and collects an Expression of Interest from a prospective incoming member or collaborator.
-_Avoid_: Modal, popup, role listing
+**Expression of Interest Section**:
+The embedded intake area on the Opportunities page where visitors choose the relevant Opportunity Route, read route-specific context, and submit an Expression of Interest.
+_Avoid_: Separate route page, modal, popup, off-page form
 
 **Embedded Expression of Interest Form**:
-The applicant-facing form surface shown inside a BOLD Expression of Interest Page while an external form backend handles submission and storage.
+The applicant-facing form surface shown inside BOLD's Opportunities page while an external form backend handles submission and storage.
 _Avoid_: Off-site form link, redirect-only intake, third-party landing page
 
 **Collaborator Expression of Interest**:
@@ -65,12 +65,16 @@ The central reviewable collection of submitted Expressions of Interest across al
 _Avoid_: Separate role inboxes, per-route spreadsheet silos
 
 **Opportunities Index**:
-The careers-style Opportunities landing page that summarizes available BOLD routes and sends visitors to the relevant Expression of Interest Page.
-_Avoid_: Guidance card grid, full application page, repeated route detail
+The single Opportunities page that summarizes available BOLD routes and keeps visitors on the same page for route selection, route-specific context, and the embedded Expression of Interest form.
+_Avoid_: Separate route pages, guidance card grid, repeated route detail
 
 **Opportunity Route**:
 A public route through which someone can express interest in joining, visiting, working with, or collaborating with BOLD.
 _Avoid_: Job role, vacancy, application category
+
+**Opportunity Route Selection**:
+The visitor's website-owned chosen Opportunity Route on the Opportunities page, set either by clicking an Express interest action or by changing the role selector above the embedded form, then passed into the intake backend as hidden metadata.
+_Avoid_: Separate page navigation, application category routing
 
 **Opportunities Voice**:
 The public tone for Opportunities copy: selective but not exclusionary, serious and ambitious without sounding arrogant, corporate, or like a generic HR funnel.
@@ -80,12 +84,12 @@ _Avoid_: Gatekeeping language, generic recruitment copy, overpromising fit
 An applicant's free-form description of how their interests relate to BOLD's Research Directions, without forcing them to choose a fixed research category.
 _Avoid_: Research direction checkbox, single-theme classification
 
-**Institute Bet**:
+**Our Bets**:
 The public two-part argument that fundamental AI breakthroughs are still possible, and that academia needs a more focused, agile, critical-mass mode of research to pursue them.
 _Avoid_: Research theme, slogan, About section
 
 **Research Direction**:
-A public-facing area of BOLD's scientific programme. The canonical Research Directions are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied Learning; on the homepage they appear as three equal pillar cards tied to the Institute Bet.
+A public-facing area of BOLD's scientific programme. The canonical Research Directions are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied Learning; on the homepage they appear as three equal pillar cards tied to Our Bets.
 _Avoid_: Research theme, paper category, card grid
 
 **Beyond Backpropagation**:
@@ -101,7 +105,7 @@ A Research Direction focused on resource-agile systems for autonomous skill disc
 _Avoid_: Robotics
 
 **Person**:
-A public profile entry for someone associated with the institute.
+A public profile entry for someone associated with the lab.
 _Avoid_: Member record
 
 **Website Roster**:
@@ -109,7 +113,7 @@ The set of people intended to appear on the public Our People page. It contains 
 _Avoid_: All spreadsheet rows, Slack additions
 
 **People Section**:
-A public grouping on the Our People page. The canonical People Sections are Principal Investigator, Postdoc, PhD Student, Masters Student, Associate Members, and Alumni; every person belongs to exactly one People Section in this taxonomy, while public section headings may use plural display labels.
+A public grouping on the Our People page. The canonical People Sections are Principal Investigator, Adjunct Faculty, Postdoc, Research Engineers, PhD Student, Masters Student, Associate Members, and Alumni; every person belongs to exactly one People Section in this taxonomy, while public section headings may use plural display labels.
 _Avoid_: Role filter, group bucket
 
 **Person Listing**:

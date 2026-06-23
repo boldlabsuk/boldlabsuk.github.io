@@ -332,6 +332,7 @@ export const people = buildWebsiteRoster(ourPeople)
 
 export const roleOrder = [
   'Principal Investigator',
+  'Adjunct Faculty',
   'Postdoc',
   'PhD Student',
   'Masters Student',

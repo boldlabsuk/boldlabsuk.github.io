@@ -24,13 +24,13 @@ export function NewsPage() {
       <PageHero
         eyebrow="News"
         title="News"
-        description="Read the latest articles, announcements, research updates, and stories from the institute."
+        description="Read the latest articles, announcements, research updates, and stories from the lab."
       />
 
       <section className="section-band page-content">
         <SectionHeader
           eyebrow="Featured"
-          title="Latest from the institute."
+          title="Latest from the lab."
           description="Selected updates from the launch, research, and engineering programmes."
         />
         <div className="featured-news-layout">
