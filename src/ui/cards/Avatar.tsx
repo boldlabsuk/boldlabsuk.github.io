@@ -14,13 +14,9 @@ export function Avatar({
   const image = getAvatarImageSource(person.image)
 
   if (image) {
-    const uncroppedClassName = isUncroppedProfileImage(image)
-      ? ' avatar-uncropped'
-      : ''
-
     return (
       <img
-        className={`avatar avatar-${size}${uncroppedClassName}`}
+        className={`avatar avatar-${size}`}
         src={image}
         alt={person.name}
       />
@@ -48,14 +44,4 @@ function getAvatarImageSource(image?: string) {
   }
 
   return profileImages[image]
-}
-
-function isUncroppedProfileImage(image: string) {
-  return (
-    image === '/profile-assets/ani-calinescu-new.jpg' ||
-    image === '/profile-assets/Antoine-Cully-new.png' ||
-    image === '/profile-assets/jakob-foerster-new.png' ||
-    image === '/profile-assets/ravi-hammond.png' ||
-    image === '/profile-assets/shimon-whiteson-new.jpg'
-  )
 }

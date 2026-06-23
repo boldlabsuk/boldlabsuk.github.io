@@ -22,6 +22,18 @@ npm install
 npm run dev
 ```
 
+## Profile Cropping
+
+```bash
+npm run profile-cropper
+npm run profile-cropper -- --source-dir path/to/replacement-photos
+```
+
+The cropper opens a local browser UI for manual square crops. Full roster mode
+loads the Website Roster sources. `--source-dir` mode loads only the images in
+that folder, matches them to known people by filename/name/slug when possible,
+and writes the cropped outputs to `public/profile-assets/`.
+
 ## Checks
 
 ```bash
