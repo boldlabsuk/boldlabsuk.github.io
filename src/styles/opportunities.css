@@ -1,3 +1,93 @@
+.opportunities-index-page {
+  display: grid;
+  gap: 34px;
+}
+
+.opportunities-index-intro {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.opportunity-route-index {
+  display: grid;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.opportunity-route-index-entry {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(280px, 1.1fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.opportunity-route-index-entry:last-child {
+  border-bottom: 0;
+}
+
+.opportunity-route-index-main,
+.opportunity-route-index-heading {
+  display: grid;
+  gap: 10px;
+}
+
+.opportunity-route-index-main h3,
+.opportunity-route-index-main p {
+  margin: 0;
+}
+
+.opportunity-route-index-main p {
+  color: var(--muted);
+}
+
+.opportunity-route-status {
+  width: fit-content;
+  padding: 5px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.opportunity-route-index-facts {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.opportunity-route-index-facts div {
+  display: grid;
+  grid-template-columns: minmax(118px, 0.38fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.opportunity-route-index-facts dt {
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.opportunity-route-index-facts dd {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.opportunity-route-index-entry .button {
+  justify-self: end;
+  white-space: nowrap;
+}
+
 .involvement-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   width: min(1200px, 100%);
