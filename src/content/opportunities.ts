@@ -130,6 +130,8 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Use the Expression of Interest to share the technical areas, projects, links, and working-mode constraints that would help BOLD assess fit. Formal employment steps happen only through a separate hiring process.',
+    formPrompt:
+      'Useful responses mention ML systems, research infrastructure, evaluation tooling, data platforms, project links, availability, and working-mode constraints.',
     formComingSoon:
       'The embedded Expression of Interest form for Research Engineers is being prepared. Check back soon to share systems interests, project links, availability, working mode, and CV.',
   },
@@ -160,6 +162,8 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Submit an Expression of Interest to outline your agenda, proposed contribution, timing, and route shape. Any formal fellowship, visiting, institutional, or employment path remains separate.',
+    formPrompt:
+      'Useful responses emphasize your research agenda, proposed contribution to BOLD, representative outputs, timing, and the relationship shape you are seeking.',
     formComingSoon:
       'The embedded Expression of Interest form for Fellows and Experienced Researchers is being prepared. Check back soon to share your agenda, outputs, route shape, timing, and CV.',
   },
@@ -190,6 +194,8 @@ export const opportunityRoutes: OpportunityRoute[] = [
     ],
     howThisWorks:
       'Submit a Collaborator Expression of Interest so BOLD can assess collaboration fit and capacity. This route is organization-aware and does not treat a CV as the primary evidence by default.',
+    formPrompt:
+      'Useful responses describe the proposed collaboration, scientific motivation, expected outputs, relevant people, timing, and any funding, data, or partnership considerations.',
     formComingSoon:
       'The embedded Expression of Interest form for Collaborators is being prepared. Check back soon to share the proposed collaboration, scientific motivation, relevant people, timing, and links.',
   },

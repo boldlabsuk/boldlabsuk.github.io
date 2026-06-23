@@ -170,6 +170,7 @@ test('Opportunity Routes remain structured content while child URLs are not publ
     assert.ok(route.status)
     assert.ok(route.prefillValue)
     assert.ok(route.formalApplicationPath)
+    assert.ok(route.formPrompt)
     assert.equal('metadata' in route, false)
     assert.deepEqual(parseRoute(`/opportunities/${route.slug}`), {
       name: 'not-found',
