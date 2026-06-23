@@ -116,6 +116,10 @@ _Avoid_: All spreadsheet rows, Slack additions
 A public grouping on the Our People page. The canonical People Sections are Principal Investigator, Adjunct Faculty, Postdoc, Research Engineers, PhD Student, Masters Student, and Associate Members; alumni-marked people do not have a public directory People Section, while public section headings may use plural display labels.
 _Avoid_: Role filter, group bucket
 
+**People Research Area**:
+A canonical public filter category for People entries on the Our People page. Source keyword variants, abbreviations, typos, and narrow personal tags are normalized into People Research Areas before they appear in the public directory.
+_Avoid_: Raw research keyword, Research Direction, spreadsheet tag
+
 **Person Listing**:
 The compact Our People page entry for a person. It shows the person's name, photo, optional affiliation, and compact social/profile links; it excludes per-person role text, biography snippets, and research-area tags.
 _Avoid_: Person card, profile preview

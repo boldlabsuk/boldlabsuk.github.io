@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
-import { people } from '../src/content.ts'
+import { canonicalPeopleResearchAreas, people } from '../src/content.ts'
 import {
   buildPeopleDirectoryViewModel,
   getPeopleSection,
@@ -463,7 +463,13 @@ test('People Directory filter options expose public People Sections and remainin
 
   assert.deepEqual(options.sections, peopleSectionOrder)
   assert.ok(!options.sections.includes('Alumni'))
-  assert.ok(options.areas.includes('Reinforcement Learning'))
+  assert.deepEqual(options.areas, [...canonicalPeopleResearchAreas])
+  assert.deepEqual(
+    ['RL', 'LLMs', 'Open-endedness', 'Embodied AI'].filter((area) =>
+      options.areas.includes(area),
+    ),
+    [],
+  )
   assert.ok(options.affiliations.includes('University of Oxford'))
 })
 

@@ -1,4 +1,4 @@
-import { people } from '../content.ts'
+import { canonicalPeopleResearchAreas, people } from '../content.ts'
 import type { Person, PersonLinkSet } from '../content.ts'
 import { sortedNews } from './news.ts'
 import { sortedPapers } from './papers.ts'
@@ -88,10 +88,19 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
 
 export function getPeopleFilterOptions() {
   const directoryPeople = people.filter((person) => getPeopleSection(person) !== null)
+  const visibleAreaSet = new Set(
+    directoryPeople.flatMap((person) => person.researchAreas),
+  )
+  const canonicalAreaSet = new Set<string>(canonicalPeopleResearchAreas)
 
   return {
     sections: [...peopleSectionOrder],
-    areas: unique(directoryPeople.flatMap((person) => person.researchAreas)),
+    areas: [
+      ...canonicalPeopleResearchAreas.filter((area) => visibleAreaSet.has(area)),
+      ...unique(
+        [...visibleAreaSet].filter((area) => !canonicalAreaSet.has(area)),
+      ),
+    ],
     affiliations: unique(
       directoryPeople.flatMap((person) =>
         person.affiliation ? [person.affiliation] : [],

@@ -4,7 +4,11 @@ import { createHash } from 'node:crypto'
 import { access, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-import { buildWebsiteRoster, people } from '../src/content/people.ts'
+import {
+  buildWebsiteRoster,
+  canonicalPeopleResearchAreas,
+  people,
+} from '../src/content/people.ts'
 import {
   buildPeopleDirectoryViewModel,
   getPrimaryPersonLink,
@@ -234,6 +238,36 @@ test('Website Roster derives public Person Listings from central source rows', (
       ['Postdoc', ['blank-flag-postdoc']],
     ],
   )
+})
+
+test('Website Roster normalizes source Research Area keywords to canonical public areas', () => {
+  const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Canonical Researcher',
+      role: 'PhD student',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: [
+        'RL',
+        'Reinforcment Learning',
+        'LLMs',
+        'AI4Science',
+        'Open-endedness',
+        'Multi-Agent Reinforcement Learning Human-AI Coordination',
+      ],
+      profilePicture: 'canonical-researcher.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+  ])
+
+  assert.deepEqual(roster[0]?.researchAreas, [
+    'Reinforcement Learning',
+    'Language Models',
+    'AI for Science',
+    'Open-Ended Learning',
+    'Multi-Agent Systems',
+    'Human-AI Interaction',
+  ])
 })
 
 test('Website Roster maps unsupported profile source formats to generated web-safe assets', () => {
@@ -1202,6 +1236,16 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   assert.equal(people.length, 96)
   assert.equal(people.filter((person) => person.alumni).length, 7)
   assert.equal(directory.totalPeople, 89)
+  assert.deepEqual(
+    [
+      ...new Set(
+        people
+          .flatMap((person) => person.researchAreas)
+          .filter((area) => !canonicalPeopleResearchAreas.includes(area)),
+      ),
+    ],
+    [],
+  )
   assert.equal(directory.visiblePeopleCount, 89)
   assert.deepEqual(
     Object.fromEntries(
@@ -1312,7 +1356,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     filters: {
       query: '',
       section: allFilterValue,
-      area: 'Reinforcement Learning',
+      area: 'Human-AI Interaction',
       affiliation: allFilterValue,
     },
   })
@@ -1339,7 +1383,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     filters: {
       query: 'wang',
       section: 'PhD Student',
-      area: 'Embodied AI',
+      area: 'Robotics',
       affiliation: 'University College London',
     },
   })
@@ -1373,27 +1417,15 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['Principal Investigator', ['shimon-whiteson']],
-      ['Adjunct Faculty', ['jack-parker-holder', 'roberta-raileanu']],
+      ['Postdoc', ['johannes-forkel']],
       [
         'PhD Student',
-        [
-          'alex-goldie',
-          'george-nigmatulin',
-          'keyue-jiang',
-          'kang-li',
-          'austin-tudor-david-andrews',
-          'antoine-gorceix',
-          'hannah-janmohamed',
-          'michael-matthews',
-          'theo-wolf',
-        ],
+        ['ravi-hammond', 'shashank-reddy-chirra', 'harry-mayne'],
       ],
-      ['Masters Student', ['nathan-monette', 'jacinto-suner']],
-      ['Associate Members', ['aya-kayal', 'erik-feng', 'junming-an']],
+      ['Associate Members', ['elif-akata']],
     ],
   )
-  assert.equal(areaDirectory.visiblePeopleCount, 17)
+  assert.equal(areaDirectory.visiblePeopleCount, 5)
 
   assert.deepEqual(
     affiliationDirectory.sections.map((section) => [

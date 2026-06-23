@@ -5,9 +5,8 @@
     "role": "Adjunct Faculty",
     "homeInstitution": "Google DeepMind; University College London",
     "researchInterestKeywords": [
-      "Artificial Intelligence",
       "Machine Learning",
-      "Natural Language Processing"
+      "Language Models"
     ],
     "profilePicture": "ed-grefenstette.jpg",
     "listOnBoldWebsite": "",
@@ -20,7 +19,7 @@
     "homeInstitution": "Google DeepMind; University College London",
     "researchInterestKeywords": [
       "World Models",
-      "Open-Endedness",
+      "Open-Ended Learning",
       "Reinforcement Learning"
     ],
     "profilePicture": "jack-parker-holder.jpg",
@@ -33,7 +32,7 @@
     "role": "Adjunct Faculty",
     "homeInstitution": "Google DeepMind; University College London",
     "researchInterestKeywords": [
-      "Open-Endedness",
+      "Open-Ended Learning",
       "Reinforcement Learning",
       "AI Agents"
     ],
@@ -47,7 +46,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning Human-AI Coordination"
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "Human-AI Interaction"
     ],
     "profilePicture": "241337107_10159795827958909_7158950244190791044_n (1) - Ravi Hammond.jpg",
     "listOnBoldWebsite": "",
@@ -59,8 +60,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "LLMs",
-      "Geometric Deep Learning"
+      "Language Models",
+      "Machine Learning"
     ],
     "profilePicture": "me-fr - Antonio León Villares.jpeg",
     "listOnBoldWebsite": "",
@@ -72,11 +73,11 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "reinforcement learning",
-      "multi-agent reinforcement learning",
-      "optimization",
-      "representation learning",
-      "generalization"
+      "Reinforcement Learning",
+      "Multi-Agent Systems",
+      "Optimization",
+      "Machine Learning",
+      "Robustness & Generalization"
     ],
     "profilePicture": "headshot - Darius Muglich.jpeg",
     "listOnBoldWebsite": "",
@@ -89,10 +90,8 @@
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Reinforcement Learning",
-      "Exploration",
-      "Curriculum Learning",
       "Game Theory",
-      "Robustness"
+      "Robustness & Generalization"
     ],
     "profilePicture": "IMG_8274 - Nathan Monette.jpg",
     "listOnBoldWebsite": "",
@@ -104,10 +103,10 @@
     "role": "Postdoc",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "Evolution",
-      "RL",
-      "Multi-agent",
-      "Behaviour Diversity"
+      "Evolutionary Computation",
+      "Reinforcement Learning",
+      "Multi-Agent Systems",
+      "Open-Ended Learning"
     ],
     "profilePicture": "cv - Paul Templier.jpg",
     "listOnBoldWebsite": "",
@@ -119,9 +118,10 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Reinforcement learning",
-      "world models",
-      "vision-language-action models"
+      "Reinforcement Learning",
+      "World Models",
+      "Robotics",
+      "Foundation Models"
     ],
     "profilePicture": "logo6 - Alex Lev.jpg",
     "listOnBoldWebsite": "",
@@ -133,11 +133,10 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Algorithm Discovery",
-      "Automated Research",
-      "Meta-Learning",
+      "Automated Discovery",
+      "Meta-Learning & Adaptation",
       "Reinforcement Learning",
-      "LLMs"
+      "Language Models"
     ],
     "profilePicture": "IMG_2696 - Alex Goldie.heic",
     "listOnBoldWebsite": "",
@@ -149,7 +148,7 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Offline RL",
+      "Reinforcement Learning",
       "World Models"
     ],
     "profilePicture": "IMG_1725_square - Jarek Li.jpg",
@@ -162,10 +161,9 @@
     "role": "PhD student",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "open-endedness",
-      "unsupervised environment design",
-      "reinforcement learning",
-      "evolutionary computation"
+      "Open-Ended Learning",
+      "Reinforcement Learning",
+      "Evolutionary Computation"
     ],
     "profilePicture": "profile_pic - Konstantinos Mitsides.jpeg",
     "listOnBoldWebsite": "",
@@ -177,9 +175,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Generative AI",
+      "Generative Models",
       "Reinforcement Learning",
-      "Quantitative Finance"
+      "Financial AI"
     ],
     "profilePicture": "F1BDBCB2-E266-4878-A296-64571292F119 3 - George Nigmatulin.jpg",
     "listOnBoldWebsite": "",
@@ -192,8 +190,8 @@
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "Reinforcement Learning",
-      "Diffusion Models",
-      "LLMs"
+      "Generative Models",
+      "Language Models"
     ],
     "profilePicture": "garyball - Keyue Jiang.jpeg",
     "listOnBoldWebsite": "",
@@ -206,9 +204,7 @@
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "Reinforcement Learning",
-      "LLMs",
-      "exploration",
-      "sequential decision making"
+      "Language Models"
     ],
     "profilePicture": "aya new pic - Aya Kayal.jpg",
     "listOnBoldWebsite": "",
@@ -221,7 +217,7 @@
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Reinforcement Learning",
-      "Foundation Model"
+      "Foundation Models"
     ],
     "profilePicture": "Snipaste_2026-06-15_14-26-28 - kang.png",
     "listOnBoldWebsite": "",
@@ -233,9 +229,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Deep Reinforcement Learning",
+      "Reinforcement Learning",
       "Multi-Agent Systems",
-      "Collective Intelligence"
+      "Complex Systems"
     ],
     "profilePicture": "picture_jakob_hartmann - Jakob Hartmann.jpeg",
     "listOnBoldWebsite": "",
@@ -247,9 +243,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "complexity/information theory",
-      "causal inference",
-      "regularisation"
+      "Complex Systems",
+      "Causal Inference",
+      "Robustness & Generalization"
     ],
     "profilePicture": "professional headshot - Greg Levy.jpg",
     "listOnBoldWebsite": "",
@@ -261,9 +257,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Deep Reinforcement Learning",
-      "Autonomous Driving",
-      "Planning",
+      "Reinforcement Learning",
+      "Robotics",
+      "Planning & Control",
       "Generative Models"
     ],
     "profilePicture": "zilin_picture - Zilin Wang.png",
@@ -276,11 +272,10 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "rl",
-      "safety",
-      "alignment",
-      "learning theory",
-      "game theory"
+      "Reinforcement Learning",
+      "AI Safety & Governance",
+      "Machine Learning",
+      "Game Theory"
     ],
     "profilePicture": "israel2-square - Alistair Letcher.jpg",
     "listOnBoldWebsite": "",
@@ -292,11 +287,11 @@
     "role": "Visitor",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "model-based rl",
-      "zero-shot rl",
-      "test-time planning",
-      "meta-rl",
-      "generalist agents"
+      "World Models",
+      "Reinforcement Learning",
+      "Planning & Control",
+      "Meta-Learning & Adaptation",
+      "AI Agents"
     ],
     "profilePicture": "IMG_3812 - Evangelos Chatzaroulas (Angel).JPEG",
     "listOnBoldWebsite": "",
@@ -308,7 +303,7 @@
     "role": "Postdoc",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "AI4Science",
+      "AI for Science",
       "Computer Vision"
     ],
     "profilePicture": "yulin_wang - Yulin Wang.jpg",
@@ -321,9 +316,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Open Ended RL",
-      "Scaling RL",
-      "UED"
+      "Open-Ended Learning",
+      "Reinforcement Learning"
     ],
     "profilePicture": "IMG_3688 - Michael Beukman.jpg",
     "listOnBoldWebsite": "",
@@ -335,9 +329,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Machine Learning Architectures",
+      "Machine Learning Systems",
       "Reinforcement Learning",
-      "Neuroscience",
       "NeuroAI"
     ],
     "profilePicture": "IMG_7827 (2) - Austin Andrews.png",
@@ -350,8 +343,7 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "EGGROLL",
-      "Evolution",
+      "Evolutionary Computation",
       "Foundation Models"
     ],
     "profilePicture": "Bidipta_Sarkar_600_600 - Bidipta Sarkar.jpg",
@@ -364,7 +356,7 @@
     "role": "PhD student",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "Deep RL",
+      "Reinforcement Learning",
       "Robotics"
     ],
     "profilePicture": "Weixin Image_20260615151806_73_2 - Runjun Mao.jpg",
@@ -377,11 +369,10 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Continual learning",
-      "meta learning",
-      "world models",
-      "reinforcement learning",
-      "LLMs"
+      "Meta-Learning & Adaptation",
+      "World Models",
+      "Reinforcement Learning",
+      "Language Models"
     ],
     "profilePicture": "IMG_1949 - James Harvey.jpeg",
     "listOnBoldWebsite": "",
@@ -394,7 +385,7 @@
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Robotics",
-      "off-policy RL"
+      "Reinforcement Learning"
     ],
     "profilePicture": "PNG image - Aneesh Muppidi.png",
     "listOnBoldWebsite": "",
@@ -407,10 +398,8 @@
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "Generative Models",
-      "Graph Machine Learning",
-      "Diffusion Models",
-      "Geometric Deep Learning",
-      "Molecular Machine Learning"
+      "Machine Learning",
+      "AI for Science"
     ],
     "profilePicture": "headshot - 2026 - close - Nagham Osman.png",
     "listOnBoldWebsite": "",
@@ -422,10 +411,11 @@
     "role": "PhD student",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "Open-Endedness",
-      "Goal-conditioned reinforcement learning",
-      "autonomous scientific discovery",
-      "autonomous design of reward functions and optimisation metrics"
+      "Open-Ended Learning",
+      "Reinforcement Learning",
+      "Automated Discovery",
+      "AI for Science",
+      "Optimization"
     ],
     "profilePicture": "250226_ICL_DeptComp_RBornemann_002 - Richard Bornemann.jpg",
     "listOnBoldWebsite": "",
@@ -437,7 +427,8 @@
     "role": "Faculty",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "jakob-foerster.jpg",
     "listOnBoldWebsite": "YES",
@@ -449,9 +440,7 @@
     "role": "BOLD PI",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Agent-based modelling",
-      "Complex networked systems",
-      "Digital twins"
+      "Complex Systems"
     ],
     "profilePicture": "ani-calinescu.jpg",
     "listOnBoldWebsite": "YES",
@@ -463,7 +452,7 @@
     "role": "BOLD PI",
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
-      "Open-Endedness"
+      "Open-Ended Learning"
     ],
     "profilePicture": "tim_rocktaeschel_square_zoom - Tim Rocktäschel.png",
     "listOnBoldWebsite": "",
@@ -476,9 +465,7 @@
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Automated Discovery",
-      "Open-endedness",
-      "self-improvement",
-      "co-scientist"
+      "Open-Ended Learning"
     ],
     "profilePicture": "Screenshot 2026-06-15 at 16.11.15 - Alisia Lupidi.png",
     "listOnBoldWebsite": "",
@@ -490,11 +477,11 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "LLMs",
-      "MARL",
-      "Fine-Tuning",
-      "Trading",
-      "Mechanistic Interpretability"
+      "Language Models",
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "Financial AI",
+      "Interpretability"
     ],
     "profilePicture": "IMG_20250609_103933_685 - Valentin Mohl.jpg",
     "listOnBoldWebsite": "",
@@ -506,11 +493,10 @@
     "role": "PhD student",
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
-      "Language Model Reasoning",
-      "In-Context Learning",
-      "Model Adaptation",
-      "Exploration",
-      "Search"
+      "Language Models",
+      "Meta-Learning & Adaptation",
+      "Reinforcement Learning",
+      "Planning & Control"
     ],
     "profilePicture": "WhatsApp Image 2026-06-15 at 16.23.12 - Nathan Herr.jpeg",
     "listOnBoldWebsite": "",
@@ -522,9 +508,10 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "multi-agent rl",
-      "human-AI coordination",
-      "meta-learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "Human-AI Interaction",
+      "Meta-Learning & Adaptation"
     ],
     "profilePicture": "IMG_0877 - Shashank Reddy.jpg",
     "listOnBoldWebsite": "",
@@ -536,9 +523,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "RL",
-      "Open-Ended Learning",
-      "UED"
+      "Reinforcement Learning",
+      "Open-Ended Learning"
     ],
     "profilePicture": "prof_pic - Alexander Rutherford.jpg",
     "listOnBoldWebsite": "",
@@ -550,9 +536,10 @@
     "role": "Master Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "MARL",
-      "AI4Science",
-      "Safety"
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "AI for Science",
+      "AI Safety & Governance"
     ],
     "profilePicture": "0ce70c43588c05e0c44b612ff31289c0 - Yuhe Gao.jpeg",
     "listOnBoldWebsite": "",
@@ -564,7 +551,7 @@
     "role": "Master Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Learning from first principles"
+      "Machine Learning"
     ],
     "profilePicture": "IMG_1268 2 - Aramis Marti.jpg",
     "listOnBoldWebsite": "",
@@ -576,11 +563,12 @@
     "role": "research assistant - but starting PhD in October!",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "robotics",
-      "world models",
-      "RL",
-      "LLMs",
-      "robust adaptation"
+      "Robotics",
+      "World Models",
+      "Reinforcement Learning",
+      "Language Models",
+      "Meta-Learning & Adaptation",
+      "Robustness & Generalization"
     ],
     "profilePicture": "IMG_3912 - George Mavroghenis.jpg",
     "listOnBoldWebsite": "",
@@ -595,7 +583,7 @@
       "Reinforcement Learning",
       "Multi-Agent Systems",
       "Open-Ended Learning",
-      "Large Language Models",
+      "Language Models",
       "World Models"
     ],
     "profilePicture": "Photo_Antoine_Gorceix - Antoine G.jpg",
@@ -608,9 +596,7 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Offline",
-      "Goal-Conditioned",
-      "Hierarchical Reinforcement Learning"
+      "Reinforcement Learning"
     ],
     "profilePicture": "ClarisseWibault - C Wibault.jpeg",
     "listOnBoldWebsite": "",
@@ -622,10 +608,9 @@
     "role": "Engineering 4YP Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Finance",
-      "World-models",
-      "forecasting",
-      "ml acceleration"
+      "Financial AI",
+      "World Models",
+      "Machine Learning Systems"
     ],
     "profilePicture": "Satyam Agarwal Headshot 11-25 - Satyam Agarwal.jpeg",
     "listOnBoldWebsite": "",
@@ -637,9 +622,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Data attribution",
       "Interpretability",
-      "AGI Safety"
+      "AI Safety & Governance"
     ],
     "profilePicture": "PXL_20260602_152809534~2 - J Rosser.jpg",
     "listOnBoldWebsite": "",
@@ -651,11 +635,11 @@
     "role": "BOLD PI",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "Open-ended learning",
-      "robot learning",
-      "resilient robotics",
-      "Quality Diversity",
-      "Artificial Creativity"
+      "Open-Ended Learning",
+      "Robotics",
+      "Reinforcement Learning",
+      "Robustness & Generalization",
+      "Evolutionary Computation"
     ],
     "profilePicture": "DSC06481_(2000) - Antoine Cully.png",
     "listOnBoldWebsite": "",
@@ -669,7 +653,7 @@
     "researchInterestKeywords": [
       "Computer Vision",
       "Robotics",
-      "Anomaly Detection"
+      "Machine Learning"
     ],
     "profilePicture": "profile - Cong Sun.JPG",
     "listOnBoldWebsite": "",
@@ -681,9 +665,10 @@
     "role": "Research Assistant",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "World model",
-      "reinforcement learning",
-      "damage adaptation"
+      "World Models",
+      "Reinforcement Learning",
+      "Meta-Learning & Adaptation",
+      "Robustness & Generalization"
     ],
     "profilePicture": "250226_ICL_DeptComp_JW_006 - Jiankai Wang.jpeg",
     "listOnBoldWebsite": "",
@@ -695,8 +680,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "RL",
-      "LLM reasoning",
+      "Reinforcement Learning",
+      "Language Models",
       "World Models"
     ],
     "profilePicture": "Uljad_FLAIR - Uljad Berdica.jpg",
@@ -709,9 +694,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "World modeling",
-      "model-based RL",
-      "Robot Learning"
+      "World Models",
+      "Reinforcement Learning",
+      "Robotics"
     ],
     "profilePicture": "IMG_6964 - Francesco Capuano.jpeg",
     "listOnBoldWebsite": "",
@@ -723,11 +708,10 @@
     "role": "Research Engineer",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "Model Predictive Control",
-      "Sim-to-Real",
-      "Real-time Embedded System",
-      "Trajectory Optimization",
-      "Autonomous Systems"
+      "Planning & Control",
+      "Robotics",
+      "Machine Learning Systems",
+      "Optimization"
     ],
     "profilePicture": "oscar_pang - Oscar Pang.jpg",
     "listOnBoldWebsite": "",
@@ -739,9 +723,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "LLMs",
-      "RL",
-      "RSI"
+      "Language Models",
+      "Reinforcement Learning",
+      "Automated Discovery"
     ],
     "profilePicture": "IMG_3477 - Anya Sims.jpeg",
     "listOnBoldWebsite": "",
@@ -753,9 +737,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "RL",
-      "AI Scientist",
-      "Curriculum"
+      "Reinforcement Learning",
+      "Automated Discovery"
     ],
     "profilePicture": "T017NU4E8E9-U067AKSSM60-35b917e9850f-512 - Thom Foster.png",
     "listOnBoldWebsite": "",
@@ -767,9 +750,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "ABM",
-      "foundation models",
-      "complexity economics"
+      "Complex Systems",
+      "Foundation Models"
     ],
     "profilePicture": "94DC0228-5A8A-4F5C-AB17-5632DC952A5C_4_5005_c - Jess Carr.jpeg",
     "listOnBoldWebsite": "",
@@ -784,8 +766,7 @@
       "AI for Science",
       "Foundation Models",
       "Reinforcement Learning",
-      "Embodied AI",
-      "Robot Learning"
+      "Robotics"
     ],
     "profilePicture": "Foto Jacinto 2 - Jacinto Suñer Soler.JPG",
     "listOnBoldWebsite": "",
@@ -797,11 +778,10 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "opponent shaping",
-      "antibody design",
-      "viral escape",
-      "game theory",
-      "MARL"
+      "Game Theory",
+      "Multi-Agent Systems",
+      "AI for Science",
+      "Reinforcement Learning"
     ],
     "profilePicture": "flair_photo - Ola Kalisz.png",
     "listOnBoldWebsite": "",
@@ -813,11 +793,11 @@
     "role": "PhD student",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
-      "Quality-Diversity",
-      "Reinforcement Learning",
+      "Evolutionary Computation",
       "Open-Ended Learning",
+      "Reinforcement Learning",
       "Robotics",
-      "Co-Scientist"
+      "Automated Discovery"
     ],
     "profilePicture": "R0001134 - Hannah Janmohamed.JPG",
     "listOnBoldWebsite": "",
@@ -829,10 +809,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "RL",
-      "meta learning",
-      "llms",
-      "imitation learning"
+      "Reinforcement Learning",
+      "Meta-Learning & Adaptation",
+      "Language Models"
     ],
     "profilePicture": "oxford_stats_pic - Silvia Sapora.jpg",
     "listOnBoldWebsite": "",
@@ -844,9 +823,8 @@
     "role": "Current Masters Student, but inc. PhD this fall with Jakob+Shimon",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "RL",
-      "Meta-Learning",
-      "Exploration",
+      "Reinforcement Learning",
+      "Meta-Learning & Adaptation",
       "Open-Ended Learning"
     ],
     "profilePicture": "bold_headshot - Samuel Simons.png",
@@ -859,8 +837,8 @@
     "role": "Master Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Offline RL",
-      "Algorithm search"
+      "Reinforcement Learning",
+      "Automated Discovery"
     ],
     "profilePicture": "linked in - Ali Farhat.jpg",
     "listOnBoldWebsite": "",
@@ -872,7 +850,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning",
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
       "Complex Systems"
     ],
     "profilePicture": "lukasseier_profile - Lukas Seier.jpg",
@@ -886,8 +865,8 @@
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
       "Robotics",
-      "Open-ended learning",
-      "Robot learning"
+      "Open-Ended Learning",
+      "Reinforcement Learning"
     ],
     "profilePicture": "250226_ICL_DeptComp_LC_002 - Lisa.jpeg",
     "listOnBoldWebsite": "",
@@ -899,7 +878,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Long-horizon reasoning and RL"
+      "Language Models",
+      "Reinforcement Learning"
     ],
     "profilePicture": "prof_pic - Sumeet Motwani.jpg",
     "listOnBoldWebsite": "",
@@ -911,10 +891,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "cooperative AI",
-      "representational alignment",
-      "bounded rationality",
-      "AI safety"
+      "Multi-Agent Systems",
+      "AI Safety & Governance",
+      "Game Theory"
     ],
     "profilePicture": "DSCF5387 - Hannah Erlebach.JPG",
     "listOnBoldWebsite": "",
@@ -938,9 +917,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "AI safety",
-      "LLM self-explanations",
-      "HCI"
+      "AI Safety & Governance",
+      "Interpretability",
+      "Human-AI Interaction"
     ],
     "profilePicture": "Screenshot 2026-02-26 at 09.59.42 - Harry Mayne.png",
     "listOnBoldWebsite": "",
@@ -952,10 +931,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "RL",
-      "LLMs",
-      "Reasoning",
-      "Meta-Learning"
+      "Reinforcement Learning",
+      "Language Models",
+      "Meta-Learning & Adaptation"
     ],
     "profilePicture": "IMG_0119 - Jonathan Cook.JPG",
     "listOnBoldWebsite": "",
@@ -968,8 +946,8 @@
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Reinforcement Learning",
-      "Evolution Strategies",
-      "Meta-Learning"
+      "Evolutionary Computation",
+      "Meta-Learning & Adaptation"
     ],
     "profilePicture": "IMG_2008 - Erik F..jpg",
     "listOnBoldWebsite": "",
@@ -981,8 +959,8 @@
     "role": "Visitor",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "LLMs",
-      "Human-Centered AI"
+      "Language Models",
+      "Human-AI Interaction"
     ],
     "profilePicture": "profile - Elif Akata.jpg",
     "listOnBoldWebsite": "",
@@ -994,11 +972,7 @@
     "role": "Visitor",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Hardware-Aware Neural Network Acceleration",
-      "Binary Neural Networks",
-      "Differentiable Logic Gate Networks",
-      "FPGA-Based ML Hardware",
-      "Neuromorphic Computing"
+      "Machine Learning Systems"
     ],
     "profilePicture": "DSC00483_small - Simon Bührer.png",
     "listOnBoldWebsite": "",
@@ -1010,8 +984,9 @@
     "role": "Postdoc",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "MARL",
-      "Human-AI Coordination"
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "Human-AI Interaction"
     ],
     "profilePicture": "IMG_0245 - Johannes Forkel.JPG",
     "listOnBoldWebsite": "",
@@ -1023,9 +998,9 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "research agent",
-      "language model post-training",
-      "agentic language model"
+      "Automated Discovery",
+      "AI Agents",
+      "Language Models"
     ],
     "profilePicture": "b8f6ef66a27db8360c9da493bddd3f24 - Tingchen Fu.jpeg",
     "listOnBoldWebsite": "",
@@ -1037,9 +1012,9 @@
     "role": "Postdoc",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Complexity",
-      "compression",
-      "generalization"
+      "Complex Systems",
+      "Machine Learning",
+      "Robustness & Generalization"
     ],
     "profilePicture": "brantonhat - Branton DeMoss.jpeg",
     "listOnBoldWebsite": "",
@@ -1051,10 +1026,10 @@
     "role": "BOLD PI",
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
-      "RL",
-      "Diffusion models",
-      "LLMs",
-      "Graph-ML"
+      "Reinforcement Learning",
+      "Generative Models",
+      "Language Models",
+      "Machine Learning"
     ],
     "profilePicture": "download - Laura.jpeg",
     "listOnBoldWebsite": "YES",
@@ -1066,7 +1041,6 @@
     "role": "BOLD PI",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Deep Reinforcement Learning",
       "Reinforcement Learning",
       "Machine Learning"
     ],
@@ -1080,11 +1054,8 @@
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "RL",
-      "Reasoning",
-      "LLMs",
-      "RLVR",
-      "Exploration"
+      "Reinforcement Learning",
+      "Language Models"
     ],
     "profilePicture": "me_subfusc_cropped_small - Eltayeb Ahmed.jpg",
     "listOnBoldWebsite": "YES",
@@ -1098,9 +1069,8 @@
     "researchInterestKeywords": [
       "Reinforcement Learning",
       "World Models",
-      "Simulation",
-      "Control",
-      "Sustainability"
+      "Planning & Control",
+      "AI Safety & Governance"
     ],
     "profilePicture": "matric high res square - Theo Wolf.jpg",
     "listOnBoldWebsite": "YES",
@@ -1112,10 +1082,9 @@
     "role": "Postdoc",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Reinforcment Learning",
-      "Bayesian",
-      "Evolution",
-      "Theory"
+      "Reinforcement Learning",
+      "Machine Learning",
+      "Evolutionary Computation"
     ],
     "profilePicture": "mattie - Mattie Fellows.pdf",
     "listOnBoldWebsite": "YES",
@@ -1127,10 +1096,9 @@
     "role": "Postdoc",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "multi-agent reinforcement learning",
-      "cooperative AI",
-      "evolutionary computation",
-      "emergent communication"
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "Evolutionary Computation"
     ],
     "profilePicture": "PXL_20230617_215900573.MP - Copy - Dylan Cope.jpg",
     "listOnBoldWebsite": "YES",
@@ -1144,8 +1112,8 @@
     "researchInterestKeywords": [
       "Reinforcement Learning",
       "Multi-Agent Systems",
-      "Robotics and Autonomous Systems",
-      "High-Performance Computing"
+      "Robotics",
+      "Machine Learning Systems"
     ],
     "profilePicture": "junming an - JUNMING AN.jpg",
     "listOnBoldWebsite": "YES",
@@ -1157,9 +1125,7 @@
     "role": "Academic Collaborator",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "power concentration",
-      "AI safety",
-      "democracy"
+      "AI Safety & Governance"
     ],
     "profilePicture": "me-cropped-square - Alfie Lamerton.jpg",
     "listOnBoldWebsite": "YES",
@@ -1171,7 +1137,8 @@
     "role": "DPhil Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "sam-coward.jpg",
     "listOnBoldWebsite": "YES",
@@ -1183,7 +1150,8 @@
     "role": "DPhil Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "matthew-jackson.jpg",
     "listOnBoldWebsite": "YES",
@@ -1195,7 +1163,8 @@
     "role": "DPhil Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "qizhen-zhang.jpg",
     "listOnBoldWebsite": "YES",
@@ -1207,7 +1176,8 @@
     "role": "DPhil Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "andrei-lupu.jpg",
     "listOnBoldWebsite": "YES",
@@ -1219,7 +1189,8 @@
     "role": "DPhil Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "seb-towers.jpg",
     "listOnBoldWebsite": "YES",
@@ -1243,7 +1214,8 @@
     "role": "Visiting Student (MSc)",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "maks-wolski.jpg",
     "listOnBoldWebsite": "YES",
@@ -1255,7 +1227,8 @@
     "role": "Associate PhD",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "tim-franzmeyer.jpg",
     "listOnBoldWebsite": "YES",
@@ -1267,7 +1240,8 @@
     "role": "Research Scientist @ Reflection AI; DPhil 2021-2025",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "ben-ellis.jpg",
     "listOnBoldWebsite": "YES",
@@ -1280,7 +1254,8 @@
     "role": "Research Scientist @ OpenAI; DPhil 2021-2025",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "chris-lu.jpg",
     "listOnBoldWebsite": "YES",
@@ -1293,7 +1268,8 @@
     "role": "Research Scientist @ Meta; DPhil 2021-2025",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "timon-willi.jpg",
     "listOnBoldWebsite": "YES",
@@ -1306,7 +1282,8 @@
     "role": "Postdoc @ TVG, Oxford; Postdoc 2021-2023",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "christian-schroeder.jpg",
     "listOnBoldWebsite": "YES",
@@ -1319,7 +1296,8 @@
     "role": "PhD @ MIT; MSc 2022-2023",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "jia-wan.jpg",
     "listOnBoldWebsite": "YES",
@@ -1332,7 +1310,8 @@
     "role": "Data Scientist @ BCG; MSc 2021-2022",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "matthias-hericks.jpg",
     "listOnBoldWebsite": "YES",
@@ -1345,7 +1324,8 @@
     "role": "Applied Scientist @ Amazon; MSc 2021-2022",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Multi-Agent Reinforcement Learning"
+      "Multi-Agent Systems",
+      "Reinforcement Learning"
     ],
     "profilePicture": "noah-sarfati.jpg",
     "listOnBoldWebsite": "YES",
