@@ -117,7 +117,7 @@ export type OpportunityRoute = {
   timing?: string
   formalApplicationPath: string
   prefillValue: string
-  primaryActionLabel: 'Express interest'
+  primaryActionLabel: 'Apply'
   whoThisIsFor: string[]
   whatWeLookFor: string[]
   howThisWorks: string

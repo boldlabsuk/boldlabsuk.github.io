@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   expressionOfInterestFormConfig,
   getExpressionOfInterestEmbedUrl,
@@ -9,6 +9,15 @@ import type {
   OpportunityRoute,
 } from '../../content'
 import { SectionHeader } from '../../ui/layout/SectionHeader'
+
+const tallyEmbedScriptId = 'tally-embed-script'
+const tallyEmbedScriptSrc = 'https://tally.so/widgets/embed.js'
+
+type TallyWindow = Window & {
+  Tally?: {
+    loadEmbeds?: () => void
+  }
+}
 
 type OpportunitiesPageProps = {
   formConfig?: ExpressionOfInterestFormConfig | null
@@ -63,12 +72,6 @@ function OpportunityRouteIndexEntry({
   route: OpportunityRoute
   onSelect: () => void
 }) {
-  const facts = [
-    [getPlaceFactLabel(route.slug), route.location],
-    ['Timing', route.timing],
-    ['Formal Application Path', route.formalApplicationPath],
-  ].filter((fact): fact is [string, string] => Boolean(fact[1]))
-
   return (
     <article className="opportunity-route-index-entry" id={route.slug}>
       <div className="opportunity-route-index-main">
@@ -79,31 +82,16 @@ function OpportunityRouteIndexEntry({
         <p>{route.shortSummary}</p>
       </div>
 
-      <dl className="opportunity-route-index-facts">
-        {facts.map(([label, value]) => (
-          <div key={label}>
-            <dt>{label}</dt>
-            <dd>{value}</dd>
-          </div>
-        ))}
-      </dl>
-
       <a
         className="button button-primary"
         href="#express-interest"
-        aria-label={`Express interest in ${route.title}`}
+        aria-label={`Apply for ${route.title}`}
         onClick={onSelect}
       >
         {route.primaryActionLabel}
       </a>
     </article>
   )
-}
-
-function getPlaceFactLabel(slug: string) {
-  return slug === 'research-engineers' || slug === 'collaborators'
-    ? 'Working mode'
-    : 'Location'
 }
 
 function ExpressionOfInterestSection({
@@ -125,22 +113,16 @@ function ExpressionOfInterestSection({
     <section
       className="expression-interest-section"
       id="express-interest"
-      aria-labelledby="express-interest-heading"
+      aria-label="Expression of Interest form"
     >
-      <div className="expression-interest-copy">
-        <p className="eyebrow">Expression of Interest</p>
-        <h2 id="express-interest-heading">Select a role</h2>
-        <p>
-          Choose the Opportunity Route that best matches your interest. Changing
-          route resets the embedded form.
-        </p>
-      </div>
-
       <div className="expression-interest-panel">
-        <label className="select-filter opportunity-route-selector" htmlFor="opportunity-route-select">
-          <span>Opportunity Route</span>
+        <label
+          className="select-filter opportunity-route-selector"
+          htmlFor="opportunity-route-select"
+        >
           <select
             id="opportunity-route-select"
+            aria-label="Select a role"
             value={selectedRouteSlug}
             onChange={(event) => onSelectedRouteChange(event.target.value)}
           >
@@ -158,12 +140,7 @@ function ExpressionOfInterestSection({
             embedUrl={embedUrl}
             route={selectedRoute}
           />
-        ) : (
-          <p className="empty-state">
-            Select an Opportunity Route to see route-specific guidance and load
-            the embedded Expression of Interest form.
-          </p>
-        )}
+        ) : null}
       </div>
     </section>
   )
@@ -176,18 +153,25 @@ function SelectedRouteForm({
   embedUrl: string | undefined
   route: OpportunityRoute
 }) {
+  const autoResizeEmbedUrl = embedUrl
+    ? getAutoResizeEmbedUrl(embedUrl)
+    : undefined
+
+  useTallyEmbedResizer(autoResizeEmbedUrl)
+
   return (
     <div className="selected-route-form">
       <div className="selected-route-guidance">
         <h3>{route.title}</h3>
         <p>{route.positioning}</p>
+        <p>{route.howThisWorks}</p>
         <p>{route.formPrompt}</p>
       </div>
 
-      {embedUrl ? (
+      {autoResizeEmbedUrl ? (
         <iframe
-          key={embedUrl}
-          src={embedUrl}
+          key={autoResizeEmbedUrl}
+          src={autoResizeEmbedUrl}
           title={`${route.title} Expression of Interest form`}
           loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -205,6 +189,56 @@ function SelectedRouteForm({
       )}
     </div>
   )
+}
+
+function getAutoResizeEmbedUrl(embedUrl: string) {
+  const autoResizeEmbedUrl = new URL(embedUrl)
+  autoResizeEmbedUrl.searchParams.set('dynamicHeight', '1')
+  return autoResizeEmbedUrl.toString()
+}
+
+function useTallyEmbedResizer(embedUrl: string | undefined) {
+  useEffect(() => {
+    if (!embedUrl) {
+      return
+    }
+
+    let cancelled = false
+    const tallyWindow = window as TallyWindow
+    const loadEmbeds = () => {
+      if (!cancelled) {
+        tallyWindow.Tally?.loadEmbeds?.()
+      }
+    }
+
+    if (tallyWindow.Tally?.loadEmbeds) {
+      loadEmbeds()
+      return () => {
+        cancelled = true
+      }
+    }
+
+    const existingScript = document.getElementById(tallyEmbedScriptId)
+    if (existingScript) {
+      existingScript.addEventListener('load', loadEmbeds)
+      return () => {
+        cancelled = true
+        existingScript.removeEventListener('load', loadEmbeds)
+      }
+    }
+
+    const script = document.createElement('script')
+    script.id = tallyEmbedScriptId
+    script.src = tallyEmbedScriptSrc
+    script.async = true
+    script.addEventListener('load', loadEmbeds)
+    document.body.appendChild(script)
+
+    return () => {
+      cancelled = true
+      script.removeEventListener('load', loadEmbeds)
+    }
+  }, [embedUrl])
 }
 
 function getOpportunityRoute(slug: string | undefined) {

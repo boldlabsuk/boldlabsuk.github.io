@@ -12,7 +12,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     title: 'PhD Students',
     shortTitle: 'PhD Students',
     shortSummary:
-      'Connect your doctoral research interests with BOLD before or during formal university application routes.',
+      'PhD routes with BOLD-aligned supervision.',
     positioning:
       'For prospective doctoral researchers who want to explore whether their research direction fits BOLD.',
     status: 'Rolling interest',
@@ -21,7 +21,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formalApplicationPath:
       'Expressing interest in BOLD is not a PhD application; formal admission remains through the relevant university or department.',
     prefillValue: 'phd-students',
-    primaryActionLabel: 'Express interest',
+    primaryActionLabel: 'Apply',
     whoThisIsFor: [
       'Prospective doctoral students developing a focused AI research agenda.',
       'Applicants considering possible supervisors or groups connected to BOLD without needing to choose from a fixed list.',
@@ -44,7 +44,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     title: 'Visiting Students',
     shortTitle: 'Visiting Students',
     shortSummary:
-      'Explore a focused research visit with a BOLD host, shaped around supervision fit and timing.',
+      'Time-bound research visits with a BOLD host.',
     positioning:
       'For students at another institution who want a time-bound research visit with a clear project shape.',
     status: 'Rolling interest',
@@ -53,7 +53,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formalApplicationPath:
       'Expressing interest helps BOLD assess host fit; any institutional visiting process, funding approval, or placement paperwork remains separate.',
     prefillValue: 'visiting-students',
-    primaryActionLabel: 'Express interest',
+    primaryActionLabel: 'Apply',
     whoThisIsFor: [
       'Students enrolled at another institution seeking a defined BOLD visit.',
       'Candidates with a focused project idea and proposed timing.',
@@ -76,7 +76,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     title: "Master's Students",
     shortTitle: "Master's",
     shortSummary:
-      'Share interest in supervised projects where programme timing, capacity, and research fit align.',
+      'Supervised projects where timing and fit align.',
     positioning:
       "For Master's students looking for BOLD-aligned project supervision or research project fit.",
     status: 'Rolling interest',
@@ -85,7 +85,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formalApplicationPath:
       'Expressing interest in BOLD does not replace your university programme, module, or project allocation process.',
     prefillValue: 'masters-students',
-    primaryActionLabel: 'Express interest',
+    primaryActionLabel: 'Apply',
     whoThisIsFor: [
       "Master's students seeking a research or technical project connected to BOLD.",
       'Students with a known project window and programme constraints.',
@@ -108,7 +108,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     title: 'Research Engineers',
     shortTitle: 'Research Engineers',
     shortSummary:
-      'Build ML systems, research infrastructure, evaluation tooling, data platforms, and web or platform systems for frontier research.',
+      'ML systems and research tooling close to frontier work.',
     positioning:
       'For engineers who want technical systems work to sit close to ambitious AI research.',
     status: 'Rolling interest',
@@ -117,7 +117,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formalApplicationPath:
       'This intake is not a job application; any formal hiring process for an advertised role will be separate.',
     prefillValue: 'research-engineers',
-    primaryActionLabel: 'Express interest',
+    primaryActionLabel: 'Apply',
     whoThisIsFor: [
       'Engineers with experience in ML systems, research infrastructure, evaluation, data tooling, or platform work.',
       'Builders who can work with researchers on fast-moving technical problems.',
@@ -140,7 +140,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     title: 'Fellows and Experienced Researchers',
     shortTitle: 'Fellows',
     shortSummary:
-      'Explore visiting, collaboration, fellowship, or longer-term research relationships with BOLD.',
+      'Fellowship, visiting, or longer-term research relationships.',
     positioning:
       "For researchers with an established agenda who see a serious fit with BOLD's scientific programme.",
     status: 'Rolling interest',
@@ -149,7 +149,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formalApplicationPath:
       'An Expression of Interest starts a fit conversation; fellowship, visiting, employment, or institutional routes may require separate formal processes.',
     prefillValue: 'fellows',
-    primaryActionLabel: 'Express interest',
+    primaryActionLabel: 'Apply',
     whoThisIsFor: [
       'Researchers with a mature agenda connected to BOLD Research Directions.',
       'Fellows, visitors, or experienced researchers considering a BOLD relationship.',
@@ -172,7 +172,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     title: 'Collaborators',
     shortTitle: 'Collaborators',
     shortSummary:
-      'Start a serious research collaboration with clear scientific motivation and mutual fit.',
+      'Research collaborations with clear scientific fit.',
     positioning:
       'For individuals, groups, companies, or institutions proposing a collaboration with BOLD.',
     status: 'Rolling interest',
@@ -181,7 +181,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     formalApplicationPath:
       'A Collaborator Expression of Interest is collaboration intake, not a job, student, or admissions application.',
     prefillValue: 'collaborators',
-    primaryActionLabel: 'Express interest',
+    primaryActionLabel: 'Apply',
     whoThisIsFor: [
       'Individuals, groups, companies, or institutions with a BOLD-aligned collaboration idea.',
       'Potential collaborators with clear scientific motivation and relevant people identified.',

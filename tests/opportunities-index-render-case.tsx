@@ -49,16 +49,16 @@ for (const route of opportunityRoutes) {
     new RegExp(`href="${renderedHref}"[^>]*>${escapeRegExp(renderedAction)}</a>`),
   )
   assert.match(opportunitiesIndex, new RegExp(`>${escapeRegExp(route.status)}<`))
-  assert.match(opportunitiesIndex, new RegExp(escapeRegExp(escapeHtml(route.location))))
-  assert.match(opportunitiesIndex, new RegExp(escapeRegExp(escapeHtml(route.timing))))
-  assert.match(
+  assert.doesNotMatch(opportunitiesIndex, new RegExp(escapeRegExp(escapeHtml(route.location))))
+  assert.doesNotMatch(opportunitiesIndex, new RegExp(escapeRegExp(escapeHtml(route.timing))))
+  assert.doesNotMatch(
     opportunitiesIndex,
     new RegExp(escapeRegExp(escapeHtml(route.formalApplicationPath))),
   )
   assert.match(
     opportunitiesIndex,
     new RegExp(
-      `aria-label="Express interest in ${escapeRegExp(renderedTitle)}"`,
+      `aria-label="Apply for ${escapeRegExp(renderedTitle)}"`,
     ),
   )
   assert.doesNotMatch(
@@ -69,20 +69,35 @@ for (const route of opportunityRoutes) {
 
 assert.match(opportunitiesIndex, /this Opportunities page/)
 assert.match(opportunitiesIndex, /id="express-interest"/)
-assert.match(opportunitiesIndex, />Select a role</)
+assert.match(opportunitiesIndex, /aria-label="Expression of Interest form"/)
+assert.match(opportunitiesIndex, /aria-label="Select a role"/)
+assert.doesNotMatch(opportunitiesIndex, />Opportunity Route<\/span>/)
+assert.doesNotMatch(opportunitiesIndex, /Select an Opportunity Route/)
+assert.doesNotMatch(opportunitiesIndex, /<h2 id="express-interest-heading">Select a role<\/h2>/)
+assert.doesNotMatch(opportunitiesIndex, /Changing route resets the embedded form/)
 assert.doesNotMatch(opportunitiesIndex, /stable anchor/)
 assert.doesNotMatch(opportunitiesIndex, /\/opportunities\/phd-students/)
 assert.doesNotMatch(opportunitiesIndex, /<iframe/)
 assert.doesNotMatch(opportunitiesIndex, />Apply now</)
 assert.equal(
-  opportunitiesIndex.match(/>Express interest<\/a>/g)?.length ?? 0,
+  opportunitiesIndex.match(/>Apply<\/a>/g)?.length ?? 0,
   opportunityRoutes.length,
 )
 
 assert.match(selectedOpportunitiesIndex, />Research Engineers</)
 assert.match(selectedOpportunitiesIndex, /For engineers who want technical systems work/)
+assert.match(selectedOpportunitiesIndex, /Use the Expression of Interest to share/)
 assert.match(selectedOpportunitiesIndex, /ML systems, research infrastructure/)
-assert.match(selectedOpportunitiesIndex, /Changing route resets the embedded form/)
+assert.match(
+  selectedOpportunitiesIndex,
+  new RegExp(
+    `<div class="selected-route-guidance"><h3>${escapeRegExp(escapeHtml(selectedRoute.title))}</h3>` +
+      `<p>${escapeRegExp(escapeHtml(selectedRoute.positioning))}</p>` +
+      `<p>${escapeRegExp(escapeHtml(selectedRoute.howThisWorks))}</p>` +
+      `<p>${escapeRegExp(escapeHtml(selectedRoute.formPrompt))}</p></div>`,
+  ),
+)
+assert.doesNotMatch(selectedOpportunitiesIndex, /Changing route resets the embedded form/)
 assert.match(
   selectedOpportunitiesIndex,
   new RegExp(
@@ -96,6 +111,7 @@ assert.match(
     ),
   ),
 )
+assert.match(selectedOpportunitiesIndex, /dynamicHeight=1/)
 
 assert.match(fallbackOpportunitiesIndex, /Form coming soon/)
 assert.match(fallbackOpportunitiesIndex, /embedded Expression of Interest form/)

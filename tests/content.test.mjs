@@ -168,8 +168,20 @@ test('Opportunity Routes remain structured content while child URLs are not publ
     approvedRoutes,
   )
 
+  assert.deepEqual(
+    opportunityRoutes.map((route) => route.shortSummary),
+    [
+      'PhD routes with BOLD-aligned supervision.',
+      'Time-bound research visits with a BOLD host.',
+      'Supervised projects where timing and fit align.',
+      'ML systems and research tooling close to frontier work.',
+      'Fellowship, visiting, or longer-term research relationships.',
+      'Research collaborations with clear scientific fit.',
+    ],
+  )
+
   for (const route of opportunityRoutes) {
-    assert.equal(route.primaryActionLabel, 'Express interest')
+    assert.equal(route.primaryActionLabel, 'Apply')
     assert.ok(route.shortSummary)
     assert.ok(route.status)
     assert.ok(route.prefillValue)

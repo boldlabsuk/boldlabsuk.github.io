@@ -65,15 +65,15 @@ The central reviewable collection of submitted Expressions of Interest across al
 _Avoid_: Separate role inboxes, per-route spreadsheet silos
 
 **Opportunities Index**:
-The single Opportunities page that summarizes available BOLD routes and keeps visitors on the same page for route selection, route-specific context, and the embedded Expression of Interest form.
-_Avoid_: Separate route pages, guidance card grid, repeated route detail
+The single Opportunities page that summarizes available BOLD routes in a compact card grid and keeps visitors on the same page for route selection, route-specific context, and the embedded Expression of Interest form.
+_Avoid_: Separate route pages, repeated route detail
 
 **Opportunity Route**:
 A public route through which someone can express interest in joining, visiting, working with, or collaborating with BOLD.
 _Avoid_: Job role, vacancy, application category
 
 **Opportunity Route Selection**:
-The visitor's website-owned chosen Opportunity Route on the Opportunities page, set either by clicking an Express interest action or by changing the role selector above the embedded form, then passed into the intake backend as hidden metadata.
+The visitor's website-owned chosen Opportunity Route on the Opportunities page, set either by clicking an Apply action or by changing the role selector above the embedded form, then passed into the intake backend as hidden metadata.
 _Avoid_: Separate page navigation, application category routing
 
 **Opportunities Voice**:
