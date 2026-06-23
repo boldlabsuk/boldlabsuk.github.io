@@ -18,3 +18,20 @@ test('Opportunity Route Page renders foundation content and form-coming-soon sta
     `${result.stdout.trim()}\n${result.stderr.trim()}`.trim(),
   )
 })
+
+test('Opportunities Index exposes route links with meaningful accessible names', () => {
+  const result = spawnSync(
+    './node_modules/.bin/tsx',
+    ['--tsconfig', 'tsconfig.app.json', 'tests/opportunities-index-render-case.tsx'],
+    {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+    },
+  )
+
+  assert.equal(
+    result.status,
+    0,
+    `${result.stdout.trim()}\n${result.stderr.trim()}`.trim(),
+  )
+})

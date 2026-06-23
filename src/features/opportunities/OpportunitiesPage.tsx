@@ -11,7 +11,7 @@ export function OpportunitiesPage() {
         <SectionHeader
           eyebrow="Ways to Get Involved"
           title="Find the right route."
-          description="Each route has a stable anchor so prospective students, visitors, engineers, fellows, and collaborators can link directly to the relevant guidance."
+          description="Each route has a dedicated Expression of Interest page so prospective students, visitors, engineers, fellows, and collaborators can link directly to the relevant guidance."
         />
         <div className="involvement-grid">
           {involvementRoutes.map((route) => (
