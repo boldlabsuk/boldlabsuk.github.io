@@ -93,6 +93,44 @@ test('Tally verifier rejects a visible Desired role field', () => {
   assert.match(result.failures.join('\n'), /visible Desired role field/)
 })
 
+test('Tally verifier rejects fixed-choice Research Direction Interest fields', () => {
+  const payload = extractTallyPayload(
+    nextDataHtml({
+      formId: 'A7aa0W',
+      workspaceId: '3NbqgN',
+      name: 'BOLD Expression of Interest',
+      blocks: [
+        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'HIDDEN_FIELDS',
+          payload: { hiddenFields: [{ name: 'route' }] },
+        },
+        {
+          type: 'TITLE',
+          payload: { safeHTMLSchema: [['Research Direction Interest']] },
+        },
+        {
+          type: 'DROPDOWN_OPTION',
+          payload: { text: 'Beyond Backpropagation' },
+        },
+        {
+          type: 'DROPDOWN_OPTION',
+          payload: { text: 'Embodied Learning' },
+        },
+      ],
+      integrations: [],
+    }),
+  )
+
+  const result = verifyTallyExpressionOfInterestPayload(payload)
+
+  assert.equal(result.ready, false)
+  assert.match(
+    result.failures.join('\n'),
+    /Research Direction Interest must be free-form/,
+  )
+})
+
 test('Tally verifier module can be imported without CLI argv', () => {
   const result = spawnSync(
     process.execPath,
@@ -138,8 +176,11 @@ test('Tally verifier accepts a representative configured generic public form pay
     {
       type: 'FILE_UPLOAD',
       payload: {
-        title:
-          'PDF CV/resume upload. Accepts PDF only. Size limit: 10 MB per file. Optional for Collaborators.',
+        title: 'CV/resume upload',
+        allowedFiles: { 'application/*': ['.pdf'] },
+        hasMaxFileSize: true,
+        maxFileSize: 10,
+        maxFileSizeUnit: 'MB',
       },
     },
     {
@@ -193,4 +234,41 @@ test('Tally verifier accepts a representative configured generic public form pay
 
   assert.equal(result.ready, true)
   assert.deepEqual(result.failures, [])
+})
+
+test('Tally verifier rejects CV/resume uploads without PDF-only and 10 MB constraints', () => {
+  const payload = extractTallyPayload(
+    nextDataHtml({
+      formId: 'A7aa0W',
+      workspaceId: '3NbqgN',
+      name: 'BOLD Expression of Interest',
+      blocks: [
+        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'HIDDEN_FIELDS',
+          payload: { hiddenFields: [{ name: 'route' }] },
+        },
+        {
+          type: 'TITLE',
+          payload: { safeHTMLSchema: [['CV/resume upload']] },
+        },
+        {
+          type: 'FILE_UPLOAD',
+          payload: {
+            allowedFiles: { 'application/*': ['.pdf', '.docx'] },
+            hasMaxFileSize: true,
+            maxFileSize: 25,
+            maxFileSizeUnit: 'MB',
+          },
+        },
+      ],
+      integrations: [],
+    }),
+  )
+
+  const result = verifyTallyExpressionOfInterestPayload(payload)
+
+  assert.equal(result.ready, false)
+  assert.match(result.failures.join('\n'), /PDF-only CV\/resume setting/)
+  assert.match(result.failures.join('\n'), /10 MB upload limit/)
 })

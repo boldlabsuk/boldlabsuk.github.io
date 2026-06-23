@@ -33,8 +33,9 @@ field and should not depend on route-specific conditional sections for the MVP.
 The live form exists and the public embed confirms the form ID, title, hidden
 `route` field, generic baseline fields, and CV/resume upload field. Issue #24 is
 not complete in the public form yet: the public payload still exposes a visible
-`Desired role` field, does not visibly communicate PDF-only upload or the 10 MB
-upload limit, and does not expose the required confirmation copy.
+`Desired role` field and does not expose the required confirmation copy. The
+CV/resume upload block is configured for PDF files only with a 10 MB limit in the
+public payload.
 
 Completing the setup requires access to the BOLD-owned Tally workspace. Agents
 without that access can verify the public embed contract, but cannot configure
@@ -55,9 +56,9 @@ configuration gaps mean the form is not ready.
 
 Run `node scripts/verify-tally-expression-of-interest.mjs` to repeat the public
 verification. The script exits nonzero until the public payload exposes the
-generic baseline fields, PDF CV/resume guidance, confirmation copy, no visible
-`Desired role` field, and the rest of the publicly visible form contract needed
-for issue #24.
+generic baseline fields, PDF-only 10 MB CV/resume upload settings, confirmation
+copy, no visible `Desired role` field, and the rest of the publicly visible form
+contract needed for issue #24.
 
 ## Tally owner setup checklist
 
@@ -152,9 +153,8 @@ The exposed structure is:
   Research Direction Interest, practical constraints, desired timing, intended
   work with BOLD, Formal Application Path status, and relevant BOLD people or
   groups
-- one CV/resume upload field
+- one CV/resume upload field configured for PDF files only with a 10 MB maximum
 - no required route-specific conditional sections
-- no visible PDF-only or 10 MB upload-limit guidance
 - no visible confirmation copy
 - `integrations` is exposed as an empty array
 
@@ -167,6 +167,6 @@ report that both are connected.
 
 The verifier script was run against the live embed routes on 2026-06-23 and
 returned the same blocker for every route: HTTP 200 with form `A7aa0W`, hidden
-field `route`, generic baseline blocks, a `FILE_UPLOAD` block, a prohibited
-visible `Desired role` field, missing visible PDF-only and 10 MB upload-limit
-guidance, missing confirmation copy, and `integrations=0` for owner-only context.
+field `route`, generic baseline blocks, a `FILE_UPLOAD` block configured for PDF
+files only with a 10 MB maximum, a prohibited visible `Desired role` field,
+missing confirmation copy, and `integrations=0` for owner-only context.

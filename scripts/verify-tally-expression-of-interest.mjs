@@ -49,6 +49,18 @@ const prohibitedChecks = [
   ['equal-opportunities monitoring question', /equal[-\s]opportunities/i],
 ]
 
+const freeFormInputTypes = new Set(['INPUT_TEXT', 'TEXTAREA'])
+const fixedChoiceInputTypes = new Set([
+  'CHECKBOXES',
+  'CHECKBOX_OPTION',
+  'DROPDOWN',
+  'DROPDOWN_OPTION',
+  'MULTIPLE_CHOICE',
+  'MULTIPLE_CHOICE_OPTION',
+  'RADIO',
+  'SELECT',
+])
+
 export function buildTallyEmbedUrl(routeValue) {
   const url = new URL(`https://tally.so/embed/${TALLY_FORM_ID}`)
   url.searchParams.set(TALLY_ROUTE_PARAMETER, routeValue)
@@ -95,6 +107,14 @@ export function summarizeTallyPayload(payload) {
   const integrations = Array.isArray(payload.integrations)
     ? payload.integrations
     : []
+  const fileUploads = blocks
+    .filter((block) => block.type === 'FILE_UPLOAD')
+    .map((block) => summarizeFileUpload(block.payload))
+  const hasPdfOnlyFileUpload = fileUploads.some((upload) => upload.pdfOnly)
+  const hasTenMbFileUploadLimit = fileUploads.some(
+    (upload) => upload.hasTenMbLimit,
+  )
+  const researchDirectionInterest = summarizeResearchDirectionInterest(blocks)
 
   return {
     formId: payload.formId,
@@ -106,6 +126,11 @@ export function summarizeTallyPayload(payload) {
     hasFileUpload:
       blockTypes.some((type) => /file/i.test(type)) ||
       /CV\/resume upload|file upload/i.test(blockText),
+    hasPdfOnlyFileUpload:
+      hasPdfOnlyFileUpload ||
+      /PDF only|Accepts PDF|PDF CV\/resume/i.test(blockText),
+    hasTenMbFileUploadLimit: hasTenMbFileUploadLimit || /10\s*MB/i.test(blockText),
+    researchDirectionInterest,
     integrationsCount: integrations.length,
     visibleTextBlockCount: blocks.filter((block) => block.type === 'TEXT')
       .length,
@@ -138,12 +163,19 @@ export function verifyTallyExpressionOfInterestPayload(payload) {
     failures.push('missing CV/resume upload field')
   }
 
-  if (!/PDF only|Accepts PDF|PDF CV\/resume/i.test(summary.blockText)) {
-    failures.push('missing visible PDF-only CV/resume guidance')
+  if (!summary.hasPdfOnlyFileUpload) {
+    failures.push('missing PDF-only CV/resume setting or guidance')
   }
 
-  if (!/10\s*MB/i.test(summary.blockText)) {
-    failures.push('missing visible 10 MB upload limit')
+  if (!summary.hasTenMbFileUploadLimit) {
+    failures.push('missing 10 MB upload limit setting or guidance')
+  }
+
+  if (
+    summary.researchDirectionInterest.found &&
+    !summary.researchDirectionInterest.freeForm
+  ) {
+    failures.push('Research Direction Interest must be free-form')
   }
 
   if (
@@ -207,6 +239,68 @@ function flattenText(value) {
   }
 
   return ''
+}
+
+function summarizeFileUpload(payload) {
+  const allowedExtensions = Object.values(payload?.allowedFiles ?? {})
+    .flat()
+    .filter((extension) => typeof extension === 'string')
+    .map((extension) => extension.toLowerCase())
+  const maxFileSizeUnit =
+    typeof payload?.maxFileSizeUnit === 'string'
+      ? payload.maxFileSizeUnit.toLowerCase()
+      : ''
+
+  return {
+    pdfOnly:
+      allowedExtensions.length > 0 &&
+      allowedExtensions.every((extension) => extension === '.pdf'),
+    hasTenMbLimit:
+      payload?.hasMaxFileSize === true &&
+      Number(payload.maxFileSize) === 10 &&
+      maxFileSizeUnit === 'mb',
+  }
+}
+
+function summarizeResearchDirectionInterest(blocks) {
+  let found = false
+  let freeForm = false
+  let fixedChoice = false
+
+  for (let index = 0; index < blocks.length; index += 1) {
+    const block = blocks[index]
+
+    if (!/research\s+direction\s+interest/i.test(flattenText(block.payload))) {
+      continue
+    }
+
+    found = true
+    freeForm ||= freeFormInputTypes.has(block.type)
+    fixedChoice ||= fixedChoiceInputTypes.has(block.type)
+
+    if (block.type === 'TITLE') {
+      for (
+        let followingIndex = index + 1;
+        followingIndex < blocks.length;
+        followingIndex += 1
+      ) {
+        const followingBlock = blocks[followingIndex]
+
+        if (followingBlock.type === 'TITLE') {
+          break
+        }
+
+        freeForm ||= freeFormInputTypes.has(followingBlock.type)
+        fixedChoice ||= fixedChoiceInputTypes.has(followingBlock.type)
+      }
+    }
+  }
+
+  return {
+    found,
+    freeForm: freeForm && !fixedChoice,
+    fixedChoice,
+  }
 }
 
 async function main() {
