@@ -7,6 +7,7 @@ import {
   getPeopleSection,
   getPeopleFilterOptions,
   peopleSectionOrder,
+  shufflePeopleWithinSections,
 } from '../src/domain/people.ts'
 import { allFilterValue } from '../src/domain/shared.ts'
 
@@ -65,6 +66,156 @@ const filterFixturePeople = [
     alumni: true,
   },
 ]
+
+const shuffleFixturePeople = [
+  {
+    slug: 'pi-one',
+    name: 'PI One',
+    role: 'BOLD PI',
+    group: 'BOLD PI',
+    bio: 'Leads evaluation research.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'postdoc-one',
+    name: 'Postdoc One',
+    role: 'Postdoc',
+    group: 'Postdoc',
+    bio: 'Studies evaluation systems.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'pi-two',
+    name: 'PI Two',
+    role: 'BOLD PI',
+    group: 'BOLD PI',
+    bio: 'Leads agent research.',
+    researchAreas: ['Agents'],
+  },
+  {
+    slug: 'alumni-hidden',
+    name: 'Alumni Hidden',
+    role: 'Former PI',
+    group: 'BOLD PI',
+    bio: 'Former lab lead.',
+    researchAreas: ['Evaluation'],
+    alumni: true,
+  },
+  {
+    slug: 'postdoc-two',
+    name: 'Postdoc Two',
+    role: 'Postdoc',
+    group: 'Postdoc',
+    bio: 'Studies evaluation agents.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'phd-one',
+    name: 'PhD One',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Builds evaluation tools.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'pi-three',
+    name: 'PI Three',
+    role: 'BOLD PI',
+    group: 'BOLD PI',
+    bio: 'Leads evaluation infrastructure.',
+    researchAreas: ['Evaluation'],
+  },
+  {
+    slug: 'postdoc-three',
+    name: 'Postdoc Three',
+    role: 'Postdoc',
+    group: 'Postdoc',
+    bio: 'Studies agent systems.',
+    researchAreas: ['Agents'],
+  },
+]
+
+function createDeterministicRandom(values) {
+  let index = 0
+
+  return () => {
+    const value = values[index % values.length]
+
+    index += 1
+
+    return value
+  }
+}
+
+test('shufflePeopleWithinSections shuffles public People Sections without changing section order or counts', () => {
+  const sourceOrder = shuffleFixturePeople.map((person) => person.slug)
+  const shuffledPeople = shufflePeopleWithinSections(
+    shuffleFixturePeople,
+    createDeterministicRandom([0.6, 0.2, 0.8, 0.1]),
+  )
+  const directory = buildPeopleDirectoryViewModel({
+    people: shuffledPeople,
+    filters: emptyFilters,
+  })
+
+  assert.deepEqual(
+    shuffleFixturePeople.map((person) => person.slug),
+    sourceOrder,
+  )
+  assert.deepEqual(
+    directory.sections.map((section) => section.title),
+    ['Principal Investigator', 'Postdoc', 'PhD Student'],
+  )
+  assert.deepEqual(
+    directory.sections.map((section) => [section.title, section.people.length]),
+    [
+      ['Principal Investigator', 3],
+      ['Postdoc', 3],
+      ['PhD Student', 1],
+    ],
+  )
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['Principal Investigator', ['pi-three', 'pi-one', 'pi-two']],
+      ['Postdoc', ['postdoc-two', 'postdoc-one', 'postdoc-three']],
+      ['PhD Student', ['phd-one']],
+    ],
+  )
+  assert.equal(directory.totalPeople, 7)
+  assert.equal(directory.visiblePeopleCount, 7)
+})
+
+test('People Directory filters preserve shuffled relative order within matching People Sections', () => {
+  const shuffledPeople = shufflePeopleWithinSections(
+    shuffleFixturePeople,
+    createDeterministicRandom([0.6, 0.2, 0.8, 0.1]),
+  )
+  const directory = buildPeopleDirectoryViewModel({
+    people: shuffledPeople,
+    filters: {
+      ...emptyFilters,
+      area: 'Evaluation',
+    },
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['Principal Investigator', ['pi-three', 'pi-one']],
+      ['Postdoc', ['postdoc-two', 'postdoc-one']],
+      ['PhD Student', ['phd-one']],
+    ],
+  )
+  assert.equal(directory.totalPeople, 7)
+  assert.equal(directory.visiblePeopleCount, 5)
+})
 
 test('People Directory renders non-empty People Sections in canonical order', () => {
   const directory = buildPeopleDirectoryViewModel({

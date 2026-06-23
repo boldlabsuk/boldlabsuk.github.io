@@ -3,12 +3,15 @@ import { people } from '../../content'
 import {
   buildPeopleDirectoryViewModel,
   getPeopleFilterOptions,
+  shufflePeopleWithinSections,
 } from '../../domain/people'
 import { allFilterValue } from '../../domain/shared'
 import { PersonListing } from '../../ui/cards/PersonListing'
 import { SearchInput } from '../../ui/forms/SearchInput'
 import { SelectFilter } from '../../ui/forms/SelectFilter'
 import { EmptyState } from '../../ui/primitives/EmptyState'
+
+const shuffledPeople = shufflePeopleWithinSections(people)
 
 export function PeoplePage() {
   const [query, setQuery] = useState('')
@@ -18,7 +21,7 @@ export function PeoplePage() {
 
   const { sections, areas, affiliations } = getPeopleFilterOptions()
   const directory = buildPeopleDirectoryViewModel({
-    people,
+    people: shuffledPeople,
     filters: { query, section, area, affiliation },
   })
 

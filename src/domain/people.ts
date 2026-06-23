@@ -84,6 +84,56 @@ export function getPeopleFilterOptions() {
   }
 }
 
+export function shufflePeopleWithinSections(
+  people: Person[],
+  random: () => number = Math.random,
+) {
+  const peopleBySection: Record<PeopleSection, Person[]> = {
+    'Principal Investigator': [],
+    'Adjunct Faculty': [],
+    Postdoc: [],
+    'Research Engineers': [],
+    'PhD Student': [],
+    'Masters Student': [],
+    'Associate Members': [],
+  }
+  const nonDirectoryPeople: Person[] = []
+
+  for (const person of people) {
+    const peopleSection = getPeopleSection(person)
+
+    if (peopleSection) {
+      peopleBySection[peopleSection].push(person)
+    } else {
+      nonDirectoryPeople.push(person)
+    }
+  }
+
+  return [
+    ...peopleSectionOrder.flatMap((section) =>
+      shuffleItems(peopleBySection[section], random),
+    ),
+    ...nonDirectoryPeople,
+  ]
+}
+
+function shuffleItems<T>(items: T[], random: () => number) {
+  const shuffledItems = [...items]
+
+  for (let index = shuffledItems.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.min(
+      index,
+      Math.max(0, Math.floor(random() * (index + 1))),
+    )
+    const item = shuffledItems[index]
+
+    shuffledItems[index] = shuffledItems[swapIndex]
+    shuffledItems[swapIndex] = item
+  }
+
+  return shuffledItems
+}
+
 export function buildPeopleDirectoryViewModel({
   people,
   filters,
