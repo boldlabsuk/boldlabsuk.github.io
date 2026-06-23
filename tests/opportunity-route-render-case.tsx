@@ -70,6 +70,7 @@ for (const route of studentRoutePages) {
   assert.match(route.page, route.routeSpecificPrompt)
   assert.match(route.page, /PDF CV\/resume is required/)
   assert.match(route.page, /accepts PDF only/)
+  assert.match(route.page, /10 MB per file/)
   assert.match(route.page, /review Expressions of Interest periodically/)
   assert.doesNotMatch(route.page, /Apply now/)
   assert.doesNotMatch(route.page, /Submit application/)
