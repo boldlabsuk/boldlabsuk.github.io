@@ -158,8 +158,10 @@ The exposed structure is:
 - no visible baseline fields
 - no CV/resume upload field
 - no route-specific conditional sections
-- no public integration metadata
+- `integrations` is exposed as an empty array
 
 The unauthenticated Tally forms API at `https://api.tally.so/forms/A7aa0W`
 returned `401 Unauthorized`, so completing the live form configuration requires
-Tally owner access.
+Tally owner access. The empty public embed `integrations` array is not enough to
+confirm whether owner-side Google Sheets sync or email notifications are
+configured.
