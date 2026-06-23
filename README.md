@@ -22,6 +22,16 @@ npm install
 npm run dev
 ```
 
+## Feature Flags
+
+The home logo scroll animation is enabled by default when
+`VITE_HOME_LOGO_ANIMATION` is omitted. Build with the previous static hero logo
+and navbar reveal behavior by setting the flag to `false`:
+
+```bash
+VITE_HOME_LOGO_ANIMATION=false npm run build
+```
+
 ## Profile Cropping
 
 ```bash

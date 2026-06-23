@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { HomePage } from '../features/home/HomePage'
+import { homeLogoMode } from '../features/home/homeLogoMode'
 import { NotFoundPage } from '../features/not-found/NotFoundPage'
 import { OpportunitiesPage } from '../features/opportunities/OpportunitiesPage'
 import { PeoplePage } from '../features/people/PeoplePage'
@@ -19,6 +20,8 @@ function App() {
   const isHomeRoute = route.name === 'home'
   const headerLogoRef = useRef<HTMLImageElement | null>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHomeHeroLogoVisible, setIsHomeHeroLogoVisible] =
+    useState(isHomeRoute)
   const [isHomeLogoAnimationComplete, setIsHomeLogoAnimationComplete] =
     useState(false)
 
@@ -33,6 +36,19 @@ function App() {
     [],
   )
 
+  const handleHomeHeroLogoVisibilityChange = useCallback(
+    (isVisible: boolean) => {
+      setIsHomeHeroLogoVisible(isVisible)
+    },
+    [],
+  )
+
+  const showBrandLogo =
+    !isHomeRoute ||
+    (homeLogoMode === 'scroll-animation'
+      ? isHomeLogoAnimationComplete
+      : !isHomeHeroLogoVisible)
+
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -41,7 +57,7 @@ function App() {
       <SiteHeader
         activeSection={getActiveSection(route)}
         brandLogoRef={headerLogoRef}
-        showBrandLogo={!isHomeRoute || isHomeLogoAnimationComplete}
+        showBrandLogo={showBrandLogo}
         isMenuOpen={isMenuOpen}
         onMenuToggle={() => setIsMenuOpen((open) => !open)}
       />
@@ -49,6 +65,8 @@ function App() {
         {route.name === 'home' && (
           <HomePage
             headerLogoRef={headerLogoRef}
+            logoMode={homeLogoMode}
+            onHeroLogoVisibilityChange={handleHomeHeroLogoVisibilityChange}
             onLogoAnimationCompleteChange={
               handleHomeLogoAnimationCompleteChange
             }

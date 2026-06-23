@@ -8,6 +8,7 @@ import {
   type LogoAnimationRect,
   type LogoScrollRange,
 } from './logoScrollAnimation'
+import type { HomeLogoMode } from './homeLogoMode'
 
 type HomeLogoPhase = 'hero' | 'transition' | 'complete'
 
@@ -17,11 +18,22 @@ type LogoAnimationMeasurement = {
   targetRect: LogoAnimationRect
 }
 
+const stickyHeaderOffsetPx = 67
+const siteHeaderSelector = '.site-header'
+// Increase this to make the navbar logo fade in earlier.
+const navbarLogoRevealOffsetPx = 20
+// The logo SVG has transparent space below the visible BOLD lettering.
+const boldLogoTextVisualBottomRatio = 619 / 788
+
 export function HomePage({
   headerLogoRef,
+  logoMode,
+  onHeroLogoVisibilityChange,
   onLogoAnimationCompleteChange,
 }: {
   headerLogoRef: RefObject<HTMLImageElement | null>
+  logoMode: HomeLogoMode
+  onHeroLogoVisibilityChange?: (isVisible: boolean) => void
   onLogoAnimationCompleteChange?: (isComplete: boolean) => void
 }) {
   const heroLogoRef = useRef<HTMLImageElement>(null)
@@ -29,6 +41,73 @@ export function HomePage({
   const [logoPhase, setLogoPhase] = useState<HomeLogoPhase>('hero')
 
   useEffect(() => {
+    if (logoMode !== 'legacy-reveal') {
+      return
+    }
+
+    const heroLogo = heroLogoRef.current
+
+    if (!heroLogo || !onHeroLogoVisibilityChange) {
+      return
+    }
+
+    let animationFrameId: number | null = null
+
+    const getStickyHeaderBottom = () => {
+      const siteHeader = document.querySelector(siteHeaderSelector)
+
+      return siteHeader?.getBoundingClientRect().bottom ?? stickyHeaderOffsetPx
+    }
+
+    const updateLogoVisibilityFromRect = () => {
+      animationFrameId = null
+      const rect = heroLogo.getBoundingClientRect()
+      const stickyHeaderBottom = getStickyHeaderBottom()
+      const visibleBoldTextBottom =
+        rect.top + rect.height * boldLogoTextVisualBottomRatio
+
+      onHeroLogoVisibilityChange(
+        visibleBoldTextBottom > stickyHeaderBottom + navbarLogoRevealOffsetPx &&
+          rect.top < window.innerHeight &&
+          rect.right > 0 &&
+          rect.left < window.innerWidth,
+      )
+    }
+
+    const scheduleLogoVisibilityUpdate = () => {
+      if (animationFrameId !== null) {
+        return
+      }
+
+      animationFrameId = window.requestAnimationFrame(
+        updateLogoVisibilityFromRect,
+      )
+    }
+
+    scheduleLogoVisibilityUpdate()
+
+    heroLogo.addEventListener('load', scheduleLogoVisibilityUpdate)
+    window.addEventListener('scroll', scheduleLogoVisibilityUpdate, {
+      passive: true,
+    })
+    window.addEventListener('resize', scheduleLogoVisibilityUpdate)
+
+    return () => {
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId)
+      }
+
+      heroLogo.removeEventListener('load', scheduleLogoVisibilityUpdate)
+      window.removeEventListener('scroll', scheduleLogoVisibilityUpdate)
+      window.removeEventListener('resize', scheduleLogoVisibilityUpdate)
+    }
+  }, [logoMode, onHeroLogoVisibilityChange])
+
+  useEffect(() => {
+    if (logoMode !== 'scroll-animation') {
+      return
+    }
+
     const heroLogo = heroLogoRef.current
     const headerLogo = headerLogoRef.current
     const overlayLogo = overlayLogoRef.current
@@ -197,9 +276,10 @@ export function HomePage({
       resizeObserver?.disconnect()
       onLogoAnimationCompleteChange?.(false)
     }
-  }, [headerLogoRef, onLogoAnimationCompleteChange])
+  }, [headerLogoRef, logoMode, onLogoAnimationCompleteChange])
 
-  const isHeroLogoVisuallyHidden = logoPhase !== 'hero'
+  const isHeroLogoVisuallyHidden =
+    logoMode === 'scroll-animation' && logoPhase !== 'hero'
 
   return (
     <>
@@ -251,13 +331,15 @@ export function HomePage({
           </div>
         </div>
       </section>
-      <img
-        ref={overlayLogoRef}
-        className="home-logo-transition"
-        src="/bold_full_vector_logo.svg"
-        alt=""
-        aria-hidden="true"
-      />
+      {logoMode === 'scroll-animation' && (
+        <img
+          ref={overlayLogoRef}
+          className="home-logo-transition"
+          src="/bold_full_vector_logo.svg"
+          alt=""
+          aria-hidden="true"
+        />
+      )}
 
       <section className="home-section bet-section" aria-labelledby="bet-title">
         <div className="home-section-header">
