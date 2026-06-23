@@ -3,17 +3,21 @@ export function SectionHeader({
   title,
   description,
   cta,
+  titleElement = 'h2',
 }: {
   eyebrow: string
   title: string
   description: string
   cta?: { label: string; href: string }
+  titleElement?: 'h1' | 'h2'
 }) {
+  const TitleElement = titleElement
+
   return (
     <div className="section-header">
       <div>
         <p className="eyebrow">{eyebrow}</p>
-        <h2>{title}</h2>
+        <TitleElement>{title}</TitleElement>
       </div>
       <div className="section-header-side">
         <p>{description}</p>

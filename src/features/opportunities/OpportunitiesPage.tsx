@@ -9,6 +9,7 @@ export function OpportunitiesPage() {
         <SectionHeader
           eyebrow="Opportunities"
           title="Express interest in joining, visiting, working with, or collaborating with BOLD."
+          titleElement="h1"
           description="BOLD reviews serious Expressions of Interest through a small set of approved Opportunity Routes. Choose the route that best matches the relationship you want to explore; detailed guidance and any Formal Application Path boundaries live on the dedicated Expression of Interest page."
         />
       </div>

@@ -44,6 +44,7 @@ main > .section-band:first-child {
   margin-bottom: 34px;
 }
 
+.section-header h1,
 .section-header h2,
 .identity-copy h2,
 .contact-section h2 {
