@@ -158,6 +158,10 @@
   overflow-wrap: anywhere;
 }
 
+.person-listing .person-affiliation {
+  margin: 5px 0;
+}
+
 .person-bio {
   display: -webkit-box;
   min-height: 50px;
