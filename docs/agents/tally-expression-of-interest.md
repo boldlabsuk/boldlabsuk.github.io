@@ -24,6 +24,40 @@ Accepted route values:
 The website implementation should use one shared Tally form and pass the selected
 Opportunity Route through the `route` hidden field or prefill parameter.
 
+## Current status
+
+The live form exists and the public embed confirms the form ID, title, and hidden
+`route` field. The rest of issue #24 is not complete in the public form yet:
+baseline fields, CV/resume upload, route-specific conditional sections, and
+confirmation copy are not publicly visible.
+
+Completing the setup requires access to the BOLD-owned Tally workspace. Agents
+without that access can verify the public embed contract, but cannot configure
+fields, conditional logic, file-upload rules, confirmation behavior, owner email
+notifications, or Google Sheets integration.
+
+## Tally owner setup checklist
+
+Use this checklist in the Tally workspace before treating issue #24 as complete:
+
+- Add the shared baseline fields listed below.
+- Keep `route` as a hidden or pre-filled field populated from the website embed
+  URL.
+- Add route-specific conditional sections for all accepted route values.
+- Configure the CV/resume upload as PDF-only with the 10 MB free-plan limit
+  communicated in the form.
+- Require CV/resume upload for PhD Students, Visiting Students, Master's
+  Students, Research Engineers, and Fellows and Experienced Researchers.
+- Keep CV/resume upload optional for Collaborators.
+- Avoid detailed immigration or visa questions, demographic questions, and
+  equal-opportunities monitoring questions.
+- Configure the non-promissory confirmation state below.
+- Send form-owner notifications to the BOLD intake address.
+- Sync submissions into one Google Sheet used as the Expression of Interest
+  Register.
+- Confirm the `route` value appears as a filterable column in the register.
+- Confirm respondents can submit without a Tally or Google account.
+
 ## Required shared fields
 
 The form should collect this baseline for every Expression of Interest:
