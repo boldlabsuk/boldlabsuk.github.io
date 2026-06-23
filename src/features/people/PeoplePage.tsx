@@ -1,5 +1,6 @@
-import { X } from 'lucide-react'
-import { useState } from 'react'
+import { Search, X } from 'lucide-react'
+import type { FormEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { people } from '../../content'
 import {
   buildPeopleDirectoryViewModel,
@@ -7,32 +8,157 @@ import {
   getPeopleFilterOptions,
   shufflePeopleWithinSections,
   type PeopleActiveFilterPill,
+  type PeopleDirectoryFilters,
 } from '../../domain/people'
 import { allFilterValue } from '../../domain/shared'
 import { PersonListing } from '../../ui/cards/PersonListing'
-import { SearchInput } from '../../ui/forms/SearchInput'
 import { SelectFilter } from '../../ui/forms/SelectFilter'
 import { EmptyState } from '../../ui/primitives/EmptyState'
+import {
+  getNextPeopleActiveFilterPillOrder,
+  orderPeopleActiveFilterPills,
+  type PeopleActiveFilterPillKey,
+} from './activeFilterPillOrder'
 
 const shuffledPeople = shufflePeopleWithinSections(people)
+const filterActionRowTransitionMs = 180
 
 export function PeoplePage() {
+  const [draftQuery, setDraftQuery] = useState('')
   const [query, setQuery] = useState('')
   const [section, setSection] = useState(allFilterValue)
   const [area, setArea] = useState(allFilterValue)
   const [affiliation, setAffiliation] = useState(allFilterValue)
+  const [activeFilterPillOrder, setActiveFilterPillOrder] = useState<
+    PeopleActiveFilterPillKey[]
+  >([])
+  const closeTimerRef = useRef<number | null>(null)
+  const openFrameRef = useRef<number | null>(null)
 
   const { sections, areas, affiliations } = getPeopleFilterOptions()
   const filters = { query, section, area, affiliation }
-  const activeFilterPills = getPeopleActiveFilterPills(filters)
+  const activeFilterPills = orderPeopleActiveFilterPills(
+    getPeopleActiveFilterPills(filters),
+    activeFilterPillOrder,
+  )
+  const hasActiveFilters = activeFilterPills.length > 0
+  const hasDraftQuery = draftQuery.trim().length > 0
+  const [isFilterActionRowMounted, setIsFilterActionRowMounted] =
+    useState(hasActiveFilters)
+  const [isFilterActionRowOpen, setIsFilterActionRowOpen] =
+    useState(hasActiveFilters)
   const directory = buildPeopleDirectoryViewModel({
     people: shuffledPeople,
     filters,
   })
 
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current)
+      }
+
+      if (openFrameRef.current !== null) {
+        window.cancelAnimationFrame(openFrameRef.current)
+      }
+    }
+  }, [])
+
+  function clearFilterActionRowTimers() {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+
+    if (openFrameRef.current !== null) {
+      window.cancelAnimationFrame(openFrameRef.current)
+      openFrameRef.current = null
+    }
+  }
+
+  function openFilterActionRow() {
+    clearFilterActionRowTimers()
+
+    if (isFilterActionRowMounted) {
+      setIsFilterActionRowOpen(true)
+      return
+    }
+
+    setIsFilterActionRowMounted(true)
+    setIsFilterActionRowOpen(false)
+
+    openFrameRef.current = window.requestAnimationFrame(() => {
+      openFrameRef.current = null
+      setIsFilterActionRowOpen(true)
+    })
+  }
+
+  function closeFilterActionRow() {
+    clearFilterActionRowTimers()
+    setIsFilterActionRowOpen(false)
+
+    closeTimerRef.current = window.setTimeout(() => {
+      closeTimerRef.current = null
+      setIsFilterActionRowMounted(false)
+    }, filterActionRowTransitionMs)
+  }
+
+  function updateFilterActionRow(nextFilters: PeopleDirectoryFilters) {
+    if (getPeopleActiveFilterPills(nextFilters).length > 0) {
+      openFilterActionRow()
+    } else {
+      closeFilterActionRow()
+    }
+  }
+
+  function updateActiveFilterControls(nextFilters: PeopleDirectoryFilters) {
+    setActiveFilterPillOrder((currentOrder) =>
+      getNextPeopleActiveFilterPillOrder(currentOrder, nextFilters),
+    )
+    updateFilterActionRow(nextFilters)
+  }
+
+  function applyNameSearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const nextQuery = draftQuery.trim()
+
+    if (!nextQuery) {
+      setDraftQuery('')
+      return
+    }
+
+    updateActiveFilterControls({ ...filters, query: nextQuery })
+    setQuery(nextQuery)
+    setDraftQuery('')
+  }
+
+  function updateSection(nextSection: string) {
+    updateActiveFilterControls({ ...filters, section: nextSection })
+    setSection(nextSection)
+  }
+
+  function updateArea(nextArea: string) {
+    updateActiveFilterControls({ ...filters, area: nextArea })
+    setArea(nextArea)
+  }
+
+  function updateAffiliation(nextAffiliation: string) {
+    updateActiveFilterControls({ ...filters, affiliation: nextAffiliation })
+    setAffiliation(nextAffiliation)
+  }
+
   function clearPeopleFilter(key: PeopleActiveFilterPill['key']) {
+    const nextFilters = {
+      ...filters,
+      [key]: key === 'query' ? '' : allFilterValue,
+    }
+
+    updateActiveFilterControls(nextFilters)
+
     if (key === 'query') {
       setQuery('')
+      setDraftQuery('')
     } else if (key === 'section') {
       setSection(allFilterValue)
     } else if (key === 'area') {
@@ -46,96 +172,107 @@ export function PeoplePage() {
     <>
       <section className="section-band page-content people-page-content">
         <div className="filter-panel people-filter-panel" aria-label="People filters">
-          <SearchInput
-            id="people-search"
-            label="Search by name"
-            value={query}
-            onChange={setQuery}
-            placeholder="Search people"
-          />
+          <form
+            className="search-input people-name-search"
+            role="search"
+            onSubmit={applyNameSearch}
+          >
+            <label htmlFor="people-search">
+              <span>Search by name</span>
+            </label>
+            <div
+              className={
+                hasDraftQuery
+                  ? 'people-name-search-control has-submit'
+                  : 'people-name-search-control'
+              }
+            >
+              <input
+                id="people-search"
+                type="search"
+                value={draftQuery}
+                placeholder="Search people"
+                onChange={(event) => setDraftQuery(event.target.value)}
+              />
+              {hasDraftQuery && (
+                <button
+                  className="people-name-search-submit"
+                  type="submit"
+                  aria-label="Apply name search"
+                >
+                  <Search aria-hidden="true" focusable="false" />
+                </button>
+              )}
+            </div>
+          </form>
           <SelectFilter
             id="people-section"
             label="People Section"
             value={section}
             options={[allFilterValue, ...sections]}
-            onChange={setSection}
+            onChange={updateSection}
           />
           <SelectFilter
             id="people-area"
             label="Research area"
             value={area}
             options={[allFilterValue, ...areas]}
-            onChange={setArea}
+            onChange={updateArea}
           />
           <SelectFilter
             id="people-affiliation"
             label="Affiliation"
             value={affiliation}
             options={[allFilterValue, ...affiliations]}
-            onChange={setAffiliation}
+            onChange={updateAffiliation}
           />
-          <div className="people-filter-actions">
+          {isFilterActionRowMounted && (
             <div
-              className="people-active-filter-pills"
-              role={activeFilterPills.length > 0 ? 'group' : undefined}
-              aria-label={
-                activeFilterPills.length > 0 ? 'Active people filters' : undefined
+              className={
+                isFilterActionRowOpen
+                  ? 'people-filter-actions is-open'
+                  : 'people-filter-actions is-closed'
               }
+              aria-hidden={!isFilterActionRowOpen}
             >
-              {activeFilterPills.map((pill) => (
-                <button
-                  className="people-active-filter-pill"
-                  type="button"
-                  key={pill.key}
-                  aria-label={pill.removeLabel}
-                  onClick={() => clearPeopleFilter(pill.key)}
+              <div className="people-filter-actions-inner">
+                <div
+                  className="people-active-filter-pills"
+                  role={hasActiveFilters ? 'group' : undefined}
+                  aria-label={
+                    hasActiveFilters ? 'Active people filters' : undefined
+                  }
                 >
-                  <span className="people-active-filter-pill-text">
-                    <span className="people-active-filter-pill-label">
-                      {pill.label}
-                    </span>
-                    <span className="people-active-filter-pill-separator">:</span>{' '}
-                    <strong>{pill.value}</strong>
-                  </span>
-                  <span
-                    className="people-active-filter-pill-remove"
-                    aria-hidden="true"
-                  >
-                    <X aria-hidden="true" focusable="false" />
-                  </span>
-                </button>
-              ))}
+                  {activeFilterPills.map((pill) => (
+                    <button
+                      className="people-active-filter-pill"
+                      type="button"
+                      key={pill.key}
+                      aria-label={pill.removeLabel}
+                      disabled={!isFilterActionRowOpen}
+                      onClick={() => clearPeopleFilter(pill.key)}
+                    >
+                      <span className="people-active-filter-pill-text">
+                        <strong>{pill.displayLabel}</strong>
+                      </span>
+                      <span
+                        className="people-active-filter-pill-remove"
+                        aria-hidden="true"
+                      >
+                        <X aria-hidden="true" focusable="false" />
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-            <button
-              className="button button-filter-reset"
-              type="button"
-              onClick={() => {
-                setQuery('')
-                setSection(allFilterValue)
-                setArea(allFilterValue)
-                setAffiliation(allFilterValue)
-              }}
-            >
-              Reset filters
-            </button>
-          </div>
-        </div>
-
-        <div
-          className="result-count"
-          id="people-result-count"
-          role="status"
-          aria-atomic="true"
-          aria-live="polite"
-        >
-          Showing {directory.visiblePeopleCount} of {directory.totalPeople} people
+          )}
         </div>
 
         {directory.sections.length > 0 ? (
           <div
             className="people-directory"
             id="people-results"
-            aria-describedby="people-result-count"
           >
             {directory.sections.map((peopleSection) => (
               <section
@@ -157,7 +294,6 @@ export function PeoplePage() {
             role="status"
             aria-atomic="true"
             aria-live="polite"
-            aria-describedby="people-result-count"
           >
             <EmptyState message="No people match the selected filters." />
           </div>

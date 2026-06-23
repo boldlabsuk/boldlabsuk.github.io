@@ -1,6 +1,10 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
+import {
+  getNextPeopleActiveFilterPillOrder,
+  orderPeopleActiveFilterPills,
+} from '../src/features/people/activeFilterPillOrder.ts'
 import { getPeopleActiveFilterPills } from '../src/domain/people.ts'
 import { allFilterValue } from '../src/domain/shared.ts'
 
@@ -23,7 +27,7 @@ test('People active filter pills omit inactive All filters and trim name search'
         key: 'query',
         label: 'Name',
         value: 'Alex',
-        displayLabel: 'Name: Alex',
+        displayLabel: 'Alex',
         removeLabel: 'Remove name filter: Alex',
       },
     ],
@@ -41,50 +45,191 @@ test('People active filter pills map People Section values to public plural labe
         key: 'section',
         label: 'Section',
         value: 'PhD Students',
-        displayLabel: 'Section: PhD Students',
+        displayLabel: 'PhD Students',
         removeLabel: 'Remove section filter: PhD Students',
       },
     ],
   )
 })
 
-test('People active filter pills preserve every active filter in control order', () => {
+test('People active filter pills include metadata for every active filter', () => {
+  const activePills = getPeopleActiveFilterPills({
+    query: 'Casey',
+    section: 'Research Engineers',
+    area: 'Evaluation',
+    affiliation: 'BOLD Lab',
+  })
+
   assert.deepEqual(
-    getPeopleActiveFilterPills({
-      query: 'Casey',
-      section: 'Research Engineers',
-      area: 'Evaluation',
-      affiliation: 'BOLD Lab',
-    }),
-    [
-      {
+    Object.fromEntries(activePills.map((pill) => [pill.key, pill])),
+    {
+      query: {
         key: 'query',
         label: 'Name',
         value: 'Casey',
-        displayLabel: 'Name: Casey',
+        displayLabel: 'Casey',
         removeLabel: 'Remove name filter: Casey',
       },
-      {
+      section: {
         key: 'section',
         label: 'Section',
         value: 'Research Engineers',
-        displayLabel: 'Section: Research Engineers',
+        displayLabel: 'Research Engineers',
         removeLabel: 'Remove section filter: Research Engineers',
       },
-      {
+      area: {
         key: 'area',
         label: 'Area',
         value: 'Evaluation',
-        displayLabel: 'Area: Evaluation',
+        displayLabel: 'Evaluation',
         removeLabel: 'Remove area filter: Evaluation',
       },
-      {
+      affiliation: {
         key: 'affiliation',
         label: 'Affiliation',
         value: 'BOLD Lab',
-        displayLabel: 'Affiliation: BOLD Lab',
+        displayLabel: 'BOLD Lab',
         removeLabel: 'Remove affiliation filter: BOLD Lab',
       },
+    },
+  )
+})
+
+test('People active filter pills render in activation order', () => {
+  let filters = emptyFilters
+  let activePillOrder = []
+
+  filters = { ...filters, affiliation: 'BOLD Lab' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: 'Casey' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, section: 'PhD Student' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  const orderedPills = orderPeopleActiveFilterPills(
+    getPeopleActiveFilterPills(filters),
+    activePillOrder,
+  )
+
+  assert.deepEqual(
+    orderedPills.map((pill) => pill.key),
+    ['affiliation', 'query', 'section'],
+  )
+})
+
+test('People active filter pills keep position when active values change', () => {
+  let filters = emptyFilters
+  let activePillOrder = []
+
+  filters = { ...filters, affiliation: 'BOLD Lab' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: 'Casey' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: 'Alex' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  const orderedPills = orderPeopleActiveFilterPills(
+    getPeopleActiveFilterPills(filters),
+    activePillOrder,
+  )
+
+  assert.deepEqual(
+    orderedPills.map((pill) => [pill.key, pill.value]),
+    [
+      ['affiliation', 'BOLD Lab'],
+      ['query', 'Alex'],
     ],
+  )
+})
+
+test('People active filter pills remove cleared filters from activation order', () => {
+  let filters = emptyFilters
+  let activePillOrder = []
+
+  filters = { ...filters, affiliation: 'BOLD Lab' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: 'Casey' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: '' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  assert.deepEqual(activePillOrder, ['affiliation'])
+})
+
+test('People active filter pills append removed filters when re-added', () => {
+  let filters = emptyFilters
+  let activePillOrder = []
+
+  filters = { ...filters, affiliation: 'BOLD Lab' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: 'Casey' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, section: 'PhD Student' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: '' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  filters = { ...filters, query: 'Alex' }
+  activePillOrder = getNextPeopleActiveFilterPillOrder(
+    activePillOrder,
+    filters,
+  )
+
+  const orderedPills = orderPeopleActiveFilterPills(
+    getPeopleActiveFilterPills(filters),
+    activePillOrder,
+  )
+
+  assert.deepEqual(
+    orderedPills.map((pill) => pill.key),
+    ['affiliation', 'section', 'query'],
   )
 })

@@ -39,7 +39,6 @@ export const canonicalPeopleResearchAreas = [
   'Optimization',
   'Planning & Control',
   'Reinforcement Learning',
-  'Research Operations',
   'Robotics',
   'Robustness & Generalization',
   'World Models',
@@ -363,13 +362,10 @@ function normalizeAffiliation(homeInstitution?: string) {
     return undefined
   }
 
-  const expandedAffiliations: Record<string, string> = {
-    Oxford: 'University of Oxford',
-    Imperial: 'Imperial College London',
-    UCL: 'University College London',
-  }
-
-  return expandedAffiliations[affiliation] ?? affiliation
+  return affiliation
+    .replace(/\bUniversity of Oxford\b/g, 'Oxford')
+    .replace(/\bUniversity College London\b/g, 'UCL')
+    .replace(/\bImperial College London\b/g, 'Imperial')
 }
 
 function normalizeResearchAreas(researchInterestKeywords: string[] | string) {

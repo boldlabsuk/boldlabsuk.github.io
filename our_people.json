@@ -3,20 +3,20 @@
     "source": "main",
     "name": "Ed Grefenstette",
     "role": "Adjunct Faculty",
-    "homeInstitution": "Google DeepMind; University College London",
+    "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "Machine Learning",
       "Language Models"
     ],
     "profilePicture": "ed-grefenstette.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.egrefen.com/, https://scholar.google.com/citations?user=ezllEwMAAAAJ&hl=en&oi=ao, https://x.com/egrefen, https://www.linkedin.com/in/egrefen"
+    "socialLinks": "https://www.egrefen.com/, https://scholar.google.com/citations?user=ezllEwMAAAAJ&hl=en&oi=ao, https://x.com/egrefen, https://www.linkedin.com/in/egrefen, https://github.com/egrefen"
   },
   {
     "source": "main",
     "name": "Jack Parker-Holder",
     "role": "Adjunct Faculty",
-    "homeInstitution": "Google DeepMind; University College London",
+    "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "World Models",
       "Open-Ended Learning",
@@ -24,13 +24,13 @@
     ],
     "profilePicture": "jack-parker-holder.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://jparkerholder.github.io/, https://scholar.google.com/citations?user=2O_ESc4AAAAJ&hl=en, https://x.com/jparkerholder, https://www.linkedin.com/in/jack-parker-holder-0bb66a29"
+    "socialLinks": "https://jparkerholder.github.io/, https://scholar.google.com/citations?user=2O_ESc4AAAAJ&hl=en, https://x.com/jparkerholder, https://www.linkedin.com/in/jack-parker-holder-0bb66a29, https://github.com/jparkerholder"
   },
   {
     "source": "main",
     "name": "Roberta Raileanu",
     "role": "Adjunct Faculty",
-    "homeInstitution": "Google DeepMind; University College London",
+    "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "Open-Ended Learning",
       "Reinforcement Learning",
@@ -38,7 +38,7 @@
     ],
     "profilePicture": "roberta-raileanu.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://rraileanu.github.io/, https://scholar.google.com/citations?user=462OoekAAAAJ&hl=en, https://x.com/robertarail, https://www.linkedin.com/in/roberta-raileanu-44b25660"
+    "socialLinks": "https://rraileanu.github.io/, https://scholar.google.com/citations?user=462OoekAAAAJ&hl=en, https://x.com/robertarail, https://www.linkedin.com/in/roberta-raileanu-44b25660, https://github.com/rraileanu"
   },
   {
     "source": "main",
@@ -48,7 +48,12 @@
     "researchInterestKeywords": [
       "Multi-Agent Systems",
       "Reinforcement Learning",
-      "Human-AI Interaction"
+      "Human-AI Interaction",
+      "Game Theory",
+      "Interpretability",
+      "Language Models",
+      "Machine Learning",
+      "Robustness & Generalization"
     ],
     "profilePicture": "241337107_10159795827958909_7158950244190791044_n (1) - Ravi Hammond.jpg",
     "listOnBoldWebsite": "",
@@ -110,7 +115,7 @@
     ],
     "profilePicture": "cv - Paul Templier.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://templierpaul.github.io/, https://bsky.app/profile/templierpaul.bsky.social"
+    "socialLinks": "https://templierpaul.github.io/, https://bsky.app/profile/templierpaul.bsky.social, https://scholar.google.com/citations?user=lPrCGzYAAAAJ&hl=fr&oi=ao, https://www.linkedin.com/in/paul-templier, https://github.com/TemplierPaul"
   },
   {
     "source": "main",
@@ -167,7 +172,7 @@
     ],
     "profilePicture": "profile_pic - Konstantinos Mitsides.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://konstantinosmitsides.github.io/ ,  https://x.com/k_mitsides,   https://scholar.google.com/citations?user=wGBxqc8AAAAJ&hl=en"
+    "socialLinks": "https://konstantinosmitsides.github.io/ ,  https://x.com/k_mitsides,   https://scholar.google.com/citations?user=wGBxqc8AAAAJ&hl=en, https://github.com/konstantinosmitsides"
   },
   {
     "source": "main",
@@ -181,7 +186,7 @@
     ],
     "profilePicture": "F1BDBCB2-E266-4878-A296-64571292F119 3 - George Nigmatulin.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://george-nigm.github.io/"
+    "socialLinks": "https://george-nigm.github.io/, https://scholar.google.com/citations?user=jGPYeWIAAAAJ&hl=en, https://x.com/george_nigm, https://www.linkedin.com/in/george-nigmatulin, https://github.com/george-nigm"
   },
   {
     "source": "main",
@@ -195,7 +200,7 @@
     ],
     "profilePicture": "garyball - Keyue Jiang.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://garyball.github.io/"
+    "socialLinks": "https://garyball.github.io/, https://scholar.google.com/citations?user=cZJ-ZAkAAAAJ&hl=en, https://github.com/GaryBall"
   },
   {
     "source": "main",
@@ -389,7 +394,7 @@
     ],
     "profilePicture": "PNG image - Aneesh Muppidi.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "aneeshers.github.io"
+    "socialLinks": "aneeshers.github.io, https://scholar.google.com/citations?user=OAWT85oAAAAJ&hl=en, https://x.com/aneeshers, https://github.com/Aneeshers"
   },
   {
     "source": "main",
@@ -403,7 +408,7 @@
     ],
     "profilePicture": "headshot - 2026 - close - Nagham Osman.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "LinkedIn: https://www.linkedin.com/in/nagham-osman-4711731a3/ ; website: https://nagham-osman.github.io/ ; scholar: https://scholar.google.com/citations?user=6vFD59wAAAAJ&hl=en ; X: https://x.com/osman_nagham"
+    "socialLinks": "LinkedIn: https://www.linkedin.com/in/nagham-osman-4711731a3/ ; website: https://nagham-osman.github.io/ ; scholar: https://scholar.google.com/citations?user=6vFD59wAAAAJ&hl=en ; X: https://x.com/osman_nagham, https://github.com/nagham-osman"
   },
   {
     "source": "main",
@@ -456,7 +461,7 @@
     ],
     "profilePicture": "tim_rocktaeschel_square_zoom - Tim Rocktäschel.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://x.com/_rockt https://www.linkedin.com/in/rockt/ https://rockt.ai/"
+    "socialLinks": "https://x.com/_rockt https://www.linkedin.com/in/rockt/ https://rockt.ai/, https://scholar.google.co.uk/citations?user=mWBY8aIAAAAJ&hl=en, https://github.com/rockt"
   },
   {
     "source": "main",
@@ -469,7 +474,7 @@
     ],
     "profilePicture": "Screenshot 2026-06-15 at 16.11.15 - Alisia Lupidi.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://uk.linkedin.com/in/alisia-maria-lupidi"
+    "socialLinks": "https://uk.linkedin.com/in/alisia-maria-lupidi, https://github.com/hufflepuff1089, https://scholar.google.com/citations?user=5xzdzq4AAAAJ&hl=en"
   },
   {
     "source": "main",
@@ -614,7 +619,7 @@
     ],
     "profilePicture": "Satyam Agarwal Headshot 11-25 - Satyam Agarwal.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://sat-a.github.io/; https://github.com/Sat-A"
+    "socialLinks": "https://sat-a.github.io/; https://github.com/Sat-A, https://www.linkedin.com/in/satyam-aga"
   },
   {
     "source": "main",
@@ -643,7 +648,7 @@
     ],
     "profilePicture": "DSC06481_(2000) - Antoine Cully.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "antoinecully.com"
+    "socialLinks": "antoinecully.com, https://scholar.google.com/citations?user=rZtJlPQAAAAJ&hl=fr, https://github.com/Aneoshun"
   },
   {
     "source": "main",
@@ -700,7 +705,7 @@
     ],
     "profilePicture": "IMG_6964 - Francesco Capuano.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano"
+    "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://github.com/fracapuano"
   },
   {
     "source": "main",
@@ -715,7 +720,7 @@
     ],
     "profilePicture": "oscar_pang - Oscar Pang.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/oscarkfpang/"
+    "socialLinks": "https://www.linkedin.com/in/oscarkfpang/, https://github.com/oscarkfpang"
   },
   {
     "source": "main",
@@ -729,7 +734,7 @@
     ],
     "profilePicture": "IMG_3477 - Anya Sims.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://anyasims.github.io/, https://scholar.google.com/citations?user=MSQalu0AAAAJ&hl=en"
+    "socialLinks": "https://anyasims.github.io/, https://scholar.google.com/citations?user=MSQalu0AAAAJ&hl=en, https://x.com/anyaasims, https://github.com/anyasims"
   },
   {
     "source": "main",
@@ -770,7 +775,7 @@
     ],
     "profilePicture": "Foto Jacinto 2 - Jacinto Suñer Soler.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/jacinto-suner-soler/"
+    "socialLinks": "https://www.linkedin.com/in/jacinto-suner-soler/, https://github.com/jacintosuner"
   },
   {
     "source": "main",
@@ -801,7 +806,7 @@
     ],
     "profilePicture": "R0001134 - Hannah Janmohamed.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://x.com/hannah_janmo, https://scholar.google.com/citations?user=LIzoINkAAAAJ&hl=en"
+    "socialLinks": "https://x.com/hannah_janmo, https://scholar.google.com/citations?user=LIzoINkAAAAJ&hl=en, https://github.com/hannah-jan"
   },
   {
     "source": "main",
@@ -976,7 +981,7 @@
     ],
     "profilePicture": "DSC00483_small - Simon Bührer.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://simonbuehrer.com/"
+    "socialLinks": "https://simonbuehrer.com/, https://www.linkedin.com/in/simon-buehrer, https://github.com/sbuehrer"
   },
   {
     "source": "main",
@@ -1004,7 +1009,7 @@
     ],
     "profilePicture": "b8f6ef66a27db8360c9da493bddd3f24 - Tingchen Fu.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=bv_8Q_kAAAAJ&hl=en"
+    "socialLinks": "https://scholar.google.com/citations?user=bv_8Q_kAAAAJ&hl=en, https://github.com/TingchenFu"
   },
   {
     "source": "main",
@@ -1018,7 +1023,7 @@
     ],
     "profilePicture": "brantonhat - Branton DeMoss.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "brantondemoss.com/research"
+    "socialLinks": "brantondemoss.com/research, https://x.com/BrantonDeMoss, https://github.com/brantondemoss"
   },
   {
     "source": "main",
@@ -1033,7 +1038,7 @@
     ],
     "profilePicture": "download - Laura.jpeg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://profiles.ucl.ac.uk/55855-laura-toni"
+    "socialLinks": "https://profiles.ucl.ac.uk/55855-laura-toni, https://scholar.google.com/citations?user=fQ-oWKUAAAAJ&hl=en"
   },
   {
     "source": "main",
@@ -1046,7 +1051,7 @@
     ],
     "profilePicture": "shimon-whiteson.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://whirl.cs.ox.ac.uk/; https://scholar.google.nl/citations?user=9zeEI-cAAAAJ&hl=en&oi=ao"
+    "socialLinks": "https://whirl.cs.ox.ac.uk/; https://scholar.google.nl/citations?user=9zeEI-cAAAAJ&hl=en&oi=ao, https://github.com/shimon8282"
   },
   {
     "source": "main",
@@ -1059,7 +1064,7 @@
     ],
     "profilePicture": "me_subfusc_cropped_small - Eltayeb Ahmed.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?user=4PAd9qgAAAAJ"
+    "socialLinks": "https://scholar.google.com/citations?user=4PAd9qgAAAAJ, https://x.com/clockwk7, https://github.com/EltayebAhmed"
   },
   {
     "source": "main",
@@ -1198,18 +1203,6 @@
   },
   {
     "source": "main",
-    "name": "Garrett Deceuninck-Ziviani",
-    "role": "Group Support",
-    "homeInstitution": "Oxford",
-    "researchInterestKeywords": [
-      "Research Operations"
-    ],
-    "profilePicture": "garrett-ziviani.jpg",
-    "listOnBoldWebsite": "YES",
-    "socialLinks": "mailto:garrett.deceuninck-ziviani@eng.ox.ac.uk"
-  },
-  {
-    "source": "main",
     "name": "Maksymilian Wolski",
     "role": "Visiting Student (MSc)",
     "homeInstitution": "Oxford",
@@ -1316,7 +1309,7 @@
     "profilePicture": "matthias-hericks.jpg",
     "listOnBoldWebsite": "YES",
     "alumni": true,
-    "socialLinks": "https://twitter.com/matthiashericks; https://github.com/hericks"
+    "socialLinks": "https://twitter.com/matthiashericks; https://github.com/hericks, https://hericks.github.io"
   },
   {
     "source": "foerster-alumni",

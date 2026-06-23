@@ -66,7 +66,6 @@ const foersterMembersPageFixture = [
   ["Master's Students", 'Yuhe Gao', 'yuhe-gao', 'Yuhe Gao', 'Masters Student'],
   ["Master's Students", 'Nathan Monette', 'nathan-monette', 'Nathan Monette', 'Masters Student'],
   ['Associate Members', 'Elif Akata', 'elif-akata', 'Elif Akata', 'Associate Members'],
-  ['Associate Members', 'Garrett Deceuninck-Ziviani', 'garrett-deceuninck-ziviani', 'Garrett Deceuninck-Ziviani', 'Associate Members'],
   ['Associate Members', 'Maksymilian Wolski', 'maksymilian-wolski', 'Maksymilian Wolski', 'Associate Members'],
   ['Associate Members', 'Tim Franzmeyer', 'tim-franzmeyer', 'Tim Franzmeyer', 'Associate Members'],
   ['Alumni', 'Ben Ellis', 'ben-ellis', 'Ben Ellis', 'Alumni'],
@@ -150,7 +149,7 @@ test('Website Roster derives public Person Listings from central source rows', (
       source: 'main',
       name: '  Included PI  ',
       role: '  BOLD PI  ',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Multi-Agent Reinforcement Learning'],
       profilePicture: 'included-pi.jpg',
       listOnBoldWebsite: 'YES',
@@ -159,7 +158,7 @@ test('Website Roster derives public Person Listings from central source rows', (
       source: 'main',
       name: 'Blank Flag Postdoc',
       role: 'Postdoc',
-      homeInstitution: 'Imperial College London',
+      homeInstitution: 'Imperial',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'blank-flag-postdoc.jpg',
       listOnBoldWebsite: '',
@@ -168,7 +167,7 @@ test('Website Roster derives public Person Listings from central source rows', (
       source: 'main',
       name: 'Opted Out Student',
       role: 'PhD student',
-      homeInstitution: 'University College London',
+      homeInstitution: 'UCL',
       researchInterestKeywords: ['Language Models'],
       profilePicture: 'opted-out-student.jpg',
       listOnBoldWebsite: 'No',
@@ -186,7 +185,7 @@ test('Website Roster derives public Person Listings from central source rows', (
       source: 'main',
       name: 'Missing Picture',
       role: 'Master Student',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Robotics'],
       profilePicture: '',
       listOnBoldWebsite: 'YES',
@@ -206,8 +205,8 @@ test('Website Roster derives public Person Listings from central source rows', (
     ],
   )
   assert.deepEqual(roster.map((person) => person.affiliation), [
-    'University of Oxford',
-    'Imperial College London',
+    'Oxford',
+    'Imperial',
   ])
   assert.deepEqual(roster.map((person) => person.image), [
     '/profile-assets/included-pi.webp',
@@ -246,7 +245,7 @@ test('Website Roster normalizes source Research Area keywords to canonical publi
       source: 'main',
       name: 'Canonical Researcher',
       role: 'PhD student',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: [
         'RL',
         'Reinforcment Learning',
@@ -276,7 +275,7 @@ test('Website Roster maps unsupported profile source formats to generated web-sa
       source: 'main',
       name: 'HEIC Upload',
       role: 'Postdoc',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'heic-upload.HEIC',
       listOnBoldWebsite: 'YES',
@@ -285,7 +284,7 @@ test('Website Roster maps unsupported profile source formats to generated web-sa
       source: 'main',
       name: 'PDF Upload',
       role: 'PhD student',
-      homeInstitution: 'Imperial College London',
+      homeInstitution: 'Imperial',
       researchInterestKeywords: ['Agent Learning'],
       profilePicture: 'pdf-upload.pdf',
       listOnBoldWebsite: 'YES',
@@ -304,7 +303,7 @@ test('Website Roster retains explicit source alumni markers outside the public d
       source: 'main',
       name: 'Flagged Alumni',
       role: 'Former PI',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'flagged-alumni.jpg',
       listOnBoldWebsite: 'YES',
@@ -314,7 +313,7 @@ test('Website Roster retains explicit source alumni markers outside the public d
       source: 'main',
       name: 'Current PI',
       role: 'BOLD PI',
-      homeInstitution: 'Imperial College London',
+      homeInstitution: 'Imperial',
       researchInterestKeywords: ['Agents'],
       profilePicture: 'current-pi.jpg',
       listOnBoldWebsite: 'YES',
@@ -323,7 +322,7 @@ test('Website Roster retains explicit source alumni markers outside the public d
       source: 'main',
       name: 'Unmarked Alumni Role',
       role: 'Alumni',
-      homeInstitution: 'University College London',
+      homeInstitution: 'UCL',
       researchInterestKeywords: ['Discovery'],
       profilePicture: 'unmarked-alumni-role.jpg',
       listOnBoldWebsite: 'YES',
@@ -357,7 +356,7 @@ test('Website Roster only creates supplemental Alumni from the explicit alumni s
       source: 'main',
       name: 'Current Linked Person',
       role: 'PhD student',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'current-linked-person.jpg',
       listOnBoldWebsite: 'YES',
@@ -366,7 +365,7 @@ test('Website Roster only creates supplemental Alumni from the explicit alumni s
       source: 'foerster',
       name: 'Current Linked Person',
       role: 'Alumni',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'current-linked-person.jpg',
       alumni: 'YES',
@@ -376,7 +375,7 @@ test('Website Roster only creates supplemental Alumni from the explicit alumni s
       source: 'foerster',
       name: 'Out Of Scope Alumni',
       role: 'Former visitor',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'out-of-scope-alumni.jpg',
       listOnBoldWebsite: 'YES',
@@ -387,7 +386,7 @@ test('Website Roster only creates supplemental Alumni from the explicit alumni s
       source: 'foerster-alumni',
       name: 'Explicit Alumni',
       role: 'Former student',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'explicit-alumni.jpg',
       listOnBoldWebsite: 'YES',
@@ -428,7 +427,7 @@ test('Website Roster parses public profile links from source social-links text',
       source: 'main',
       name: 'Linked Researcher',
       role: 'Postdoc',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'linked-researcher.jpg',
       listOnBoldWebsite: 'YES',
@@ -452,7 +451,7 @@ test('Website Roster parses labeled and pipe-separated source profile links', ()
       source: 'main',
       name: 'Spreadsheet Linked',
       role: 'Postdoc',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'spreadsheet-linked.jpg',
       listOnBoldWebsite: 'YES',
@@ -470,8 +469,44 @@ test('Website Roster parses labeled and pipe-separated source profile links', ()
   })
 })
 
-test('Website Roster expands spreadsheet affiliation shorthand for public display', () => {
+test('Website Roster shortens source affiliation names for public display', () => {
   const roster = buildWebsiteRoster([
+    {
+      source: 'main',
+      name: 'Oxford Long Name',
+      role: 'Postdoc',
+      homeInstitution: 'University of Oxford',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'oxford-long-name.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'Imperial Long Name',
+      role: 'Postdoc',
+      homeInstitution: 'Imperial College London',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'imperial-long-name.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'UCL Long Name',
+      role: 'PhD student',
+      homeInstitution: 'University College London',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'ucl-long-name.jpg',
+      listOnBoldWebsite: 'YES',
+    },
+    {
+      source: 'main',
+      name: 'UCL Joint Affiliation',
+      role: 'PhD student',
+      homeInstitution: 'Google DeepMind; University College London',
+      researchInterestKeywords: ['Evaluation'],
+      profilePicture: 'ucl-joint-affiliation.jpg',
+      listOnBoldWebsite: 'YES',
+    },
     {
       source: 'main',
       name: 'Oxford Shorthand',
@@ -502,9 +537,13 @@ test('Website Roster expands spreadsheet affiliation shorthand for public displa
   ])
 
   assert.deepEqual(roster.map((person) => person.affiliation), [
-    'University of Oxford',
-    'Imperial College London',
-    'University College London',
+    'Oxford',
+    'Imperial',
+    'UCL',
+    'Google DeepMind; UCL',
+    'Oxford',
+    'Imperial',
+    'UCL',
   ])
 })
 
@@ -533,7 +572,7 @@ test('Website Roster classifies first-party social subdomain URLs as social link
       source: 'main',
       name: 'Regional Social',
       role: 'Postdoc',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'regional-social.jpg',
       listOnBoldWebsite: 'YES',
@@ -749,7 +788,7 @@ test('Website Roster parsed links feed Primary Person Link priority', () => {
       source: 'main',
       name: 'Website Preferred',
       role: 'Postdoc',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'website-preferred.jpg',
       listOnBoldWebsite: 'YES',
@@ -760,7 +799,7 @@ test('Website Roster parsed links feed Primary Person Link priority', () => {
       source: 'main',
       name: 'Scholar Preferred',
       role: 'PhD student',
-      homeInstitution: 'Imperial College London',
+      homeInstitution: 'Imperial',
       researchInterestKeywords: ['Agents'],
       profilePicture: 'scholar-preferred.jpg',
       listOnBoldWebsite: 'YES',
@@ -771,7 +810,7 @@ test('Website Roster parsed links feed Primary Person Link priority', () => {
       source: 'main',
       name: 'Social Only',
       role: 'Master Student',
-      homeInstitution: 'University College London',
+      homeInstitution: 'UCL',
       researchInterestKeywords: ['Language Models'],
       profilePicture: 'social-only.jpg',
       listOnBoldWebsite: 'YES',
@@ -808,7 +847,7 @@ test('Website Roster ignores invalid placeholders and Gmail values as public lin
       source: 'main',
       name: 'No Public Link',
       role: 'Postdoc',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'no-public-link.jpg',
       listOnBoldWebsite: 'YES',
@@ -834,7 +873,7 @@ test('Person Listing compact links remain available for parsed public links', ()
       source: 'main',
       name: 'Compact Linked',
       role: 'Postdoc',
-      homeInstitution: 'University of Oxford',
+      homeInstitution: 'Oxford',
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'compact-linked.jpg',
       listOnBoldWebsite: 'YES',
@@ -919,12 +958,6 @@ test('Full Website Roster includes the missing active Foerster People once in th
     ['andrei-lupu', 'Andrei Lupu', 'DPhil Student', 'PhD Student'],
     ['sebastian-towers', 'Sebastian Towers', 'DPhil Student', 'PhD Student'],
     [
-      'garrett-deceuninck-ziviani',
-      'Garrett Deceuninck-Ziviani',
-      'Group Support',
-      'Associate Members',
-    ],
-    [
       'maksymilian-wolski',
       'Maksymilian Wolski',
       'Visiting Student (MSc)',
@@ -935,7 +968,7 @@ test('Full Website Roster includes the missing active Foerster People once in th
 
   assert.deepEqual(
     scopedFoersterPeople.map(([slug]) => people.filter((person) => person.slug === slug).length),
-    [1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1],
   )
   assert.deepEqual(
     scopedFoersterPeople.map(([slug, name, role, peopleSection]) => ({
@@ -967,12 +1000,6 @@ test('Full Website Roster includes the missing active Foerster People once in th
     listingBySlug['sam-coward']?.primaryPersonLink,
     'https://dramacow.github.io',
   )
-  assert.deepEqual(
-    people.find((person) => person.slug === 'garrett-deceuninck-ziviani')?.links,
-    undefined,
-  )
-  assert.equal(listingBySlug['garrett-deceuninck-ziviani']?.primaryPersonLink, null)
-
   const searchDirectory = buildPeopleDirectoryViewModel({
     people,
     filters: {
@@ -996,13 +1023,13 @@ test('Full Website Roster includes the missing active Foerster People once in th
     [['PhD Student', ['qizhen-zhang-irene']]],
   )
   assert.deepEqual(
-    ['garrett-deceuninck-ziviani', 'maksymilian-wolski', 'tim-franzmeyer'].map(
+    ['maksymilian-wolski', 'tim-franzmeyer'].map(
       (slug) =>
         associateDirectory.sections
           .flatMap((section) => section.people)
           .some((listing) => listing.slug === slug),
     ),
-    [true, true, true],
+    [true, true],
   )
 })
 
@@ -1098,7 +1125,7 @@ test('Foerster members page comparison is represented in the Website Roster', ()
     ([, , , , peopleSection]) => peopleSection === 'Alumni',
   )
 
-  assert.equal(foersterMembersPageFixture.length, 51)
+  assert.equal(foersterMembersPageFixture.length, 50)
   assert.deepEqual(
     foersterMembersPageFixture.map(([, , rosterSlug]) =>
       people.filter((person) => person.slug === rosterSlug).length,
@@ -1162,10 +1189,9 @@ test('Foerster members page comparison is represented in the Website Roster', ()
   assert.deepEqual(
     [
       listingBySlug['sebastian-towers']?.primaryPersonLink,
-      listingBySlug['garrett-deceuninck-ziviani']?.primaryPersonLink,
       listingBySlug['maksymilian-wolski']?.primaryPersonLink,
     ],
-    [null, null, null],
+    [null, null],
   )
   assert.deepEqual(
     Object.fromEntries(
@@ -1233,9 +1259,9 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(people.length, 96)
+  assert.equal(people.length, 95)
   assert.equal(people.filter((person) => person.alumni).length, 7)
-  assert.equal(directory.totalPeople, 89)
+  assert.equal(directory.totalPeople, 88)
   assert.deepEqual(
     [
       ...new Set(
@@ -1246,7 +1272,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     ],
     [],
   )
-  assert.equal(directory.visiblePeopleCount, 89)
+  assert.equal(directory.visiblePeopleCount, 88)
   assert.deepEqual(
     Object.fromEntries(
       directory.sections.map((section) => [section.title, section.people.length]),
@@ -1258,10 +1284,10 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Research Engineers': 1,
       'PhD Student': 53,
       'Masters Student': 6,
-      'Associate Members': 13,
+      'Associate Members': 12,
     },
   )
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 89)
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 88)
   assert.deepEqual(
     directory.sections.map((section) => section.title),
     [
@@ -1366,7 +1392,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       query: '',
       section: allFilterValue,
       area: allFilterValue,
-      affiliation: 'Imperial College London',
+      affiliation: 'Imperial',
     },
   })
   const sectionDirectory = buildPeopleDirectoryViewModel({
@@ -1384,7 +1410,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       query: 'wang',
       section: 'PhD Student',
       area: 'Robotics',
-      affiliation: 'University College London',
+      affiliation: 'UCL',
     },
   })
   const emptyDirectory = buildPeopleDirectoryViewModel({
@@ -1409,7 +1435,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ],
   )
   assert.equal(matchingDirectory.visiblePeopleCount, 3)
-  assert.equal(matchingDirectory.totalPeople, 89)
+  assert.equal(matchingDirectory.totalPeople, 88)
 
   assert.deepEqual(
     areaDirectory.sections.map((section) => [
@@ -1480,9 +1506,9 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [],
   )
   assert.equal(combinedDirectory.visiblePeopleCount, 0)
-  assert.equal(combinedDirectory.totalPeople, 89)
+  assert.equal(combinedDirectory.totalPeople, 88)
 
   assert.deepEqual(emptyDirectory.sections, [])
   assert.equal(emptyDirectory.visiblePeopleCount, 0)
-  assert.equal(emptyDirectory.totalPeople, 89)
+  assert.equal(emptyDirectory.totalPeople, 88)
 })

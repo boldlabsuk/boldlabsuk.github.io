@@ -139,7 +139,7 @@ function createPeopleActiveFilterPill(
     key,
     label,
     value,
-    displayLabel: `${label}: ${value}`,
+    displayLabel: value,
     removeLabel: `Remove ${label.toLowerCase()} filter: ${value}`,
   }
 }

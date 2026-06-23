@@ -43,7 +43,9 @@ export function PersonListing({
       {listing.affiliation && (
         <p className="person-affiliation">{listing.affiliation}</p>
       )}
-      <SocialLinks links={listing.links} personName={listing.name} compact />
+      <div className="person-listing-social-slot">
+        <SocialLinks links={listing.links} personName={listing.name} compact />
+      </div>
     </article>
   )
 }

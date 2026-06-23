@@ -129,5 +129,5 @@ The default destination for clicking a person's photo or name in a Person Listin
 _Avoid_: Profile route, card link
 
 **Person Affiliation**:
-The public institution name shown in a Person Listing. Spreadsheet shorthand is expanded for public display, such as Oxford to University of Oxford, Imperial to Imperial College London, and UCL to University College London.
+The public institution name shown in a Person Listing. Long source institution names are shortened for public display, such as University of Oxford to Oxford, Imperial College London to Imperial, and University College London to UCL.
 _Avoid_: Home Institution shorthand, branch

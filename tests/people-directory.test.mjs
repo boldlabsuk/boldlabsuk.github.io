@@ -333,7 +333,7 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Research Engineers': 1,
       'PhD Student': 53,
       'Masters Student': 6,
-      'Associate Members': 13,
+      'Associate Members': 12,
     },
   )
   assert.deepEqual(
@@ -451,7 +451,6 @@ test('People Directory preserves content order within each People Section', () =
       'simon-buhrer',
       'junming-an',
       'alfie-lamerton',
-      'garrett-deceuninck-ziviani',
       'maksymilian-wolski',
       'tim-franzmeyer',
     ],
@@ -470,7 +469,7 @@ test('People Directory filter options expose public People Sections and remainin
     ),
     [],
   )
-  assert.ok(options.affiliations.includes('University of Oxford'))
+  assert.ok(options.affiliations.includes('Oxford'))
 })
 
 test('People Directory search filters Person Listings while preserving People Sections', () => {
