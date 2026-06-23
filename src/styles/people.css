@@ -168,10 +168,16 @@
 }
 
 .person-listing h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(16px * 1.22 * 2);
+  min-height: 2lh;
   margin: 0;
-  align-self: end;
   font-size: 16px;
   line-height: 1.22;
+  text-align: center;
   overflow-wrap: anywhere;
 }
 
