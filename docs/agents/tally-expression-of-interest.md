@@ -50,9 +50,11 @@ exposed in the unauthenticated public payload, so the verifier reports the publi
 failure.
 
 Fresh public verification on 2026-06-23 confirms this is still the active
-blocker: every accepted route embed returns HTTP 200 with the shared form ID and
-hidden `route` field, but the visible `Desired role` field and remaining public
-configuration gaps mean the form is not ready.
+blocker: every accepted route embed returns HTTP 200 with the shared form ID,
+hidden `route` field, generic baseline fields, and PDF-only 10 MB CV/resume
+upload settings, but the form is not ready because the public payload still
+contains a visible `Desired role` field and does not expose the required
+confirmation copy.
 
 Run `node scripts/verify-tally-expression-of-interest.mjs` to repeat the public
 verification. The script exits nonzero until the public payload exposes the
@@ -170,3 +172,9 @@ returned the same blocker for every route: HTTP 200 with form `A7aa0W`, hidden
 field `route`, generic baseline blocks, a `FILE_UPLOAD` block configured for PDF
 files only with a 10 MB maximum, a prohibited visible `Desired role` field,
 missing confirmation copy, and `integrations=0` for owner-only context.
+
+Latest agent verification on 2026-06-23 found no Tally owner credentials or
+automation token in the workspace. The remaining owner-side actions are to
+remove the visible `Desired role` field from form `A7aa0W` and configure the
+non-promissory confirmation copy above, then rerun
+`node scripts/verify-tally-expression-of-interest.mjs`.
