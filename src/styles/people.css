@@ -192,6 +192,12 @@
   margin-top: 0;
 }
 
+.person-listing .social-links-compact {
+  flex-wrap: nowrap;
+  gap: 3px;
+  max-width: 100%;
+}
+
 .social-links-compact a {
   min-height: 34px;
   min-width: 34px;
@@ -199,6 +205,12 @@
   border-color: transparent;
   background: transparent;
   color: var(--ink-soft);
+}
+
+.person-listing .social-links-compact a {
+  flex: 0 0 24px;
+  min-width: 24px;
+  min-height: 30px;
 }
 
 .social-links-compact a:hover,
