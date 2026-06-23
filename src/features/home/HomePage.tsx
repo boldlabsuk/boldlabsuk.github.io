@@ -2,20 +2,33 @@ import { useEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import { homepageContent } from '../../content'
 import {
-  getLogoAnimationTransform,
-  getLogoScrollProgress,
-  resolveLogoScrollRange,
+  boldLogoAnimationConfig,
+  formatLogoTransform,
+  getScrollLockedLogoAlpha,
+  getTriggeredLogoAlpha,
+  getTriggeredLogoTargetAlpha,
+  interpolateLogoState,
+  isTriggeredLogoAnimationComplete,
+  resolveLogoAnimationTiming,
   type LogoAnimationRect,
-  type LogoScrollRange,
+  type LogoAnimationTiming,
 } from './logoScrollAnimation'
 import type { HomeLogoMode } from './homeLogoMode'
 
 type HomeLogoPhase = 'hero' | 'transition' | 'complete'
 
 type LogoAnimationMeasurement = {
-  range: LogoScrollRange
+  timing: LogoAnimationTiming
   startRect: LogoAnimationRect
   targetRect: LogoAnimationRect
+}
+
+type TriggeredLogoAnimationRuntime = {
+  currentAlpha: number
+  targetAlpha: number
+  alphaAtAnimationStart: number
+  animationStartTimeMs: number
+  isPlaying: boolean
 }
 
 const stickyHeaderOffsetPx = 67
@@ -119,10 +132,18 @@ export function HomePage({
     const reducedMotionQuery = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     )
+    const animationMode = boldLogoAnimationConfig.mode
     const siteHeader = headerLogo.closest('.site-header')
     let measurement: LogoAnimationMeasurement | null = null
     let animationFrameId: number | null = null
     let lastLogoPhase: HomeLogoPhase | null = null
+    let triggeredAnimation: TriggeredLogoAnimationRuntime = {
+      currentAlpha: 0,
+      targetAlpha: 0,
+      alphaAtAnimationStart: 0,
+      animationStartTimeMs: 0,
+      isPlaying: false,
+    }
 
     const hideOverlayLogo = () => {
       overlayLogo.style.opacity = '0'
@@ -139,14 +160,24 @@ export function HomePage({
       onLogoAnimationCompleteChange?.(nextLogoPhase === 'complete')
     }
 
-    const measureLogoAnimation = () => {
-      const range = resolveLogoScrollRange({
+    const getDefaultHeroStateScrollY = (
+      timing: LogoAnimationTiming,
+      scrollY: number,
+    ) =>
+      animationMode === 'scrollLockedManim'
+        ? timing.scrollLockedStartY
+        : scrollY
+
+    const measureLogoAnimation = (heroStateScrollY?: number) => {
+      const timing = resolveLogoAnimationTiming({
         widthPx: window.innerWidth,
         heightPx: window.innerHeight,
       })
       const scrollY = window.scrollY
       const heroRect = heroLogo.getBoundingClientRect()
       const headerRect = headerLogo.getBoundingClientRect()
+      const startScrollY =
+        heroStateScrollY ?? getDefaultHeroStateScrollY(timing, scrollY)
 
       if (
         heroRect.width <= 0 ||
@@ -160,9 +191,9 @@ export function HomePage({
       }
 
       measurement = {
-        range,
+        timing,
         startRect: {
-          top: heroRect.top + scrollY - range.startDelayPx,
+          top: heroRect.top + scrollY - startScrollY,
           left: heroRect.left,
           width: heroRect.width,
           height: heroRect.height,
@@ -177,6 +208,176 @@ export function HomePage({
 
       overlayLogo.style.width = `${measurement.startRect.width}px`
       overlayLogo.style.height = `${measurement.startRect.height}px`
+
+      return measurement
+    }
+
+    const applyLogoAlpha = (alpha: number) => {
+      if (!measurement) {
+        return false
+      }
+
+      const transform = interpolateLogoState({
+        startRect: measurement.startRect,
+        targetRect: measurement.targetRect,
+        alpha,
+      })
+
+      overlayLogo.style.opacity = '1'
+      overlayLogo.style.visibility = 'visible'
+      overlayLogo.style.transform = formatLogoTransform(transform)
+
+      return true
+    }
+
+    const resolveCurrentTriggeredAlpha = (nowMs: number) => {
+      if (!triggeredAnimation.isPlaying) {
+        return triggeredAnimation.currentAlpha
+      }
+
+      return getTriggeredLogoAlpha({
+        nowMs,
+        animationStartTimeMs: triggeredAnimation.animationStartTimeMs,
+        durationMs: boldLogoAnimationConfig.durationMs,
+        alphaAtAnimationStart: triggeredAnimation.alphaAtAnimationStart,
+        targetAlpha: triggeredAnimation.targetAlpha,
+        rateFunction: boldLogoAnimationConfig.rateFunction,
+      })
+    }
+
+    const retargetTriggeredAnimation = (
+      targetAlpha: number,
+      nowMs: number,
+    ) => {
+      const currentAlpha = resolveCurrentTriggeredAlpha(nowMs)
+
+      if (
+        targetAlpha === triggeredAnimation.targetAlpha &&
+        (triggeredAnimation.isPlaying || currentAlpha === targetAlpha)
+      ) {
+        return
+      }
+
+      if (currentAlpha === 0 || currentAlpha === 1) {
+        measureLogoAnimation(window.scrollY)
+      }
+
+      triggeredAnimation = {
+        currentAlpha,
+        targetAlpha,
+        alphaAtAnimationStart: currentAlpha,
+        animationStartTimeMs: nowMs,
+        isPlaying: currentAlpha !== targetAlpha,
+      }
+    }
+
+    const updateScrollLockedLogoAnimation = () => {
+      if (!measurement) {
+        setNextLogoPhase('hero')
+        return
+      }
+
+      const alpha = getScrollLockedLogoAlpha(
+        window.scrollY,
+        measurement.timing,
+        boldLogoAnimationConfig.rateFunction,
+      )
+
+      if (reducedMotionQuery.matches) {
+        hideOverlayLogo()
+        setNextLogoPhase(
+          window.scrollY >= measurement.timing.scrollLockedEndY
+            ? 'complete'
+            : 'hero',
+        )
+        return
+      }
+
+      if (alpha <= 0) {
+        hideOverlayLogo()
+        setNextLogoPhase('hero')
+        return
+      }
+
+      if (alpha >= 1) {
+        hideOverlayLogo()
+        setNextLogoPhase('complete')
+        return
+      }
+
+      applyLogoAlpha(alpha)
+      setNextLogoPhase('transition')
+    }
+
+    const updateTriggeredLogoAnimation = () => {
+      if (!measurement) {
+        setNextLogoPhase('hero')
+        return
+      }
+
+      const nowMs = performance.now()
+      const targetAlpha = getTriggeredLogoTargetAlpha(
+        window.scrollY,
+        measurement.timing,
+        triggeredAnimation.targetAlpha,
+      )
+
+      if (reducedMotionQuery.matches) {
+        triggeredAnimation = {
+          currentAlpha: targetAlpha,
+          targetAlpha,
+          alphaAtAnimationStart: targetAlpha,
+          animationStartTimeMs: nowMs,
+          isPlaying: false,
+        }
+        hideOverlayLogo()
+        setNextLogoPhase(targetAlpha >= 1 ? 'complete' : 'hero')
+        return
+      }
+
+      retargetTriggeredAnimation(targetAlpha, nowMs)
+
+      let alpha = resolveCurrentTriggeredAlpha(nowMs)
+
+      if (
+        triggeredAnimation.isPlaying &&
+        isTriggeredLogoAnimationComplete({
+          nowMs,
+          animationStartTimeMs: triggeredAnimation.animationStartTimeMs,
+          durationMs: boldLogoAnimationConfig.durationMs,
+        })
+      ) {
+        alpha = triggeredAnimation.targetAlpha
+        triggeredAnimation = {
+          ...triggeredAnimation,
+          currentAlpha: alpha,
+          isPlaying: false,
+        }
+      } else {
+        triggeredAnimation = {
+          ...triggeredAnimation,
+          currentAlpha: alpha,
+        }
+      }
+
+      if (alpha <= 0 && !triggeredAnimation.isPlaying) {
+        hideOverlayLogo()
+        setNextLogoPhase('hero')
+        return
+      }
+
+      if (alpha >= 1 && !triggeredAnimation.isPlaying) {
+        hideOverlayLogo()
+        setNextLogoPhase('complete')
+        return
+      }
+
+      applyLogoAlpha(alpha)
+      setNextLogoPhase('transition')
+
+      if (triggeredAnimation.isPlaying) {
+        scheduleLogoAnimationUpdate()
+      }
     }
 
     const updateLogoAnimation = () => {
@@ -186,41 +387,12 @@ export function HomePage({
         measureLogoAnimation()
       }
 
-      if (!measurement) {
-        setNextLogoPhase('hero')
+      if (animationMode === 'triggeredManim') {
+        updateTriggeredLogoAnimation()
         return
       }
 
-      const progress = getLogoScrollProgress(window.scrollY, measurement.range)
-
-      if (reducedMotionQuery.matches) {
-        hideOverlayLogo()
-        setNextLogoPhase(progress >= 1 ? 'complete' : 'hero')
-        return
-      }
-
-      if (progress <= 0) {
-        hideOverlayLogo()
-        setNextLogoPhase('hero')
-        return
-      }
-
-      if (progress >= 1) {
-        hideOverlayLogo()
-        setNextLogoPhase('complete')
-        return
-      }
-
-      const transform = getLogoAnimationTransform({
-        startRect: measurement.startRect,
-        targetRect: measurement.targetRect,
-        progress,
-      })
-
-      overlayLogo.style.opacity = '1'
-      overlayLogo.style.visibility = 'visible'
-      overlayLogo.style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`
-      setNextLogoPhase('transition')
+      updateScrollLockedLogoAnimation()
     }
 
     const scheduleLogoAnimationUpdate = () => {
