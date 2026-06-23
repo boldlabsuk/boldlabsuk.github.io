@@ -121,6 +121,7 @@ export type OpportunityRoute = {
   whoThisIsFor: string[]
   whatWeLookFor: string[]
   howThisWorks: string
+  formPrompt?: string
   formComingSoon: string
   metadata: {
     title: string
