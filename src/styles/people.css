@@ -18,6 +18,88 @@
   background: var(--surface);
 }
 
+.people-filter-actions {
+  display: flex;
+  flex: 1 0 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.people-active-filter-pills {
+  display: flex;
+  flex: 1 1 420px;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.people-active-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 34px;
+  min-width: 0;
+  gap: 8px;
+  padding: 4px 5px 4px 11px;
+  border: 1px solid rgba(43, 100, 216, 0.24);
+  border-radius: 999px;
+  background: rgba(43, 100, 216, 0.08);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 780;
+  text-align: left;
+}
+
+.people-active-filter-pill:hover,
+.people-active-filter-pill:focus-visible {
+  border-color: var(--blue);
+  background: rgba(43, 100, 216, 0.13);
+}
+
+.people-active-filter-pill-text {
+  min-width: 0;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.people-active-filter-pill-label,
+.people-active-filter-pill-separator {
+  color: var(--muted);
+}
+
+.people-active-filter-pill strong {
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.people-active-filter-pill-remove {
+  display: grid;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(43, 100, 216, 0.12);
+  color: var(--blue);
+}
+
+.people-active-filter-pill:hover .people-active-filter-pill-remove,
+.people-active-filter-pill:focus-visible .people-active-filter-pill-remove {
+  background: var(--blue);
+  color: var(--surface);
+}
+
+.people-active-filter-pill-remove svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.4;
+}
+
 .people-directory {
   display: grid;
   gap: 36px;

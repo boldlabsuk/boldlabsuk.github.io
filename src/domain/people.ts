@@ -49,6 +49,14 @@ export type PeopleDirectoryFilters = {
   affiliation: string
 }
 
+export type PeopleActiveFilterPill = {
+  key: keyof PeopleDirectoryFilters
+  label: string
+  value: string
+  displayLabel: string
+  removeLabel: string
+}
+
 export type PersonListing = {
   slug: string
   name: string
@@ -72,6 +80,42 @@ export type PeopleDirectoryViewModel = {
   visiblePeopleCount: number
 }
 
+export function getPeopleActiveFilterPills(
+  filters: PeopleDirectoryFilters,
+): PeopleActiveFilterPill[] {
+  const pills: PeopleActiveFilterPill[] = []
+  const query = filters.query.trim()
+  const section = filters.section.trim()
+  const area = filters.area.trim()
+  const affiliation = filters.affiliation.trim()
+
+  if (query) {
+    pills.push(createPeopleActiveFilterPill('query', 'Name', query))
+  }
+
+  if (section && section !== allFilterValue) {
+    pills.push(
+      createPeopleActiveFilterPill(
+        'section',
+        'Section',
+        getPeopleSectionFilterLabel(section),
+      ),
+    )
+  }
+
+  if (area && area !== allFilterValue) {
+    pills.push(createPeopleActiveFilterPill('area', 'Area', area))
+  }
+
+  if (affiliation && affiliation !== allFilterValue) {
+    pills.push(
+      createPeopleActiveFilterPill('affiliation', 'Affiliation', affiliation),
+    )
+  }
+
+  return pills
+}
+
 const groupToPeopleSection: Record<string, PeopleSection> = {
   Faculty: 'Principal Investigator',
   'BOLD PI': 'Principal Investigator',
@@ -84,6 +128,26 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
   'Master Student': 'Masters Student',
   'Current Masters Student, but inc. PhD this fall with Jakob+Shimon':
     'Masters Student',
+}
+
+function createPeopleActiveFilterPill(
+  key: keyof PeopleDirectoryFilters,
+  label: string,
+  value: string,
+): PeopleActiveFilterPill {
+  return {
+    key,
+    label,
+    value,
+    displayLabel: `${label}: ${value}`,
+    removeLabel: `Remove ${label.toLowerCase()} filter: ${value}`,
+  }
+}
+
+function getPeopleSectionFilterLabel(section: string) {
+  return peopleSectionOrder.includes(section as PeopleSection)
+    ? peopleSectionLabels[section as PeopleSection]
+    : section
 }
 
 export function getPeopleFilterOptions() {

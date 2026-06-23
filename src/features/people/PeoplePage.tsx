@@ -1,9 +1,12 @@
+import { X } from 'lucide-react'
 import { useState } from 'react'
 import { people } from '../../content'
 import {
   buildPeopleDirectoryViewModel,
+  getPeopleActiveFilterPills,
   getPeopleFilterOptions,
   shufflePeopleWithinSections,
+  type PeopleActiveFilterPill,
 } from '../../domain/people'
 import { allFilterValue } from '../../domain/shared'
 import { PersonListing } from '../../ui/cards/PersonListing'
@@ -20,10 +23,24 @@ export function PeoplePage() {
   const [affiliation, setAffiliation] = useState(allFilterValue)
 
   const { sections, areas, affiliations } = getPeopleFilterOptions()
+  const filters = { query, section, area, affiliation }
+  const activeFilterPills = getPeopleActiveFilterPills(filters)
   const directory = buildPeopleDirectoryViewModel({
     people: shuffledPeople,
-    filters: { query, section, area, affiliation },
+    filters,
   })
+
+  function clearPeopleFilter(key: PeopleActiveFilterPill['key']) {
+    if (key === 'query') {
+      setQuery('')
+    } else if (key === 'section') {
+      setSection(allFilterValue)
+    } else if (key === 'area') {
+      setArea(allFilterValue)
+    } else {
+      setAffiliation(allFilterValue)
+    }
+  }
 
   return (
     <>
@@ -57,18 +74,51 @@ export function PeoplePage() {
             options={[allFilterValue, ...affiliations]}
             onChange={setAffiliation}
           />
-          <button
-            className="button button-filter-reset"
-            type="button"
-            onClick={() => {
-              setQuery('')
-              setSection(allFilterValue)
-              setArea(allFilterValue)
-              setAffiliation(allFilterValue)
-            }}
-          >
-            Reset filters
-          </button>
+          <div className="people-filter-actions">
+            <div
+              className="people-active-filter-pills"
+              role={activeFilterPills.length > 0 ? 'group' : undefined}
+              aria-label={
+                activeFilterPills.length > 0 ? 'Active people filters' : undefined
+              }
+            >
+              {activeFilterPills.map((pill) => (
+                <button
+                  className="people-active-filter-pill"
+                  type="button"
+                  key={pill.key}
+                  aria-label={pill.removeLabel}
+                  onClick={() => clearPeopleFilter(pill.key)}
+                >
+                  <span className="people-active-filter-pill-text">
+                    <span className="people-active-filter-pill-label">
+                      {pill.label}
+                    </span>
+                    <span className="people-active-filter-pill-separator">:</span>{' '}
+                    <strong>{pill.value}</strong>
+                  </span>
+                  <span
+                    className="people-active-filter-pill-remove"
+                    aria-hidden="true"
+                  >
+                    <X aria-hidden="true" focusable="false" />
+                  </span>
+                </button>
+              ))}
+            </div>
+            <button
+              className="button button-filter-reset"
+              type="button"
+              onClick={() => {
+                setQuery('')
+                setSection(allFilterValue)
+                setArea(allFilterValue)
+                setAffiliation(allFilterValue)
+              }}
+            >
+              Reset filters
+            </button>
+          </div>
         </div>
 
         <div
