@@ -1,7 +1,23 @@
-import { opportunityRoutes } from '../../content'
+import {
+  expressionOfInterestFormConfig,
+  getExpressionOfInterestEmbedUrl,
+  opportunityRoutes,
+} from '../../content'
+import type {
+  ExpressionOfInterestFormConfig,
+  OpportunityRoute,
+} from '../../content'
 import { NotFoundPage } from '../not-found/NotFoundPage'
 
-export function OpportunityRoutePage({ slug }: { slug: string }) {
+type OpportunityRoutePageProps = {
+  slug: string
+  formConfig?: ExpressionOfInterestFormConfig | null
+}
+
+export function OpportunityRoutePage({
+  slug,
+  formConfig = expressionOfInterestFormConfig,
+}: OpportunityRoutePageProps) {
   const route = opportunityRoutes.find((item) => item.slug === slug)
 
   if (!route) {
@@ -66,20 +82,69 @@ export function OpportunityRoutePage({ slug }: { slug: string }) {
             </section>
           </article>
 
-          <aside className="expression-interest-panel" id="express-interest">
-            <p className="eyebrow">{route.primaryActionLabel}</p>
-            <h2>Form coming soon</h2>
-            <p>{route.formComingSoon}</p>
-            <p>
-              This page will host the embedded Expression of Interest form for
-              the {route.title} route. It will not replace any separate Formal
-              Application Path where one is required.
-            </p>
-          </aside>
+          <ExpressionOfInterestPanel route={route} formConfig={formConfig} />
         </div>
       </section>
     </>
   )
+}
+
+function ExpressionOfInterestPanel({
+  route,
+  formConfig,
+}: {
+  route: OpportunityRoute
+  formConfig: ExpressionOfInterestFormConfig | null
+}) {
+  const embedUrl = getExpressionOfInterestEmbedUrl(route, formConfig)
+
+  return (
+    <aside className="expression-interest-panel" id="express-interest">
+      <p className="eyebrow">{route.primaryActionLabel}</p>
+      {embedUrl ? (
+        <>
+          <h2>Expression of Interest form</h2>
+          <FormGuidance route={route} />
+          <iframe
+            src={embedUrl}
+            title={`${route.title} Expression of Interest form`}
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </>
+      ) : (
+        <>
+          <h2>Form coming soon</h2>
+          <p>{route.formComingSoon}</p>
+          <FormGuidance route={route} />
+          <p>
+            This page will host the embedded Expression of Interest form for the{' '}
+            {route.title} route. It will not replace any separate Formal
+            Application Path where one is required.
+          </p>
+        </>
+      )}
+    </aside>
+  )
+}
+
+function FormGuidance({ route }: { route: OpportunityRoute }) {
+  return (
+    <>
+      <p>{getCvGuidance(route)}</p>
+      <p>
+        We review Expressions of Interest periodically and contact people if
+        there is a strong fit with current BOLD priorities, supervision
+        capacity, or open opportunities.
+      </p>
+    </>
+  )
+}
+
+function getCvGuidance(route: OpportunityRoute) {
+  return route.slug === 'collaborators'
+    ? 'For collaborators, a PDF CV/resume is optional; proposal details, relevant people, and links can be more useful.'
+    : 'Prepare a PDF CV/resume before you submit; the intake form is PDF-only for CV/resume uploads.'
 }
 
 function getPlaceFactLabel(slug: string) {
