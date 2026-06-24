@@ -2,6 +2,18 @@ import type { Person } from '../../content'
 
 type PersonSocialLinkKey = keyof NonNullable<Person['links']>
 
+export const personSocialLinkOrder: readonly PersonSocialLinkKey[] = [
+  'website',
+  'googleScholar',
+  'twitter',
+  'linkedin',
+  'github',
+  'bluesky',
+  'email',
+]
+
+const hiddenSocialLinkKeys = new Set<PersonSocialLinkKey>(['email'])
+
 const labels: Record<PersonSocialLinkKey, string> = {
   website: 'Website',
   googleScholar: 'Google Scholar',
@@ -31,17 +43,21 @@ export function getPersonSocialLinkItems({
     return []
   }
 
-  return Object.entries(links)
-    .filter((entry): entry is [PersonSocialLinkKey, string] =>
-      Boolean(entry[1]?.trim()),
-    )
-    .map(([key, href]) => ({
+  return personSocialLinkOrder.flatMap((key) => {
+    const href = links[key]
+
+    if (!href?.trim() || hiddenSocialLinkKeys.has(key)) {
+      return []
+    }
+
+    return [{
       key,
       href,
       label: labels[key],
       accessibleName: `${labels[key]} for ${personName}`,
       isEmail: href.startsWith('mailto:'),
-    }))
+    }]
+  })
 }
 
 export function getPersonPrimaryLinkName({

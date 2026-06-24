@@ -41,7 +41,7 @@ assert.match(compactLinks, /aria-label="LinkedIn for Icon Person"/)
 assert.match(compactLinks, /aria-label="GitHub for Icon Person"/)
 assert.match(compactLinks, /aria-label="X for Icon Person"/)
 assert.match(compactLinks, /aria-label="Bluesky for Icon Person"/)
-assert.match(compactLinks, /aria-label="Email for Icon Person"/)
+assert.doesNotMatch(compactLinks, /aria-label="Email for Icon Person"/)
 assert.match(compactLinks, /title="Website"/)
 assert.match(compactLinks, /title="Google Scholar"/)
 assert.match(compactLinks, /data-social-link-key="website"/)
@@ -50,36 +50,44 @@ assert.match(compactLinks, /data-social-link-key="linkedin"/)
 assert.match(compactLinks, /data-social-link-key="github"/)
 assert.match(compactLinks, /data-social-link-key="twitter"/)
 assert.match(compactLinks, /data-social-link-key="bluesky"/)
-assert.match(compactLinks, /data-social-link-key="email"/)
-assert.match(
-  compactLinks,
-  /social-link-icon social-link-icon-brand social-link-icon-googleScholar/,
+assert.doesNotMatch(compactLinks, /data-social-link-key="email"/)
+assert.deepEqual(
+  [...compactLinks.matchAll(/data-social-link-key="([^"]+)"/g)].map(
+    ([, key]) => key,
+  ),
+  ['website', 'googleScholar', 'twitter', 'linkedin', 'github', 'bluesky'],
 )
 assert.match(
   compactLinks,
-  /social-link-icon social-link-icon-brand social-link-icon-github/,
+  /social-link-icon social-link-icon-fontawesome social-link-icon-googleScholar/,
 )
 assert.match(
   compactLinks,
-  /social-link-icon social-link-icon-brand social-link-icon-linkedin/,
+  /social-link-icon social-link-icon-fontawesome social-link-icon-github/,
 )
 assert.match(
   compactLinks,
-  /social-link-icon social-link-icon-brand social-link-icon-twitter/,
+  /social-link-icon social-link-icon-fontawesome social-link-icon-linkedin/,
 )
 assert.match(
   compactLinks,
-  /social-link-icon social-link-icon-brand social-link-icon-bluesky/,
+  /social-link-icon social-link-icon-fontawesome social-link-icon-twitter/,
 )
 assert.match(
   compactLinks,
-  /social-link-icon social-link-icon-lucide social-link-icon-website/,
+  /social-link-icon social-link-icon-fontawesome social-link-icon-bluesky/,
 )
 assert.match(
   compactLinks,
-  /social-link-icon social-link-icon-lucide social-link-icon-email/,
+  /social-link-icon social-link-icon-fontawesome social-link-icon-website/,
 )
+assert.match(compactLinks, /data-icon="house-chimney"/)
+assert.match(compactLinks, /data-icon="google-scholar"/)
+assert.match(compactLinks, /data-icon="x-twitter"/)
+assert.match(compactLinks, /data-icon="square-linkedin"/)
+assert.match(compactLinks, /data-icon="github"/)
+assert.match(compactLinks, /data-icon="bluesky"/)
 assert.match(compactLinks, /href="https:\/\/example\.ac\.uk\/icon-person"/)
 assert.match(compactLinks, /href="https:\/\/scholar\.google\.com\/icon-person"/)
-assert.match(compactLinks, /href="mailto:icon\.person@example\.ac\.uk"/)
+assert.doesNotMatch(compactLinks, /href="mailto:icon\.person@example\.ac\.uk"/)
 assert.match(compactLinks, /<svg/)

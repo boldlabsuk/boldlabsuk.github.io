@@ -18,7 +18,8 @@ const linkedListing: PersonListingViewModel = {
   name: 'Linked Listing',
   role: 'Researcher',
   peopleSection: 'Postdoc',
-  primaryPersonLink: null,
+  primaryPersonLink: 'https://example.ac.uk/primary-linked-listing',
+  image: '/profile-assets/linked-listing.webp',
   links: {
     website: 'https://example.ac.uk/linked-listing',
     email: 'mailto:linked.listing@example.ac.uk',
@@ -38,14 +39,20 @@ assert.doesNotMatch(noLinkCard, /data-social-link-key=/)
 const linkedCard = renderToStaticMarkup(
   createElement(PersonListing, {
     listing: linkedListing,
+    imagePriority: 'high',
   }),
 )
 
 assert.match(linkedCard, /class="person-listing-social-slot"/)
 assert.match(linkedCard, /class="social-links social-links-compact"/)
+assert.match(
+  linkedCard,
+  /<img class="avatar avatar-standard" src="\/profile-assets\/linked-listing\.webp" alt="Linked Listing" width="150" height="150" loading="eager" decoding="sync" fetchPriority="high"\/>/,
+)
+assert.doesNotMatch(linkedCard, /primary-linked-listing/)
 assert.match(linkedCard, /aria-label="Website for Linked Listing"/)
-assert.match(linkedCard, /aria-label="Email for Linked Listing"/)
+assert.doesNotMatch(linkedCard, /aria-label="Email for Linked Listing"/)
 assert.match(linkedCard, /data-social-link-key="website"/)
-assert.match(linkedCard, /data-social-link-key="email"/)
+assert.doesNotMatch(linkedCard, /data-social-link-key="email"/)
 assert.match(linkedCard, /href="https:\/\/example\.ac\.uk\/linked-listing"/)
-assert.match(linkedCard, /href="mailto:linked\.listing@example\.ac\.uk"/)
+assert.doesNotMatch(linkedCard, /href="mailto:linked\.listing@example\.ac\.uk"/)

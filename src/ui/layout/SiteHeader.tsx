@@ -27,6 +27,11 @@ export function SiteHeader({
           ref={brandLogoRef}
           className="brand-logo"
           src="/bold_full_vector_logo.svg"
+          width="1995"
+          height="788"
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
           alt=""
         />
       </a>

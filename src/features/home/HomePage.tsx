@@ -80,6 +80,11 @@ export function HomePage({
             ref={heroLogoRef}
             className="home-hero-logo"
             src="/bold_full_vector_logo.svg"
+            width="1995"
+            height="788"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
             alt=""
           />
           <p className="home-hero-subtitle">
@@ -114,7 +119,16 @@ export function HomePage({
             </dl>
           </div>
           <div className="home-hero-visual">
-            <img className="home-hero-image" src="/butterfly_swam.png" alt="" />
+            <img
+              className="home-hero-image"
+              src="/butterfly_swam.png"
+              width="1086"
+              height="1448"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+              alt=""
+            />
           </div>
         </div>
       </section>

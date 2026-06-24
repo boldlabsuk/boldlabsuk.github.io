@@ -896,9 +896,9 @@ test('Person Listing compact links remain available for parsed public links', ()
         'https://scholar.google.com/citations?user=compact',
         false,
       ],
-      ['GitHub', 'https://github.com/compact-linked', false],
-      ['LinkedIn', 'https://www.linkedin.com/in/compact-linked', false],
       ['X', 'https://x.com/compact_linked', false],
+      ['LinkedIn', 'https://www.linkedin.com/in/compact-linked', false],
+      ['GitHub', 'https://github.com/compact-linked', false],
     ],
   )
 })

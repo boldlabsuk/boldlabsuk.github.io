@@ -8,7 +8,7 @@ import { generateStaticRouteEntries } from '../scripts/generate-static-routes.mj
 
 test('static route generation creates deployable SPA entry files', async () => {
   const distDir = await mkdtemp(join(tmpdir(), 'bold-static-routes-'))
-  const indexHtml = '<!doctype html><div id="root"></div>'
+  const indexHtml = '<!doctype html><html><head></head><body><div id="root"></div></body></html>'
   await import('node:fs/promises').then(({ writeFile }) =>
     writeFile(join(distDir, 'index.html'), indexHtml),
   )
@@ -21,6 +21,13 @@ test('static route generation creates deployable SPA entry files', async () => {
         name: 'Ada Lovelace',
         role: 'PhD student',
         profilePicture: 'ada.jpg',
+        listOnBoldWebsite: '',
+      },
+      {
+        source: 'main',
+        name: 'Jakob Foerster',
+        role: 'Faculty',
+        profilePicture: 'jakob.jpg',
         listOnBoldWebsite: '',
       },
       {
@@ -44,9 +51,25 @@ test('static route generation creates deployable SPA entry files', async () => {
     '/people',
     '/opportunities',
     '/people/ada-lovelace',
+    '/people/jakob-foerster',
   ])
   assert.equal(await readFile(join(distDir, '404.html'), 'utf8'), indexHtml)
-  assert.equal(await readFile(join(distDir, 'people/index.html'), 'utf8'), indexHtml)
+  const peopleIndexHtml = await readFile(join(distDir, 'people/index.html'), 'utf8')
+
+  assert.match(
+    peopleIndexHtml,
+    /<link\s+rel="preload"\s+as="image"\s+href="\/profile-assets\/ada-lovelace\.webp"\s+type="image\/webp"\s+fetchpriority="low"\s*\/>/,
+  )
+  assert.match(
+    peopleIndexHtml,
+    /<link\s+rel="preload"\s+as="image"\s+href="\/profile-assets\/jakob-foerster-new\.png"\s+type="image\/png"\s+fetchpriority="low"\s*\/>/,
+  )
+  assert.doesNotMatch(peopleIndexHtml, /hidden-person/)
+  assert.doesNotMatch(peopleIndexHtml, /fetchpriority="high"/)
+  assert.equal(
+    peopleIndexHtml.match(/\/profile-assets\//g)?.length,
+    2,
+  )
   assert.equal(
     await readFile(join(distDir, 'opportunities/index.html'), 'utf8'),
     indexHtml,

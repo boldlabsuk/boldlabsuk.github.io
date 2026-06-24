@@ -22,7 +22,6 @@ test('Person Listing compact links expose destination and Person names', () => {
     [
       'Website for Accessible Links',
       'Google Scholar for Accessible Links',
-      'Email for Accessible Links',
     ],
   )
 })

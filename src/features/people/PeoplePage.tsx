@@ -1,4 +1,8 @@
-import { Search, X } from 'lucide-react'
+import {
+  faMagnifyingGlass,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { FormEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { people } from '../../content'
@@ -22,6 +26,7 @@ import {
 
 const shuffledPeople = shufflePeopleWithinSections(people)
 const filterActionRowTransitionMs = 180
+const initialViewportPeopleListingImageCount = 6
 
 export function PeoplePage() {
   const [draftQuery, setDraftQuery] = useState('')
@@ -51,6 +56,12 @@ export function PeoplePage() {
     people: shuffledPeople,
     filters,
   })
+  const highPriorityListingSlugs = new Set(
+    directory.sections
+      .flatMap((peopleSection) => peopleSection.people)
+      .slice(0, initialViewportPeopleListingImageCount)
+      .map((listing) => listing.slug),
+  )
 
   useEffect(() => {
     return () => {
@@ -200,7 +211,11 @@ export function PeoplePage() {
                   type="submit"
                   aria-label="Apply name search"
                 >
-                  <Search aria-hidden="true" focusable="false" />
+                  <FontAwesomeIcon
+                    icon={faMagnifyingGlass}
+                    aria-hidden="true"
+                    focusable="false"
+                  />
                 </button>
               )}
             </div>
@@ -259,7 +274,11 @@ export function PeoplePage() {
                         className="people-active-filter-pill-remove"
                         aria-hidden="true"
                       >
-                        <X aria-hidden="true" focusable="false" />
+                        <FontAwesomeIcon
+                          icon={faXmark}
+                          aria-hidden="true"
+                          focusable="false"
+                        />
                       </span>
                     </button>
                   ))}
@@ -282,7 +301,15 @@ export function PeoplePage() {
                 <h2>{peopleSection.label}</h2>
                 <div className="person-listing-grid">
                   {peopleSection.people.map((listing) => (
-                    <PersonListing key={listing.slug} listing={listing} />
+                    <PersonListing
+                      key={listing.slug}
+                      imagePriority={
+                        highPriorityListingSlugs.has(listing.slug)
+                          ? 'high'
+                          : 'auto'
+                      }
+                      listing={listing}
+                    />
                   ))}
                 </div>
               </section>
