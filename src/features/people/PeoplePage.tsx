@@ -253,7 +253,7 @@ export function PeoplePage() {
                       onClick={() => clearPeopleFilter(pill.key)}
                     >
                       <span className="people-active-filter-pill-text">
-                        <strong>{pill.displayLabel}</strong>
+                        {pill.displayLabel}
                       </span>
                       <span
                         className="people-active-filter-pill-remove"

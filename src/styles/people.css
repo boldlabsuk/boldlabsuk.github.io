@@ -121,7 +121,7 @@
   color: var(--ink);
   cursor: pointer;
   font-size: 13px;
-  font-weight: 780;
+  font-weight: 400;
   text-align: left;
 }
 
@@ -139,11 +139,6 @@
   min-width: 0;
   line-height: 1.2;
   overflow-wrap: anywhere;
-}
-
-.people-active-filter-pill strong {
-  color: var(--ink);
-  font-weight: 850;
 }
 
 .people-active-filter-pill-remove {
