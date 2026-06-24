@@ -330,10 +330,10 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Principal Investigator': 6,
       'Adjunct Faculty': 3,
       Postdoc: 7,
-      'Research Engineers': 1,
-      'PhD Student': 55,
+      'Research Engineers': 2,
+      'PhD Student': 56,
       'Masters Student': 10,
-      'Associate Members': 18,
+      'Associate Members': 16,
     },
   )
   assert.deepEqual(
@@ -464,9 +464,7 @@ test('People Directory preserves content order within each People Section', () =
     [
       'aya-kayal',
       'evangelos-chatzaroulas',
-      'george-mavroghenis',
       'satyam-agarwal',
-      'jiankai-wang',
       'erik-feng',
       'elif-akata',
       'simon-buhrer',

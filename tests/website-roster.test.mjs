@@ -1281,10 +1281,10 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Principal Investigator': 6,
       'Adjunct Faculty': 3,
       Postdoc: 7,
-      'Research Engineers': 1,
-      'PhD Student': 55,
+      'Research Engineers': 2,
+      'PhD Student': 56,
       'Masters Student': 10,
-      'Associate Members': 18,
+      'Associate Members': 16,
     },
   )
   assert.equal(new Set(listings.map((listing) => listing.slug)).size, 100)
@@ -1510,8 +1510,8 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ]),
     [
       ['Postdoc', ['yulin-wang']],
+      ['Research Engineers', ['jiankai-wang']],
       ['PhD Student', ['zilin-wang']],
-      ['Associate Members', ['jiankai-wang']],
     ],
   )
   assert.equal(matchingDirectory.visiblePeopleCount, 3)
@@ -1541,18 +1541,18 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [
       ['Principal Investigator', ['antoine-cully']],
       ['Postdoc', ['paul-templier', 'cong-sun']],
-      ['Research Engineers', ['oscar-pang']],
+      ['Research Engineers', ['jiankai-wang', 'oscar-pang']],
       [
         'PhD Student',
         [
           'konstantinos-mitsides',
           'runjun-mao',
           'richard-bornemann',
+          'george-mavroghenis',
           'hannah-janmohamed',
           'lisa-coiffard',
         ],
       ],
-      ['Associate Members', ['george-mavroghenis', 'jiankai-wang']],
     ],
   )
   assert.equal(affiliationDirectory.visiblePeopleCount, 11)
