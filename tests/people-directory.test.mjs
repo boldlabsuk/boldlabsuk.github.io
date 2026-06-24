@@ -331,7 +331,7 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 1,
-      'PhD Student': 54,
+      'PhD Student': 55,
       'Masters Student': 10,
       'Associate Members': 18,
     },
