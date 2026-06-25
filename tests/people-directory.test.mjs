@@ -159,6 +159,77 @@ const shuffleFixturePeople = [
   },
 ]
 
+const phdCohortFixturePeople = [
+  {
+    slug: 'alexey-zakharov',
+    name: 'Alexey Zakharov',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Studies machine learning.',
+    researchAreas: ['Machine Learning'],
+    phdSortSurname: 'Zakharov',
+  },
+  {
+    slug: 'sam-coward',
+    name: 'Sam Coward',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Studies reinforcement learning.',
+    researchAreas: ['Reinforcement Learning'],
+    phdSortSurname: 'Coward',
+    phdStartYear: 2023,
+  },
+  {
+    slug: 'qizhen-zhang-irene',
+    name: 'Qizhen Zhang (Irene)',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Studies agents.',
+    researchAreas: ['AI Agents'],
+    phdSortSurname: 'Zhang',
+    phdStartYear: 2022,
+  },
+  {
+    slug: 'george-mavroghenis',
+    name: 'George Mavroghenis',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Studies robotics.',
+    researchAreas: ['Robotics'],
+    phdSortSurname: 'Mavroghenis',
+  },
+  {
+    slug: 'matthew-jackson',
+    name: 'Matthew Jackson',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Studies optimization.',
+    researchAreas: ['Optimization'],
+    phdSortSurname: 'Jackson',
+    phdStartYear: 2022,
+  },
+  {
+    slug: 'uljad-berdica',
+    name: 'Uljad Berdica',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Studies autonomous systems.',
+    researchAreas: ['Robotics'],
+    phdSortSurname: 'Berdica',
+    phdStartYear: 2023,
+  },
+  {
+    slug: 'keyue-jiang',
+    name: 'Keyue Jiang',
+    role: 'PhD student',
+    group: 'PhD student',
+    bio: 'Studies computer vision.',
+    researchAreas: ['Computer Vision'],
+    phdSortSurname: 'Jiang',
+    phdStartYear: 2022,
+  },
+]
+
 function createDeterministicRandom(values) {
   let index = 0
 
@@ -171,7 +242,7 @@ function createDeterministicRandom(values) {
   }
 }
 
-test('shufflePeopleWithinSections keeps static People Sections ordered while shuffling randomized sections', () => {
+test('shufflePeopleWithinSections keeps deterministic People Sections ordered', () => {
   const sourceOrder = shuffleFixturePeople.map((person) => person.slug)
   const shuffledPeople = shufflePeopleWithinSections(
     shuffleFixturePeople,
@@ -207,12 +278,39 @@ test('shufflePeopleWithinSections keeps static People Sections ordered while shu
     [
       ['Principal Investigator', ['pi-one', 'pi-two', 'pi-three']],
       ['Adjunct Faculty', ['adjunct-one', 'adjunct-two', 'adjunct-three']],
-      ['Postdoc', ['postdoc-three', 'postdoc-one', 'postdoc-two']],
+      ['Postdoc', ['postdoc-one', 'postdoc-three', 'postdoc-two']],
       ['PhD Student', ['phd-one']],
     ],
   )
   assert.equal(directory.totalPeople, 10)
   assert.equal(directory.visiblePeopleCount, 10)
+})
+
+test('People Directory orders PhD students by newest cohort and surname', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: shufflePeopleWithinSections(
+      phdCohortFixturePeople,
+      createDeterministicRandom([0.9, 0.1, 0.7, 0.3]),
+    ),
+    filters: emptyFilters,
+  })
+  const phdSection = directory.sections.find(
+    (section) => section.title === 'PhD Student',
+  )
+
+  assert.deepEqual(
+    phdSection?.people.map((listing) => listing.slug),
+    [
+      'uljad-berdica',
+      'sam-coward',
+      'matthew-jackson',
+      'keyue-jiang',
+      'qizhen-zhang-irene',
+      'george-mavroghenis',
+      'alexey-zakharov',
+    ],
+  )
+  assert.equal(Object.hasOwn(phdSection ?? {}, 'subsections'), false)
 })
 
 test('People Directory filters preserve shuffled relative order within matching People Sections', () => {
@@ -300,7 +398,8 @@ test('People Directory exposes plural public People Section headings', () => {
       'Postdocs',
       'Research Engineers',
       'PhD Students',
-      'Masters Students',
+      'Incoming PhD Students',
+      "Master's Students",
       'Associate Members',
     ],
   )
@@ -331,7 +430,8 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 2,
-      'PhD Student': 56,
+      'PhD Student': 47,
+      'Incoming PhD Students': 9,
       'Masters Student': 10,
       'Associate Members': 17,
     },
@@ -425,7 +525,7 @@ test('People Directory maps canonical source role values to matching People Sect
   )
 })
 
-test('People Directory preserves content order within each People Section', () => {
+test('People Directory preserves non-cohort section ordering', () => {
   const directory = buildPeopleDirectoryViewModel({
     people,
     filters: emptyFilters,
@@ -454,7 +554,38 @@ test('People Directory preserves content order within each People Section', () =
     directory.sections
       .find((section) => section.title === 'PhD Student')
       ?.people.at(0)?.slug,
-    'ravi-hammond',
+    'austin-andrews',
+  )
+  assert.deepEqual(
+    directory.sections
+      .find((section) => section.title === 'Postdoc')
+      ?.people.map((listing) => listing.slug),
+    [
+      'dylan-cope',
+      'branton-demoss',
+      'mattie-fellows',
+      'johannes-forkel',
+      'cong-sun',
+      'paul-templier',
+      'yulin-wang',
+    ],
+  )
+  assert.deepEqual(
+    directory.sections
+      .find((section) => section.title === 'Masters Student')
+      ?.people.map((listing) => listing.slug),
+    [
+      'kevin-buhler',
+      'ali-farhat',
+      'yuhe-gao',
+      'henry-heppe',
+      'arina-kosovskaia',
+      'aramis-marti-shahandeh',
+      'nathan-monette',
+      'aaron-rose',
+      'samuel-simons',
+      'jacinto-suner',
+    ],
   )
 
   assert.deepEqual(
@@ -462,23 +593,103 @@ test('People Directory preserves content order within each People Section', () =
       .find((section) => section.title === 'Associate Members')
       ?.people.map((listing) => listing.slug),
     [
-      'aya-kayal',
-      'evangelos-chatzaroulas',
       'satyam-agarwal',
-      'erik-feng',
       'elif-akata',
-      'simon-buhrer',
       'junming-an',
-      'alfie-lamerton',
-      'maksymilian-wolski',
-      'tim-franzmeyer',
-      'colin-lu',
-      'luca-furieri',
-      'kristen-menou',
+      'simon-buhrer',
       'aniket-chatterjee',
-      'edan-toledo',
+      'evangelos-chatzaroulas',
       'juan-agustin-duque',
+      'erik-feng',
+      'tim-franzmeyer',
+      'luca-furieri',
+      'aya-kayal',
+      'alfie-lamerton',
       'borja-gonzalez-leon',
+      'colin-lu',
+      'kristen-menou',
+      'edan-toledo',
+      'maksymilian-wolski',
+    ],
+  )
+})
+
+test('People Directory exposes public PhD students newest-cohort first without subsections', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people,
+    filters: emptyFilters,
+  })
+  const phdSection = directory.sections.find(
+    (section) => section.title === 'PhD Student',
+  )
+
+  assert.equal(Object.hasOwn(phdSection ?? {}, 'subsections'), false)
+  assert.deepEqual(
+    phdSection?.people.map((listing) => listing.slug),
+    [
+      'austin-andrews',
+      'hannah-erlebach',
+      'tingchen-fu',
+      'ravi-hammond',
+      'antonio-leon-villares',
+      'jarek-liesen',
+      'aneesh-muppidi',
+      'shashank-reddy',
+      'j-rosser',
+      'lukas-seier',
+      'theo-wolf',
+      'thom-foster',
+      'ahmet-hamdi-guzel',
+      'alistair-letcher',
+      'konstantinos-mitsides',
+      'valentin-mohl',
+      'sumeet-motwani',
+      'darius-muglich',
+      'george-nigmatulin',
+      'bidipta-sarkar',
+      'zilin-wang',
+      'clarisse-wibault',
+      'eltayeb-ahmed',
+      'uljad-berdica',
+      'michael-beukman',
+      'jonny-cook',
+      'sam-coward',
+      'alex-goldie',
+      'nathan-herr',
+      'alisia-lupidi',
+      'michael-matthews',
+      'matthew-jackson',
+      'hannah-janmohamed',
+      'keyue-jiang',
+      'ola-kalisz',
+      'andrei-lupu',
+      'alexander-rutherford',
+      'silvia-sapora',
+      'anya-sims',
+      'sebastian-towers',
+      'qizhen-zhang-irene',
+      'nagham-osman',
+      'richard-bornemann',
+      'lisa-coiffard',
+      'kang-li',
+      'runjun-mao',
+      'alexey-zakharov',
+    ],
+  )
+  assert.deepEqual(
+    directory.sections
+      .find((section) => section.title === 'Incoming PhD Students')
+      ?.people.map((listing) => listing.slug),
+    [
+      'francesco-capuano',
+      'jess-carr',
+      'antoine-gorceix',
+      'jakob-hartmann',
+      'james-harvey',
+      'gregory-levy',
+      'marek-masiak',
+      'george-mavroghenis',
+      'harry-mayne',
     ],
   )
 })

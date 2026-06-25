@@ -10,8 +10,10 @@ import {
   buildPeopleDirectoryViewModel,
   getPeopleActiveFilterPills,
   getPeopleFilterOptions,
+  getPeopleSectionFilterLabel,
   shufflePeopleWithinSections,
   type PeopleActiveFilterPill,
+  type PeopleDirectorySection,
   type PeopleDirectoryFilters,
 } from '../../domain/people'
 import { allFilterValue } from '../../domain/shared'
@@ -225,6 +227,7 @@ export function PeoplePage() {
             label="People Section"
             value={section}
             options={[allFilterValue, ...sections]}
+            getLabel={getPeopleSectionFilterLabel}
             onChange={updateSection}
           />
           <SelectFilter
@@ -299,19 +302,10 @@ export function PeoplePage() {
                 key={peopleSection.title}
               >
                 <h2>{peopleSection.label}</h2>
-                <div className="person-listing-grid">
-                  {peopleSection.people.map((listing) => (
-                    <PersonListing
-                      key={listing.slug}
-                      imagePriority={
-                        highPriorityListingSlugs.has(listing.slug)
-                          ? 'high'
-                          : 'auto'
-                      }
-                      listing={listing}
-                    />
-                  ))}
-                </div>
+                <PersonListingGrid
+                  highPriorityListingSlugs={highPriorityListingSlugs}
+                  people={peopleSection.people}
+                />
               </section>
             ))}
           </div>
@@ -327,5 +321,27 @@ export function PeoplePage() {
         )}
       </section>
     </>
+  )
+}
+
+function PersonListingGrid({
+  highPriorityListingSlugs,
+  people,
+}: {
+  highPriorityListingSlugs: Set<string>
+  people: PeopleDirectorySection['people']
+}) {
+  return (
+    <div className="person-listing-grid">
+      {people.map((listing) => (
+        <PersonListing
+          key={listing.slug}
+          imagePriority={
+            highPriorityListingSlugs.has(listing.slug) ? 'high' : 'auto'
+          }
+          listing={listing}
+        />
+      ))}
+    </div>
   )
 }

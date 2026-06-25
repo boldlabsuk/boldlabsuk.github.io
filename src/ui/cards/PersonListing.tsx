@@ -13,6 +13,9 @@ export function PersonListing({
     <article className="person-listing">
       <h3>{listing.name}</h3>
       <Avatar person={listing} imagePriority={imagePriority} />
+      {listing.phdStartYear !== undefined && (
+        <p className="person-phd-start-year">{listing.phdStartYear}</p>
+      )}
       {listing.piRole && <p className="person-pi-role">{listing.piRole}</p>}
       {listing.affiliation && (
         <p className="person-affiliation">{listing.affiliation}</p>

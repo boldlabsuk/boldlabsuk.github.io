@@ -57,7 +57,12 @@
     ],
     "profilePicture": "241337107_10159795827958909_7158950244190791044_n (1) - Ravi Hammond.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://ravihammond.com/, https://www.linkedin.com/in/ravihammond/, https://x.com/ravihammond, https://scholar.google.com/citations?user=OGyagjQAAAAJ, https://github.com/ravihammond"
+    "socialLinks": "https://ravihammond.com/, https://www.linkedin.com/in/ravihammond/, https://x.com/ravihammond, https://scholar.google.com/citations?user=OGyagjQAAAAJ, https://github.com/ravihammond",
+    "phdSortSurname": "Hammond",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2024
   },
   {
     "source": "main",
@@ -70,7 +75,11 @@
     ],
     "profilePicture": "me-fr - Antonio León Villares.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://alv31415.github.io; https://scholar.google.com/citations?user=5_s1NdQAAAAJ&hl=en; https://github.com/alv31415"
+    "socialLinks": "https://alv31415.github.io; https://scholar.google.com/citations?user=5_s1NdQAAAAJ&hl=en; https://github.com/alv31415",
+    "phdSortSurname": "León Villares",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -86,7 +95,12 @@
     ],
     "profilePicture": "headshot - Darius Muglich.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=EOXzZqoAAAAJ&hl=en; https://github.com/gfppoy"
+    "socialLinks": "https://scholar.google.com/citations?user=EOXzZqoAAAAJ&hl=en; https://github.com/gfppoy",
+    "phdSortSurname": "Muglich",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2023
   },
   {
     "source": "main",
@@ -130,7 +144,10 @@
     ],
     "profilePicture": "logo6 - Alex Lev.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://azak.cc/, https://scholar.google.com/citations?user=x17I0JcAAAAJ&hl=en, https://x.com/az_prd"
+    "socialLinks": "https://azak.cc/, https://scholar.google.com/citations?user=x17I0JcAAAAJ&hl=en, https://x.com/az_prd",
+    "phdSortSurname": "Zakharov",
+    "phdStartYearStatus": "unknown",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -145,7 +162,12 @@
     ],
     "profilePicture": "IMG_2696 - Alex Goldie.heic",
     "listOnBoldWebsite": "",
-    "socialLinks": "alexgoldie.github.io,https://x.com/AlexDGoldie, https://scholar.google.com/citations?user=wogOjBsAAAAJ&hl=en, https://github.com/AlexGoldie"
+    "socialLinks": "alexgoldie.github.io,https://x.com/AlexDGoldie, https://scholar.google.com/citations?user=wogOjBsAAAAJ&hl=en, https://github.com/AlexGoldie",
+    "phdSortSurname": "Goldie",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2022
   },
   {
     "source": "main",
@@ -158,7 +180,12 @@
     ],
     "profilePicture": "IMG_1725_square - Jarek Li.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://jarek.ai, https://x.com/JarekLiesen, https://scholar.google.com/citations?user=fIJ-WPcAAAAJ, https://github.com/keraJLi"
+    "socialLinks": "https://jarek.ai, https://x.com/JarekLiesen, https://scholar.google.com/citations?user=fIJ-WPcAAAAJ, https://github.com/keraJLi",
+    "phdSortSurname": "Liesen",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2024
   },
   {
     "source": "main",
@@ -172,7 +199,11 @@
     ],
     "profilePicture": "profile_pic - Konstantinos Mitsides.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://konstantinosmitsides.github.io/ ,  https://x.com/k_mitsides,   https://scholar.google.com/citations?user=wGBxqc8AAAAJ&hl=en, https://github.com/konstantinosmitsides"
+    "socialLinks": "https://konstantinosmitsides.github.io/ ,  https://x.com/k_mitsides,   https://scholar.google.com/citations?user=wGBxqc8AAAAJ&hl=en, https://github.com/konstantinosmitsides",
+    "phdSortSurname": "Mitsides",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -186,7 +217,11 @@
     ],
     "profilePicture": "F1BDBCB2-E266-4878-A296-64571292F119 3 - George Nigmatulin.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://george-nigm.github.io/, https://scholar.google.com/citations?user=jGPYeWIAAAAJ&hl=en, https://x.com/george_nigm, https://www.linkedin.com/in/george-nigmatulin, https://github.com/george-nigm"
+    "socialLinks": "https://george-nigm.github.io/, https://scholar.google.com/citations?user=jGPYeWIAAAAJ&hl=en, https://x.com/george_nigm, https://www.linkedin.com/in/george-nigmatulin, https://github.com/george-nigm",
+    "phdSortSurname": "Nigmatulin",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -200,7 +235,11 @@
     ],
     "profilePicture": "garyball - Keyue Jiang.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://garyball.github.io/, https://scholar.google.com/citations?user=cZJ-ZAkAAAAJ&hl=en, https://github.com/GaryBall"
+    "socialLinks": "https://garyball.github.io/, https://scholar.google.com/citations?user=cZJ-ZAkAAAAJ&hl=en, https://github.com/GaryBall",
+    "phdSortSurname": "Jiang",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -226,7 +265,10 @@
     ],
     "profilePicture": "Snipaste_2026-06-15_14-26-28 - kang.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en; https://twitter.com/Kang__Oxford; https://github.com/KangOxford"
+    "socialLinks": "https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en; https://twitter.com/Kang__Oxford; https://github.com/KangOxford",
+    "phdSortSurname": "Li",
+    "phdStartYearStatus": "unknown",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -240,7 +282,12 @@
     ],
     "profilePicture": "picture_jakob_hartmann - Jakob Hartmann.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "LinkedIn: https://www.linkedin.com/in/jakobhartmann99, Google Scholar: https://scholar.google.com/citations?user=1Ptmm2EAAAAJ, GitHub: https://github.com/jakobhartmann"
+    "socialLinks": "LinkedIn: https://www.linkedin.com/in/jakobhartmann99, Google Scholar: https://scholar.google.com/citations?user=1Ptmm2EAAAAJ, GitHub: https://github.com/jakobhartmann",
+    "phdSortSurname": "Hartmann",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -254,7 +301,11 @@
     ],
     "profilePicture": "professional headshot - Greg Levy.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://gregorylevy.github.io/; https://www.linkedin.com/in/greg-levy-3779071a3/; https://github.com/gregorylevy"
+    "socialLinks": "https://gregorylevy.github.io/; https://www.linkedin.com/in/greg-levy-3779071a3/; https://github.com/gregorylevy",
+    "phdSortSurname": "Levy",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -269,7 +320,11 @@
     ],
     "profilePicture": "zilin_picture - Zilin Wang.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://zerlinwang.github.io/; https://twitter.com/nirhso; https://scholar.google.com/citations?user=rVky_6EAAAAJ; https://github.com/zerlinwang"
+    "socialLinks": "https://zerlinwang.github.io/; https://twitter.com/nirhso; https://scholar.google.com/citations?user=rVky_6EAAAAJ; https://github.com/zerlinwang",
+    "phdSortSurname": "Wang",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -284,7 +339,11 @@
     ],
     "profilePicture": "israel2-square - Alistair Letcher.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://aletcher.github.io/ (website), https://scholar.google.com/citations?user=o28w0mwAAAAJ (scholar), https://x.com/_aletcher (X), https://github.com/aletcher"
+    "socialLinks": "https://aletcher.github.io/ (website), https://scholar.google.com/citations?user=o28w0mwAAAAJ (scholar), https://x.com/_aletcher (X), https://github.com/aletcher",
+    "phdSortSurname": "Letcher",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -326,11 +385,15 @@
     ],
     "profilePicture": "IMG_3688 - Michael Beukman.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://michaelbeukman.com, https://x.com/mcbeukman, https://scholar.google.com/citations?user=CaRgqC4AAAAJ&hl=en, https://github.com/Michael-Beukman"
+    "socialLinks": "https://michaelbeukman.com, https://x.com/mcbeukman, https://scholar.google.com/citations?user=CaRgqC4AAAAJ&hl=en, https://github.com/Michael-Beukman",
+    "phdSortSurname": "Beukman",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
-    "name": "Austin Tudor David Andrews",
+    "name": "Austin Andrews",
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
@@ -340,7 +403,12 @@
     ],
     "profilePicture": "IMG_7827 (2) - Austin Andrews.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://austinandrews.co.uk, https://twitter.com/myrddin_neuro, https://scholar.google.com/citations?user=I2BmrSwAAAAJ&hl=en, https://github.com/A-Andrews"
+    "socialLinks": "https://austinandrews.co.uk, https://twitter.com/myrddin_neuro, https://scholar.google.com/citations?user=I2BmrSwAAAAJ&hl=en, https://github.com/A-Andrews",
+    "phdSortSurname": "Andrews",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2024
   },
   {
     "source": "main",
@@ -353,7 +421,11 @@
     ],
     "profilePicture": "Bidipta_Sarkar_600_600 - Bidipta Sarkar.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://bsarkar321.github.io https://twitter.com/bidiptas13 https://scholar.google.com/citations?user=wr9RgmcAAAAJ https://github.com/bsarkar321"
+    "socialLinks": "https://bsarkar321.github.io https://twitter.com/bidiptas13 https://scholar.google.com/citations?user=wr9RgmcAAAAJ https://github.com/bsarkar321",
+    "phdSortSurname": "Sarkar",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -366,7 +438,10 @@
     ],
     "profilePicture": "Weixin Image_20260615151806_73_2 - Runjun Mao.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "None"
+    "socialLinks": "None",
+    "phdSortSurname": "Mao",
+    "phdStartYearStatus": "unknown",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -381,7 +456,12 @@
     ],
     "profilePicture": "IMG_1949 - James Harvey.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://x.com/jamesha46471726?s=11&t=UPshzKmD0hwVfVX0lgSyUw"
+    "socialLinks": "https://x.com/jamesha46471726?s=11&t=UPshzKmD0hwVfVX0lgSyUw",
+    "phdSortSurname": "Harvey",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -394,7 +474,11 @@
     ],
     "profilePicture": "PNG image - Aneesh Muppidi.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "aneeshers.github.io, https://scholar.google.com/citations?user=OAWT85oAAAAJ&hl=en, https://x.com/aneeshers, https://github.com/Aneeshers"
+    "socialLinks": "aneeshers.github.io, https://scholar.google.com/citations?user=OAWT85oAAAAJ&hl=en, https://x.com/aneeshers, https://github.com/Aneeshers",
+    "phdSortSurname": "Muppidi",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -408,7 +492,11 @@
     ],
     "profilePicture": "headshot - 2026 - close - Nagham Osman.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "LinkedIn: https://www.linkedin.com/in/nagham-osman-4711731a3/ ; website: https://nagham-osman.github.io/ ; scholar: https://scholar.google.com/citations?user=6vFD59wAAAAJ&hl=en ; X: https://x.com/osman_nagham, https://github.com/nagham-osman"
+    "socialLinks": "LinkedIn: https://www.linkedin.com/in/nagham-osman-4711731a3/ ; website: https://nagham-osman.github.io/ ; scholar: https://scholar.google.com/citations?user=6vFD59wAAAAJ&hl=en ; X: https://x.com/osman_nagham, https://github.com/nagham-osman",
+    "phdSortSurname": "Osman",
+    "phdStartYear": 2021,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -424,7 +512,10 @@
     ],
     "profilePicture": "250226_ICL_DeptComp_RBornemann_002 - Richard Bornemann.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=7ZsIrPEAAAAJ&hl=de&oi=sra"
+    "socialLinks": "https://scholar.google.com/citations?user=7ZsIrPEAAAAJ&hl=de&oi=sra",
+    "phdSortSurname": "Bornemann",
+    "phdStartYearStatus": "unknown",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -477,7 +568,11 @@
     ],
     "profilePicture": "Screenshot 2026-06-15 at 16.11.15 - Alisia Lupidi.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://uk.linkedin.com/in/alisia-maria-lupidi, https://github.com/hufflepuff1089, https://scholar.google.com/citations?user=5xzdzq4AAAAJ&hl=en"
+    "socialLinks": "https://uk.linkedin.com/in/alisia-maria-lupidi, https://github.com/hufflepuff1089, https://scholar.google.com/citations?user=5xzdzq4AAAAJ&hl=en",
+    "phdSortSurname": "Lupidi",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "inferred",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -493,7 +588,11 @@
     ],
     "profilePicture": "IMG_20250609_103933_685 - Valentin Mohl.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://github.com/vmohl"
+    "socialLinks": "https://github.com/vmohl",
+    "phdSortSurname": "Mohl",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -508,11 +607,16 @@
     ],
     "profilePicture": "WhatsApp Image 2026-06-15 at 16.23.12 - Nathan Herr.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/nathan-herr-006/, https://scholar.google.com/citations?user=zLT4AOQAAAAJ&hl=en,"
+    "socialLinks": "https://www.linkedin.com/in/nathan-herr-006/, https://scholar.google.com/citations?user=zLT4AOQAAAAJ&hl=en,",
+    "phdSortSurname": "Herr",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2022
   },
   {
     "source": "main",
-    "name": "Shashank Reddy Chirra",
+    "name": "Shashank Reddy",
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
@@ -523,7 +627,11 @@
     ],
     "profilePicture": "IMG_0877 - Shashank Reddy.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "Scholar: https://scholar.google.co.uk/citations?user=sJMID3oAAAAJ&hl=en; Website: https://shshnkreddy.github.io/; https://twitter.com/shashankrc8; https://github.com/shshnkreddy"
+    "socialLinks": "Scholar: https://scholar.google.co.uk/citations?user=sJMID3oAAAAJ&hl=en; Website: https://shshnkreddy.github.io/; https://twitter.com/shashankrc8; https://github.com/shshnkreddy",
+    "phdSortSurname": "Reddy",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -536,7 +644,11 @@
     ],
     "profilePicture": "prof_pic - Alexander Rutherford.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "amacrutherford.com; https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en; https://twitter.com/alexrutherford0; https://github.com/amacrutherford"
+    "socialLinks": "amacrutherford.com; https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en; https://twitter.com/alexrutherford0; https://github.com/amacrutherford",
+    "phdSortSurname": "Rutherford",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -580,7 +692,11 @@
     ],
     "profilePicture": "IMG_3912 - George Mavroghenis.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "n / a"
+    "socialLinks": "n / a",
+    "phdSortSurname": "Mavroghenis",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -596,7 +712,12 @@
     ],
     "profilePicture": "Photo_Antoine_Gorceix - Antoine G.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/antoine- gorceix-3a91531a0/"
+    "socialLinks": "https://www.linkedin.com/in/antoine- gorceix-3a91531a0/",
+    "phdSortSurname": "Gorceix",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -608,7 +729,11 @@
     ],
     "profilePicture": "ClarisseWibault - C Wibault.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://clarisse-wibault.github.io/clarissewibault/, https://x.com/ClarisseWibault, https://scholar.google.com/citations?user=kGeNzbEAAAAJ&hl=en&oi=ao, https://github.com/CWibault"
+    "socialLinks": "https://clarisse-wibault.github.io/clarissewibault/, https://x.com/ClarisseWibault, https://scholar.google.com/citations?user=kGeNzbEAAAAJ&hl=en&oi=ao, https://github.com/CWibault",
+    "phdSortSurname": "Wibault",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -635,7 +760,12 @@
     ],
     "profilePicture": "PXL_20260602_152809534~2 - J Rosser.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://jrosser.co.uk, https://x.com/jrosseruk, https://scholar.google.com/citations?user=OVXyJ5MAAAAJ&hl=en, https://github.com/jrosseruk"
+    "socialLinks": "https://jrosser.co.uk, https://x.com/jrosseruk, https://scholar.google.com/citations?user=OVXyJ5MAAAAJ&hl=en, https://github.com/jrosseruk",
+    "phdSortSurname": "Rosser",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2024
   },
   {
     "source": "main",
@@ -695,7 +825,12 @@
     ],
     "profilePicture": "Uljad_FLAIR - Uljad Berdica.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://uljad.com/, https://github.com/uljad, https://twitter.com/uljadb99,  https://www.linkedin.com/in/uljad, https://scholar.google.com/citations?user=Hha-A2UAAAAJ&hl"
+    "socialLinks": "https://uljad.com/, https://github.com/uljad, https://twitter.com/uljadb99,  https://www.linkedin.com/in/uljad, https://scholar.google.com/citations?user=Hha-A2UAAAAJ&hl",
+    "phdSortSurname": "Berdica",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2022
   },
   {
     "source": "main",
@@ -709,7 +844,12 @@
     ],
     "profilePicture": "IMG_6964 - Francesco Capuano.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://github.com/fracapuano"
+    "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://github.com/fracapuano",
+    "phdSortSurname": "Capuano",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -738,7 +878,12 @@
     ],
     "profilePicture": "IMG_3477 - Anya Sims.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://anyasims.github.io/, https://scholar.google.com/citations?user=MSQalu0AAAAJ&hl=en, https://x.com/anyaasims, https://github.com/anyasims"
+    "socialLinks": "https://anyasims.github.io/, https://scholar.google.com/citations?user=MSQalu0AAAAJ&hl=en, https://x.com/anyaasims, https://github.com/anyasims",
+    "phdSortSurname": "Sims",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2021
   },
   {
     "source": "main",
@@ -751,7 +896,12 @@
     ],
     "profilePicture": "T017NU4E8E9-U067AKSSM60-35b917e9850f-512 - Thom Foster.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://thom.fyi/; https://twitter.com/_tomwithanh; https://scholar.google.com/citations?user=eqgV1JgAAAAJ&hl=en&authuser=1; https://github.com/thomfoster"
+    "socialLinks": "https://thom.fyi/; https://twitter.com/_tomwithanh; https://scholar.google.com/citations?user=eqgV1JgAAAAJ&hl=en&authuser=1; https://github.com/thomfoster",
+    "phdSortSurname": "Foster",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2023
   },
   {
     "source": "main",
@@ -764,7 +914,12 @@
     ],
     "profilePicture": "94DC0228-5A8A-4F5C-AB17-5632DC952A5C_4_5005_c - Jess Carr.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "n/a"
+    "socialLinks": "n/a",
+    "phdSortSurname": "Carr",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -794,7 +949,12 @@
     ],
     "profilePicture": "flair_photo - Ola Kalisz.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://olakalisz.github.io ; https://x.com/OlaKalisz8 ; https://scholar.google.com/citations?hl=en&user=vVecmyEAAAAJ ; https://github.com/olakalisz"
+    "socialLinks": "https://olakalisz.github.io ; https://x.com/OlaKalisz8 ; https://scholar.google.com/citations?hl=en&user=vVecmyEAAAAJ ; https://github.com/olakalisz",
+    "phdSortSurname": "Kalisz",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2021
   },
   {
     "source": "main",
@@ -810,7 +970,11 @@
     ],
     "profilePicture": "R0001134 - Hannah Janmohamed.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://x.com/hannah_janmo, https://scholar.google.com/citations?user=LIzoINkAAAAJ&hl=en, https://github.com/hannah-jan"
+    "socialLinks": "https://x.com/hannah_janmo, https://scholar.google.com/citations?user=LIzoINkAAAAJ&hl=en, https://github.com/hannah-jan",
+    "phdSortSurname": "Janmohamed",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -824,7 +988,11 @@
     ],
     "profilePicture": "oxford_stats_pic - Silvia Sapora.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://silviasapora.github.io/ , https://scholar.google.com/citations?user=FxdgVLkAAAAJ , https://x.com/silviasapora, https://github.com/SilviaSapora"
+    "socialLinks": "https://silviasapora.github.io/ , https://scholar.google.com/citations?user=FxdgVLkAAAAJ , https://x.com/silviasapora, https://github.com/SilviaSapora",
+    "phdSortSurname": "Sapora",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -865,7 +1033,12 @@
     ],
     "profilePicture": "lukasseier_profile - Lukas Seier.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://lukasseier.com/, https://x.com/l_seier, https://scholar.google.com/citations?user=E1qVdMgAAAAJ&hl=en, https://github.com/flipbagels"
+    "socialLinks": "https://lukasseier.com/, https://x.com/l_seier, https://scholar.google.com/citations?user=E1qVdMgAAAAJ&hl=en, https://github.com/flipbagels",
+    "phdSortSurname": "Seier",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2024
   },
   {
     "source": "main",
@@ -879,7 +1052,10 @@
     ],
     "profilePicture": "250226_ICL_DeptComp_LC_002 - Lisa.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "@lisa_coiffard"
+    "socialLinks": "@lisa_coiffard",
+    "phdSortSurname": "Coiffard",
+    "phdStartYearStatus": "unknown",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -892,7 +1068,11 @@
     ],
     "profilePicture": "prof_pic - Sumeet Motwani.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://sumeetmotwani.com/ | https://x.com/sumeetrm | https://scholar.google.com/citations?user=zrKaZuMAAAAJ&hl=en&oi=ao"
+    "socialLinks": "https://sumeetmotwani.com/ | https://x.com/sumeetrm | https://scholar.google.com/citations?user=zrKaZuMAAAAJ&hl=en&oi=ao",
+    "phdSortSurname": "Motwani",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "inferred",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -906,7 +1086,11 @@
     ],
     "profilePicture": "DSCF5387 - Hannah Erlebach.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "hannaherlebach.com; https://twitter.com/hannaherlebach; https://scholar.google.com/citations?user=2Brif-UAAAAJ&hl=en; https://github.com/hannaherlebach"
+    "socialLinks": "hannaherlebach.com; https://twitter.com/hannaherlebach; https://scholar.google.com/citations?user=2Brif-UAAAAJ&hl=en; https://github.com/hannaherlebach",
+    "phdSortSurname": "Erlebach",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -918,7 +1102,11 @@
     ],
     "profilePicture": "pp2 - Mikey Matthews.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.mtmatthews.com/; https://twitter.com/mitrma; https://scholar.google.com/citations?authuser=1&user=ubOhfnIAAAAJ; https://github.com/MichaelTMatthews"
+    "socialLinks": "https://www.mtmatthews.com/; https://twitter.com/mitrma; https://scholar.google.com/citations?authuser=1&user=ubOhfnIAAAAJ; https://github.com/MichaelTMatthews",
+    "phdSortSurname": "Matthews",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -932,7 +1120,11 @@
     ],
     "profilePicture": "Screenshot 2026-02-26 at 09.59.42 - Harry Mayne.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "www.harrymayne.com, https://twitter.com/HarryMayne5, https://scholar.google.com/citations?user=XdD4wp4AAAAJ&hl=en, https://github.com/HarryMayne"
+    "socialLinks": "www.harrymayne.com, https://twitter.com/HarryMayne5, https://scholar.google.com/citations?user=XdD4wp4AAAAJ&hl=en, https://github.com/HarryMayne",
+    "phdSortSurname": "Mayne",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -946,7 +1138,12 @@
     ],
     "profilePicture": "IMG_0119 - Jonathan Cook.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://x.com/jonnycoook?s=11, https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en; https://github.com/jonathan-cook235"
+    "socialLinks": "https://x.com/jonnycoook?s=11, https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en; https://github.com/jonathan-cook235",
+    "phdSortSurname": "Cook",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2022
   },
   {
     "source": "main",
@@ -1013,7 +1210,11 @@
     ],
     "profilePicture": "b8f6ef66a27db8360c9da493bddd3f24 - Tingchen Fu.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=bv_8Q_kAAAAJ&hl=en, https://github.com/TingchenFu"
+    "socialLinks": "https://scholar.google.com/citations?user=bv_8Q_kAAAAJ&hl=en, https://github.com/TingchenFu",
+    "phdSortSurname": "Fu",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "inferred",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -1070,7 +1271,11 @@
     ],
     "profilePicture": "me_subfusc_cropped_small - Eltayeb Ahmed.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?user=4PAd9qgAAAAJ, https://x.com/clockwk7, https://github.com/EltayebAhmed"
+    "socialLinks": "https://scholar.google.com/citations?user=4PAd9qgAAAAJ, https://x.com/clockwk7, https://github.com/EltayebAhmed",
+    "phdSortSurname": "Ahmed",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -1085,7 +1290,12 @@
     ],
     "profilePicture": "matric high res square - Theo Wolf.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://theo-wolf.com, https://x.com/TheoW0lf, https://scholar.google.com/citations?user=TRAhumoAAAAJ, https://github.com/TheodoreWolf"
+    "socialLinks": "https://theo-wolf.com, https://x.com/TheoW0lf, https://scholar.google.com/citations?user=TRAhumoAAAAJ, https://github.com/TheodoreWolf",
+    "phdSortSurname": "Wolf",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2024
   },
   {
     "source": "main",
@@ -1153,7 +1363,12 @@
     ],
     "profilePicture": "sam-coward.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://dramacow.github.io/; https://twitter.com/scowardai; https://scholar.google.com/citations?user=-0_t2_EAAAAJ&hl=en; https://github.com/DramaCow"
+    "socialLinks": "https://dramacow.github.io/; https://twitter.com/scowardai; https://scholar.google.com/citations?user=-0_t2_EAAAAJ&hl=en; https://github.com/DramaCow",
+    "phdSortSurname": "Coward",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2022
   },
   {
     "source": "main",
@@ -1166,7 +1381,12 @@
     ],
     "profilePicture": "matthew-jackson.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://matthewtjackson.com; https://twitter.com/JacksonMattT; https://scholar.google.com/citations?user=SdGawnwAAAAJ&hl=en; https://github.com/EmptyJackson"
+    "socialLinks": "https://matthewtjackson.com; https://twitter.com/JacksonMattT; https://scholar.google.com/citations?user=SdGawnwAAAAJ&hl=en; https://github.com/EmptyJackson",
+    "phdSortSurname": "Jackson",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2021
   },
   {
     "source": "main",
@@ -1179,7 +1399,11 @@
     ],
     "profilePicture": "qizhen-zhang.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://irenezhang30.github.io/; https://twitter.com/IreneZhang30; https://scholar.google.com/citations?user=RbjPWpEAAAAJ&hl=en; https://github.com/irenezhang30"
+    "socialLinks": "https://irenezhang30.github.io/; https://twitter.com/IreneZhang30; https://scholar.google.com/citations?user=RbjPWpEAAAAJ&hl=en; https://github.com/irenezhang30",
+    "phdSortSurname": "Zhang",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -1192,7 +1416,11 @@
     ],
     "profilePicture": "andrei-lupu.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://twitter.com/_andreilupu; https://scholar.google.com/citations?user=I6aB-YUAAAAJ&hl=en&oi=ao; https://github.com/lupuandr"
+    "socialLinks": "https://twitter.com/_andreilupu; https://scholar.google.com/citations?user=I6aB-YUAAAAJ&hl=en&oi=ao; https://github.com/lupuandr",
+    "phdSortSurname": "Lupu",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": false
   },
   {
     "source": "main",
@@ -1205,7 +1433,12 @@
     ],
     "profilePicture": "seb-towers.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": ""
+    "socialLinks": "",
+    "phdSortSurname": "Towers",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2021
   },
   {
     "source": "main",
@@ -1244,7 +1477,12 @@
     ],
     "profilePicture": "website_photo - A. H. Guzel.png",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://x.com/ahguzelUK"
+    "socialLinks": "https://x.com/ahguzelUK",
+    "phdSortSurname": "Guzel",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2023
   },
   {
     "source": "main",
@@ -1363,7 +1601,12 @@
     ],
     "profilePicture": "WhatsApp Image 2026-04-01 at 03.02.36 copy - Marek Masiak.png",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://www.linkedin.com/in/marekmasiak/, https://x.com/marekmmas, https://scholar.google.com/citations?user=XBUX-cwAAAAJ"
+    "socialLinks": "https://www.linkedin.com/in/marekmasiak/, https://x.com/marekmmas, https://scholar.google.com/citations?user=XBUX-cwAAAAJ",
+    "phdSortSurname": "Masiak",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -1389,7 +1632,12 @@
     ],
     "profilePicture": "_1 - Utkarsh Gupta.PNG",
     "listOnBoldWebsite": "No",
-    "socialLinks": "https://sites.google.com/view/utkarshgupta1496/home"
+    "socialLinks": "https://sites.google.com/view/utkarshgupta1496/home",
+    "phdSortSurname": "Gupta",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",

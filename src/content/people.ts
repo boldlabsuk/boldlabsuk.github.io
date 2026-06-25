@@ -12,6 +12,11 @@ export type SourcePerson = {
   listOnBoldWebsite?: string
   socialLinks?: string
   'social-links'?: string
+  phdSortSurname?: string
+  phdStartYear?: number | string
+  phdStartYearStatus?: string
+  cdtStudent?: boolean | string
+  cdtStartYear?: number | string
   alumni?: boolean | string
 }
 
@@ -281,6 +286,11 @@ function buildPerson(sourcePerson: SourcePerson): Person {
   const role = sourcePerson.role.trim()
   const piRole = sourcePerson.piRole?.trim()
   const affiliation = normalizeAffiliation(sourcePerson.homeInstitution)
+  const phdSortSurname = sourcePerson.phdSortSurname?.trim()
+  const phdStartYear = normalizeOptionalNumber(sourcePerson.phdStartYear)
+  const phdStartYearStatus = sourcePerson.phdStartYearStatus?.trim()
+  const cdtStudent = normalizeOptionalBoolean(sourcePerson.cdtStudent)
+  const cdtStartYear = normalizeOptionalNumber(sourcePerson.cdtStartYear)
   const slug = getCanonicalPersonSlug(name)
 
   return {
@@ -297,7 +307,50 @@ function buildPerson(sourcePerson: SourcePerson): Person {
       sourcePerson.socialLinks ?? sourcePerson['social-links'],
     ),
     researchAreas: normalizeResearchAreas(sourcePerson.researchInterestKeywords),
+    ...(phdSortSurname ? { phdSortSurname } : {}),
+    ...(phdStartYear === undefined ? {} : { phdStartYear }),
+    ...(phdStartYearStatus ? { phdStartYearStatus } : {}),
+    ...(cdtStudent === undefined ? {} : { cdtStudent }),
+    ...(cdtStartYear === undefined ? {} : { cdtStartYear }),
   }
+}
+
+function normalizeOptionalNumber(value: number | string | undefined) {
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : undefined
+  }
+
+  const trimmedValue = value?.trim()
+
+  if (!trimmedValue) {
+    return undefined
+  }
+
+  const numericValue = Number(trimmedValue)
+
+  return Number.isFinite(numericValue) ? numericValue : undefined
+}
+
+function normalizeOptionalBoolean(value: boolean | string | undefined) {
+  if (typeof value === 'boolean') {
+    return value
+  }
+
+  const trimmedValue = value?.trim().toLowerCase()
+
+  if (!trimmedValue) {
+    return undefined
+  }
+
+  if (/^(?:1|true|y|yes)$/.test(trimmedValue)) {
+    return true
+  }
+
+  if (/^(?:0|false|n|no)$/.test(trimmedValue)) {
+    return false
+  }
+
+  return undefined
 }
 
 function isWebsiteRosterSourcePerson(sourcePerson: SourcePerson) {

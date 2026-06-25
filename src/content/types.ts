@@ -24,6 +24,11 @@ export type Person = {
   image?: string
   researchAreas: string[]
   links?: PersonLinkSet
+  phdSortSurname?: string
+  phdStartYear?: number
+  phdStartYearStatus?: string
+  cdtStudent?: boolean
+  cdtStartYear?: number
   featured?: boolean
   alumni?: boolean
 }

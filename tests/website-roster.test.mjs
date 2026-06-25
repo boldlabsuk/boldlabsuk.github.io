@@ -32,16 +32,22 @@ const foersterMembersPageFixture = [
   ['Postdocs', 'Johannes Forkel', 'johannes-forkel', 'Johannes Forkel', 'Postdoc'],
   ['Postdocs', 'Mattie Fellows', 'mattie-fellows', 'Mattie Fellows', 'Postdoc'],
   ['DPhil Students', 'Lukas Seier', 'lukas-seier', 'Lukas Seier', 'PhD Student'],
-  ['DPhil Students', 'Shashank Reddy Chirra', 'shashank-reddy-chirra', 'Shashank Reddy Chirra', 'PhD Student'],
+  ['DPhil Students', 'Shashank Reddy', 'shashank-reddy', 'Shashank Reddy', 'PhD Student'],
   ['DPhil Students', 'Alistair Letcher', 'alistair-letcher', 'Alistair Letcher', 'PhD Student'],
   ['DPhil Students', 'Theo Wolf', 'theo-wolf', 'Theo Wolf', 'PhD Student'],
   ['DPhil Students', 'Antonio León Villares', 'antonio-leon-villares', 'Antonio León Villares', 'PhD Student'],
-  ['DPhil Students', 'Austin Tudor David Andrews', 'austin-tudor-david-andrews', 'Austin Tudor David Andrews', 'PhD Student'],
+  ['DPhil Students', 'Austin Andrews', 'austin-andrews', 'Austin Andrews', 'PhD Student'],
   ['DPhil Students', 'Jarek Liesen', 'jarek-liesen', 'Jarek Liesen', 'PhD Student'],
   ['DPhil Students', 'Ravi Hammond', 'ravi-hammond', 'Ravi Hammond', 'PhD Student'],
   ['DPhil Students', 'J Rosser', 'j-rosser', 'J Rosser', 'PhD Student'],
   ['DPhil Students', 'Hannah Erlebach', 'hannah-erlebach', 'Hannah Erlebach', 'PhD Student'],
-  ['DPhil Students', 'Harry Mayne', 'harry-mayne', 'Harry Mayne', 'PhD Student'],
+  [
+    'DPhil Students',
+    'Harry Mayne',
+    'harry-mayne',
+    'Harry Mayne',
+    'Incoming PhD Students',
+  ],
   ['DPhil Students', 'Darius Muglich', 'darius-muglich', 'Darius Muglich', 'PhD Student'],
   ['DPhil Students', 'Bidipta Sarkar', 'bidipta-sarkar', 'Bidipta Sarkar', 'PhD Student'],
   ['DPhil Students', 'Thom Foster', 'thom-foster', 'Thom Foster', 'PhD Student'],
@@ -84,7 +90,7 @@ const foersterExpectedPublicLinkTypesBySlug = {
   'dylan-cope': ['github', 'googleScholar', 'twitter', 'website'],
   'johannes-forkel': ['googleScholar'],
   'lukas-seier': ['github', 'googleScholar', 'website'],
-  'shashank-reddy-chirra': [
+  'shashank-reddy': [
     'github',
     'googleScholar',
     'twitter',
@@ -93,7 +99,7 @@ const foersterExpectedPublicLinkTypesBySlug = {
   'alistair-letcher': ['github', 'googleScholar', 'twitter', 'website'],
   'theo-wolf': ['github', 'googleScholar', 'twitter', 'website'],
   'antonio-leon-villares': ['github', 'googleScholar', 'website'],
-  'austin-tudor-david-andrews': [
+  'austin-andrews': [
     'github',
     'googleScholar',
     'twitter',
@@ -228,6 +234,7 @@ test('Website Roster derives public Person Listings from central source rows', (
     'Postdoc',
     'Research Engineers',
     'PhD Student',
+    'Incoming PhD Students',
     'Masters Student',
     'Associate Members',
   ])
@@ -569,6 +576,82 @@ test('Full Website Roster exposes PI role metadata only for named Principal Inve
     ),
     expectedPiRoles,
   )
+})
+
+test('Full Website Roster carries PhD cohort and CDT metadata', () => {
+  const alistair = people.find((person) => person.slug === 'alistair-letcher')
+  const antoine = people.find((person) => person.slug === 'antoine-gorceix')
+  const francesco = people.find((person) => person.slug === 'francesco-capuano')
+  const george = people.find((person) => person.slug === 'george-mavroghenis')
+  const gregory = people.find((person) => person.slug === 'gregory-levy')
+  const hannah = people.find((person) => person.slug === 'hannah-janmohamed')
+  const harry = people.find((person) => person.slug === 'harry-mayne')
+  const jakob = people.find((person) => person.slug === 'jakob-hartmann')
+  const james = people.find((person) => person.slug === 'james-harvey')
+  const jess = people.find((person) => person.slug === 'jess-carr')
+  const marek = people.find((person) => person.slug === 'marek-masiak')
+  const valentin = people.find((person) => person.slug === 'valentin-mohl')
+
+  assert.equal(francesco?.phdSortSurname, 'Capuano')
+  assert.equal(francesco?.phdStartYear, 2026)
+  assert.equal(francesco?.phdStartYearStatus, 'user_provided')
+  assert.equal(francesco?.cdtStudent, true)
+  assert.equal(francesco?.cdtStartYear, 2025)
+  assert.equal(antoine?.phdSortSurname, 'Gorceix')
+  assert.equal(antoine?.phdStartYear, 2026)
+  assert.equal(antoine?.phdStartYearStatus, 'user_provided')
+  assert.equal(antoine?.cdtStudent, true)
+  assert.equal(antoine?.cdtStartYear, 2025)
+  assert.equal(jakob?.phdSortSurname, 'Hartmann')
+  assert.equal(jakob?.phdStartYear, 2026)
+  assert.equal(jakob?.phdStartYearStatus, 'user_provided')
+  assert.equal(jakob?.cdtStudent, true)
+  assert.equal(jakob?.cdtStartYear, 2025)
+  assert.equal(james?.phdSortSurname, 'Harvey')
+  assert.equal(james?.phdStartYear, 2026)
+  assert.equal(james?.phdStartYearStatus, 'user_provided')
+  assert.equal(james?.cdtStudent, true)
+  assert.equal(james?.cdtStartYear, 2025)
+  assert.equal(marek?.phdSortSurname, 'Masiak')
+  assert.equal(marek?.phdStartYear, 2026)
+  assert.equal(marek?.phdStartYearStatus, 'user_provided')
+  assert.equal(marek?.cdtStudent, true)
+  assert.equal(marek?.cdtStartYear, 2025)
+  assert.equal(george?.phdSortSurname, 'Mavroghenis')
+  assert.equal(george?.phdStartYear, 2026)
+  assert.equal(george?.phdStartYearStatus, 'user_provided')
+  assert.equal(george?.cdtStudent, false)
+  assert.equal(george?.cdtStartYear, undefined)
+  assert.equal(gregory?.phdSortSurname, 'Levy')
+  assert.equal(gregory?.phdStartYear, 2026)
+  assert.equal(gregory?.phdStartYearStatus, 'user_provided')
+  assert.equal(gregory?.cdtStudent, false)
+  assert.equal(gregory?.cdtStartYear, undefined)
+  assert.equal(harry?.phdSortSurname, 'Mayne')
+  assert.equal(harry?.phdStartYear, 2026)
+  assert.equal(harry?.phdStartYearStatus, 'user_provided')
+  assert.equal(harry?.cdtStudent, false)
+  assert.equal(harry?.cdtStartYear, undefined)
+  assert.equal(jess?.phdSortSurname, 'Carr')
+  assert.equal(jess?.phdStartYear, 2026)
+  assert.equal(jess?.phdStartYearStatus, 'user_provided')
+  assert.equal(jess?.cdtStudent, true)
+  assert.equal(jess?.cdtStartYear, 2025)
+  assert.equal(alistair?.phdSortSurname, 'Letcher')
+  assert.equal(alistair?.phdStartYear, 2024)
+  assert.equal(alistair?.phdStartYearStatus, 'user_provided')
+  assert.equal(alistair?.cdtStudent, false)
+  assert.equal(alistair?.cdtStartYear, undefined)
+  assert.equal(hannah?.phdSortSurname, 'Janmohamed')
+  assert.equal(hannah?.phdStartYear, 2022)
+  assert.equal(hannah?.phdStartYearStatus, 'user_provided')
+  assert.equal(hannah?.cdtStudent, false)
+  assert.equal(hannah?.cdtStartYear, undefined)
+  assert.equal(valentin?.phdSortSurname, 'Mohl')
+  assert.equal(valentin?.phdStartYear, 2024)
+  assert.equal(valentin?.phdStartYearStatus, 'user_provided')
+  assert.equal(valentin?.cdtStudent, false)
+  assert.equal(valentin?.cdtStartYear, undefined)
 })
 
 test('Website Roster recognizes Bluesky profile links', () => {
@@ -1306,7 +1389,8 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 2,
-      'PhD Student': 56,
+      'PhD Student': 47,
+      'Incoming PhD Students': 9,
       'Masters Student': 10,
       'Associate Members': 17,
     },
@@ -1320,6 +1404,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Postdoc',
       'Research Engineers',
       'PhD Student',
+      'Incoming PhD Students',
       'Masters Student',
       'Associate Members',
     ],
@@ -1380,7 +1465,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['luca-furieri', 'Associate Members'],
       ['kristen-menou', 'Associate Members'],
       ['aniket-chatterjee', 'Associate Members'],
-      ['marek-masiak', 'PhD Student'],
+      ['marek-masiak', 'Incoming PhD Students'],
       ['edan-toledo', 'Associate Members'],
       ['juan-agustin-duque', 'Associate Members'],
       ['arina-kosovskaia', 'Masters Student'],
@@ -1431,7 +1516,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     'https://nmonette.github.io',
   )
   assert.equal(
-    listingBySlug['shashank-reddy-chirra']?.primaryPersonLink,
+    listingBySlug['shashank-reddy']?.primaryPersonLink,
     'https://shshnkreddy.github.io',
   )
   assert.equal(
@@ -1551,7 +1636,11 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       ['Postdoc', ['johannes-forkel']],
       [
         'PhD Student',
-        ['ravi-hammond', 'shashank-reddy-chirra', 'harry-mayne'],
+        ['ravi-hammond', 'shashank-reddy'],
+      ],
+      [
+        'Incoming PhD Students',
+        ['harry-mayne'],
       ],
       ['Associate Members', ['elif-akata']],
     ],
@@ -1565,19 +1654,19 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ]),
     [
       ['Principal Investigator', ['antoine-cully']],
-      ['Postdoc', ['paul-templier', 'cong-sun']],
+      ['Postdoc', ['cong-sun', 'paul-templier']],
       ['Research Engineers', ['jiankai-wang', 'oscar-pang']],
       [
         'PhD Student',
         [
           'konstantinos-mitsides',
-          'runjun-mao',
-          'richard-bornemann',
-          'george-mavroghenis',
           'hannah-janmohamed',
+          'richard-bornemann',
           'lisa-coiffard',
+          'runjun-mao',
         ],
       ],
+      ['Incoming PhD Students', ['george-mavroghenis']],
     ],
   )
   assert.equal(affiliationDirectory.visiblePeopleCount, 11)
@@ -1591,16 +1680,16 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       [
         'Masters Student',
         [
-          'nathan-monette',
-          'yuhe-gao',
-          'aramis-marti-shahandeh',
-          'jacinto-suner',
-          'samuel-simons',
-          'ali-farhat',
           'kevin-buhler',
-          'arina-kosovskaia',
-          'aaron-rose',
+          'ali-farhat',
+          'yuhe-gao',
           'henry-heppe',
+          'arina-kosovskaia',
+          'aramis-marti-shahandeh',
+          'nathan-monette',
+          'aaron-rose',
+          'samuel-simons',
+          'jacinto-suner',
         ],
       ],
     ],

@@ -198,6 +198,7 @@
 }
 
 .person-listing {
+  position: relative;
   display: grid;
   flex: 0 1 154px;
   max-width: 154px;
@@ -210,6 +211,19 @@
   border-radius: 8px;
   background: var(--surface);
   text-align: center;
+  transform-origin: center;
+  transition:
+    transform 120ms ease-out,
+    box-shadow 120ms ease-out,
+    border-color 120ms ease-out;
+}
+
+.person-listing:hover,
+.person-listing:focus-within {
+  z-index: 1;
+  border-color: rgba(43, 100, 216, 0.28);
+  box-shadow: var(--shadow);
+  transform: scale(1.035);
 }
 
 @media (min-width: 1100px) {
@@ -242,6 +256,13 @@
   font-size: 16px;
   line-height: 1.22;
   text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.person-phd-start-year {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.25;
   overflow-wrap: anywhere;
 }
 
@@ -314,8 +335,17 @@
 }
 
 .person-listing .person-pi-role,
-.person-listing .person-affiliation {
+.person-listing .person-affiliation,
+.person-listing .person-phd-start-year {
   margin: 5px 0;
+}
+
+.person-listing .person-phd-start-year {
+  margin-bottom: 1px;
+}
+
+.person-listing .person-phd-start-year + .person-affiliation {
+  margin-top: 1px;
 }
 
 .person-listing-social-slot {
@@ -429,4 +459,17 @@
 .person-listing .social-link-icon svg {
   width: 16.2px;
   height: 16.2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .person-listing {
+    transition:
+      box-shadow 120ms ease-out,
+      border-color 120ms ease-out;
+  }
+
+  .person-listing:hover,
+  .person-listing:focus-within {
+    transform: none;
+  }
 }

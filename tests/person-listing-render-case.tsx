@@ -36,6 +36,17 @@ const piListing: PersonListingViewModel = {
   primaryPersonLink: null,
 }
 
+const phdListing: PersonListingViewModel = {
+  slug: 'phd-listing',
+  name: 'PhD Listing',
+  role: 'PhD student',
+  affiliation: 'Oxford',
+  image: '/profile-assets/phd-listing.webp',
+  peopleSection: 'PhD Student',
+  primaryPersonLink: null,
+  phdStartYear: 2026,
+}
+
 const compositeAffiliationListing: PersonListingViewModel = {
   slug: 'composite-affiliation-listing',
   name: 'Composite Affiliation Listing',
@@ -55,6 +66,7 @@ assert.match(noLinkCard, /class="person-listing-social-slot"/)
 assert.doesNotMatch(noLinkCard, /<a\b/)
 assert.doesNotMatch(noLinkCard, /data-social-link-key=/)
 assert.doesNotMatch(noLinkCard, /person-pi-role/)
+assert.doesNotMatch(noLinkCard, /person-phd-start-year/)
 
 const linkedCard = renderToStaticMarkup(
   createElement(PersonListing, {
@@ -88,6 +100,17 @@ assert.match(
   /<p class="person-pi-role">Training Environment<\/p><p class="person-affiliation">Oxford<\/p>/,
 )
 assert.doesNotMatch(piCard, /person-affiliation-oxford/)
+
+const phdCard = renderToStaticMarkup(
+  createElement(PersonListing, {
+    listing: phdListing,
+  }),
+)
+
+assert.match(
+  phdCard,
+  /<img class="avatar avatar-standard"[^>]+alt="PhD Listing"[^>]*\/><p class="person-phd-start-year">2026<\/p><p class="person-affiliation">Oxford<\/p>/,
+)
 
 const compositeAffiliationCard = renderToStaticMarkup(
   createElement(PersonListing, {

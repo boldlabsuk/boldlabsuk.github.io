@@ -10,6 +10,7 @@ export const peopleSectionOrder = [
   'Postdoc',
   'Research Engineers',
   'PhD Student',
+  'Incoming PhD Students',
   'Masters Student',
   'Associate Members',
 ] as const
@@ -22,7 +23,8 @@ export const peopleSectionLabels: Record<PeopleSection, string> = {
   Postdoc: 'Postdocs',
   'Research Engineers': 'Research Engineers',
   'PhD Student': 'PhD Students',
-  'Masters Student': 'Masters Students',
+  'Incoming PhD Students': 'Incoming PhD Students',
+  'Masters Student': "Master's Students",
   'Associate Members': 'Associate Members',
 }
 
@@ -41,6 +43,13 @@ const staticPeopleSectionOrders: Partial<Record<PeopleSection, readonly string[]
     'jack-parker-holder',
   ],
 }
+
+const surnameSortedPeopleSections = new Set<PeopleSection>([
+  'Postdoc',
+  'Incoming PhD Students',
+  'Masters Student',
+  'Associate Members',
+])
 
 export type PeopleDirectoryFilters = {
   query: string
@@ -67,6 +76,8 @@ export type PersonListing = {
   links?: PersonLinkSet
   peopleSection: PeopleSection
   primaryPersonLink: string | null
+  phdSortSurname?: string
+  phdStartYear?: number
 }
 
 export type PeopleDirectorySection = {
@@ -148,7 +159,7 @@ function createPeopleActiveFilterPill(
   }
 }
 
-function getPeopleSectionFilterLabel(section: string) {
+export function getPeopleSectionFilterLabel(section: string) {
   return peopleSectionOrder.includes(section as PeopleSection)
     ? peopleSectionLabels[section as PeopleSection]
     : section
@@ -187,6 +198,7 @@ export function shufflePeopleWithinSections(
     Postdoc: [],
     'Research Engineers': [],
     'PhD Student': [],
+    'Incoming PhD Students': [],
     'Masters Student': [],
     'Associate Members': [],
   }
@@ -215,7 +227,17 @@ function orderPeopleWithinSection(
   section: PeopleSection,
   random: () => number,
 ) {
+  if (section === 'PhD Student' || section === 'Incoming PhD Students') {
+    return section === 'PhD Student'
+      ? orderPhDStudents(people)
+      : orderPeopleBySurname(people)
+  }
+
   const staticOrder = staticPeopleSectionOrders[section]
+
+  if (surnameSortedPeopleSections.has(section)) {
+    return orderPeopleBySurname(people)
+  }
 
   return staticOrder
     ? orderStaticPeopleSection(people, staticOrder)
@@ -256,6 +278,81 @@ function shuffleItems<T>(items: T[], random: () => number) {
   return shuffledItems
 }
 
+type PhDStudentSortable = Pick<
+  PersonListing,
+  'name' | 'phdSortSurname' | 'phdStartYear'
+>
+
+type SurnameSortable = Pick<PersonListing, 'name' | 'phdSortSurname'>
+
+function orderPhDStudents<T extends PhDStudentSortable>(people: T[]) {
+  return [...people].sort(comparePhDStudents)
+}
+
+function orderPeopleBySurname<T extends SurnameSortable>(people: T[]) {
+  return [...people].sort(comparePeopleBySurname)
+}
+
+function comparePhDStudents(
+  firstPerson: PhDStudentSortable,
+  secondPerson: PhDStudentSortable,
+) {
+  const firstMetadata = getPhDStudentSortMetadata(firstPerson)
+  const secondMetadata = getPhDStudentSortMetadata(secondPerson)
+  const firstHasKnownStartYear = firstMetadata.phdStartYear !== undefined
+  const secondHasKnownStartYear = secondMetadata.phdStartYear !== undefined
+
+  if (firstHasKnownStartYear !== secondHasKnownStartYear) {
+    return firstHasKnownStartYear ? -1 : 1
+  }
+
+  const startYearComparison =
+    firstMetadata.phdStartYear === undefined ||
+    secondMetadata.phdStartYear === undefined
+      ? 0
+      : secondMetadata.phdStartYear - firstMetadata.phdStartYear
+
+  return (
+    startYearComparison ||
+    comparePeopleSortText(firstMetadata.sortSurname, secondMetadata.sortSurname) ||
+    comparePeopleSortText(firstPerson.name, secondPerson.name)
+  )
+}
+
+function comparePeopleBySurname(
+  firstPerson: SurnameSortable,
+  secondPerson: SurnameSortable,
+) {
+  return (
+    comparePeopleSortText(
+      getPersonSortSurname(firstPerson),
+      getPersonSortSurname(secondPerson),
+    ) || comparePeopleSortText(firstPerson.name, secondPerson.name)
+  )
+}
+
+function getPhDStudentSortMetadata(person: PhDStudentSortable) {
+  return {
+    phdStartYear: person.phdStartYear,
+    sortSurname: getPersonSortSurname(person),
+  }
+}
+
+function getPersonSortSurname(person: SurnameSortable) {
+  return person.phdSortSurname ?? getFallbackSortSurname(person.name)
+}
+
+function getFallbackSortSurname(name: string) {
+  const nameWithoutParenthetical = name.replace(/\s*\([^)]*\)\s*/g, ' ').trim()
+  const nameParts = nameWithoutParenthetical.split(/\s+/).filter(Boolean)
+
+  return nameParts.at(-1) ?? name.trim()
+}
+
+function comparePeopleSortText(firstValue: string, secondValue: string) {
+  return firstValue.localeCompare(secondValue, 'en', { sensitivity: 'base' })
+}
+
 export function buildPeopleDirectoryViewModel({
   people,
   filters,
@@ -286,10 +383,8 @@ export function buildPeopleDirectoryViewModel({
   })
 
   const sections = peopleSectionOrder
-    .map((section) => ({
-      title: section,
-      label: peopleSectionLabels[section],
-      people: matchedPeople
+    .map((section) => {
+      const sectionPeople = matchedPeople
         .filter((directoryPerson) => directoryPerson.peopleSection === section)
         .map(({ person }) => ({
           slug: person.slug,
@@ -301,8 +396,26 @@ export function buildPeopleDirectoryViewModel({
           links: person.links,
           peopleSection: section,
           primaryPersonLink: getPrimaryPersonLink(person),
-        })),
-    }))
+          ...(person.phdSortSurname
+            ? { phdSortSurname: person.phdSortSurname }
+            : {}),
+          ...(person.phdStartYear === undefined
+            ? {}
+            : { phdStartYear: person.phdStartYear }),
+        }))
+      const orderedPeople =
+        section === 'PhD Student'
+          ? orderPhDStudents(sectionPeople)
+          : surnameSortedPeopleSections.has(section)
+            ? orderPeopleBySurname(sectionPeople)
+            : sectionPeople
+
+      return {
+        title: section,
+        label: peopleSectionLabels[section],
+        people: orderedPeople,
+      }
+    })
     .filter((section) => section.people.length > 0)
 
   return {
@@ -312,12 +425,20 @@ export function buildPeopleDirectoryViewModel({
   }
 }
 
-export function getPeopleSection(person: Pick<Person, 'group' | 'alumni'>) {
+export function getPeopleSection(
+  person: Pick<Person, 'group' | 'alumni' | 'phdStartYear'>,
+) {
   if (person.alumni) {
     return null
   }
 
-  return groupToPeopleSection[person.group] ?? 'Associate Members'
+  const peopleSection = groupToPeopleSection[person.group] ?? 'Associate Members'
+
+  if (peopleSection === 'PhD Student' && person.phdStartYear === 2026) {
+    return 'Incoming PhD Students'
+  }
+
+  return peopleSection
 }
 
 export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
