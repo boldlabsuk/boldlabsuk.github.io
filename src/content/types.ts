@@ -18,6 +18,7 @@ export type Person = {
   name: string
   role: string
   group: string
+  piRole?: string
   affiliation?: string
   bio: string
   image?: string

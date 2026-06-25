@@ -61,6 +61,7 @@ export type PersonListing = {
   slug: string
   name: string
   role: string
+  piRole?: string
   affiliation?: string
   image?: string
   links?: PersonLinkSet
@@ -294,6 +295,7 @@ export function buildPeopleDirectoryViewModel({
           slug: person.slug,
           name: person.name,
           role: person.role,
+          ...(person.piRole ? { piRole: person.piRole } : {}),
           affiliation: person.affiliation,
           image: person.image,
           links: person.links,

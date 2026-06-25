@@ -430,6 +430,7 @@
     "source": "main",
     "name": "Jakob Foerster",
     "role": "Faculty",
+    "piRole": "Director / Human-Centric Learning and Discovery",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Multi-Agent Systems",
@@ -443,6 +444,7 @@
     "source": "main",
     "name": "Ani Calinescu",
     "role": "BOLD PI",
+    "piRole": "Training Environment",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Complex Systems"
@@ -455,6 +457,7 @@
     "source": "main",
     "name": "Tim Rocktäschel",
     "role": "BOLD PI",
+    "piRole": "Stakeholder Engagement",
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "Open-Ended Learning"
@@ -638,6 +641,7 @@
     "source": "main",
     "name": "Antoine Cully",
     "role": "BOLD PI",
+    "piRole": "Strategy / Embodied Learning",
     "homeInstitution": "Imperial",
     "researchInterestKeywords": [
       "Open-Ended Learning",
@@ -1029,6 +1033,7 @@
     "source": "main",
     "name": "Laura Toni",
     "role": "BOLD PI",
+    "piRole": "EDI / Beyond Backpropagation",
     "homeInstitution": "UCL",
     "researchInterestKeywords": [
       "Reinforcement Learning",
@@ -1044,6 +1049,7 @@
     "source": "main",
     "name": "Shimon Whiteson",
     "role": "BOLD PI",
+    "piRole": "Innovation & Translation",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Reinforcement Learning",
@@ -1331,7 +1337,7 @@
       "Interpretability"
     ],
     "profilePicture": "citations - Aniket Chatterjee.jpeg",
-    "listOnBoldWebsite": "No",
+    "listOnBoldWebsite": "YES",
     "socialLinks": "https://scholar.google.com/citations?view_op=list_works&hl=en&user=kHwm9EsAAAAJ"
   },
   {

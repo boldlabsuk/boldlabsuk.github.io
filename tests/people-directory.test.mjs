@@ -333,7 +333,7 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Research Engineers': 2,
       'PhD Student': 56,
       'Masters Student': 10,
-      'Associate Members': 16,
+      'Associate Members': 17,
     },
   )
   assert.deepEqual(
@@ -475,6 +475,7 @@ test('People Directory preserves content order within each People Section', () =
       'colin-lu',
       'luca-furieri',
       'kristen-menou',
+      'aniket-chatterjee',
       'edan-toledo',
       'juan-agustin-duque',
       'borja-gonzalez-leon',
@@ -739,4 +740,42 @@ test('People Directory returns compact Person Listing output without biography o
     peopleSection: 'Postdoc',
     primaryPersonLink: 'https://example.ac.uk/compact-listing',
   })
+})
+
+test('People Directory includes PI role only when defined', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: [
+      {
+        slug: 'pi-with-role',
+        name: 'PI With Role',
+        role: 'BOLD PI',
+        group: 'BOLD PI',
+        piRole: 'Training Environment',
+        affiliation: 'Oxford',
+        bio: 'This biography belongs on the Person detail page only.',
+        researchAreas: ['Evaluation'],
+      },
+      {
+        slug: 'postdoc-without-role',
+        name: 'Postdoc Without Role',
+        role: 'Postdoc',
+        group: 'Postdoc',
+        affiliation: 'UCL',
+        bio: 'This biography belongs on the Person detail page only.',
+        researchAreas: ['Agents'],
+      },
+    ],
+    filters: emptyFilters,
+  })
+
+  const listings = directory.sections.flatMap((section) => section.people)
+  const listingBySlug = Object.fromEntries(
+    listings.map((listing) => [listing.slug, listing]),
+  )
+
+  assert.equal(listingBySlug['pi-with-role']?.piRole, 'Training Environment')
+  assert.equal(
+    Object.hasOwn(listingBySlug['postdoc-without-role'] ?? {}, 'piRole'),
+    false,
+  )
 })

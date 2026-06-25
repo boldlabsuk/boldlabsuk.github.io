@@ -26,6 +26,25 @@ const linkedListing: PersonListingViewModel = {
   },
 }
 
+const piListing: PersonListingViewModel = {
+  slug: 'pi-listing',
+  name: 'PI Listing',
+  role: 'BOLD PI',
+  piRole: 'Training Environment',
+  affiliation: 'Oxford',
+  peopleSection: 'Principal Investigator',
+  primaryPersonLink: null,
+}
+
+const compositeAffiliationListing: PersonListingViewModel = {
+  slug: 'composite-affiliation-listing',
+  name: 'Composite Affiliation Listing',
+  role: 'Researcher',
+  affiliation: 'Google DeepMind; UCL',
+  peopleSection: 'Postdoc',
+  primaryPersonLink: null,
+}
+
 const noLinkCard = renderToStaticMarkup(
   createElement(PersonListing, {
     listing: noLinkListing,
@@ -35,6 +54,7 @@ const noLinkCard = renderToStaticMarkup(
 assert.match(noLinkCard, /class="person-listing-social-slot"/)
 assert.doesNotMatch(noLinkCard, /<a\b/)
 assert.doesNotMatch(noLinkCard, /data-social-link-key=/)
+assert.doesNotMatch(noLinkCard, /person-pi-role/)
 
 const linkedCard = renderToStaticMarkup(
   createElement(PersonListing, {
@@ -56,3 +76,26 @@ assert.match(linkedCard, /data-social-link-key="website"/)
 assert.doesNotMatch(linkedCard, /data-social-link-key="email"/)
 assert.match(linkedCard, /href="https:\/\/example\.ac\.uk\/linked-listing"/)
 assert.doesNotMatch(linkedCard, /href="mailto:linked\.listing@example\.ac\.uk"/)
+
+const piCard = renderToStaticMarkup(
+  createElement(PersonListing, {
+    listing: piListing,
+  }),
+)
+
+assert.match(
+  piCard,
+  /<p class="person-pi-role">Training Environment<\/p><p class="person-affiliation">Oxford<\/p>/,
+)
+assert.doesNotMatch(piCard, /person-affiliation-oxford/)
+
+const compositeAffiliationCard = renderToStaticMarkup(
+  createElement(PersonListing, {
+    listing: compositeAffiliationListing,
+  }),
+)
+
+assert.match(
+  compositeAffiliationCard,
+  /<p class="person-affiliation">Google DeepMind; UCL<\/p>/,
+)

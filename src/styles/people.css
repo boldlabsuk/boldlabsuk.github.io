@@ -300,6 +300,20 @@
   overflow-wrap: anywhere;
 }
 
+.person-pi-role {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: calc(13px * 1.25 * 2);
+  height: 2lh;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.25;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.person-listing .person-pi-role,
 .person-listing .person-affiliation {
   margin: 5px 0;
 }

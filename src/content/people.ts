@@ -5,6 +5,7 @@ export type SourcePerson = {
   source: string
   name: string
   role: string
+  piRole?: string
   homeInstitution?: string
   researchInterestKeywords: string[] | string
   profilePicture?: string
@@ -278,6 +279,7 @@ export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
 function buildPerson(sourcePerson: SourcePerson): Person {
   const name = sourcePerson.name.trim()
   const role = sourcePerson.role.trim()
+  const piRole = sourcePerson.piRole?.trim()
   const affiliation = normalizeAffiliation(sourcePerson.homeInstitution)
   const slug = getCanonicalPersonSlug(name)
 
@@ -286,6 +288,7 @@ function buildPerson(sourcePerson: SourcePerson): Person {
     name,
     role,
     group: role,
+    ...(piRole ? { piRole } : {}),
     ...(isExplicitAlumniMarker(sourcePerson.alumni) ? { alumni: true } : {}),
     affiliation: affiliation || undefined,
     bio: '',
