@@ -16,6 +16,7 @@ const emptyFilters = {
   section: allFilterValue,
   area: allFilterValue,
   affiliation: allFilterValue,
+  supervisor: allFilterValue,
 }
 
 const filterFixturePeople = [
@@ -36,6 +37,7 @@ const filterFixturePeople = [
     affiliation: 'London AI Systems Lab',
     bio: 'Studies agent systems.',
     researchAreas: ['Agents'],
+    supervisors: ['Alex Principal'],
   },
   {
     slug: 'devon-dphil',
@@ -45,6 +47,7 @@ const filterFixturePeople = [
     affiliation: 'BOLD Lab',
     bio: 'Builds evaluation tools.',
     researchAreas: ['Evaluation'],
+    supervisors: ['Alex Principal'],
   },
   {
     slug: 'riley-associate',
@@ -54,6 +57,7 @@ const filterFixturePeople = [
     affiliation: 'BOLD Lab',
     bio: 'Builds research infrastructure.',
     researchAreas: ['Infrastructure'],
+    supervisors: ['Alex Principal'],
   },
   {
     slug: 'alex-alumna',
@@ -161,8 +165,8 @@ const shuffleFixturePeople = [
 
 const phdCohortFixturePeople = [
   {
-    slug: 'alexey-zakharov',
-    name: 'Alexey Zakharov',
+    slug: 'alex-zakharov',
+    name: 'Alex Zakharov',
     role: 'PhD student',
     group: 'PhD student',
     bio: 'Studies machine learning.',
@@ -307,7 +311,7 @@ test('People Directory orders PhD students by newest cohort and surname', () => 
       'keyue-jiang',
       'qizhen-zhang-irene',
       'george-mavroghenis',
-      'alexey-zakharov',
+      'alex-zakharov',
     ],
   )
   assert.equal(Object.hasOwn(phdSection ?? {}, 'subsections'), false)
@@ -396,10 +400,10 @@ test('People Directory exposes plural public People Section headings', () => {
       'Principal Investigators',
       'Adjunct Faculty',
       'Postdocs',
-      'Research Engineers',
       'PhD Students',
-      'Incoming PhD Students',
+      'Research Engineers',
       "Master's Students",
+      'Incoming PhD Students',
       'Associate Members',
     ],
   )
@@ -430,10 +434,10 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 2,
-      'PhD Student': 47,
-      'Incoming PhD Students': 9,
-      'Masters Student': 10,
-      'Associate Members': 17,
+      'PhD Student': 52,
+      'Incoming PhD Students': 8,
+      'Masters Student': 13,
+      'Associate Members': 33,
     },
   )
   assert.deepEqual(
@@ -575,9 +579,12 @@ test('People Directory preserves non-cohort section ordering', () => {
       .find((section) => section.title === 'Masters Student')
       ?.people.map((listing) => listing.slug),
     [
+      'alexandre-bismuth',
+      'michal-bravansky',
       'kevin-buhler',
       'ali-farhat',
       'yuhe-gao',
+      'suhas-hariharan',
       'henry-heppe',
       'arina-kosovskaia',
       'aramis-marti-shahandeh',
@@ -603,13 +610,29 @@ test('People Directory preserves non-cohort section ordering', () => {
       'erik-feng',
       'tim-franzmeyer',
       'luca-furieri',
+      'adrian-hayler',
+      'aime-bienfait-igiraneza',
+      'zhengyao-jiang',
+      'brandon-kaplowitz',
       'aya-kayal',
+      'robert-kirk',
       'alfie-lamerton',
       'borja-gonzalez-leon',
       'colin-lu',
+      'roberto-rafael-maura-rivero',
       'kristen-menou',
+      'bassel-al-omari',
+      'davide-paglieri',
+      'mikayel-samvelyan',
+      'efstathios-siatras',
+      'kale-ab-tessera',
       'edan-toledo',
+      'timon-willi',
       'maksymilian-wolski',
+      'evzen-wybitul',
+      'xi-xiong',
+      'yingchen-xu',
+      'stefan-zohren',
     ],
   )
 })
@@ -628,19 +651,24 @@ test('People Directory exposes public PhD students newest-cohort first without s
     phdSection?.people.map((listing) => listing.slug),
     [
       'austin-andrews',
+      'richard-bornemann',
       'hannah-erlebach',
       'tingchen-fu',
       'ravi-hammond',
       'antonio-leon-villares',
+      'gregory-levy',
       'jarek-liesen',
       'aneesh-muppidi',
       'shashank-reddy',
       'j-rosser',
       'lukas-seier',
       'theo-wolf',
+      'jack-dalton',
       'thom-foster',
       'ahmet-hamdi-guzel',
+      'nathan-herr',
       'alistair-letcher',
+      'harry-mead',
       'konstantinos-mitsides',
       'valentin-mohl',
       'sumeet-motwani',
@@ -655,13 +683,15 @@ test('People Directory exposes public PhD students newest-cohort first without s
       'jonny-cook',
       'sam-coward',
       'alex-goldie',
-      'nathan-herr',
       'alisia-lupidi',
       'michael-matthews',
+      'harry-mayne',
+      'alex-zakharov',
       'matthew-jackson',
       'hannah-janmohamed',
       'keyue-jiang',
       'ola-kalisz',
+      'kang-li',
       'andrei-lupu',
       'alexander-rutherford',
       'silvia-sapora',
@@ -669,11 +699,9 @@ test('People Directory exposes public PhD students newest-cohort first without s
       'sebastian-towers',
       'qizhen-zhang-irene',
       'nagham-osman',
-      'richard-bornemann',
       'lisa-coiffard',
-      'kang-li',
       'runjun-mao',
-      'alexey-zakharov',
+      'ross-murphy',
     ],
   )
   assert.deepEqual(
@@ -681,15 +709,14 @@ test('People Directory exposes public PhD students newest-cohort first without s
       .find((section) => section.title === 'Incoming PhD Students')
       ?.people.map((listing) => listing.slug),
     [
+      'mohammed-amara',
       'francesco-capuano',
       'jess-carr',
       'antoine-gorceix',
       'jakob-hartmann',
       'james-harvey',
-      'gregory-levy',
       'marek-masiak',
       'george-mavroghenis',
-      'harry-mayne',
     ],
   )
 })
@@ -707,6 +734,14 @@ test('People Directory filter options expose public People Sections and remainin
     [],
   )
   assert.ok(options.affiliations.includes('Oxford'))
+  assert.deepEqual(options.supervisors, [
+    'Jakob Foerster',
+    'Tim Rocktäschel',
+    'Ani Calinescu',
+    'Antoine Cully',
+    'Laura Toni',
+    'Shimon Whiteson',
+  ])
 })
 
 test('People Directory search filters Person Listings while preserving People Sections', () => {
@@ -811,11 +846,35 @@ test('People Directory affiliation filter keeps grouped matching Person Listings
       section.people.map((listing) => listing.slug),
     ]),
     [
-      ['Research Engineers', ['riley-associate']],
       ['PhD Student', ['devon-dphil']],
+      ['Research Engineers', ['riley-associate']],
     ],
   )
   assert.equal(directory.visiblePeopleCount, 2)
+})
+
+test('People Directory supervisor filter keeps the selected Principal Investigator visible', () => {
+  const directory = buildPeopleDirectoryViewModel({
+    people: filterFixturePeople,
+    filters: {
+      ...emptyFilters,
+      supervisor: 'Alex Principal',
+    },
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => listing.slug),
+    ]),
+    [
+      ['Principal Investigator', ['alex-principal']],
+      ['Postdoc', ['casey-postdoc']],
+      ['PhD Student', ['devon-dphil']],
+      ['Research Engineers', ['riley-associate']],
+    ],
+  )
+  assert.equal(directory.visiblePeopleCount, 4)
 })
 
 test('People Directory returns a no-results model when active filters match nobody', () => {
@@ -907,8 +966,8 @@ test('People Directory exposes Primary Person Link priority for Person Listings'
     [
       ['Website Link', 'https://example.ac.uk/website-link'],
       ['Scholar Link', 'https://scholar.google.com/scholar-link'],
-      ['No Link', null],
       ['Social Link', 'https://github.com/social-link'],
+      ['No Link', null],
       [
         'Blank Preferred Link',
         'https://www.linkedin.com/in/blank-preferred-link',

@@ -36,14 +36,15 @@ export function PeoplePage() {
   const [section, setSection] = useState(allFilterValue)
   const [area, setArea] = useState(allFilterValue)
   const [affiliation, setAffiliation] = useState(allFilterValue)
+  const [supervisor, setSupervisor] = useState(allFilterValue)
   const [activeFilterPillOrder, setActiveFilterPillOrder] = useState<
     PeopleActiveFilterPillKey[]
   >([])
   const closeTimerRef = useRef<number | null>(null)
   const openFrameRef = useRef<number | null>(null)
 
-  const { sections, areas, affiliations } = getPeopleFilterOptions()
-  const filters = { query, section, area, affiliation }
+  const { sections, areas, affiliations, supervisors } = getPeopleFilterOptions()
+  const filters = { query, section, area, affiliation, supervisor }
   const activeFilterPills = orderPeopleActiveFilterPills(
     getPeopleActiveFilterPills(filters),
     activeFilterPillOrder,
@@ -161,6 +162,11 @@ export function PeoplePage() {
     setAffiliation(nextAffiliation)
   }
 
+  function updateSupervisor(nextSupervisor: string) {
+    updateActiveFilterControls({ ...filters, supervisor: nextSupervisor })
+    setSupervisor(nextSupervisor)
+  }
+
   function clearPeopleFilter(key: PeopleActiveFilterPill['key']) {
     const nextFilters = {
       ...filters,
@@ -176,8 +182,10 @@ export function PeoplePage() {
       setSection(allFilterValue)
     } else if (key === 'area') {
       setArea(allFilterValue)
-    } else {
+    } else if (key === 'affiliation') {
       setAffiliation(allFilterValue)
+    } else {
+      setSupervisor(allFilterValue)
     }
   }
 
@@ -224,11 +232,18 @@ export function PeoplePage() {
           </form>
           <SelectFilter
             id="people-section"
-            label="People Section"
+            label="Role"
             value={section}
             options={[allFilterValue, ...sections]}
             getLabel={getPeopleSectionFilterLabel}
             onChange={updateSection}
+          />
+          <SelectFilter
+            id="people-supervisor"
+            label="Supervisor"
+            value={supervisor}
+            options={[allFilterValue, ...supervisors]}
+            onChange={updateSupervisor}
           />
           <SelectFilter
             id="people-area"

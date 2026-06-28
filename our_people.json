@@ -58,6 +58,10 @@
     "profilePicture": "241337107_10159795827958909_7158950244190791044_n (1) - Ravi Hammond.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://ravihammond.com/, https://www.linkedin.com/in/ravihammond/, https://x.com/ravihammond, https://scholar.google.com/citations?user=OGyagjQAAAAJ, https://github.com/ravihammond",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
     "phdSortSurname": "Hammond",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -76,6 +80,9 @@
     "profilePicture": "me-fr - Antonio León Villares.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://alv31415.github.io; https://scholar.google.com/citations?user=5_s1NdQAAAAJ&hl=en; https://github.com/alv31415",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "León Villares",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -96,6 +103,9 @@
     "profilePicture": "headshot - Darius Muglich.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://scholar.google.com/citations?user=EOXzZqoAAAAJ&hl=en; https://github.com/gfppoy",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Muglich",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -114,7 +124,10 @@
     ],
     "profilePicture": "IMG_8274 - Nathan Monette.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "website: nmonette.github.io, x: https://x.com/nathanrmonette, scholar: https://scholar.google.com/citations?user=t_pLFtsAAAAJ&hl=en, https://github.com/nmonette"
+    "socialLinks": "website: nmonette.github.io, x: https://x.com/nathanrmonette, scholar: https://scholar.google.com/citations?user=t_pLFtsAAAAJ&hl=en, https://github.com/nmonette",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -129,11 +142,14 @@
     ],
     "profilePicture": "cv - Paul Templier.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://templierpaul.github.io/, https://bsky.app/profile/templierpaul.bsky.social, https://scholar.google.com/citations?user=lPrCGzYAAAAJ&hl=fr&oi=ao, https://www.linkedin.com/in/paul-templier, https://github.com/TemplierPaul"
+    "socialLinks": "https://templierpaul.github.io/, https://bsky.app/profile/templierpaul.bsky.social, https://scholar.google.com/citations?user=lPrCGzYAAAAJ&hl=fr&oi=ao, https://www.linkedin.com/in/paul-templier, https://github.com/TemplierPaul",
+    "supervisors": [
+      "Antoine Cully"
+    ]
   },
   {
     "source": "main",
-    "name": "Alexey Zakharov",
+    "name": "Alex Zakharov",
     "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
@@ -145,8 +161,12 @@
     "profilePicture": "logo6 - Alex Lev.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://azak.cc/, https://scholar.google.com/citations?user=x17I0JcAAAAJ&hl=en, https://x.com/az_prd",
+    "supervisors": [
+      "Shimon Whiteson"
+    ],
     "phdSortSurname": "Zakharov",
-    "phdStartYearStatus": "unknown",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
   {
@@ -163,6 +183,10 @@
     "profilePicture": "IMG_2696 - Alex Goldie.heic",
     "listOnBoldWebsite": "",
     "socialLinks": "alexgoldie.github.io,https://x.com/AlexDGoldie, https://scholar.google.com/citations?user=wogOjBsAAAAJ&hl=en, https://github.com/AlexGoldie",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
     "phdSortSurname": "Goldie",
     "phdStartYear": 2023,
     "phdStartYearStatus": "direct",
@@ -181,6 +205,9 @@
     "profilePicture": "IMG_1725_square - Jarek Li.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://jarek.ai, https://x.com/JarekLiesen, https://scholar.google.com/citations?user=fIJ-WPcAAAAJ, https://github.com/keraJLi",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Liesen",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -200,6 +227,9 @@
     "profilePicture": "profile_pic - Konstantinos Mitsides.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://konstantinosmitsides.github.io/ ,  https://x.com/k_mitsides,   https://scholar.google.com/citations?user=wGBxqc8AAAAJ&hl=en, https://github.com/konstantinosmitsides",
+    "supervisors": [
+      "Antoine Cully"
+    ],
     "phdSortSurname": "Mitsides",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -218,6 +248,10 @@
     "profilePicture": "F1BDBCB2-E266-4878-A296-64571292F119 3 - George Nigmatulin.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://george-nigm.github.io/, https://scholar.google.com/citations?user=jGPYeWIAAAAJ&hl=en, https://x.com/george_nigm, https://www.linkedin.com/in/george-nigmatulin, https://github.com/george-nigm",
+    "supervisors": [
+      "Ani Calinescu",
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Nigmatulin",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -236,6 +270,9 @@
     "profilePicture": "garyball - Keyue Jiang.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://garyball.github.io/, https://scholar.google.com/citations?user=cZJ-ZAkAAAAJ&hl=en, https://github.com/GaryBall",
+    "supervisors": [
+      "Laura Toni"
+    ],
     "phdSortSurname": "Jiang",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -252,7 +289,10 @@
     ],
     "profilePicture": "aya new pic - Aya Kayal.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=2f2nQOQAAAAJ&hl=en&oi=ao"
+    "socialLinks": "https://scholar.google.com/citations?user=2f2nQOQAAAAJ&hl=en&oi=ao",
+    "supervisors": [
+      "Laura Toni"
+    ]
   },
   {
     "source": "main",
@@ -266,8 +306,12 @@
     "profilePicture": "Snipaste_2026-06-15_14-26-28 - kang.png",
     "listOnBoldWebsite": "",
     "socialLinks": "https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en; https://twitter.com/Kang__Oxford; https://github.com/KangOxford",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Li",
-    "phdStartYearStatus": "unknown",
+    "phdStartYear": 2022,
+    "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
   {
@@ -283,6 +327,9 @@
     "profilePicture": "picture_jakob_hartmann - Jakob Hartmann.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "LinkedIn: https://www.linkedin.com/in/jakobhartmann99, Google Scholar: https://scholar.google.com/citations?user=1Ptmm2EAAAAJ, GitHub: https://github.com/jakobhartmann",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Hartmann",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -302,8 +349,11 @@
     "profilePicture": "professional headshot - Greg Levy.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://gregorylevy.github.io/; https://www.linkedin.com/in/greg-levy-3779071a3/; https://github.com/gregorylevy",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Levy",
-    "phdStartYear": 2026,
+    "phdStartYear": 2025,
     "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
@@ -321,6 +371,10 @@
     "profilePicture": "zilin_picture - Zilin Wang.png",
     "listOnBoldWebsite": "",
     "socialLinks": "https://zerlinwang.github.io/; https://twitter.com/nirhso; https://scholar.google.com/citations?user=rVky_6EAAAAJ; https://github.com/zerlinwang",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
     "phdSortSurname": "Wang",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -340,6 +394,9 @@
     "profilePicture": "israel2-square - Alistair Letcher.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://aletcher.github.io/ (website), https://scholar.google.com/citations?user=o28w0mwAAAAJ (scholar), https://x.com/_aletcher (X), https://github.com/aletcher",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Letcher",
     "phdStartYear": 2024,
     "phdStartYearStatus": "user_provided",
@@ -359,7 +416,10 @@
     ],
     "profilePicture": "IMG_3812 - Evangelos Chatzaroulas (Angel).JPEG",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=H0FOMNcAAAAJ"
+    "socialLinks": "https://scholar.google.com/citations?user=H0FOMNcAAAAJ",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -372,7 +432,10 @@
     ],
     "profilePicture": "yulin_wang - Yulin Wang.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://wyl.cool/; https://scholar.google.com/citations?user=gBP38gcAAAAJ"
+    "socialLinks": "https://wyl.cool/; https://scholar.google.com/citations?user=gBP38gcAAAAJ",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -386,6 +449,9 @@
     "profilePicture": "IMG_3688 - Michael Beukman.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://michaelbeukman.com, https://x.com/mcbeukman, https://scholar.google.com/citations?user=CaRgqC4AAAAJ&hl=en, https://github.com/Michael-Beukman",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Beukman",
     "phdStartYear": 2023,
     "phdStartYearStatus": "direct",
@@ -404,6 +470,9 @@
     "profilePicture": "IMG_7827 (2) - Austin Andrews.png",
     "listOnBoldWebsite": "",
     "socialLinks": "https://austinandrews.co.uk, https://twitter.com/myrddin_neuro, https://scholar.google.com/citations?user=I2BmrSwAAAAJ&hl=en, https://github.com/A-Andrews",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Andrews",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -422,6 +491,10 @@
     "profilePicture": "Bidipta_Sarkar_600_600 - Bidipta Sarkar.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://bsarkar321.github.io https://twitter.com/bidiptas13 https://scholar.google.com/citations?user=wr9RgmcAAAAJ https://github.com/bsarkar321",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
     "phdSortSurname": "Sarkar",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -439,6 +512,9 @@
     "profilePicture": "Weixin Image_20260615151806_73_2 - Runjun Mao.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "None",
+    "supervisors": [
+      "Antoine Cully"
+    ],
     "phdSortSurname": "Mao",
     "phdStartYearStatus": "unknown",
     "cdtStudent": false
@@ -457,6 +533,9 @@
     "profilePicture": "IMG_1949 - James Harvey.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://x.com/jamesha46471726?s=11&t=UPshzKmD0hwVfVX0lgSyUw",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Harvey",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -475,6 +554,9 @@
     "profilePicture": "PNG image - Aneesh Muppidi.png",
     "listOnBoldWebsite": "",
     "socialLinks": "aneeshers.github.io, https://scholar.google.com/citations?user=OAWT85oAAAAJ&hl=en, https://x.com/aneeshers, https://github.com/Aneeshers",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Muppidi",
     "phdStartYear": 2025,
     "phdStartYearStatus": "user_provided",
@@ -493,6 +575,9 @@
     "profilePicture": "headshot - 2026 - close - Nagham Osman.png",
     "listOnBoldWebsite": "",
     "socialLinks": "LinkedIn: https://www.linkedin.com/in/nagham-osman-4711731a3/ ; website: https://nagham-osman.github.io/ ; scholar: https://scholar.google.com/citations?user=6vFD59wAAAAJ&hl=en ; X: https://x.com/osman_nagham, https://github.com/nagham-osman",
+    "supervisors": [
+      "Laura Toni"
+    ],
     "phdSortSurname": "Osman",
     "phdStartYear": 2021,
     "phdStartYearStatus": "direct",
@@ -513,8 +598,12 @@
     "profilePicture": "250226_ICL_DeptComp_RBornemann_002 - Richard Bornemann.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://scholar.google.com/citations?user=7ZsIrPEAAAAJ&hl=de&oi=sra",
+    "supervisors": [
+      "Antoine Cully"
+    ],
     "phdSortSurname": "Bornemann",
-    "phdStartYearStatus": "unknown",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
   {
@@ -569,6 +658,9 @@
     "profilePicture": "Screenshot 2026-06-15 at 16.11.15 - Alisia Lupidi.png",
     "listOnBoldWebsite": "",
     "socialLinks": "https://uk.linkedin.com/in/alisia-maria-lupidi, https://github.com/hufflepuff1089, https://scholar.google.com/citations?user=5xzdzq4AAAAJ&hl=en",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Lupidi",
     "phdStartYear": 2023,
     "phdStartYearStatus": "inferred",
@@ -589,6 +681,9 @@
     "profilePicture": "IMG_20250609_103933_685 - Valentin Mohl.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://github.com/vmohl",
+    "supervisors": [
+      "Ani Calinescu"
+    ],
     "phdSortSurname": "Mohl",
     "phdStartYear": 2024,
     "phdStartYearStatus": "user_provided",
@@ -608,11 +703,14 @@
     "profilePicture": "WhatsApp Image 2026-06-15 at 16.23.12 - Nathan Herr.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://www.linkedin.com/in/nathan-herr-006/, https://scholar.google.com/citations?user=zLT4AOQAAAAJ&hl=en,",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ],
     "phdSortSurname": "Herr",
-    "phdStartYear": 2023,
-    "phdStartYearStatus": "direct",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "user_provided",
     "cdtStudent": true,
-    "cdtStartYear": 2022
+    "cdtStartYear": 2023
   },
   {
     "source": "main",
@@ -628,6 +726,10 @@
     "profilePicture": "IMG_0877 - Shashank Reddy.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "Scholar: https://scholar.google.co.uk/citations?user=sJMID3oAAAAJ&hl=en; Website: https://shshnkreddy.github.io/; https://twitter.com/shashankrc8; https://github.com/shshnkreddy",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
     "phdSortSurname": "Reddy",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -645,6 +747,9 @@
     "profilePicture": "prof_pic - Alexander Rutherford.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "amacrutherford.com; https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en; https://twitter.com/alexrutherford0; https://github.com/amacrutherford",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Rutherford",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -663,7 +768,10 @@
     ],
     "profilePicture": "0ce70c43588c05e0c44b612ff31289c0 - Yuhe Gao.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://github.com/yhg01"
+    "socialLinks": "https://github.com/yhg01",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -675,7 +783,10 @@
     ],
     "profilePicture": "IMG_1268 2 - Aramis Marti.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://github.com/barrelman200"
+    "socialLinks": "https://github.com/barrelman200",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -693,6 +804,9 @@
     "profilePicture": "IMG_3912 - George Mavroghenis.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "n / a",
+    "supervisors": [
+      "Antoine Cully"
+    ],
     "phdSortSurname": "Mavroghenis",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -713,6 +827,9 @@
     "profilePicture": "Photo_Antoine_Gorceix - Antoine G.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://www.linkedin.com/in/antoine- gorceix-3a91531a0/",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Gorceix",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -730,6 +847,9 @@
     "profilePicture": "ClarisseWibault - C Wibault.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://clarisse-wibault.github.io/clarissewibault/, https://x.com/ClarisseWibault, https://scholar.google.com/citations?user=kGeNzbEAAAAJ&hl=en&oi=ao, https://github.com/CWibault",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Wibault",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -747,7 +867,10 @@
     ],
     "profilePicture": "Satyam Agarwal Headshot 11-25 - Satyam Agarwal.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://sat-a.github.io/; https://github.com/Sat-A, https://www.linkedin.com/in/satyam-aga"
+    "socialLinks": "https://sat-a.github.io/; https://github.com/Sat-A, https://www.linkedin.com/in/satyam-aga",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -761,6 +884,9 @@
     "profilePicture": "PXL_20260602_152809534~2 - J Rosser.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://jrosser.co.uk, https://x.com/jrosseruk, https://scholar.google.com/citations?user=OVXyJ5MAAAAJ&hl=en, https://github.com/jrosseruk",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Rosser",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -796,7 +922,10 @@
     ],
     "profilePicture": "profile - Cong Sun.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "n/a"
+    "socialLinks": "n/a",
+    "supervisors": [
+      "Antoine Cully"
+    ]
   },
   {
     "source": "main",
@@ -811,7 +940,10 @@
     ],
     "profilePicture": "250226_ICL_DeptComp_JW_006 - Jiankai Wang.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/jiankai-wang"
+    "socialLinks": "https://www.linkedin.com/in/jiankai-wang",
+    "supervisors": [
+      "Antoine Cully"
+    ]
   },
   {
     "source": "main",
@@ -826,6 +958,9 @@
     "profilePicture": "Uljad_FLAIR - Uljad Berdica.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://uljad.com/, https://github.com/uljad, https://twitter.com/uljadb99,  https://www.linkedin.com/in/uljad, https://scholar.google.com/citations?user=Hha-A2UAAAAJ&hl",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Berdica",
     "phdStartYear": 2023,
     "phdStartYearStatus": "direct",
@@ -845,6 +980,9 @@
     "profilePicture": "IMG_6964 - Francesco Capuano.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://github.com/fracapuano",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Capuano",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -864,7 +1002,10 @@
     ],
     "profilePicture": "oscar_pang - Oscar Pang.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/oscarkfpang/, https://github.com/oscarkfpang"
+    "socialLinks": "https://www.linkedin.com/in/oscarkfpang/, https://github.com/oscarkfpang",
+    "supervisors": [
+      "Antoine Cully"
+    ]
   },
   {
     "source": "main",
@@ -879,6 +1020,9 @@
     "profilePicture": "IMG_3477 - Anya Sims.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://anyasims.github.io/, https://scholar.google.com/citations?user=MSQalu0AAAAJ&hl=en, https://x.com/anyaasims, https://github.com/anyasims",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Sims",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -897,6 +1041,9 @@
     "profilePicture": "T017NU4E8E9-U067AKSSM60-35b917e9850f-512 - Thom Foster.png",
     "listOnBoldWebsite": "",
     "socialLinks": "https://thom.fyi/; https://twitter.com/_tomwithanh; https://scholar.google.com/citations?user=eqgV1JgAAAAJ&hl=en&authuser=1; https://github.com/thomfoster",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Foster",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -915,6 +1062,9 @@
     "profilePicture": "94DC0228-5A8A-4F5C-AB17-5632DC952A5C_4_5005_c - Jess Carr.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "n/a",
+    "supervisors": [
+      "Ani Calinescu"
+    ],
     "phdSortSurname": "Carr",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -934,7 +1084,11 @@
     ],
     "profilePicture": "Foto Jacinto 2 - Jacinto Suñer Soler.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/jacinto-suner-soler/, https://github.com/jacintosuner"
+    "socialLinks": "https://www.linkedin.com/in/jacinto-suner-soler/, https://github.com/jacintosuner",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ]
   },
   {
     "source": "main",
@@ -950,6 +1104,9 @@
     "profilePicture": "flair_photo - Ola Kalisz.png",
     "listOnBoldWebsite": "",
     "socialLinks": "https://olakalisz.github.io ; https://x.com/OlaKalisz8 ; https://scholar.google.com/citations?hl=en&user=vVecmyEAAAAJ ; https://github.com/olakalisz",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Kalisz",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -971,6 +1128,9 @@
     "profilePicture": "R0001134 - Hannah Janmohamed.JPG",
     "listOnBoldWebsite": "",
     "socialLinks": "https://x.com/hannah_janmo, https://scholar.google.com/citations?user=LIzoINkAAAAJ&hl=en, https://github.com/hannah-jan",
+    "supervisors": [
+      "Antoine Cully"
+    ],
     "phdSortSurname": "Janmohamed",
     "phdStartYear": 2022,
     "phdStartYearStatus": "user_provided",
@@ -989,6 +1149,9 @@
     "profilePicture": "oxford_stats_pic - Silvia Sapora.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://silviasapora.github.io/ , https://scholar.google.com/citations?user=FxdgVLkAAAAJ , https://x.com/silviasapora, https://github.com/SilviaSapora",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Sapora",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -1006,7 +1169,11 @@
     ],
     "profilePicture": "bold_headshot - Samuel Simons.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://x.com/sjsimons04; https://scholar.google.com/citations?user=3c4xmRkAAAAJ&hl=en&oi=ao; https://github.com/sjsimons"
+    "socialLinks": "https://x.com/sjsimons04; https://scholar.google.com/citations?user=3c4xmRkAAAAJ&hl=en&oi=ao; https://github.com/sjsimons",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ]
   },
   {
     "source": "main",
@@ -1019,7 +1186,10 @@
     ],
     "profilePicture": "linked in - Ali Farhat.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://www.linkedin.com/in/ali-d-farhat/"
+    "socialLinks": "https://www.linkedin.com/in/ali-d-farhat/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1034,6 +1204,9 @@
     "profilePicture": "lukasseier_profile - Lukas Seier.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://lukasseier.com/, https://x.com/l_seier, https://scholar.google.com/citations?user=E1qVdMgAAAAJ&hl=en, https://github.com/flipbagels",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Seier",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -1053,6 +1226,9 @@
     "profilePicture": "250226_ICL_DeptComp_LC_002 - Lisa.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "@lisa_coiffard",
+    "supervisors": [
+      "Antoine Cully"
+    ],
     "phdSortSurname": "Coiffard",
     "phdStartYearStatus": "unknown",
     "cdtStudent": false
@@ -1069,6 +1245,9 @@
     "profilePicture": "prof_pic - Sumeet Motwani.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://sumeetmotwani.com/ | https://x.com/sumeetrm | https://scholar.google.com/citations?user=zrKaZuMAAAAJ&hl=en&oi=ao",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Motwani",
     "phdStartYear": 2024,
     "phdStartYearStatus": "inferred",
@@ -1087,6 +1266,9 @@
     "profilePicture": "DSCF5387 - Hannah Erlebach.JPG",
     "listOnBoldWebsite": "",
     "socialLinks": "hannaherlebach.com; https://twitter.com/hannaherlebach; https://scholar.google.com/citations?user=2Brif-UAAAAJ&hl=en; https://github.com/hannaherlebach",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Erlebach",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -1103,6 +1285,9 @@
     "profilePicture": "pp2 - Mikey Matthews.jpg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://www.mtmatthews.com/; https://twitter.com/mitrma; https://scholar.google.com/citations?authuser=1&user=ubOhfnIAAAAJ; https://github.com/MichaelTMatthews",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Matthews",
     "phdStartYear": 2023,
     "phdStartYearStatus": "direct",
@@ -1121,8 +1306,11 @@
     "profilePicture": "Screenshot 2026-02-26 at 09.59.42 - Harry Mayne.png",
     "listOnBoldWebsite": "",
     "socialLinks": "www.harrymayne.com, https://twitter.com/HarryMayne5, https://scholar.google.com/citations?user=XdD4wp4AAAAJ&hl=en, https://github.com/HarryMayne",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Mayne",
-    "phdStartYear": 2026,
+    "phdStartYear": 2023,
     "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
@@ -1139,6 +1327,10 @@
     "profilePicture": "IMG_0119 - Jonathan Cook.JPG",
     "listOnBoldWebsite": "",
     "socialLinks": "https://x.com/jonnycoook?s=11, https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en; https://github.com/jonathan-cook235",
+    "supervisors": [
+      "Tim Rocktäschel",
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Cook",
     "phdStartYear": 2023,
     "phdStartYearStatus": "direct",
@@ -1157,7 +1349,10 @@
     ],
     "profilePicture": "IMG_2008 - Erik F..jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://github.com/phangzs/"
+    "socialLinks": "https://github.com/phangzs/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1170,7 +1365,10 @@
     ],
     "profilePicture": "profile - Elif Akata.jpg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://eliaka.github.io/, https://x.com/elifakata, https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao"
+    "socialLinks": "https://eliaka.github.io/, https://x.com/elifakata, https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1182,7 +1380,10 @@
     ],
     "profilePicture": "DSC00483_small - Simon Bührer.png",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://simonbuehrer.com/, https://www.linkedin.com/in/simon-buehrer, https://github.com/sbuehrer"
+    "socialLinks": "https://simonbuehrer.com/, https://www.linkedin.com/in/simon-buehrer, https://github.com/sbuehrer",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1196,7 +1397,10 @@
     ],
     "profilePicture": "IMG_0245 - Johannes Forkel.JPG",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=aENyqu4AAAAJ&hl=en"
+    "socialLinks": "https://scholar.google.com/citations?user=aENyqu4AAAAJ&hl=en",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1211,6 +1415,9 @@
     "profilePicture": "b8f6ef66a27db8360c9da493bddd3f24 - Tingchen Fu.jpeg",
     "listOnBoldWebsite": "",
     "socialLinks": "https://scholar.google.com/citations?user=bv_8Q_kAAAAJ&hl=en, https://github.com/TingchenFu",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Fu",
     "phdStartYear": 2025,
     "phdStartYearStatus": "inferred",
@@ -1228,7 +1435,10 @@
     ],
     "profilePicture": "brantonhat - Branton DeMoss.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "brantondemoss.com/research, https://x.com/BrantonDeMoss, https://github.com/brantondemoss"
+    "socialLinks": "brantondemoss.com/research, https://x.com/BrantonDeMoss, https://github.com/brantondemoss",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1272,6 +1482,9 @@
     "profilePicture": "me_subfusc_cropped_small - Eltayeb Ahmed.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://scholar.google.com/citations?user=4PAd9qgAAAAJ, https://x.com/clockwk7, https://github.com/EltayebAhmed",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Ahmed",
     "phdStartYear": 2023,
     "phdStartYearStatus": "direct",
@@ -1291,6 +1504,9 @@
     "profilePicture": "matric high res square - Theo Wolf.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://theo-wolf.com, https://x.com/TheoW0lf, https://scholar.google.com/citations?user=TRAhumoAAAAJ, https://github.com/TheodoreWolf",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Wolf",
     "phdStartYear": 2025,
     "phdStartYearStatus": "direct",
@@ -1309,7 +1525,10 @@
     ],
     "profilePicture": "mattie - Mattie Fellows.pdf",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?user=7TVJf1gAAAAJ&hl=en"
+    "socialLinks": "https://scholar.google.com/citations?user=7TVJf1gAAAAJ&hl=en",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1323,7 +1542,10 @@
     ],
     "profilePicture": "PXL_20230617_215900573.MP - Copy - Dylan Cope.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "dylancope.com; https://twitter.com/DylanRobertCope; https://scholar.google.com/citations?user=_PKVsiQAAAAJ&hl=en; https://github.com/DylanCope"
+    "socialLinks": "dylancope.com; https://twitter.com/DylanRobertCope; https://scholar.google.com/citations?user=_PKVsiQAAAAJ&hl=en; https://github.com/DylanCope",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1338,7 +1560,10 @@
     ],
     "profilePicture": "junming an - JUNMING AN.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://x.com/AdamAn1202"
+    "socialLinks": "https://x.com/AdamAn1202",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1350,7 +1575,10 @@
     ],
     "profilePicture": "me-cropped-square - Alfie Lamerton.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://alfielamerton.co.uk/; https://x.com/alfie_lamerton; https://scholar.google.com/citations?user=zJlvbNcAAAAJ&hl=en;"
+    "socialLinks": "https://alfielamerton.co.uk/; https://x.com/alfie_lamerton; https://scholar.google.com/citations?user=zJlvbNcAAAAJ&hl=en;",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1382,6 +1610,10 @@
     "profilePicture": "matthew-jackson.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://matthewtjackson.com; https://twitter.com/JacksonMattT; https://scholar.google.com/citations?user=SdGawnwAAAAJ&hl=en; https://github.com/EmptyJackson",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
     "phdSortSurname": "Jackson",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -1400,6 +1632,9 @@
     "profilePicture": "qizhen-zhang.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://irenezhang30.github.io/; https://twitter.com/IreneZhang30; https://scholar.google.com/citations?user=RbjPWpEAAAAJ&hl=en; https://github.com/irenezhang30",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Zhang",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -1417,6 +1652,9 @@
     "profilePicture": "andrei-lupu.jpg",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://twitter.com/_andreilupu; https://scholar.google.com/citations?user=I6aB-YUAAAAJ&hl=en&oi=ao; https://github.com/lupuandr",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Lupu",
     "phdStartYear": 2022,
     "phdStartYearStatus": "direct",
@@ -1451,7 +1689,10 @@
     ],
     "profilePicture": "maks-wolski.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": ""
+    "socialLinks": "",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1478,6 +1719,9 @@
     "profilePicture": "website_photo - A. H. Guzel.png",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://x.com/ahguzelUK",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ],
     "phdSortSurname": "Guzel",
     "phdStartYear": 2024,
     "phdStartYearStatus": "direct",
@@ -1494,7 +1738,10 @@
     ],
     "profilePicture": "kevin - Kevin Buhler.jpeg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://kevinbuhler.com/, https://www.linkedin.com/in/kevin-buhler/, https://github.com/kevbuh"
+    "socialLinks": "https://kevinbuhler.com/, https://www.linkedin.com/in/kevin-buhler/, https://github.com/kevbuh",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1507,7 +1754,10 @@
     ],
     "profilePicture": "prof_pic - Colin Lu.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://simplegeometry.github.io/, https://x.com/_colin_lu"
+    "socialLinks": "https://simplegeometry.github.io/, https://x.com/_colin_lu",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1521,7 +1771,10 @@
     ],
     "profilePicture": "Luca - Luca Furieri.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?user=Sxta_doAAAAJ&hl=it"
+    "socialLinks": "https://scholar.google.com/citations?user=Sxta_doAAAAJ&hl=it",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1534,7 +1787,10 @@
     ],
     "profilePicture": "K_Menou_headshot  - Kristen Menou.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://kmenou.github.io/aips_website/"
+    "socialLinks": "https://kmenou.github.io/aips_website/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1549,7 +1805,11 @@
     ],
     "profilePicture": "Screenshot_2026-06-23-10-19-11-50_254de13a4bc8758c9908fff1f73e3725 - Labeebah Islaam.jpg",
     "listOnBoldWebsite": "No",
-    "socialLinks": "https://www.linkedin.com/in/labeebah-islaam"
+    "socialLinks": "https://www.linkedin.com/in/labeebah-islaam",
+    "supervisors": [
+      "Tim Rocktäschel",
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1562,7 +1822,10 @@
     ],
     "profilePicture": "PXL_20260527_084223160~4 - Lize Alberts.jpg",
     "listOnBoldWebsite": "No",
-    "socialLinks": "https://research.vu.nl/en/persons/lize-alberts/"
+    "socialLinks": "https://research.vu.nl/en/persons/lize-alberts/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1576,7 +1839,10 @@
     ],
     "profilePicture": "citations - Aniket Chatterjee.jpeg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?view_op=list_works&hl=en&user=kHwm9EsAAAAJ"
+    "socialLinks": "https://scholar.google.com/citations?view_op=list_works&hl=en&user=kHwm9EsAAAAJ",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1588,7 +1854,10 @@
     ],
     "profilePicture": "IMG_3525 original - Garrett Deceuninck-Ziviani (Garrett D).jpg",
     "listOnBoldWebsite": "No",
-    "socialLinks": "N/A"
+    "socialLinks": "N/A",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1602,6 +1871,9 @@
     "profilePicture": "WhatsApp Image 2026-04-01 at 03.02.36 copy - Marek Masiak.png",
     "listOnBoldWebsite": "YES",
     "socialLinks": "https://www.linkedin.com/in/marekmasiak/, https://x.com/marekmmas, https://scholar.google.com/citations?user=XBUX-cwAAAAJ",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Masiak",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -1618,7 +1890,10 @@
     ],
     "profilePicture": "1769554552588 - Edan Toledo.jpeg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://x.com/EdanToledo, https://scholar.google.com/citations?user=_bLUH-MAAAAJ&hl=en&oi=ao"
+    "socialLinks": "https://x.com/EdanToledo, https://scholar.google.com/citations?user=_bLUH-MAAAAJ&hl=en&oi=ao",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1633,6 +1908,9 @@
     "profilePicture": "_1 - Utkarsh Gupta.PNG",
     "listOnBoldWebsite": "No",
     "socialLinks": "https://sites.google.com/view/utkarshgupta1496/home",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
     "phdSortSurname": "Gupta",
     "phdStartYear": 2026,
     "phdStartYearStatus": "user_provided",
@@ -1651,7 +1929,11 @@
     ],
     "profilePicture": "Passport_photo - Juan Agustin Duque.JPG",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?user=Ugv5DHgAAAAJ&hl=en"
+    "socialLinks": "https://scholar.google.com/citations?user=Ugv5DHgAAAAJ&hl=en",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ]
   },
   {
     "source": "main",
@@ -1664,20 +1946,28 @@
     ],
     "profilePicture": "2026-06-23 13.03.42 - Arina Kosovskaia.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://www.linkedin.com/in/arinakosovskaia/"
+    "socialLinks": "https://www.linkedin.com/in/arinakosovskaia/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
     "name": "Xi Xiong",
     "role": "Associate Members",
-    "homeInstitution": "Tongji",
+    "homeInstitution": "Tongji University",
     "researchInterestKeywords": [
       "Reinforcement Learning",
-      "World Models"
+      "World Models",
+      "Multi-Agent Systems",
+      "Robotics"
     ],
     "profilePicture": "Xi_Xiong - Xi Xiong.jpg",
-    "listOnBoldWebsite": "No",
-    "socialLinks": "https://xi-xiong.github.io"
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://xi-xiong.github.io",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1689,7 +1979,12 @@
     ],
     "profilePicture": "photo_2025-08-17_23-05-21 - Borja Gonzalez Leon.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://borjagleon.com/, https://x.com/borruell, https://scholar.google.es/citations?user=sJiadiMAAAAJ&hl=en, https://www.linkedin.com/in/borja-gonzalez-leon/"
+    "socialLinks": "https://borjagleon.com/, https://x.com/borruell, https://scholar.google.es/citations?user=sJiadiMAAAAJ&hl=en, https://www.linkedin.com/in/borja-gonzalez-leon/",
+    "supervisors": [
+      "Tim Rocktäschel",
+      "Jakob Foerster",
+      "Antoine Cully"
+    ]
   },
   {
     "source": "main",
@@ -1703,7 +1998,10 @@
     ],
     "profilePicture": "moll1 - Benjamin Moll.jpg",
     "listOnBoldWebsite": "No",
-    "socialLinks": "https://benjaminmoll.com/, https://x.com/ben_moll, https://scholar.google.com/citations?user=Ud7FiiEAAAAJ&hl=en"
+    "socialLinks": "https://benjaminmoll.com/, https://x.com/ben_moll, https://scholar.google.com/citations?user=Ud7FiiEAAAAJ&hl=en",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1716,7 +2014,10 @@
     ],
     "profilePicture": "IMG_3003 - Aaron Rose.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?hl=en&user=l2LSjZsAAAAJ"
+    "socialLinks": "https://scholar.google.com/citations?hl=en&user=l2LSjZsAAAAJ",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "main",
@@ -1729,7 +2030,498 @@
     ],
     "profilePicture": "Foto Henry Heppe small - Henry Heppe.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://github.com/henry-heppe"
+    "socialLinks": "https://github.com/henry-heppe",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Alexandre Bismuth",
+    "role": "Masters Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Machine Learning",
+      "Foundation Models",
+      "Financial AI"
+    ],
+    "profilePicture": "IMG_8616 - Alexandre Bismuth.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://alexandre-bismuth.github.io/, https://github.com/alexandre-bismuth",
+    "supervisors": [
+      "Ani Calinescu",
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Michal Bravansky",
+    "role": "Masters Student",
+    "homeInstitution": "METR",
+    "researchInterestKeywords": [
+      "AI Evaluations",
+      "AI Safety & Governance",
+      "Automated Discovery"
+    ],
+    "profilePicture": "image - Michal Bravanský.png",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://bravansky.com/, https://scholar.google.com/citations?user=vbgTpo0AAAAJ",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Suhas Hariharan",
+    "role": "Masters Student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "AI Evaluations",
+      "Open-Ended Learning",
+      "Evolutionary Computation",
+      "Financial AI",
+      "Automated Discovery"
+    ],
+    "profilePicture": "Suhas Hariharan-2 - Suhas Hariharan.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?hl=en&user=wC2ujJthFt4C, https://x.com/hariharansuhas",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Ross Murphy",
+    "role": "PhD Student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Human-AI Interaction",
+      "Generative Models",
+      "Computer Vision",
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "headshot - Ross Murphy.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://rossamurphy.com",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ],
+    "phdSortSurname": "Murphy",
+    "phdStartYearStatus": "unknown",
+    "cdtStudent": false
+  },
+  {
+    "source": "main",
+    "name": "Jack Dalton",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI for Science",
+      "Human-AI Interaction",
+      "Machine Learning",
+      "Robotics"
+    ],
+    "profilePicture": "SNY07235 - Jack Dalton.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://jackatdalton.github.io",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
+    "phdSortSurname": "Dalton",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "direct",
+    "cdtStudent": true,
+    "cdtStartYear": 2023
+  },
+  {
+    "source": "main",
+    "name": "Mohammed Amara",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "NeuroAI",
+      "Reinforcement Learning",
+      "Open-Ended Learning"
+    ],
+    "profilePicture": "IMG_2881 - Mo Amara.png",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=RaqcRDQAAAAJ&hl=en&oi=ao",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
+    "phdSortSurname": "Amara",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
+  },
+  {
+    "source": "main",
+    "name": "Harry Mead",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Open-Ended Learning",
+      "Robustness & Generalization"
+    ],
+    "profilePicture": "IMG_2824 - Harry Mead.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=aNeK16QAAAAJ&hl=en, https://github.com/HarryMJMead",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
+    "phdSortSurname": "Mead",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": false
+  },
+  {
+    "source": "main",
+    "name": "Zhengyao Jiang",
+    "role": "Associate Members",
+    "homeInstitution": "Weco AI",
+    "researchInterestKeywords": [
+      "Automated Discovery",
+      "AI Agents"
+    ],
+    "profilePicture": "IMG_1935 - Zhengyao Jiang.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://x.com/zhengyaojiang",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Robert Kirk",
+    "role": "Associate Members",
+    "homeInstitution": "UK AISI",
+    "researchInterestKeywords": [
+      "AI Safety & Governance",
+      "AI Evaluations"
+    ],
+    "profilePicture": "profile pic picture robert kirk - Robert Kirk.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://x.com/_robertkirk",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Timon Willi",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Systems",
+      "Open-Ended Learning",
+      "Automated Discovery",
+      "Reinforcement Learning",
+      "Meta-Learning & Adaptation"
+    ],
+    "profilePicture": "IMG_7463 - Timon Willi.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.timonwilli.com/, https://scholar.google.com/citations?user=Dn-udzAAAAAJ&hl=en, https://x.com/TimonWilli",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Yingchen Xu",
+    "role": "Associate Members",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "World Models",
+      "Robotics"
+    ],
+    "profilePicture": "IMG_5439 - Yingchen Xu.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://ycxuyingchen.github.io/, https://scholar.google.com/citations?user=-JbfMp6gAAAAJ&user=JbfMp6gAAAAJ, https://x.com/YingchenX",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Davide Paglieri",
+    "role": "Associate Members",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "AI Agents",
+      "Multi-Agent Systems",
+      "Open-Ended Learning"
+    ],
+    "profilePicture": "682125bc-7a32-4f1d-b732-005acf081aa9 - Davide Paglieri.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://davidepaglieri.github.io, https://scholar.google.com/citations?user=d545-VYAAAAJ&hl=en, https://x.com/PaglieriDavide",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Efstathios Siatras",
+    "role": "Associate Members",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Robustness & Generalization",
+      "AI Safety & Governance",
+      "AI Evaluations",
+      "Evolutionary Computation",
+      "Open-Ended Learning",
+      "Multi-Agent Systems"
+    ],
+    "profilePicture": "efstathios_siatras - Efstathios Siatras.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://siatras.com, https://x.com/efsiatras",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Mikayel Samvelyan",
+    "role": "Associate Members",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Open-Ended Learning",
+      "Automated Discovery",
+      "Reinforcement Learning",
+      "Multi-Agent Systems"
+    ],
+    "profilePicture": "headshot - Mikayel Samvelyan.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://samvelyan.com, https://scholar.google.com/citations?user=2Qs19WAAAAAJ&hl=en, https://x.com/_samvelyan",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Roberto-Rafael Maura-Rivero",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Evolutionary Computation",
+      "Reinforcement Learning",
+      "Human-AI Interaction",
+      "Game Theory"
+    ],
+    "profilePicture": "unnamed - Roberto-Rafael Maura-Rivero.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://sites.google.com/view/rrmaura/home, https://x.com/rrmaura",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Evžen Wybitul",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Interpretability",
+      "AI Safety & Governance"
+    ],
+    "profilePicture": "IMG_9781 - Evžen Wybitul.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=O_KgypMAAAAJ&hl=cs, https://x.com/evzen_wy",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Bassel Al Omari",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI Agents",
+      "Automated Discovery",
+      "Reinforcement Learning",
+      "Language Models"
+    ],
+    "profilePicture": "Bassel Al Omari - Profile Photo Tux - Basel Al Omari.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=4EEtql8AAAAJ, https://x.com/basselralomari, https://www.linkedin.com/in/baselomari/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Kale-ab Tessera",
+    "role": "Associate Members",
+    "homeInstitution": "Edinburgh",
+    "researchInterestKeywords": [
+      "Multi-Agent Systems",
+      "Open-Ended Learning",
+      "AI Agents",
+      "Language Models"
+    ],
+    "profilePicture": "prof_pic - Kale-ab Tessera.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://kaleabtessera.com",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Brandon Kaplowitz",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Multi-Agent Systems",
+      "Reinforcement Learning",
+      "Financial AI",
+      "World Models",
+      "Game Theory"
+    ],
+    "profilePicture": "brandon-kaplowitz-jmc-photo - Brandon Kaplowitz.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.bkaplowitz.com",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Adrian Hayler",
+    "role": "Associate Members",
+    "homeInstitution": "Prior Labs",
+    "researchInterestKeywords": [
+      "Open-Ended Learning",
+      "Foundation Models",
+      "Multi-Agent Systems"
+    ],
+    "profilePicture": "Photo from Adrian Hayler - Adrian Hayler.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://scholar.google.com/citations?user=eYIe5FcAAAAJ&hl=en",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Aime Bienfait Igiraneza",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI for Science",
+      "Reinforcement Learning",
+      "Machine Learning"
+    ],
+    "profilePicture": "6563-1800-Square - Aimé Bienfait Igiraneza.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.linkedin.com/in/aim%C3%A9-bienfait-igiraneza-45b62210b/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Stefan Zohren",
+    "role": "Associate Members",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Financial AI",
+      "Machine Learning"
+    ],
+    "profilePicture": "1517002268280 - Stefan Zohren.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://eng.ox.ac.uk/people/stefan-zohren, http://scholar.google.co.uk/citations?user=mtNQD-8AAAAJ&hl=en, https://www.linkedin.com/in/zohren/",
+    "supervisors": [
+      "Ani Calinescu",
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Viktor Mihaylov",
+    "role": "Master Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "Generative Models",
+      "Sim-to-Real Transfer"
+    ],
+    "profilePicture": "IMG-32b67173c31577cf755684faa564e018-V - Viktor Mihaylov.jpg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://scholar.google.com/citations?user=xeNK_XoAAAAJ&hl=en",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Xianzheng Ma",
+    "role": "PhD student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "embodied AI",
+      "Spatial AI",
+      "Physical AI"
+    ],
+    "profilePicture": "Xianzheng-Ma-website-1page - oliver Ma (Xianzheng Ma).pdf",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://xianzhengma.github.io/",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Dmitry Samsonov",
+    "role": "Industry Partner",
+    "homeInstitution": "https://normacore.dev/",
+    "researchInterestKeywords": [
+      "advanced applications of EGGROLL"
+    ],
+    "profilePicture": "asset-225911c5547c4bea - Dmitriy Samsonov.png",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://x.com/d0rc",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Ryo Nakahashi",
+    "role": "Industry Partner",
+    "homeInstitution": "Sony Interactive Entertainment",
+    "researchInterestKeywords": [
+      "Reinforcement Learning",
+      "Multi-Agent Reinforcement Learning",
+      "Ad Hoc Teamwork",
+      "Zero-Shot Coordination",
+      "Human-AI Collaboration"
+    ],
+    "profilePicture": "IMG_1635 - Ryo Nakahashi.jpg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "N/A",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
+  },
+  {
+    "source": "main",
+    "name": "Roman Negri",
+    "role": "Alumni",
+    "homeInstitution": "Previous UCL Master's Student at DARK Lab",
+    "researchInterestKeywords": [
+      "Reinforcement Learning Theory",
+      "Open-Ended Algorithms",
+      "AI Safety & Alignment",
+      "Multi-Agent Systems"
+    ],
+    "profilePicture": "roman - Roman Negri.jpeg",
+    "listOnBoldWebsite": "No",
+    "socialLinks": "https://romn.ai/",
+    "supervisors": [
+      "Tim Rocktäschel"
+    ]
   },
   {
     "source": "foerster-alumni",
@@ -1743,7 +2535,11 @@
     "profilePicture": "ben-ellis.jpg",
     "listOnBoldWebsite": "YES",
     "alumni": true,
-    "socialLinks": "https://twitter.com/benjamin_ellis3; https://scholar.google.com/citations?user=NPEI4IsAAAAJ&hl=en; https://github.com/benellis3"
+    "socialLinks": "https://twitter.com/benjamin_ellis3; https://scholar.google.com/citations?user=NPEI4IsAAAAJ&hl=en; https://github.com/benellis3",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ]
   },
   {
     "source": "foerster-alumni",
@@ -1771,7 +2567,10 @@
     "profilePicture": "timon-willi.jpg",
     "listOnBoldWebsite": "YES",
     "alumni": true,
-    "socialLinks": "https://twitter.com/TimonWilli; https://scholar.google.com/citations?user=Dn-udzAAAAAJ"
+    "socialLinks": "https://twitter.com/TimonWilli; https://scholar.google.com/citations?user=Dn-udzAAAAAJ",
+    "supervisors": [
+      "Jakob Foerster"
+    ]
   },
   {
     "source": "foerster-alumni",

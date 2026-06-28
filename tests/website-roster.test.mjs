@@ -22,6 +22,7 @@ const emptyFilters = {
   section: allFilterValue,
   area: allFilterValue,
   affiliation: allFilterValue,
+  supervisor: allFilterValue,
 }
 
 // Mirrors https://foersterlab.com/members/ as checked on 2026-06-22.
@@ -46,7 +47,7 @@ const foersterMembersPageFixture = [
     'Harry Mayne',
     'harry-mayne',
     'Harry Mayne',
-    'Incoming PhD Students',
+    'PhD Student',
   ],
   ['DPhil Students', 'Darius Muglich', 'darius-muglich', 'Darius Muglich', 'PhD Student'],
   ['DPhil Students', 'Bidipta Sarkar', 'bidipta-sarkar', 'Bidipta Sarkar', 'PhD Student'],
@@ -76,7 +77,7 @@ const foersterMembersPageFixture = [
   ['Associate Members', 'Tim Franzmeyer', 'tim-franzmeyer', 'Tim Franzmeyer', 'Associate Members'],
   ['Alumni', 'Ben Ellis', 'ben-ellis', 'Ben Ellis', 'Alumni'],
   ['Alumni', 'Chris Lu', 'chris-lu', 'Chris Lu', 'Alumni'],
-  ['Alumni', 'Timon Willi', 'timon-willi', 'Timon Willi', 'Alumni'],
+  ['Alumni', 'Timon Willi', 'timon-willi', 'Timon Willi', 'Associate Members'],
   ['Alumni', 'Christian Schroeder de Witt', 'christian-schroeder-de-witt', 'Christian Schroeder de Witt', 'Alumni'],
   ['Alumni', 'Jia Wan', 'jia-wan', 'Jia Wan', 'Alumni'],
   ['Alumni', 'Kang Li', 'kang-li', 'Kang Li', 'PhD Student'],
@@ -170,6 +171,7 @@ test('Website Roster derives public Person Listings from central source rows', (
       researchInterestKeywords: ['Evaluation'],
       profilePicture: 'blank-flag-postdoc.jpg',
       listOnBoldWebsite: '',
+      supervisors: 'Included PI, External Mentor',
     },
     {
       source: 'main',
@@ -220,6 +222,7 @@ test('Website Roster derives public Person Listings from central source rows', (
     '/profile-assets/included-pi.webp',
     '/profile-assets/blank-flag-postdoc.webp',
   ])
+  assert.deepEqual(roster[1]?.supervisors, ['Included PI', 'External Mentor'])
   assert.equal(roster[0]?.piRole, 'Strategic Lead')
   assert.equal(Object.hasOwn(roster[1] ?? {}, 'piRole'), false)
 
@@ -232,10 +235,10 @@ test('Website Roster derives public Person Listings from central source rows', (
     'Principal Investigator',
     'Adjunct Faculty',
     'Postdoc',
-    'Research Engineers',
     'PhD Student',
-    'Incoming PhD Students',
+    'Research Engineers',
     'Masters Student',
+    'Incoming PhD Students',
     'Associate Members',
   ])
   assert.deepEqual(
@@ -589,7 +592,10 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   const jakob = people.find((person) => person.slug === 'jakob-hartmann')
   const james = people.find((person) => person.slug === 'james-harvey')
   const jess = people.find((person) => person.slug === 'jess-carr')
+  const kang = people.find((person) => person.slug === 'kang-li')
   const marek = people.find((person) => person.slug === 'marek-masiak')
+  const nathan = people.find((person) => person.slug === 'nathan-herr')
+  const richard = people.find((person) => person.slug === 'richard-bornemann')
   const valentin = people.find((person) => person.slug === 'valentin-mohl')
 
   assert.equal(francesco?.phdSortSurname, 'Capuano')
@@ -623,12 +629,12 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   assert.equal(george?.cdtStudent, false)
   assert.equal(george?.cdtStartYear, undefined)
   assert.equal(gregory?.phdSortSurname, 'Levy')
-  assert.equal(gregory?.phdStartYear, 2026)
+  assert.equal(gregory?.phdStartYear, 2025)
   assert.equal(gregory?.phdStartYearStatus, 'user_provided')
   assert.equal(gregory?.cdtStudent, false)
   assert.equal(gregory?.cdtStartYear, undefined)
   assert.equal(harry?.phdSortSurname, 'Mayne')
-  assert.equal(harry?.phdStartYear, 2026)
+  assert.equal(harry?.phdStartYear, 2023)
   assert.equal(harry?.phdStartYearStatus, 'user_provided')
   assert.equal(harry?.cdtStudent, false)
   assert.equal(harry?.cdtStartYear, undefined)
@@ -637,6 +643,11 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   assert.equal(jess?.phdStartYearStatus, 'user_provided')
   assert.equal(jess?.cdtStudent, true)
   assert.equal(jess?.cdtStartYear, 2025)
+  assert.equal(kang?.phdSortSurname, 'Li')
+  assert.equal(kang?.phdStartYear, 2022)
+  assert.equal(kang?.phdStartYearStatus, 'user_provided')
+  assert.equal(kang?.cdtStudent, false)
+  assert.equal(kang?.cdtStartYear, undefined)
   assert.equal(alistair?.phdSortSurname, 'Letcher')
   assert.equal(alistair?.phdStartYear, 2024)
   assert.equal(alistair?.phdStartYearStatus, 'user_provided')
@@ -647,11 +658,36 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   assert.equal(hannah?.phdStartYearStatus, 'user_provided')
   assert.equal(hannah?.cdtStudent, false)
   assert.equal(hannah?.cdtStartYear, undefined)
+  assert.equal(nathan?.phdSortSurname, 'Herr')
+  assert.equal(nathan?.phdStartYear, 2024)
+  assert.equal(nathan?.phdStartYearStatus, 'user_provided')
+  assert.equal(nathan?.cdtStudent, true)
+  assert.equal(nathan?.cdtStartYear, 2023)
+  assert.equal(richard?.phdSortSurname, 'Bornemann')
+  assert.equal(richard?.phdStartYear, 2025)
+  assert.equal(richard?.phdStartYearStatus, 'user_provided')
+  assert.equal(richard?.cdtStudent, false)
+  assert.equal(richard?.cdtStartYear, undefined)
   assert.equal(valentin?.phdSortSurname, 'Mohl')
   assert.equal(valentin?.phdStartYear, 2024)
   assert.equal(valentin?.phdStartYearStatus, 'user_provided')
   assert.equal(valentin?.cdtStudent, false)
   assert.equal(valentin?.cdtStartYear, undefined)
+})
+
+test('Full Website Roster carries spreadsheet supervisor attachments', () => {
+  assert.deepEqual(people.find((person) => person.slug === 'keyue-jiang')?.supervisors, [
+    'Laura Toni',
+  ])
+  assert.deepEqual(people.find((person) => person.slug === 'alex-goldie')?.supervisors, [
+    'Jakob Foerster',
+    'Shimon Whiteson',
+  ])
+  assert.deepEqual(
+    people.find((person) => person.slug === 'borja-gonzalez-leon')?.supervisors,
+    ['Tim Rocktäschel', 'Jakob Foerster', 'Antoine Cully'],
+  )
+  assert.equal(people.find((person) => person.slug === 'jakob-foerster')?.supervisors, undefined)
 })
 
 test('Website Roster recognizes Bluesky profile links', () => {
@@ -1161,11 +1197,6 @@ test('Full Website Roster retains scoped Foerster alumni without listing them pu
       'Research Scientist @ OpenAI; DPhil 2021-2025',
     ],
     [
-      'timon-willi',
-      'Timon Willi',
-      'Research Scientist @ Meta; DPhil 2021-2025',
-    ],
-    [
       'christian-schroeder-de-witt',
       'Christian Schroeder de Witt',
       'Postdoc @ TVG, Oxford; Postdoc 2021-2023',
@@ -1177,7 +1208,7 @@ test('Full Website Roster retains scoped Foerster alumni without listing them pu
 
   assert.deepEqual(
     scopedFoersterAlumni.map(([slug]) => people.filter((person) => person.slug === slug).length),
-    [1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1],
   )
   assert.deepEqual(
     scopedFoersterAlumni.map(([slug]) => {
@@ -1203,6 +1234,8 @@ test('Full Website Roster retains scoped Foerster alumni without listing them pu
   )
   assert.equal(people.filter((person) => person.slug === 'kang-li').length, 1)
   assert.equal(listingBySlug['kang-li']?.peopleSection, 'PhD Student')
+  assert.equal(people.filter((person) => person.slug === 'timon-willi').length, 1)
+  assert.equal(listingBySlug['timon-willi']?.peopleSection, 'Associate Members')
   assert.equal(
     getPrimaryPersonLink(people.find((person) => person.slug === 'chris-lu')),
     'https://chrislu.page',
@@ -1366,9 +1399,9 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(people.length, 108)
-  assert.equal(people.filter((person) => person.alumni).length, 7)
-  assert.equal(directory.totalPeople, 101)
+  assert.equal(people.length, 130)
+  assert.equal(people.filter((person) => person.alumni).length, 6)
+  assert.equal(directory.totalPeople, 124)
   assert.deepEqual(
     [
       ...new Set(
@@ -1379,7 +1412,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     ],
     [],
   )
-  assert.equal(directory.visiblePeopleCount, 101)
+  assert.equal(directory.visiblePeopleCount, 124)
   assert.deepEqual(
     Object.fromEntries(
       directory.sections.map((section) => [section.title, section.people.length]),
@@ -1389,23 +1422,23 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 2,
-      'PhD Student': 47,
-      'Incoming PhD Students': 9,
-      'Masters Student': 10,
-      'Associate Members': 17,
+      'PhD Student': 52,
+      'Incoming PhD Students': 8,
+      'Masters Student': 13,
+      'Associate Members': 33,
     },
   )
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 101)
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 124)
   assert.deepEqual(
     directory.sections.map((section) => section.title),
     [
       'Principal Investigator',
       'Adjunct Faculty',
       'Postdoc',
-      'Research Engineers',
       'PhD Student',
-      'Incoming PhD Students',
+      'Research Engineers',
       'Masters Student',
+      'Incoming PhD Students',
       'Associate Members',
     ],
   )
@@ -1443,13 +1476,35 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     'borja-gonzalez-leon',
     'aaron-rose',
     'henry-heppe',
+    'alexandre-bismuth',
+    'michal-bravansky',
+    'suhas-hariharan',
+    'ross-murphy',
+    'jack-dalton',
+    'mohammed-amara',
+    'harry-mead',
+    'zhengyao-jiang',
+    'robert-kirk',
+    'timon-willi',
+    'yingchen-xu',
+    'davide-paglieri',
+    'efstathios-siatras',
+    'mikayel-samvelyan',
+    'roberto-rafael-maura-rivero',
+    'evzen-wybitul',
+    'bassel-al-omari',
+    'xi-xiong',
+    'kale-ab-tessera',
+    'brandon-kaplowitz',
+    'adrian-hayler',
+    'aime-bienfait-igiraneza',
+    'stefan-zohren',
   ]
   const expectedHiddenNewSlugs = [
     'labeebah-islaam',
     'lize-alberts',
     'garrett-deceuninck-ziviani',
     'utkarsh-gupta',
-    'xi-xiong',
     'benjamin-moll',
   ]
 
@@ -1472,6 +1527,29 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['borja-gonzalez-leon', 'Associate Members'],
       ['aaron-rose', 'Masters Student'],
       ['henry-heppe', 'Masters Student'],
+      ['alexandre-bismuth', 'Masters Student'],
+      ['michal-bravansky', 'Masters Student'],
+      ['suhas-hariharan', 'Masters Student'],
+      ['ross-murphy', 'PhD Student'],
+      ['jack-dalton', 'PhD Student'],
+      ['mohammed-amara', 'Incoming PhD Students'],
+      ['harry-mead', 'PhD Student'],
+      ['zhengyao-jiang', 'Associate Members'],
+      ['robert-kirk', 'Associate Members'],
+      ['timon-willi', 'Associate Members'],
+      ['yingchen-xu', 'Associate Members'],
+      ['davide-paglieri', 'Associate Members'],
+      ['efstathios-siatras', 'Associate Members'],
+      ['mikayel-samvelyan', 'Associate Members'],
+      ['roberto-rafael-maura-rivero', 'Associate Members'],
+      ['evzen-wybitul', 'Associate Members'],
+      ['bassel-al-omari', 'Associate Members'],
+      ['xi-xiong', 'Associate Members'],
+      ['kale-ab-tessera', 'Associate Members'],
+      ['brandon-kaplowitz', 'Associate Members'],
+      ['adrian-hayler', 'Associate Members'],
+      ['aime-bienfait-igiraneza', 'Associate Members'],
+      ['stefan-zohren', 'Associate Members'],
     ],
   )
   assert.deepEqual(
@@ -1620,12 +1698,12 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ]),
     [
       ['Postdoc', ['yulin-wang']],
-      ['Research Engineers', ['jiankai-wang']],
       ['PhD Student', ['zilin-wang']],
+      ['Research Engineers', ['jiankai-wang']],
     ],
   )
   assert.equal(matchingDirectory.visiblePeopleCount, 3)
-  assert.equal(matchingDirectory.totalPeople, 101)
+  assert.equal(matchingDirectory.totalPeople, 124)
 
   assert.deepEqual(
     areaDirectory.sections.map((section) => [
@@ -1636,16 +1714,21 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       ['Postdoc', ['johannes-forkel']],
       [
         'PhD Student',
-        ['ravi-hammond', 'shashank-reddy'],
+        [
+          'ravi-hammond',
+          'shashank-reddy',
+          'jack-dalton',
+          'harry-mayne',
+          'ross-murphy',
+        ],
       ],
       [
-        'Incoming PhD Students',
-        ['harry-mayne'],
+        'Associate Members',
+        ['elif-akata', 'roberto-rafael-maura-rivero'],
       ],
-      ['Associate Members', ['elif-akata']],
     ],
   )
-  assert.equal(areaDirectory.visiblePeopleCount, 5)
+  assert.equal(areaDirectory.visiblePeopleCount, 8)
 
   assert.deepEqual(
     affiliationDirectory.sections.map((section) => [
@@ -1655,17 +1738,17 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [
       ['Principal Investigator', ['antoine-cully']],
       ['Postdoc', ['cong-sun', 'paul-templier']],
-      ['Research Engineers', ['jiankai-wang', 'oscar-pang']],
       [
         'PhD Student',
         [
+          'richard-bornemann',
           'konstantinos-mitsides',
           'hannah-janmohamed',
-          'richard-bornemann',
           'lisa-coiffard',
           'runjun-mao',
         ],
       ],
+      ['Research Engineers', ['jiankai-wang', 'oscar-pang']],
       ['Incoming PhD Students', ['george-mavroghenis']],
     ],
   )
@@ -1680,9 +1763,12 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       [
         'Masters Student',
         [
+          'alexandre-bismuth',
+          'michal-bravansky',
           'kevin-buhler',
           'ali-farhat',
           'yuhe-gao',
+          'suhas-hariharan',
           'henry-heppe',
           'arina-kosovskaia',
           'aramis-marti-shahandeh',
@@ -1694,7 +1780,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       ],
     ],
   )
-  assert.equal(sectionDirectory.visiblePeopleCount, 10)
+  assert.equal(sectionDirectory.visiblePeopleCount, 13)
 
   assert.deepEqual(
     combinedDirectory.sections.map((section) => [
@@ -1704,9 +1790,9 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [],
   )
   assert.equal(combinedDirectory.visiblePeopleCount, 0)
-  assert.equal(combinedDirectory.totalPeople, 101)
+  assert.equal(combinedDirectory.totalPeople, 124)
 
   assert.deepEqual(emptyDirectory.sections, [])
   assert.equal(emptyDirectory.visiblePeopleCount, 0)
-  assert.equal(emptyDirectory.totalPeople, 101)
+  assert.equal(emptyDirectory.totalPeople, 124)
 })

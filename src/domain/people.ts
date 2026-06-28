@@ -8,10 +8,10 @@ export const peopleSectionOrder = [
   'Principal Investigator',
   'Adjunct Faculty',
   'Postdoc',
-  'Research Engineers',
   'PhD Student',
-  'Incoming PhD Students',
+  'Research Engineers',
   'Masters Student',
+  'Incoming PhD Students',
   'Associate Members',
 ] as const
 
@@ -56,6 +56,7 @@ export type PeopleDirectoryFilters = {
   section: string
   area: string
   affiliation: string
+  supervisor: string
 }
 
 export type PeopleActiveFilterPill = {
@@ -100,6 +101,7 @@ export function getPeopleActiveFilterPills(
   const section = filters.section.trim()
   const area = filters.area.trim()
   const affiliation = filters.affiliation.trim()
+  const supervisor = (filters.supervisor ?? allFilterValue).trim()
 
   if (query) {
     pills.push(createPeopleActiveFilterPill('query', 'Name', query))
@@ -109,7 +111,7 @@ export function getPeopleActiveFilterPills(
     pills.push(
       createPeopleActiveFilterPill(
         'section',
-        'Section',
+        'Role',
         getPeopleSectionFilterLabel(section),
       ),
     )
@@ -122,6 +124,12 @@ export function getPeopleActiveFilterPills(
   if (affiliation && affiliation !== allFilterValue) {
     pills.push(
       createPeopleActiveFilterPill('affiliation', 'Affiliation', affiliation),
+    )
+  }
+
+  if (supervisor && supervisor !== allFilterValue) {
+    pills.push(
+      createPeopleActiveFilterPill('supervisor', 'Supervisor', supervisor),
     )
   }
 
@@ -171,6 +179,18 @@ export function getPeopleFilterOptions() {
     directoryPeople.flatMap((person) => person.researchAreas),
   )
   const canonicalAreaSet = new Set<string>(canonicalPeopleResearchAreas)
+  const supervisorSet = new Set(
+    directoryPeople.flatMap((person) => person.supervisors ?? []),
+  )
+  const principalInvestigatorSupervisors = orderPeopleWithinSection(
+    directoryPeople.filter(
+      (person) => getPeopleSection(person) === 'Principal Investigator',
+    ),
+    'Principal Investigator',
+    Math.random,
+  )
+    .map((person) => person.name)
+    .filter((name) => supervisorSet.has(name))
 
   return {
     sections: [...peopleSectionOrder],
@@ -185,6 +205,14 @@ export function getPeopleFilterOptions() {
         person.affiliation ? [person.affiliation] : [],
       ),
     ),
+    supervisors: [
+      ...principalInvestigatorSupervisors,
+      ...unique(
+        [...supervisorSet].filter(
+          (supervisor) => !principalInvestigatorSupervisors.includes(supervisor),
+        ),
+      ),
+    ],
   }
 }
 
@@ -367,6 +395,12 @@ export function buildPeopleDirectoryViewModel({
   })
 
   const matchedPeople = directoryPeople.filter(({ person, peopleSection }) => {
+    const supervisor = (filters.supervisor ?? allFilterValue).trim()
+    const hasSupervisorFilter = supervisor && supervisor !== allFilterValue
+    const isSelectedSupervisor =
+      hasSupervisorFilter &&
+      peopleSection === 'Principal Investigator' &&
+      person.name === supervisor
     const matchesQuery = person.name
       .toLowerCase()
       .includes(filters.query.trim().toLowerCase())
@@ -378,8 +412,19 @@ export function buildPeopleDirectoryViewModel({
     const matchesAffiliation =
       filters.affiliation === allFilterValue ||
       person.affiliation === filters.affiliation
+    const matchesSupervisor =
+      !hasSupervisorFilter || person.supervisors?.includes(supervisor)
 
-    return matchesQuery && matchesSection && matchesArea && matchesAffiliation
+    return (
+      isSelectedSupervisor ||
+      (
+        matchesQuery &&
+        matchesSection &&
+        matchesArea &&
+        matchesAffiliation &&
+        matchesSupervisor
+      )
+    )
   })
 
   const sections = peopleSectionOrder

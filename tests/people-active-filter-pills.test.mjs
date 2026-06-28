@@ -13,6 +13,7 @@ const emptyFilters = {
   section: allFilterValue,
   area: allFilterValue,
   affiliation: allFilterValue,
+  supervisor: allFilterValue,
 }
 
 test('People active filter pills omit inactive All filters and trim name search', () => {
@@ -43,10 +44,10 @@ test('People active filter pills map People Section values to public plural labe
     [
       {
         key: 'section',
-        label: 'Section',
+        label: 'Role',
         value: 'PhD Students',
         displayLabel: 'PhD Students',
-        removeLabel: 'Remove section filter: PhD Students',
+        removeLabel: 'Remove role filter: PhD Students',
       },
     ],
   )
@@ -58,6 +59,7 @@ test('People active filter pills include metadata for every active filter', () =
     section: 'Research Engineers',
     area: 'Evaluation',
     affiliation: 'BOLD Lab',
+    supervisor: 'Jakob Foerster',
   })
 
   assert.deepEqual(
@@ -72,10 +74,10 @@ test('People active filter pills include metadata for every active filter', () =
       },
       section: {
         key: 'section',
-        label: 'Section',
+        label: 'Role',
         value: 'Research Engineers',
         displayLabel: 'Research Engineers',
-        removeLabel: 'Remove section filter: Research Engineers',
+        removeLabel: 'Remove role filter: Research Engineers',
       },
       area: {
         key: 'area',
@@ -90,6 +92,13 @@ test('People active filter pills include metadata for every active filter', () =
         value: 'BOLD Lab',
         displayLabel: 'BOLD Lab',
         removeLabel: 'Remove affiliation filter: BOLD Lab',
+      },
+      supervisor: {
+        key: 'supervisor',
+        label: 'Supervisor',
+        value: 'Jakob Foerster',
+        displayLabel: 'Jakob Foerster',
+        removeLabel: 'Remove supervisor filter: Jakob Foerster',
       },
     },
   )

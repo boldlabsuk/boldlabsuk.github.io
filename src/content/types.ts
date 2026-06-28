@@ -23,6 +23,7 @@ export type Person = {
   bio: string
   image?: string
   researchAreas: string[]
+  supervisors?: string[]
   links?: PersonLinkSet
   phdSortSurname?: string
   phdStartYear?: number

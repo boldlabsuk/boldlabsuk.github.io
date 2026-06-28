@@ -36,7 +36,7 @@ Mao,Runjun Mao,,unknown,false,,"https://www.imperial.ac.uk/a-z-research/adaptive
 Masiak,Marek Masiak,2026,user_provided,true,2025,"https://eit.org/meet-the-scholars/marek-masiak-b0ba2; https://uk.linkedin.com/in/marekmasiak; https://marekmasiak.github.io/","User provided CDT start in 2025 and PhD start in 2026; EIT and profile sources retained",true
 Matthews,Michael Matthews,2023,direct,false,,"https://www.mtmatthews.com/; https://foersterlab.com/members/","Personal site says third-year Oxford DPhil at FLAIR and Foerster lists DPhil student 2023; no CDT evidence found",true
 Mavroghenis,George Mavroghenis,2026,user_provided,false,,"","User provided 2026 cohort and non-CDT status",true
-Mayne,Harry Mayne,2026,user_provided,false,,"https://foersterlab.com/members/","User provided 2026 PhD cohort; Foerster source retained and no CDT evidence found",true
+Mayne,Harry Mayne,2023,user_provided,false,,"https://foersterlab.com/members/","User provided 2023 PhD cohort and non-CDT status; Foerster source retained",true
 Mitsides,Konstantinos Mitsides,2024,direct,false,,"https://konstantinosmitsides.github.io/cv/","Personal CV lists PhD Artificial Intelligence at Imperial from 10/2024; no CDT evidence found",true
 Mohl,Valentin Mohl,2024,user_provided,false,,"https://github.com/vmohl","User provided non-CDT DPhil in CS with 2024 start; GitHub source retained",true
 Motwani,Sumeet Motwani,2024,inferred,false,,"https://sumeetmotwani.com/; https://x.com/sumeetrm","Personal site and X bio confirm Oxford ML PhD; Dec 2024 posts imply PhD work already underway; no CDT evidence found",true
@@ -54,5 +54,5 @@ Towers,Sebastian Towers,2022,direct,true,2021,"https://aims.robots.ox.ac.uk/stud
 Wang,Zilin Wang,2024,direct,false,,"https://foersterlab.com/members/; https://arxiv.org/pdf/2603.17863","Foerster lists DPhil student 2024; publication acknowledgement says funded by Waymo rather than CDT",true
 Wibault,Clarisse Wibault,2024,direct,false,,"https://foersterlab.com/members/; https://arxiv.org/pdf/2603.17863","Foerster lists DPhil student 2024; publication acknowledgement says EPSRC DTP Research Studentship rather than CDT",true
 Wolf,Theo Wolf,2025,direct,true,2024,"https://aims.robots.ox.ac.uk/students; https://gtr.ukri.org/projects?ref=EP%2FY035070%2F1; https://foersterlab.com/members/","AIMS 2024 cohort and GtR AIMS studentship period starts Sep 2024; Foerster lists DPhil student 2025",true
-Zakharov,Alexey Zakharov,,unknown,false,,"https://azak.cc","Public site confirms Oxford PhD/DPhil status but not start year; no CDT evidence found",true
+Zakharov,Alex Zakharov,2023,user_provided,false,,"https://azak.cc","User provided PhD start year; no CDT evidence found",true
 Zhang,Qizhen Zhang (Irene),2022,direct,false,,"https://foersterlab.com/members/; https://www.oxwocs.com/team","Foerster lists DPhil student 2022 and OxWoCS profile says DPhil student in Engineering Science; no CDT evidence found",true

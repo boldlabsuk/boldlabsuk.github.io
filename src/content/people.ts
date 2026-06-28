@@ -17,12 +17,14 @@ export type SourcePerson = {
   phdStartYearStatus?: string
   cdtStudent?: boolean | string
   cdtStartYear?: number | string
+  supervisors?: string[] | string
   alumni?: boolean | string
 }
 
 export const canonicalPeopleResearchAreas = [
   'AI Agents',
   'AI Safety & Governance',
+  'AI Evaluations',
   'AI for Science',
   'Automated Discovery',
   'Causal Inference',
@@ -65,6 +67,10 @@ const peopleResearchAreaAliases = new Map<string, readonly PeopleResearchArea[]>
     ['Agent-based modelling', ['Complex Systems']],
     ['agentic language model', ['AI Agents', 'Language Models']],
     ['AGI Safety', ['AI Safety & Governance']],
+    ['AI evaluation', ['AI Evaluations']],
+    ['AI evaluations', ['AI Evaluations']],
+    ['AI evals', ['AI Evaluations']],
+    ['AI security', ['AI Safety & Governance', 'AI Evaluations']],
     ['AI Scientist', ['Automated Discovery']],
     ['AI safety', ['AI Safety & Governance']],
     ['AI4Science', ['AI for Science']],
@@ -115,6 +121,8 @@ const peopleResearchAreaAliases = new Map<string, readonly PeopleResearchArea[]>
     ['Evolution', ['Evolutionary Computation']],
     ['Evolution Strategies', ['Evolutionary Computation']],
     ['evolutionary computation', ['Evolutionary Computation']],
+    ['evaluations', ['AI Evaluations']],
+    ['evals', ['AI Evaluations']],
     ['exploration', ['Reinforcement Learning']],
     ['Exploration', ['Reinforcement Learning']],
     ['Finance', ['Financial AI']],
@@ -191,6 +199,7 @@ const peopleResearchAreaAliases = new Map<string, readonly PeopleResearchArea[]>
     ['Quantitative Finance', ['Financial AI']],
     ['Real-time Embedded System', ['Machine Learning Systems']],
     ['Reasoning', ['Language Models']],
+    ['red teaming', ['AI Safety & Governance', 'AI Evaluations']],
     ['regularisation', ['Robustness & Generalization']],
     ['reinforcement learning', ['Reinforcement Learning']],
     ['Reinforcement learning', ['Reinforcement Learning']],
@@ -291,6 +300,7 @@ function buildPerson(sourcePerson: SourcePerson): Person {
   const phdStartYearStatus = sourcePerson.phdStartYearStatus?.trim()
   const cdtStudent = normalizeOptionalBoolean(sourcePerson.cdtStudent)
   const cdtStartYear = normalizeOptionalNumber(sourcePerson.cdtStartYear)
+  const supervisors = normalizeSupervisors(sourcePerson.supervisors)
   const slug = getCanonicalPersonSlug(name)
 
   return {
@@ -307,12 +317,28 @@ function buildPerson(sourcePerson: SourcePerson): Person {
       sourcePerson.socialLinks ?? sourcePerson['social-links'],
     ),
     researchAreas: normalizeResearchAreas(sourcePerson.researchInterestKeywords),
+    ...(supervisors.length > 0 ? { supervisors } : {}),
     ...(phdSortSurname ? { phdSortSurname } : {}),
     ...(phdStartYear === undefined ? {} : { phdStartYear }),
     ...(phdStartYearStatus ? { phdStartYearStatus } : {}),
     ...(cdtStudent === undefined ? {} : { cdtStudent }),
     ...(cdtStartYear === undefined ? {} : { cdtStartYear }),
   }
+}
+
+function normalizeSupervisors(value: string[] | string | undefined) {
+  const rawSupervisors = Array.isArray(value) ? value : (value ?? '').split(',')
+  const supervisors: string[] = []
+
+  for (const supervisor of rawSupervisors) {
+    const trimmedSupervisor = supervisor.trim()
+
+    if (trimmedSupervisor && !supervisors.includes(trimmedSupervisor)) {
+      supervisors.push(trimmedSupervisor)
+    }
+  }
+
+  return supervisors
 }
 
 function normalizeOptionalNumber(value: number | string | undefined) {
@@ -668,7 +694,9 @@ export const roleOrder = [
   'Adjunct Faculty',
   'Postdoc',
   'PhD Student',
+  'Research Engineers',
   'Masters Student',
+  'Incoming PhD Students',
   'Associate Members',
   'Alumni',
 ]
