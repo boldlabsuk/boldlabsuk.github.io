@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   deploy:
+    # Only Ravi or the repository owner may start or rerun a Pages deployment.
+    if: ${{ (github.actor == 'ravihammond' || github.actor == github.repository_owner) && (github.triggering_actor == 'ravihammond' || github.triggering_actor == github.repository_owner) }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
