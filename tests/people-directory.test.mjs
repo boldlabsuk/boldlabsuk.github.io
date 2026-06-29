@@ -404,6 +404,7 @@ test('People Directory exposes plural public People Section headings', () => {
       'Research Engineers',
       "Master's Students",
       'Incoming PhD Students',
+      'Associate Faculty',
       'Associate Members',
     ],
   )
@@ -434,10 +435,11 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 2,
-      'PhD Student': 52,
-      'Incoming PhD Students': 8,
+      'PhD Student': 51,
+      'Incoming PhD Students': 3,
       'Masters Student': 13,
-      'Associate Members': 33,
+      'Associate Faculty': 4,
+      'Associate Members': 35,
     },
   )
   assert.deepEqual(
@@ -597,31 +599,45 @@ test('People Directory preserves non-cohort section ordering', () => {
 
   assert.deepEqual(
     directory.sections
+      .find((section) => section.title === 'Associate Faculty')
+      ?.people.map((listing) => listing.slug),
+    [
+      'luca-furieri',
+      'zhengyao-jiang',
+      'aya-kayal',
+      'kristen-menou',
+    ],
+  )
+
+  assert.deepEqual(
+    directory.sections
       .find((section) => section.title === 'Associate Members')
       ?.people.map((listing) => listing.slug),
     [
       'satyam-agarwal',
       'elif-akata',
+      'mohammed-amara',
       'junming-an',
       'simon-buhrer',
+      'francesco-capuano',
+      'jess-carr',
       'aniket-chatterjee',
       'evangelos-chatzaroulas',
+      'jack-dalton',
       'juan-agustin-duque',
       'erik-feng',
       'tim-franzmeyer',
-      'luca-furieri',
+      'jakob-hartmann',
+      'james-harvey',
       'adrian-hayler',
       'aime-bienfait-igiraneza',
-      'zhengyao-jiang',
       'brandon-kaplowitz',
-      'aya-kayal',
       'robert-kirk',
       'alfie-lamerton',
       'borja-gonzalez-leon',
       'colin-lu',
+      'marek-masiak',
       'roberto-rafael-maura-rivero',
-      'kristen-menou',
-      'bassel-al-omari',
       'davide-paglieri',
       'mikayel-samvelyan',
       'efstathios-siatras',
@@ -659,15 +675,16 @@ test('People Directory exposes public PhD students newest-cohort first without s
       'gregory-levy',
       'jarek-liesen',
       'aneesh-muppidi',
+      'ross-murphy',
       'shashank-reddy',
       'j-rosser',
       'lukas-seier',
       'theo-wolf',
-      'jack-dalton',
       'thom-foster',
       'ahmet-hamdi-guzel',
       'nathan-herr',
       'alistair-letcher',
+      'runjun-mao',
       'harry-mead',
       'konstantinos-mitsides',
       'valentin-mohl',
@@ -680,6 +697,7 @@ test('People Directory exposes public PhD students newest-cohort first without s
       'eltayeb-ahmed',
       'uljad-berdica',
       'michael-beukman',
+      'lisa-coiffard',
       'jonny-cook',
       'sam-coward',
       'alex-goldie',
@@ -699,9 +717,6 @@ test('People Directory exposes public PhD students newest-cohort first without s
       'sebastian-towers',
       'qizhen-zhang-irene',
       'nagham-osman',
-      'lisa-coiffard',
-      'runjun-mao',
-      'ross-murphy',
     ],
   )
   assert.deepEqual(
@@ -709,14 +724,9 @@ test('People Directory exposes public PhD students newest-cohort first without s
       .find((section) => section.title === 'Incoming PhD Students')
       ?.people.map((listing) => listing.slug),
     [
-      'mohammed-amara',
-      'francesco-capuano',
-      'jess-carr',
       'antoine-gorceix',
-      'jakob-hartmann',
-      'james-harvey',
-      'marek-masiak',
       'george-mavroghenis',
+      'bassel-al-omari',
     ],
   )
 })

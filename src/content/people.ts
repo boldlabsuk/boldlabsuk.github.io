@@ -5,6 +5,7 @@ export type SourcePerson = {
   source: string
   name: string
   role: string
+  peopleSection?: string
   piRole?: string
   homeInstitution?: string
   researchInterestKeywords: string[] | string
@@ -293,6 +294,7 @@ export function buildWebsiteRoster(sourcePeople: SourcePerson[]): Person[] {
 function buildPerson(sourcePerson: SourcePerson): Person {
   const name = sourcePerson.name.trim()
   const role = sourcePerson.role.trim()
+  const group = sourcePerson.peopleSection?.trim() || role
   const piRole = sourcePerson.piRole?.trim()
   const affiliation = normalizeAffiliation(sourcePerson.homeInstitution)
   const phdSortSurname = sourcePerson.phdSortSurname?.trim()
@@ -307,7 +309,7 @@ function buildPerson(sourcePerson: SourcePerson): Person {
     slug,
     name,
     role,
-    group: role,
+    group,
     ...(piRole ? { piRole } : {}),
     ...(isExplicitAlumniMarker(sourcePerson.alumni) ? { alumni: true } : {}),
     affiliation: affiliation || undefined,
@@ -697,6 +699,7 @@ export const roleOrder = [
   'Research Engineers',
   'Masters Student',
   'Incoming PhD Students',
+  'Associate Faculty',
   'Associate Members',
   'Alumni',
 ]

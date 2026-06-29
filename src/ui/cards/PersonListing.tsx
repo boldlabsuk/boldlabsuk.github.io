@@ -17,6 +17,9 @@ export function PersonListing({
         <p className="person-phd-start-year">{listing.phdStartYear}</p>
       )}
       {listing.piRole && <p className="person-pi-role">{listing.piRole}</p>}
+      {!listing.piRole && listing.peopleSection === 'Associate Faculty' && (
+        <p className="person-pi-role">{listing.role}</p>
+      )}
       {listing.affiliation && (
         <p className="person-affiliation">{listing.affiliation}</p>
       )}

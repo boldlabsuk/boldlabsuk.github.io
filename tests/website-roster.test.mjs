@@ -239,6 +239,7 @@ test('Website Roster derives public Person Listings from central source rows', (
     'Research Engineers',
     'Masters Student',
     'Incoming PhD Students',
+    'Associate Faculty',
     'Associate Members',
   ])
   assert.deepEqual(
@@ -581,53 +582,70 @@ test('Full Website Roster exposes PI role metadata only for named Principal Inve
   )
 })
 
+test('Full Website Roster carries Associate Faculty titles and affiliations', () => {
+  assert.deepEqual(
+    Object.fromEntries(
+      people
+        .filter((person) => person.group === 'Associate Faculty')
+        .map((person) => [
+          person.slug,
+          {
+            role: person.role,
+            affiliation: person.affiliation,
+          },
+        ]),
+    ),
+    {
+      'aya-kayal': {
+        role: 'Assistant Professor',
+        affiliation: 'American University of Beirut',
+      },
+      'luca-furieri': {
+        role: 'Associate Professor',
+        affiliation: 'Oxford',
+      },
+      'kristen-menou': {
+        role: 'Associate Faculty',
+        affiliation: 'University of Toronto',
+      },
+      'zhengyao-jiang': {
+        role: 'Professor',
+        affiliation: 'Tongji University',
+      },
+    },
+  )
+})
+
 test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   const alistair = people.find((person) => person.slug === 'alistair-letcher')
   const antoine = people.find((person) => person.slug === 'antoine-gorceix')
-  const francesco = people.find((person) => person.slug === 'francesco-capuano')
+  const bassel = people.find((person) => person.slug === 'bassel-al-omari')
   const george = people.find((person) => person.slug === 'george-mavroghenis')
   const gregory = people.find((person) => person.slug === 'gregory-levy')
   const hannah = people.find((person) => person.slug === 'hannah-janmohamed')
   const harry = people.find((person) => person.slug === 'harry-mayne')
-  const jakob = people.find((person) => person.slug === 'jakob-hartmann')
-  const james = people.find((person) => person.slug === 'james-harvey')
-  const jess = people.find((person) => person.slug === 'jess-carr')
   const kang = people.find((person) => person.slug === 'kang-li')
-  const marek = people.find((person) => person.slug === 'marek-masiak')
+  const lisa = people.find((person) => person.slug === 'lisa-coiffard')
   const nathan = people.find((person) => person.slug === 'nathan-herr')
   const richard = people.find((person) => person.slug === 'richard-bornemann')
+  const ross = people.find((person) => person.slug === 'ross-murphy')
+  const runjun = people.find((person) => person.slug === 'runjun-mao')
   const valentin = people.find((person) => person.slug === 'valentin-mohl')
 
-  assert.equal(francesco?.phdSortSurname, 'Capuano')
-  assert.equal(francesco?.phdStartYear, 2026)
-  assert.equal(francesco?.phdStartYearStatus, 'user_provided')
-  assert.equal(francesco?.cdtStudent, true)
-  assert.equal(francesco?.cdtStartYear, 2025)
   assert.equal(antoine?.phdSortSurname, 'Gorceix')
   assert.equal(antoine?.phdStartYear, 2026)
   assert.equal(antoine?.phdStartYearStatus, 'user_provided')
   assert.equal(antoine?.cdtStudent, true)
   assert.equal(antoine?.cdtStartYear, 2025)
-  assert.equal(jakob?.phdSortSurname, 'Hartmann')
-  assert.equal(jakob?.phdStartYear, 2026)
-  assert.equal(jakob?.phdStartYearStatus, 'user_provided')
-  assert.equal(jakob?.cdtStudent, true)
-  assert.equal(jakob?.cdtStartYear, 2025)
-  assert.equal(james?.phdSortSurname, 'Harvey')
-  assert.equal(james?.phdStartYear, 2026)
-  assert.equal(james?.phdStartYearStatus, 'user_provided')
-  assert.equal(james?.cdtStudent, true)
-  assert.equal(james?.cdtStartYear, 2025)
-  assert.equal(marek?.phdSortSurname, 'Masiak')
-  assert.equal(marek?.phdStartYear, 2026)
-  assert.equal(marek?.phdStartYearStatus, 'user_provided')
-  assert.equal(marek?.cdtStudent, true)
-  assert.equal(marek?.cdtStartYear, 2025)
   assert.equal(george?.phdSortSurname, 'Mavroghenis')
   assert.equal(george?.phdStartYear, 2026)
   assert.equal(george?.phdStartYearStatus, 'user_provided')
   assert.equal(george?.cdtStudent, false)
   assert.equal(george?.cdtStartYear, undefined)
+  assert.equal(bassel?.phdStartYear, 2026)
+  assert.equal(bassel?.phdStartYearStatus, 'user_provided')
+  assert.equal(bassel?.cdtStudent, undefined)
+  assert.equal(bassel?.cdtStartYear, undefined)
   assert.equal(gregory?.phdSortSurname, 'Levy')
   assert.equal(gregory?.phdStartYear, 2025)
   assert.equal(gregory?.phdStartYearStatus, 'user_provided')
@@ -638,16 +656,16 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   assert.equal(harry?.phdStartYearStatus, 'user_provided')
   assert.equal(harry?.cdtStudent, false)
   assert.equal(harry?.cdtStartYear, undefined)
-  assert.equal(jess?.phdSortSurname, 'Carr')
-  assert.equal(jess?.phdStartYear, 2026)
-  assert.equal(jess?.phdStartYearStatus, 'user_provided')
-  assert.equal(jess?.cdtStudent, true)
-  assert.equal(jess?.cdtStartYear, 2025)
   assert.equal(kang?.phdSortSurname, 'Li')
   assert.equal(kang?.phdStartYear, 2022)
   assert.equal(kang?.phdStartYearStatus, 'user_provided')
   assert.equal(kang?.cdtStudent, false)
   assert.equal(kang?.cdtStartYear, undefined)
+  assert.equal(lisa?.phdSortSurname, 'Coiffard')
+  assert.equal(lisa?.phdStartYear, 2023)
+  assert.equal(lisa?.phdStartYearStatus, 'user_provided')
+  assert.equal(lisa?.cdtStudent, false)
+  assert.equal(lisa?.cdtStartYear, undefined)
   assert.equal(alistair?.phdSortSurname, 'Letcher')
   assert.equal(alistair?.phdStartYear, 2024)
   assert.equal(alistair?.phdStartYearStatus, 'user_provided')
@@ -668,6 +686,16 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   assert.equal(richard?.phdStartYearStatus, 'user_provided')
   assert.equal(richard?.cdtStudent, false)
   assert.equal(richard?.cdtStartYear, undefined)
+  assert.equal(ross?.phdSortSurname, 'Murphy')
+  assert.equal(ross?.phdStartYear, 2025)
+  assert.equal(ross?.phdStartYearStatus, 'user_provided')
+  assert.equal(ross?.cdtStudent, false)
+  assert.equal(ross?.cdtStartYear, undefined)
+  assert.equal(runjun?.phdSortSurname, 'Mao')
+  assert.equal(runjun?.phdStartYear, 2024)
+  assert.equal(runjun?.phdStartYearStatus, 'user_provided')
+  assert.equal(runjun?.cdtStudent, false)
+  assert.equal(runjun?.cdtStartYear, undefined)
   assert.equal(valentin?.phdSortSurname, 'Mohl')
   assert.equal(valentin?.phdStartYear, 2024)
   assert.equal(valentin?.phdStartYearStatus, 'user_provided')
@@ -1422,10 +1450,11 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Adjunct Faculty': 3,
       Postdoc: 7,
       'Research Engineers': 2,
-      'PhD Student': 52,
-      'Incoming PhD Students': 8,
+      'PhD Student': 51,
+      'Incoming PhD Students': 3,
       'Masters Student': 13,
-      'Associate Members': 33,
+      'Associate Faculty': 4,
+      'Associate Members': 35,
     },
   )
   assert.equal(new Set(listings.map((listing) => listing.slug)).size, 124)
@@ -1439,6 +1468,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Research Engineers',
       'Masters Student',
       'Incoming PhD Students',
+      'Associate Faculty',
       'Associate Members',
     ],
   )
@@ -1517,10 +1547,10 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['ahmet-hamdi-guzel', 'PhD Student'],
       ['kevin-buhler', 'Masters Student'],
       ['colin-lu', 'Associate Members'],
-      ['luca-furieri', 'Associate Members'],
-      ['kristen-menou', 'Associate Members'],
+      ['luca-furieri', 'Associate Faculty'],
+      ['kristen-menou', 'Associate Faculty'],
       ['aniket-chatterjee', 'Associate Members'],
-      ['marek-masiak', 'Incoming PhD Students'],
+      ['marek-masiak', 'Associate Members'],
       ['edan-toledo', 'Associate Members'],
       ['juan-agustin-duque', 'Associate Members'],
       ['arina-kosovskaia', 'Masters Student'],
@@ -1531,10 +1561,10 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['michal-bravansky', 'Masters Student'],
       ['suhas-hariharan', 'Masters Student'],
       ['ross-murphy', 'PhD Student'],
-      ['jack-dalton', 'PhD Student'],
-      ['mohammed-amara', 'Incoming PhD Students'],
+      ['jack-dalton', 'Associate Members'],
+      ['mohammed-amara', 'Associate Members'],
       ['harry-mead', 'PhD Student'],
-      ['zhengyao-jiang', 'Associate Members'],
+      ['zhengyao-jiang', 'Associate Faculty'],
       ['robert-kirk', 'Associate Members'],
       ['timon-willi', 'Associate Members'],
       ['yingchen-xu', 'Associate Members'],
@@ -1543,7 +1573,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['mikayel-samvelyan', 'Associate Members'],
       ['roberto-rafael-maura-rivero', 'Associate Members'],
       ['evzen-wybitul', 'Associate Members'],
-      ['bassel-al-omari', 'Associate Members'],
+      ['bassel-al-omari', 'Incoming PhD Students'],
       ['xi-xiong', 'Associate Members'],
       ['kale-ab-tessera', 'Associate Members'],
       ['brandon-kaplowitz', 'Associate Members'],
@@ -1716,15 +1746,14 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
         'PhD Student',
         [
           'ravi-hammond',
-          'shashank-reddy',
-          'jack-dalton',
-          'harry-mayne',
           'ross-murphy',
+          'shashank-reddy',
+          'harry-mayne',
         ],
       ],
       [
         'Associate Members',
-        ['elif-akata', 'roberto-rafael-maura-rivero'],
+        ['elif-akata', 'jack-dalton', 'roberto-rafael-maura-rivero'],
       ],
     ],
   )
@@ -1742,10 +1771,10 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
         'PhD Student',
         [
           'richard-bornemann',
-          'konstantinos-mitsides',
-          'hannah-janmohamed',
-          'lisa-coiffard',
           'runjun-mao',
+          'konstantinos-mitsides',
+          'lisa-coiffard',
+          'hannah-janmohamed',
         ],
       ],
       ['Research Engineers', ['jiankai-wang', 'oscar-pang']],

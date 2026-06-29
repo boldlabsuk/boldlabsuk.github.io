@@ -281,8 +281,9 @@
   {
     "source": "main",
     "name": "Aya Kayal",
-    "role": "Visitor",
-    "homeInstitution": "UCL",
+    "role": "Assistant Professor",
+    "peopleSection": "Associate Faculty",
+    "homeInstitution": "American University of Beirut",
     "researchInterestKeywords": [
       "Reinforcement Learning",
       "Language Models"
@@ -317,7 +318,7 @@
   {
     "source": "main",
     "name": "Jakob Hartmann",
-    "role": "PhD student",
+    "role": "Associate Members",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Reinforcement Learning",
@@ -329,12 +330,7 @@
     "socialLinks": "LinkedIn: https://www.linkedin.com/in/jakobhartmann99, Google Scholar: https://scholar.google.com/citations?user=1Ptmm2EAAAAJ, GitHub: https://github.com/jakobhartmann",
     "supervisors": [
       "Jakob Foerster"
-    ],
-    "phdSortSurname": "Hartmann",
-    "phdStartYear": 2026,
-    "phdStartYearStatus": "user_provided",
-    "cdtStudent": true,
-    "cdtStartYear": 2025
+    ]
   },
   {
     "source": "main",
@@ -516,13 +512,14 @@
       "Antoine Cully"
     ],
     "phdSortSurname": "Mao",
-    "phdStartYearStatus": "unknown",
+    "phdStartYear": 2024,
+    "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
   {
     "source": "main",
     "name": "James Harvey",
-    "role": "PhD student",
+    "role": "Associate Members",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Meta-Learning & Adaptation",
@@ -535,12 +532,7 @@
     "socialLinks": "https://x.com/jamesha46471726?s=11&t=UPshzKmD0hwVfVX0lgSyUw",
     "supervisors": [
       "Jakob Foerster"
-    ],
-    "phdSortSurname": "Harvey",
-    "phdStartYear": 2026,
-    "phdStartYearStatus": "user_provided",
-    "cdtStudent": true,
-    "cdtStartYear": 2025
+    ]
   },
   {
     "source": "main",
@@ -970,7 +962,7 @@
   {
     "source": "main",
     "name": "Francesco Capuano",
-    "role": "PhD student",
+    "role": "Associate Members",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "World Models",
@@ -982,12 +974,7 @@
     "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://github.com/fracapuano",
     "supervisors": [
       "Jakob Foerster"
-    ],
-    "phdSortSurname": "Capuano",
-    "phdStartYear": 2026,
-    "phdStartYearStatus": "user_provided",
-    "cdtStudent": true,
-    "cdtStartYear": 2025
+    ]
   },
   {
     "source": "main",
@@ -1053,7 +1040,7 @@
   {
     "source": "main",
     "name": "Jess Carr",
-    "role": "PhD student",
+    "role": "Associate Members",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Complex Systems",
@@ -1064,12 +1051,7 @@
     "socialLinks": "n/a",
     "supervisors": [
       "Ani Calinescu"
-    ],
-    "phdSortSurname": "Carr",
-    "phdStartYear": 2026,
-    "phdStartYearStatus": "user_provided",
-    "cdtStudent": true,
-    "cdtStartYear": 2025
+    ]
   },
   {
     "source": "main",
@@ -1230,7 +1212,8 @@
       "Antoine Cully"
     ],
     "phdSortSurname": "Coiffard",
-    "phdStartYearStatus": "unknown",
+    "phdStartYear": 2023,
+    "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
   {
@@ -1762,7 +1745,8 @@
   {
     "source": "main",
     "name": "Luca Furieri",
-    "role": "Associate Members",
+    "role": "Associate Professor",
+    "peopleSection": "Associate Faculty",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Planning & Control",
@@ -1779,8 +1763,9 @@
   {
     "source": "main",
     "name": "Kristen Menou",
-    "role": "Associate Members",
-    "homeInstitution": "Toronto",
+    "role": "Associate Faculty",
+    "peopleSection": "Associate Faculty",
+    "homeInstitution": "University of Toronto",
     "researchInterestKeywords": [
       "AI for Science",
       "Automated Discovery"
@@ -1862,7 +1847,7 @@
   {
     "source": "main",
     "name": "Marek Masiak",
-    "role": "PhD Student",
+    "role": "Associate Members",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Interpretability",
@@ -1873,12 +1858,7 @@
     "socialLinks": "https://www.linkedin.com/in/marekmasiak/, https://x.com/marekmmas, https://scholar.google.com/citations?user=XBUX-cwAAAAJ",
     "supervisors": [
       "Jakob Foerster"
-    ],
-    "phdSortSurname": "Masiak",
-    "phdStartYear": 2026,
-    "phdStartYearStatus": "user_provided",
-    "cdtStudent": true,
-    "cdtStartYear": 2025
+    ]
   },
   {
     "source": "main",
@@ -2107,13 +2087,14 @@
       "Tim Rocktäschel"
     ],
     "phdSortSurname": "Murphy",
-    "phdStartYearStatus": "unknown",
+    "phdStartYear": 2025,
+    "phdStartYearStatus": "user_provided",
     "cdtStudent": false
   },
   {
     "source": "main",
     "name": "Jack Dalton",
-    "role": "PhD Student",
+    "role": "Associate Members",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "AI for Science",
@@ -2126,17 +2107,12 @@
     "socialLinks": "https://jackatdalton.github.io",
     "supervisors": [
       "Jakob Foerster"
-    ],
-    "phdSortSurname": "Dalton",
-    "phdStartYear": 2024,
-    "phdStartYearStatus": "direct",
-    "cdtStudent": true,
-    "cdtStartYear": 2023
+    ]
   },
   {
     "source": "main",
     "name": "Mohammed Amara",
-    "role": "PhD Student",
+    "role": "Associate Members",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "NeuroAI",
@@ -2148,11 +2124,7 @@
     "socialLinks": "https://scholar.google.com/citations?user=RaqcRDQAAAAJ&hl=en&oi=ao",
     "supervisors": [
       "Jakob Foerster"
-    ],
-    "phdSortSurname": "Amara",
-    "phdStartYear": 2026,
-    "phdStartYearStatus": "user_provided",
-    "cdtStudent": false
+    ]
   },
   {
     "source": "main",
@@ -2178,8 +2150,9 @@
   {
     "source": "main",
     "name": "Zhengyao Jiang",
-    "role": "Associate Members",
-    "homeInstitution": "Weco AI",
+    "role": "Professor",
+    "peopleSection": "Associate Faculty",
+    "homeInstitution": "Tongji University",
     "researchInterestKeywords": [
       "Automated Discovery",
       "AI Agents"
@@ -2335,7 +2308,7 @@
   {
     "source": "main",
     "name": "Bassel Al Omari",
-    "role": "Associate Members",
+    "role": "PhD Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "AI Agents",
@@ -2348,7 +2321,9 @@
     "socialLinks": "https://scholar.google.com/citations?user=4EEtql8AAAAJ, https://x.com/basselralomari, https://www.linkedin.com/in/baselomari/",
     "supervisors": [
       "Jakob Foerster"
-    ]
+    ],
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided"
   },
   {
     "source": "main",

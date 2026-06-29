@@ -12,6 +12,7 @@ export const peopleSectionOrder = [
   'Research Engineers',
   'Masters Student',
   'Incoming PhD Students',
+  'Associate Faculty',
   'Associate Members',
 ] as const
 
@@ -25,6 +26,7 @@ export const peopleSectionLabels: Record<PeopleSection, string> = {
   'PhD Student': 'PhD Students',
   'Incoming PhD Students': 'Incoming PhD Students',
   'Masters Student': "Master's Students",
+  'Associate Faculty': 'Associate Faculty',
   'Associate Members': 'Associate Members',
 }
 
@@ -48,6 +50,7 @@ const surnameSortedPeopleSections = new Set<PeopleSection>([
   'Postdoc',
   'Incoming PhD Students',
   'Masters Student',
+  'Associate Faculty',
   'Associate Members',
 ])
 
@@ -150,6 +153,7 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
   'Master Student': 'Masters Student',
   'Current Masters Student, but inc. PhD this fall with Jakob+Shimon':
     'Masters Student',
+  'Associate Faculty': 'Associate Faculty',
   'Associate Members': 'Associate Members',
 }
 
@@ -228,6 +232,7 @@ export function shufflePeopleWithinSections(
     'PhD Student': [],
     'Incoming PhD Students': [],
     'Masters Student': [],
+    'Associate Faculty': [],
     'Associate Members': [],
   }
   const nonDirectoryPeople: Person[] = []
