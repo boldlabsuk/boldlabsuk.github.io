@@ -1142,7 +1142,7 @@ test('Full Website Roster includes the missing active Foerster People once in th
     [1, 1, 1, 1, 1, 1, 1, 1],
   )
   assert.deepEqual(
-    scopedFoersterPeople.map(([slug, name, role, peopleSection]) => ({
+    scopedFoersterPeople.map(([slug]) => ({
       slug,
       name: listingBySlug[slug]?.name,
       role: listingBySlug[slug]?.role,
@@ -1302,7 +1302,7 @@ test('Foerster members page comparison is represented in the Website Roster', ()
   )
   assert.deepEqual(
     publicFoersterRows.map(
-      ([sourceSection, sourceName, rosterSlug, expectedName, peopleSection]) => {
+      ([sourceSection, sourceName, rosterSlug]) => {
         const listing = listingBySlug[rosterSlug]
 
         return {
@@ -1328,7 +1328,7 @@ test('Foerster members page comparison is represented in the Website Roster', ()
   )
   assert.deepEqual(
     alumniFoersterRows.map(
-      ([sourceSection, sourceName, rosterSlug, expectedName]) => {
+      ([sourceSection, sourceName, rosterSlug]) => {
         const person = rosterBySlug[rosterSlug]
 
         return {
