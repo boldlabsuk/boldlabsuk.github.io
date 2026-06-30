@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import test from 'node:test'
 
 import {
   ACCEPTED_TALLY_ROUTES,
@@ -29,7 +29,8 @@ function representativeConfiguredBlocks({
     {
       type: 'INPUT_TEXT',
       payload: {
-        title: 'Full name, email, current role/title, current organization/institution, and location/time zone',
+        title:
+          'Full name, email, current role/title, current organization/institution, and location/time zone',
       },
     },
     {
@@ -139,7 +140,10 @@ test('Tally verifier reports the live incomplete public form shape as not ready'
       workspaceId: '3NbqgN',
       name: 'BOLD Expression of Interest',
       blocks: [
-        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'FORM_TITLE',
+          payload: { title: 'BOLD Expression of Interest' },
+        },
         {
           type: 'HIDDEN_FIELDS',
           payload: { hiddenFields: [{ name: 'route' }] },
@@ -167,7 +171,10 @@ test('Tally verifier rejects a visible Desired role field', () => {
       workspaceId: '3NbqgN',
       name: 'BOLD Expression of Interest',
       blocks: [
-        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'FORM_TITLE',
+          payload: { title: 'BOLD Expression of Interest' },
+        },
         {
           type: 'HIDDEN_FIELDS',
           payload: { hiddenFields: [{ name: 'route' }] },
@@ -197,7 +204,10 @@ test('Tally verifier rejects fixed-choice Research Direction Interest fields', (
       workspaceId: '3NbqgN',
       name: 'BOLD Expression of Interest',
       blocks: [
-        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'FORM_TITLE',
+          payload: { title: 'BOLD Expression of Interest' },
+        },
         {
           type: 'HIDDEN_FIELDS',
           payload: { hiddenFields: [{ name: 'route' }] },
@@ -229,16 +239,12 @@ test('Tally verifier rejects fixed-choice Research Direction Interest fields', (
 })
 
 test('Tally verifier module can be imported without CLI argv', () => {
-  const result = spawnSync(
-    process.execPath,
-    ['--input-type=module'],
-    {
-      cwd: process.cwd(),
-      input:
-        "await import('./scripts/verify-tally-expression-of-interest.mjs')\n",
-      encoding: 'utf8',
-    },
-  )
+  const result = spawnSync(process.execPath, ['--input-type=module'], {
+    cwd: process.cwd(),
+    input:
+      "await import('./scripts/verify-tally-expression-of-interest.mjs')\n",
+    encoding: 'utf8',
+  })
 
   assert.equal(result.status, 0, result.stderr)
 })
@@ -253,7 +259,8 @@ test('Tally verifier accepts a representative configured generic public form pay
     {
       type: 'INPUT_TEXT',
       payload: {
-        title: 'Full name, email, current role/title, current organization/institution, and location/time zone',
+        title:
+          'Full name, email, current role/title, current organization/institution, and location/time zone',
       },
     },
     {
@@ -340,7 +347,10 @@ test('Tally verifier accepts confirmation copy that reviews submissions periodic
       workspaceId: '3NbqgN',
       name: 'BOLD Expression of Interest',
       blocks: [
-        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'FORM_TITLE',
+          payload: { title: 'BOLD Expression of Interest' },
+        },
         {
           type: 'HIDDEN_FIELDS',
           payload: { hiddenFields: [{ name: 'route' }] },
@@ -348,7 +358,8 @@ test('Tally verifier accepts confirmation copy that reviews submissions periodic
         {
           type: 'INPUT_TEXT',
           payload: {
-            title: 'Full name, email, current role/title, current organization/institution, and location/time zone',
+            title:
+              'Full name, email, current role/title, current organization/institution, and location/time zone',
           },
         },
         {
@@ -428,7 +439,10 @@ test('Tally verifier rejects CV/resume uploads without PDF-only and 10 MB constr
       workspaceId: '3NbqgN',
       name: 'BOLD Expression of Interest',
       blocks: [
-        { type: 'FORM_TITLE', payload: { title: 'BOLD Expression of Interest' } },
+        {
+          type: 'FORM_TITLE',
+          payload: { title: 'BOLD Expression of Interest' },
+        },
         {
           type: 'HIDDEN_FIELDS',
           payload: { hiddenFields: [{ name: 'route' }] },

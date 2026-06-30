@@ -32,15 +32,15 @@ export function SiteFooter({
           <p>{siteMeta.description}</p>
         </div>
 
-        <div className="footer-links" aria-label="Footer navigation">
+        <nav className="footer-links" aria-label="Footer navigation">
           {navigation.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
             </a>
           ))}
-        </div>
+        </nav>
 
-        <div
+        <nav
           className="footer-links footer-social-links"
           aria-label="Professional links"
         >
@@ -52,13 +52,15 @@ export function SiteFooter({
             }}
             personName={siteMeta.name}
           />
-        </div>
+        </nav>
       </div>
       <div className="footer-bottom">
         <span>
           © {siteMeta.copyrightYear} {siteMeta.name}.
         </span>
-        <span className="footer-funding">{siteMeta.fundingAcknowledgement}</span>
+        <span className="footer-funding">
+          {siteMeta.fundingAcknowledgement}
+        </span>
         <span>Unified university AI research lab.</span>
       </div>
     </footer>

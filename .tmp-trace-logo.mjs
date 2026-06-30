@@ -5,7 +5,9 @@ const [, , inputPath, outputPath, thresholdArg = '0.5', toleranceArg = '0.55'] =
   process.argv
 
 if (!inputPath || !outputPath) {
-  throw new Error('Usage: node .tmp-trace-logo.mjs input.png output.svg [threshold] [tolerance]')
+  throw new Error(
+    'Usage: node .tmp-trace-logo.mjs input.png output.svg [threshold] [tolerance]',
+  )
 }
 
 const width = 205
@@ -24,11 +26,12 @@ for (let y = 0; y < height; y += 1) {
     const r = raw[i]
     const g = raw[i + 1]
     const b = raw[i + 2]
-    const alpha = [
-      (white[0] - r) / (white[0] - blue[0]),
-      (white[1] - g) / (white[1] - blue[1]),
-      (white[2] - b) / (white[2] - blue[2]),
-    ].reduce((sum, item) => sum + item, 0) / 3
+    const alpha =
+      [
+        (white[0] - r) / (white[0] - blue[0]),
+        (white[1] - g) / (white[1] - blue[1]),
+        (white[2] - b) / (white[2] - blue[2]),
+      ].reduce((sum, item) => sum + item, 0) / 3
 
     values[y][x] = Math.max(0, Math.min(1, alpha))
   }
@@ -207,7 +210,8 @@ function simplifyClosed(points, epsilon) {
   for (let i = 1; i < prepared.length; i += 1) {
     if (
       prepared[i][0] < prepared[start][0] ||
-      (prepared[i][0] === prepared[start][0] && prepared[i][1] < prepared[start][1])
+      (prepared[i][0] === prepared[start][0] &&
+        prepared[i][1] < prepared[start][1])
     ) {
       start = i
     }
@@ -229,7 +233,11 @@ function rdp(points, epsilon) {
   let maxIndex = 0
 
   for (let i = 1; i < points.length - 1; i += 1) {
-    const distance = pointLineDistance(points[i], points[0], points[points.length - 1])
+    const distance = pointLineDistance(
+      points[i],
+      points[0],
+      points[points.length - 1],
+    )
     if (distance > maxDistance) {
       maxDistance = distance
       maxIndex = i
@@ -264,14 +272,8 @@ function pathFromLoop(points) {
       continue
     }
 
-    const cp1 = [
-      p1[0] + (p2[0] - p0[0]) / 6,
-      p1[1] + (p2[1] - p0[1]) / 6,
-    ]
-    const cp2 = [
-      p2[0] - (p3[0] - p1[0]) / 6,
-      p2[1] - (p3[1] - p1[1]) / 6,
-    ]
+    const cp1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6]
+    const cp2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6]
 
     d += `C${fmt(cp1[0])} ${fmt(cp1[1])} ${fmt(cp2[0])} ${fmt(cp2[1])} ${fmt(p2[0])} ${fmt(p2[1])}`
   }
@@ -292,7 +294,14 @@ function pointLineDistance(point, lineStart, lineEnd) {
     return Math.hypot(point[0] - lineStart[0], point[1] - lineStart[1])
   }
 
-  return Math.abs(dy * point[0] - dx * point[1] + lineEnd[0] * lineStart[1] - lineEnd[1] * lineStart[0]) / denominator
+  return (
+    Math.abs(
+      dy * point[0] -
+        dx * point[1] +
+        lineEnd[0] * lineStart[1] -
+        lineEnd[1] * lineStart[0],
+    ) / denominator
+  )
 }
 
 function polygonArea(points) {

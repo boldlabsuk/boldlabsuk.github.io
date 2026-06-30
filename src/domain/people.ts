@@ -1,5 +1,5 @@
-import { canonicalPeopleResearchAreas, people } from '../content.ts'
 import type { Person, PersonLinkSet } from '../content.ts'
+import { canonicalPeopleResearchAreas, people } from '../content.ts'
 import { sortedNews } from './news.ts'
 import { sortedPapers } from './papers.ts'
 import { allFilterValue, unique } from './shared.ts'
@@ -30,7 +30,9 @@ export const peopleSectionLabels: Record<PeopleSection, string> = {
   'Associate Members': 'Associate Members',
 }
 
-const staticPeopleSectionOrders: Partial<Record<PeopleSection, readonly string[]>> = {
+const staticPeopleSectionOrders: Partial<
+  Record<PeopleSection, readonly string[]>
+> = {
   'Principal Investigator': [
     'jakob-foerster',
     'tim-rocktaschel',
@@ -178,7 +180,9 @@ export function getPeopleSectionFilterLabel(section: string) {
 }
 
 export function getPeopleFilterOptions() {
-  const directoryPeople = people.filter((person) => getPeopleSection(person) !== null)
+  const directoryPeople = people.filter(
+    (person) => getPeopleSection(person) !== null,
+  )
   const visibleAreaSet = new Set(
     directoryPeople.flatMap((person) => person.researchAreas),
   )
@@ -199,7 +203,9 @@ export function getPeopleFilterOptions() {
   return {
     sections: [...peopleSectionOrder],
     areas: [
-      ...canonicalPeopleResearchAreas.filter((area) => visibleAreaSet.has(area)),
+      ...canonicalPeopleResearchAreas.filter((area) =>
+        visibleAreaSet.has(area),
+      ),
       ...unique(
         [...visibleAreaSet].filter((area) => !canonicalAreaSet.has(area)),
       ),
@@ -213,7 +219,8 @@ export function getPeopleFilterOptions() {
       ...principalInvestigatorSupervisors,
       ...unique(
         [...supervisorSet].filter(
-          (supervisor) => !principalInvestigatorSupervisors.includes(supervisor),
+          (supervisor) =>
+            !principalInvestigatorSupervisors.includes(supervisor),
         ),
       ),
     ],
@@ -347,7 +354,10 @@ function comparePhDStudents(
 
   return (
     startYearComparison ||
-    comparePeopleSortText(firstMetadata.sortSurname, secondMetadata.sortSurname) ||
+    comparePeopleSortText(
+      firstMetadata.sortSurname,
+      secondMetadata.sortSurname,
+    ) ||
     comparePeopleSortText(firstPerson.name, secondPerson.name)
   )
 }
@@ -422,13 +432,11 @@ export function buildPeopleDirectoryViewModel({
 
     return (
       isSelectedSupervisor ||
-      (
-        matchesQuery &&
+      (matchesQuery &&
         matchesSection &&
         matchesArea &&
         matchesAffiliation &&
-        matchesSupervisor
-      )
+        matchesSupervisor)
     )
   })
 
@@ -482,7 +490,8 @@ export function getPeopleSection(
     return null
   }
 
-  const peopleSection = groupToPeopleSection[person.group] ?? 'Associate Members'
+  const peopleSection =
+    groupToPeopleSection[person.group] ?? 'Associate Members'
 
   if (peopleSection === 'PhD Student' && person.phdStartYear === 2026) {
     return 'Incoming PhD Students'
@@ -507,7 +516,9 @@ export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
     links.bluesky,
   ]
 
-  return candidates.find((href): href is string => Boolean(href?.trim())) ?? null
+  return (
+    candidates.find((href): href is string => Boolean(href?.trim())) ?? null
+  )
 }
 
 export function getPerson(slug: string) {

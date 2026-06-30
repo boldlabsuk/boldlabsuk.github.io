@@ -7,7 +7,7 @@ import { PeoplePage } from '../src/features/people/PeoplePage'
 const peoplePage = renderToStaticMarkup(createElement(PeoplePage))
 
 assert.match(peoplePage, /aria-label="People filters"/)
-assert.match(peoplePage, /role="search"/)
+assert.match(peoplePage, /<search class="search-input people-name-search">/)
 assert.match(peoplePage, /<option value="PhD Student">PhD Students<\/option>/)
 assert.match(
   peoplePage,
@@ -21,8 +21,14 @@ assert.match(
   peoplePage,
   /<label class="select-filter" for="people-section"><span>Role<\/span>/,
 )
-assert.match(peoplePage, /<label class="select-filter" for="people-supervisor">/)
-assert.match(peoplePage, /<option value="Jakob Foerster">Jakob Foerster<\/option>/)
+assert.match(
+  peoplePage,
+  /<label class="select-filter" for="people-supervisor">/,
+)
+assert.match(
+  peoplePage,
+  /<option value="Jakob Foerster">Jakob Foerster<\/option>/,
+)
 const roleFilterIndex = peoplePage.indexOf('for="people-section"')
 const supervisorFilterIndex = peoplePage.indexOf('for="people-supervisor"')
 const researchAreaFilterIndex = peoplePage.indexOf('for="people-area"')
@@ -36,9 +42,15 @@ assert.doesNotMatch(peoplePage, /Showing \d+ of \d+ people/)
 assert.doesNotMatch(peoplePage, /Reset filters/)
 assert.doesNotMatch(peoplePage, /people-active-filter-pill/)
 const phdSectionIndex = peoplePage.indexOf('<h2>PhD Students</h2>')
-const researchEngineersSectionIndex = peoplePage.indexOf('<h2>Research Engineers</h2>')
-const incomingSectionIndex = peoplePage.indexOf('<h2>Incoming PhD Students</h2>')
-const mastersSectionIndex = peoplePage.search(/<h2>Master(?:'|&#x27;)s Students<\/h2>/)
+const researchEngineersSectionIndex = peoplePage.indexOf(
+  '<h2>Research Engineers</h2>',
+)
+const incomingSectionIndex = peoplePage.indexOf(
+  '<h2>Incoming PhD Students</h2>',
+)
+const mastersSectionIndex = peoplePage.search(
+  /<h2>Master(?:'|&#x27;)s Students<\/h2>/,
+)
 
 assert.ok(phdSectionIndex > -1)
 assert.ok(researchEngineersSectionIndex > phdSectionIndex)

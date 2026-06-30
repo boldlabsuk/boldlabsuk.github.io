@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import test from 'node:test'
 
 test('Social links render text labels by default and icon-only compact links', () => {
   const result = spawnSync(

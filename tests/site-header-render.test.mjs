@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import test from 'node:test'
 
 test('Site Header hides the home brand slot and uses the full logo when shown', () => {
   const result = spawnSync(

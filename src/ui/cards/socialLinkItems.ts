@@ -50,13 +50,15 @@ export function getPersonSocialLinkItems({
       return []
     }
 
-    return [{
-      key,
-      href,
-      label: labels[key],
-      accessibleName: `${labels[key]} for ${personName}`,
-      isEmail: href.startsWith('mailto:'),
-    }]
+    return [
+      {
+        key,
+        href,
+        label: labels[key],
+        accessibleName: `${labels[key]} for ${personName}`,
+        isEmail: href.startsWith('mailto:'),
+      },
+    ]
   })
 }
 

@@ -1,8 +1,8 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { access, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import test from 'node:test'
 
 import {
   buildWebsiteRoster,
@@ -27,21 +27,81 @@ const emptyFilters = {
 
 // Mirrors https://foersterlab.com/members/ as checked on 2026-06-22.
 const foersterMembersPageFixture = [
-  ['Faculty', 'Jakob Foerster', 'jakob-foerster', 'Jakob Foerster', 'Principal Investigator'],
+  [
+    'Faculty',
+    'Jakob Foerster',
+    'jakob-foerster',
+    'Jakob Foerster',
+    'Principal Investigator',
+  ],
   ['Postdocs', 'Yulin Wang', 'yulin-wang', 'Yulin Wang', 'Postdoc'],
   ['Postdocs', 'Dylan Cope', 'dylan-cope', 'Dylan Cope', 'Postdoc'],
-  ['Postdocs', 'Johannes Forkel', 'johannes-forkel', 'Johannes Forkel', 'Postdoc'],
+  [
+    'Postdocs',
+    'Johannes Forkel',
+    'johannes-forkel',
+    'Johannes Forkel',
+    'Postdoc',
+  ],
   ['Postdocs', 'Mattie Fellows', 'mattie-fellows', 'Mattie Fellows', 'Postdoc'],
-  ['DPhil Students', 'Lukas Seier', 'lukas-seier', 'Lukas Seier', 'PhD Student'],
-  ['DPhil Students', 'Shashank Reddy', 'shashank-reddy', 'Shashank Reddy', 'PhD Student'],
-  ['DPhil Students', 'Alistair Letcher', 'alistair-letcher', 'Alistair Letcher', 'PhD Student'],
+  [
+    'DPhil Students',
+    'Lukas Seier',
+    'lukas-seier',
+    'Lukas Seier',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Shashank Reddy',
+    'shashank-reddy',
+    'Shashank Reddy',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Alistair Letcher',
+    'alistair-letcher',
+    'Alistair Letcher',
+    'PhD Student',
+  ],
   ['DPhil Students', 'Theo Wolf', 'theo-wolf', 'Theo Wolf', 'PhD Student'],
-  ['DPhil Students', 'Antonio León Villares', 'antonio-leon-villares', 'Antonio León Villares', 'PhD Student'],
-  ['DPhil Students', 'Austin Andrews', 'austin-andrews', 'Austin Andrews', 'PhD Student'],
-  ['DPhil Students', 'Jarek Liesen', 'jarek-liesen', 'Jarek Liesen', 'PhD Student'],
-  ['DPhil Students', 'Ravi Hammond', 'ravi-hammond', 'Ravi Hammond', 'PhD Student'],
+  [
+    'DPhil Students',
+    'Antonio León Villares',
+    'antonio-leon-villares',
+    'Antonio León Villares',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Austin Andrews',
+    'austin-andrews',
+    'Austin Andrews',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Jarek Liesen',
+    'jarek-liesen',
+    'Jarek Liesen',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Ravi Hammond',
+    'ravi-hammond',
+    'Ravi Hammond',
+    'PhD Student',
+  ],
   ['DPhil Students', 'J Rosser', 'j-rosser', 'J Rosser', 'PhD Student'],
-  ['DPhil Students', 'Hannah Erlebach', 'hannah-erlebach', 'Hannah Erlebach', 'PhD Student'],
+  [
+    'DPhil Students',
+    'Hannah Erlebach',
+    'hannah-erlebach',
+    'Hannah Erlebach',
+    'PhD Student',
+  ],
   [
     'DPhil Students',
     'Harry Mayne',
@@ -49,39 +109,183 @@ const foersterMembersPageFixture = [
     'Harry Mayne',
     'PhD Student',
   ],
-  ['DPhil Students', 'Darius Muglich', 'darius-muglich', 'Darius Muglich', 'PhD Student'],
-  ['DPhil Students', 'Bidipta Sarkar', 'bidipta-sarkar', 'Bidipta Sarkar', 'PhD Student'],
-  ['DPhil Students', 'Thom Foster', 'thom-foster', 'Thom Foster', 'PhD Student'],
-  ['DPhil Students', 'Clarisse Wibault', 'clarisse-wibault', 'Clarisse Wibault', 'PhD Student'],
+  [
+    'DPhil Students',
+    'Darius Muglich',
+    'darius-muglich',
+    'Darius Muglich',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Bidipta Sarkar',
+    'bidipta-sarkar',
+    'Bidipta Sarkar',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Thom Foster',
+    'thom-foster',
+    'Thom Foster',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Clarisse Wibault',
+    'clarisse-wibault',
+    'Clarisse Wibault',
+    'PhD Student',
+  ],
   ['DPhil Students', 'Zilin Wang', 'zilin-wang', 'Zilin Wang', 'PhD Student'],
   ['DPhil Students', 'Sam Coward', 'sam-coward', 'Sam Coward', 'PhD Student'],
-  ['DPhil Students', 'Michael Matthews', 'michael-matthews', 'Michael Matthews', 'PhD Student'],
-  ['DPhil Students', 'Uljad Berdica', 'uljad-berdica', 'Uljad Berdica', 'PhD Student'],
-  ['DPhil Students', 'Jonathan Cook', 'jonny-cook', 'Jonny Cook', 'PhD Student'],
-  ['DPhil Students', 'Michael Beukman', 'michael-beukman', 'Michael Beukman', 'PhD Student'],
-  ['DPhil Students', 'Alex Goldie', 'alex-goldie', 'Alex Goldie', 'PhD Student'],
-  ['DPhil Students', 'Matthew Jackson', 'matthew-jackson', 'Matthew Jackson', 'PhD Student'],
-  ['DPhil Students', 'Qizhen Zhang (Irene)', 'qizhen-zhang-irene', 'Qizhen Zhang (Irene)', 'PhD Student'],
-  ['DPhil Students', 'Silvia Sapora', 'silvia-sapora', 'Silvia Sapora', 'PhD Student'],
-  ['DPhil Students', 'Andrei Lupu', 'andrei-lupu', 'Andrei Lupu', 'PhD Student'],
-  ['DPhil Students', 'Alex Rutherford', 'alexander-rutherford', 'Alexander Rutherford', 'PhD Student'],
+  [
+    'DPhil Students',
+    'Michael Matthews',
+    'michael-matthews',
+    'Michael Matthews',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Uljad Berdica',
+    'uljad-berdica',
+    'Uljad Berdica',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Jonathan Cook',
+    'jonny-cook',
+    'Jonny Cook',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Michael Beukman',
+    'michael-beukman',
+    'Michael Beukman',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Alex Goldie',
+    'alex-goldie',
+    'Alex Goldie',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Matthew Jackson',
+    'matthew-jackson',
+    'Matthew Jackson',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Qizhen Zhang (Irene)',
+    'qizhen-zhang-irene',
+    'Qizhen Zhang (Irene)',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Silvia Sapora',
+    'silvia-sapora',
+    'Silvia Sapora',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Andrei Lupu',
+    'andrei-lupu',
+    'Andrei Lupu',
+    'PhD Student',
+  ],
+  [
+    'DPhil Students',
+    'Alex Rutherford',
+    'alexander-rutherford',
+    'Alexander Rutherford',
+    'PhD Student',
+  ],
   ['DPhil Students', 'Ola Kalisz', 'ola-kalisz', 'Ola Kalisz', 'PhD Student'],
-  ['DPhil Students', 'Sebastian Towers', 'sebastian-towers', 'Sebastian Towers', 'PhD Student'],
-  ["Master's Students", 'Aramis Marti-Shahandeh', 'aramis-marti-shahandeh', 'Aramis Marti-Shahandeh', 'Masters Student'],
-  ["Master's Students", 'Samuel Simons', 'samuel-simons', 'Samuel Simons', 'Masters Student'],
-  ["Master's Students", 'Satyam Agarwal', 'satyam-agarwal', 'Satyam Agarwal', 'Associate Members'],
+  [
+    'DPhil Students',
+    'Sebastian Towers',
+    'sebastian-towers',
+    'Sebastian Towers',
+    'PhD Student',
+  ],
+  [
+    "Master's Students",
+    'Aramis Marti-Shahandeh',
+    'aramis-marti-shahandeh',
+    'Aramis Marti-Shahandeh',
+    'Masters Student',
+  ],
+  [
+    "Master's Students",
+    'Samuel Simons',
+    'samuel-simons',
+    'Samuel Simons',
+    'Masters Student',
+  ],
+  [
+    "Master's Students",
+    'Satyam Agarwal',
+    'satyam-agarwal',
+    'Satyam Agarwal',
+    'Associate Members',
+  ],
   ["Master's Students", 'Yuhe Gao', 'yuhe-gao', 'Yuhe Gao', 'Masters Student'],
-  ["Master's Students", 'Nathan Monette', 'nathan-monette', 'Nathan Monette', 'Masters Student'],
-  ['Associate Members', 'Elif Akata', 'elif-akata', 'Elif Akata', 'Associate Members'],
-  ['Associate Members', 'Maksymilian Wolski', 'maksymilian-wolski', 'Maksymilian Wolski', 'Associate Members'],
-  ['Associate Members', 'Tim Franzmeyer', 'tim-franzmeyer', 'Tim Franzmeyer', 'Associate Members'],
+  [
+    "Master's Students",
+    'Nathan Monette',
+    'nathan-monette',
+    'Nathan Monette',
+    'Masters Student',
+  ],
+  [
+    'Associate Members',
+    'Elif Akata',
+    'elif-akata',
+    'Elif Akata',
+    'Associate Members',
+  ],
+  [
+    'Associate Members',
+    'Maksymilian Wolski',
+    'maksymilian-wolski',
+    'Maksymilian Wolski',
+    'Associate Members',
+  ],
+  [
+    'Associate Members',
+    'Tim Franzmeyer',
+    'tim-franzmeyer',
+    'Tim Franzmeyer',
+    'Associate Members',
+  ],
   ['Alumni', 'Ben Ellis', 'ben-ellis', 'Ben Ellis', 'Alumni'],
   ['Alumni', 'Chris Lu', 'chris-lu', 'Chris Lu', 'Alumni'],
   ['Alumni', 'Timon Willi', 'timon-willi', 'Timon Willi', 'Associate Members'],
-  ['Alumni', 'Christian Schroeder de Witt', 'christian-schroeder-de-witt', 'Christian Schroeder de Witt', 'Alumni'],
+  [
+    'Alumni',
+    'Christian Schroeder de Witt',
+    'christian-schroeder-de-witt',
+    'Christian Schroeder de Witt',
+    'Alumni',
+  ],
   ['Alumni', 'Jia Wan', 'jia-wan', 'Jia Wan', 'Alumni'],
   ['Alumni', 'Kang Li', 'kang-li', 'Kang Li', 'PhD Student'],
-  ['Alumni', 'Matthias Hericks', 'matthias-hericks', 'Matthias Hericks', 'Alumni'],
+  [
+    'Alumni',
+    'Matthias Hericks',
+    'matthias-hericks',
+    'Matthias Hericks',
+    'Alumni',
+  ],
   ['Alumni', 'Noah Sarfati', 'noah-sarfati', 'Noah Sarfati', 'Alumni'],
 ]
 
@@ -91,21 +295,11 @@ const foersterExpectedPublicLinkTypesBySlug = {
   'dylan-cope': ['github', 'googleScholar', 'twitter', 'website'],
   'johannes-forkel': ['googleScholar'],
   'lukas-seier': ['github', 'googleScholar', 'website'],
-  'shashank-reddy': [
-    'github',
-    'googleScholar',
-    'twitter',
-    'website',
-  ],
+  'shashank-reddy': ['github', 'googleScholar', 'twitter', 'website'],
   'alistair-letcher': ['github', 'googleScholar', 'twitter', 'website'],
   'theo-wolf': ['github', 'googleScholar', 'twitter', 'website'],
   'antonio-leon-villares': ['github', 'googleScholar', 'website'],
-  'austin-andrews': [
-    'github',
-    'googleScholar',
-    'twitter',
-    'website',
-  ],
+  'austin-andrews': ['github', 'googleScholar', 'twitter', 'website'],
   'jarek-liesen': ['github', 'googleScholar', 'twitter', 'website'],
   'ravi-hammond': ['github', 'googleScholar', 'linkedin', 'twitter'],
   'j-rosser': ['github', 'googleScholar', 'twitter', 'website'],
@@ -203,25 +397,28 @@ test('Website Roster derives public Person Listings from central source rows', (
   ])
 
   assert.deepEqual(
-    roster.map((person) => [person.slug, person.name, person.role, person.group]),
+    roster.map((person) => [
+      person.slug,
+      person.name,
+      person.role,
+      person.group,
+    ]),
     [
       ['included-pi', 'Included PI', 'BOLD PI', 'BOLD PI'],
-      [
-        'blank-flag-postdoc',
-        'Blank Flag Postdoc',
-        'Postdoc',
-        'Postdoc',
-      ],
+      ['blank-flag-postdoc', 'Blank Flag Postdoc', 'Postdoc', 'Postdoc'],
     ],
   )
-  assert.deepEqual(roster.map((person) => person.affiliation), [
-    'Oxford',
-    'Imperial',
-  ])
-  assert.deepEqual(roster.map((person) => person.image), [
-    '/profile-assets/included-pi.webp',
-    '/profile-assets/blank-flag-postdoc.webp',
-  ])
+  assert.deepEqual(
+    roster.map((person) => person.affiliation),
+    ['Oxford', 'Imperial'],
+  )
+  assert.deepEqual(
+    roster.map((person) => person.image),
+    [
+      '/profile-assets/included-pi.webp',
+      '/profile-assets/blank-flag-postdoc.webp',
+    ],
+  )
   assert.deepEqual(roster[1]?.supervisors, ['Included PI', 'External Mentor'])
   assert.equal(roster[0]?.piRole, 'Strategic Lead')
   assert.equal(Object.hasOwn(roster[1] ?? {}, 'piRole'), false)
@@ -350,7 +547,10 @@ test('Website Roster retains explicit source alumni markers outside the public d
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(roster.find((person) => person.slug === 'flagged-alumni')?.alumni, true)
+  assert.equal(
+    roster.find((person) => person.slug === 'flagged-alumni')?.alumni,
+    true,
+  )
   assert.equal(listings.length, 2)
   assert.equal(directory.totalPeople, 2)
   assert.deepEqual(
@@ -425,7 +625,10 @@ test('Website Roster only creates supplemental Alumni from the explicit alumni s
       ['explicit-alumni', { github: 'https://github.com/explicit-alumni' }],
     ],
   )
-  assert.equal(roster.find((person) => person.slug === 'explicit-alumni')?.alumni, true)
+  assert.equal(
+    roster.find((person) => person.slug === 'explicit-alumni')?.alumni,
+    true,
+  )
   assert.deepEqual(
     directory.sections.map((section) => [
       section.title,
@@ -478,8 +681,7 @@ test('Website Roster parses labeled and pipe-separated source profile links', ()
   assert.deepEqual(roster[0]?.links, {
     website: 'https://spreadsheet.example',
     twitter: 'https://x.com/spreadsheet_ai',
-    googleScholar:
-      'https://scholar.google.co.uk/citations?user=spreadsheet',
+    googleScholar: 'https://scholar.google.co.uk/citations?user=spreadsheet',
     linkedin: 'https://www.linkedin.com/in/spreadsheet',
   })
 })
@@ -551,15 +753,18 @@ test('Website Roster shortens source affiliation names for public display', () =
     },
   ])
 
-  assert.deepEqual(roster.map((person) => person.affiliation), [
-    'Oxford',
-    'Imperial',
-    'UCL',
-    'Google DeepMind; UCL',
-    'Oxford',
-    'Imperial',
-    'UCL',
-  ])
+  assert.deepEqual(
+    roster.map((person) => person.affiliation),
+    [
+      'Oxford',
+      'Imperial',
+      'UCL',
+      'Google DeepMind; UCL',
+      'Oxford',
+      'Imperial',
+      'UCL',
+    ],
+  )
 })
 
 test('Full Website Roster exposes PI role metadata only for named Principal Investigators', () => {
@@ -704,18 +909,22 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
 })
 
 test('Full Website Roster carries spreadsheet supervisor attachments', () => {
-  assert.deepEqual(people.find((person) => person.slug === 'keyue-jiang')?.supervisors, [
-    'Laura Toni',
-  ])
-  assert.deepEqual(people.find((person) => person.slug === 'alex-goldie')?.supervisors, [
-    'Jakob Foerster',
-    'Shimon Whiteson',
-  ])
+  assert.deepEqual(
+    people.find((person) => person.slug === 'keyue-jiang')?.supervisors,
+    ['Laura Toni'],
+  )
+  assert.deepEqual(
+    people.find((person) => person.slug === 'alex-goldie')?.supervisors,
+    ['Jakob Foerster', 'Shimon Whiteson'],
+  )
   assert.deepEqual(
     people.find((person) => person.slug === 'borja-gonzalez-leon')?.supervisors,
     ['Tim Rocktäschel', 'Jakob Foerster', 'Antoine Cully'],
   )
-  assert.equal(people.find((person) => person.slug === 'jakob-foerster')?.supervisors, undefined)
+  assert.equal(
+    people.find((person) => person.slug === 'jakob-foerster')?.supervisors,
+    undefined,
+  )
 })
 
 test('Website Roster recognizes Bluesky profile links', () => {
@@ -832,7 +1041,8 @@ test('Website Roster reconciles Foerster aliases into existing People with merge
       researchInterestKeywords: ['Reinforcement Learning'],
       profilePicture: 'kang-li.jpg',
       alumni: 'YES',
-      socialLinks: 'https://twitter.com/Kang__Oxford; https://github.com/KangOxford',
+      socialLinks:
+        'https://twitter.com/Kang__Oxford; https://github.com/KangOxford',
     },
     {
       source: 'foerster',
@@ -861,22 +1071,28 @@ test('Website Roster reconciles Foerster aliases into existing People with merge
       .map((listing) => [listing.slug, listing]),
   )
 
-  assert.deepEqual(roster.find((person) => person.slug === 'jonny-cook')?.links, {
-    twitter: 'https://x.com/jonnycoook?s=11',
-    googleScholar: 'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
-    github: 'https://github.com/jonathan-cook235',
-  })
+  assert.deepEqual(
+    roster.find((person) => person.slug === 'jonny-cook')?.links,
+    {
+      twitter: 'https://x.com/jonnycoook?s=11',
+      googleScholar:
+        'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
+      github: 'https://github.com/jonathan-cook235',
+    },
+  )
   assert.deepEqual(
     roster.find((person) => person.slug === 'alexander-rutherford')?.links,
     {
       website: 'https://amacrutherford.com',
-      googleScholar: 'https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en',
+      googleScholar:
+        'https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en',
       twitter: 'https://twitter.com/alexrutherford0',
       github: 'https://github.com/amacrutherford',
     },
   )
   assert.deepEqual(roster.find((person) => person.slug === 'kang-li')?.links, {
-    googleScholar: 'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
+    googleScholar:
+      'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
     twitter: 'https://twitter.com/Kang__Oxford',
     github: 'https://github.com/KangOxford',
   })
@@ -909,30 +1125,40 @@ test('Full Website Roster has reconciled Foerster people exactly once with merge
     ),
     [1, 1, 1, 1],
   )
-  assert.deepEqual(people.find((person) => person.slug === 'jonny-cook')?.links, {
-    twitter: 'https://x.com/jonnycoook?s=11',
-    googleScholar: 'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
-    github: 'https://github.com/jonathan-cook235',
-  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'jonny-cook')?.links,
+    {
+      twitter: 'https://x.com/jonnycoook?s=11',
+      googleScholar:
+        'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
+      github: 'https://github.com/jonathan-cook235',
+    },
+  )
   assert.deepEqual(
     people.find((person) => person.slug === 'alexander-rutherford')?.links,
     {
       website: 'https://amacrutherford.com',
-      googleScholar: 'https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en',
+      googleScholar:
+        'https://scholar.google.com/citations?user=EOjYGf0AAAAJ&hl=en',
       twitter: 'https://twitter.com/alexrutherford0',
       github: 'https://github.com/amacrutherford',
     },
   )
   assert.deepEqual(people.find((person) => person.slug === 'kang-li')?.links, {
-    googleScholar: 'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
+    googleScholar:
+      'https://scholar.google.com/citations?user=12Q-VD4AAAAJ&hl=en',
     twitter: 'https://twitter.com/Kang__Oxford',
     github: 'https://github.com/KangOxford',
   })
-  assert.deepEqual(people.find((person) => person.slug === 'elif-akata')?.links, {
-    website: 'https://eliaka.github.io',
-    twitter: 'https://x.com/elifakata',
-    googleScholar: 'https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao',
-  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'elif-akata')?.links,
+    {
+      website: 'https://eliaka.github.io',
+      twitter: 'https://x.com/elifakata',
+      googleScholar:
+        'https://scholar.google.com/citations?user=T__E730AAAAJ&hl=en&oi=ao',
+    },
+  )
   assert.equal(
     listingBySlug['jonny-cook']?.primaryPersonLink,
     'https://scholar.google.com/citations?user=7tcPHHYAAAAJ&hl=en',
@@ -1080,7 +1306,10 @@ test('Every Website Roster Person resolves to an existing generated public image
   await Promise.all(
     people.map(async (person) => {
       assert.ok(person.image, `${person.name} is missing a profile image URL`)
-      assert.match(person.image, /^\/profile-assets\/[A-Za-z0-9-]+\.(?:jpe?g|png|webp)$/)
+      assert.match(
+        person.image,
+        /^\/profile-assets\/[A-Za-z0-9-]+\.(?:jpe?g|png|webp)$/,
+      )
       await access(join(process.cwd(), 'public', person.image))
     }),
   )
@@ -1125,7 +1354,12 @@ test('Full Website Roster includes the missing active Foerster People once in th
     ['jakob-foerster', 'Jakob Foerster', 'Faculty', 'Principal Investigator'],
     ['sam-coward', 'Sam Coward', 'DPhil Student', 'PhD Student'],
     ['matthew-jackson', 'Matthew Jackson', 'DPhil Student', 'PhD Student'],
-    ['qizhen-zhang-irene', 'Qizhen Zhang (Irene)', 'DPhil Student', 'PhD Student'],
+    [
+      'qizhen-zhang-irene',
+      'Qizhen Zhang (Irene)',
+      'DPhil Student',
+      'PhD Student',
+    ],
     ['andrei-lupu', 'Andrei Lupu', 'DPhil Student', 'PhD Student'],
     ['sebastian-towers', 'Sebastian Towers', 'DPhil Student', 'PhD Student'],
     [
@@ -1138,7 +1372,9 @@ test('Full Website Roster includes the missing active Foerster People once in th
   ]
 
   assert.deepEqual(
-    scopedFoersterPeople.map(([slug]) => people.filter((person) => person.slug === slug).length),
+    scopedFoersterPeople.map(
+      ([slug]) => people.filter((person) => person.slug === slug).length,
+    ),
     [1, 1, 1, 1, 1, 1, 1, 1],
   )
   assert.deepEqual(
@@ -1163,7 +1399,8 @@ test('Full Website Roster includes the missing active Foerster People once in th
     {
       website: 'https://www.jakobfoerster.com',
       twitter: 'https://twitter.com/j_foerst',
-      googleScholar: 'https://scholar.google.com/citations?user=6z4lQzMAAAAJ&hl=en',
+      googleScholar:
+        'https://scholar.google.com/citations?user=6z4lQzMAAAAJ&hl=en',
       github: 'https://github.com/jakobnicolaus',
     },
   )
@@ -1194,11 +1431,10 @@ test('Full Website Roster includes the missing active Foerster People once in th
     [['PhD Student', ['qizhen-zhang-irene']]],
   )
   assert.deepEqual(
-    ['maksymilian-wolski', 'tim-franzmeyer'].map(
-      (slug) =>
-        associateDirectory.sections
-          .flatMap((section) => section.people)
-          .some((listing) => listing.slug === slug),
+    ['maksymilian-wolski', 'tim-franzmeyer'].map((slug) =>
+      associateDirectory.sections
+        .flatMap((section) => section.people)
+        .some((listing) => listing.slug === slug),
     ),
     [true, true],
   )
@@ -1219,23 +1455,29 @@ test('Full Website Roster retains scoped Foerster alumni without listing them pu
       'Ben Ellis',
       'Research Scientist @ Reflection AI; DPhil 2021-2025',
     ],
-    [
-      'chris-lu',
-      'Chris Lu',
-      'Research Scientist @ OpenAI; DPhil 2021-2025',
-    ],
+    ['chris-lu', 'Chris Lu', 'Research Scientist @ OpenAI; DPhil 2021-2025'],
     [
       'christian-schroeder-de-witt',
       'Christian Schroeder de Witt',
       'Postdoc @ TVG, Oxford; Postdoc 2021-2023',
     ],
     ['jia-wan', 'Jia Wan', 'PhD @ MIT; MSc 2022-2023'],
-    ['matthias-hericks', 'Matthias Hericks', 'Data Scientist @ BCG; MSc 2021-2022'],
-    ['noah-sarfati', 'Noah Sarfati', 'Applied Scientist @ Amazon; MSc 2021-2022'],
+    [
+      'matthias-hericks',
+      'Matthias Hericks',
+      'Data Scientist @ BCG; MSc 2021-2022',
+    ],
+    [
+      'noah-sarfati',
+      'Noah Sarfati',
+      'Applied Scientist @ Amazon; MSc 2021-2022',
+    ],
   ]
 
   assert.deepEqual(
-    scopedFoersterAlumni.map(([slug]) => people.filter((person) => person.slug === slug).length),
+    scopedFoersterAlumni.map(
+      ([slug]) => people.filter((person) => person.slug === slug).length,
+    ),
     [1, 1, 1, 1, 1, 1],
   )
   assert.deepEqual(
@@ -1262,15 +1504,21 @@ test('Full Website Roster retains scoped Foerster alumni without listing them pu
   )
   assert.equal(people.filter((person) => person.slug === 'kang-li').length, 1)
   assert.equal(listingBySlug['kang-li']?.peopleSection, 'PhD Student')
-  assert.equal(people.filter((person) => person.slug === 'timon-willi').length, 1)
+  assert.equal(
+    people.filter((person) => person.slug === 'timon-willi').length,
+    1,
+  )
   assert.equal(listingBySlug['timon-willi']?.peopleSection, 'Associate Members')
   assert.equal(
     getPrimaryPersonLink(people.find((person) => person.slug === 'chris-lu')),
     'https://chrislu.page',
   )
-  assert.deepEqual(people.find((person) => person.slug === 'noah-sarfati')?.links, {
-    github: 'https://github.com/NoahSfi',
-  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'noah-sarfati')?.links,
+    {
+      github: 'https://github.com/NoahSfi',
+    },
+  )
 })
 
 test('Foerster members page comparison is represented in the Website Roster', () => {
@@ -1295,28 +1543,33 @@ test('Foerster members page comparison is represented in the Website Roster', ()
 
   assert.equal(foersterMembersPageFixture.length, 50)
   assert.deepEqual(
-    foersterMembersPageFixture.map(([, , rosterSlug]) =>
-      people.filter((person) => person.slug === rosterSlug).length,
+    foersterMembersPageFixture.map(
+      ([, , rosterSlug]) =>
+        people.filter((person) => person.slug === rosterSlug).length,
     ),
     Array.from({ length: foersterMembersPageFixture.length }, () => 1),
   )
   assert.deepEqual(
-    publicFoersterRows.map(
-      ([sourceSection, sourceName, rosterSlug]) => {
-        const listing = listingBySlug[rosterSlug]
+    publicFoersterRows.map(([sourceSection, sourceName, rosterSlug]) => {
+      const listing = listingBySlug[rosterSlug]
 
-        return {
-          sourceSection,
-          sourceName,
-          rosterSlug,
-          name: listing?.name,
-          peopleSection: listing?.peopleSection,
-          image: listing?.image,
-        }
-      },
-    ),
+      return {
+        sourceSection,
+        sourceName,
+        rosterSlug,
+        name: listing?.name,
+        peopleSection: listing?.peopleSection,
+        image: listing?.image,
+      }
+    }),
     publicFoersterRows.map(
-      ([sourceSection, sourceName, rosterSlug, expectedName, peopleSection]) => ({
+      ([
+        sourceSection,
+        sourceName,
+        rosterSlug,
+        expectedName,
+        peopleSection,
+      ]) => ({
         sourceSection,
         sourceName,
         rosterSlug,
@@ -1327,21 +1580,19 @@ test('Foerster members page comparison is represented in the Website Roster', ()
     ),
   )
   assert.deepEqual(
-    alumniFoersterRows.map(
-      ([sourceSection, sourceName, rosterSlug]) => {
-        const person = rosterBySlug[rosterSlug]
+    alumniFoersterRows.map(([sourceSection, sourceName, rosterSlug]) => {
+      const person = rosterBySlug[rosterSlug]
 
-        return {
-          sourceSection,
-          sourceName,
-          rosterSlug,
-          name: person?.name,
-          alumni: person?.alumni,
-          image: person?.image,
-          listed: Boolean(listingBySlug[rosterSlug]),
-        }
-      },
-    ),
+      return {
+        sourceSection,
+        sourceName,
+        rosterSlug,
+        name: person?.name,
+        alumni: person?.alumni,
+        image: person?.image,
+        listed: Boolean(listingBySlug[rosterSlug]),
+      }
+    }),
     alumniFoersterRows.map(
       ([sourceSection, sourceName, rosterSlug, expectedName]) => ({
         sourceSection,
@@ -1443,7 +1694,10 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   assert.equal(directory.visiblePeopleCount, 124)
   assert.deepEqual(
     Object.fromEntries(
-      directory.sections.map((section) => [section.title, section.people.length]),
+      directory.sections.map((section) => [
+        section.title,
+        section.people.length,
+      ]),
     ),
     {
       'Principal Investigator': 6,
@@ -1586,25 +1840,34 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     expectedHiddenNewSlugs.map((slug) => listingBySlug[slug]),
     expectedHiddenNewSlugs.map(() => undefined),
   )
-  assert.deepEqual(people.find((person) => person.slug === 'kevin-buhler')?.links, {
-    website: 'https://kevinbuhler.com',
-    linkedin: 'https://www.linkedin.com/in/kevin-buhler',
-    github: 'https://github.com/kevbuh',
-  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'kevin-buhler')?.links,
+    {
+      website: 'https://kevinbuhler.com',
+      linkedin: 'https://www.linkedin.com/in/kevin-buhler',
+      github: 'https://github.com/kevbuh',
+    },
+  )
   assert.deepEqual(people.find((person) => person.slug === 'colin-lu')?.links, {
     website: 'https://simplegeometry.github.io',
     twitter: 'https://x.com/_colin_lu',
   })
-  assert.deepEqual(people.find((person) => person.slug === 'marek-masiak')?.links, {
-    linkedin: 'https://www.linkedin.com/in/marekmasiak',
-    twitter: 'https://x.com/marekmmas',
-    googleScholar: 'https://scholar.google.com/citations?user=XBUX-cwAAAAJ',
-  })
-  assert.deepEqual(people.find((person) => person.slug === 'edan-toledo')?.links, {
-    twitter: 'https://x.com/EdanToledo',
-    googleScholar:
-      'https://scholar.google.com/citations?user=_bLUH-MAAAAJ&hl=en&oi=ao',
-  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'marek-masiak')?.links,
+    {
+      linkedin: 'https://www.linkedin.com/in/marekmasiak',
+      twitter: 'https://x.com/marekmmas',
+      googleScholar: 'https://scholar.google.com/citations?user=XBUX-cwAAAAJ',
+    },
+  )
+  assert.deepEqual(
+    people.find((person) => person.slug === 'edan-toledo')?.links,
+    {
+      twitter: 'https://x.com/EdanToledo',
+      googleScholar:
+        'https://scholar.google.com/citations?user=_bLUH-MAAAAJ&hl=en&oi=ao',
+    },
+  )
   assert.deepEqual(
     people.find((person) => person.slug === 'borja-gonzalez-leon')?.links,
     {
@@ -1615,9 +1878,12 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       linkedin: 'https://www.linkedin.com/in/borja-gonzalez-leon',
     },
   )
-  assert.deepEqual(people.find((person) => person.slug === 'henry-heppe')?.links, {
-    github: 'https://github.com/henry-heppe',
-  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'henry-heppe')?.links,
+    {
+      github: 'https://github.com/henry-heppe',
+    },
+  )
 
   assert.equal(
     listingBySlug['nathan-monette']?.primaryPersonLink,
@@ -1647,11 +1913,14 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     listingBySlug['roberta-raileanu']?.primaryPersonLink,
     'https://rraileanu.github.io',
   )
-  assert.deepEqual(people.find((person) => person.slug === 'gregory-levy')?.links, {
-    website: 'https://gregorylevy.github.io',
-    linkedin: 'https://www.linkedin.com/in/greg-levy-3779071a3',
-    github: 'https://github.com/gregorylevy',
-  })
+  assert.deepEqual(
+    people.find((person) => person.slug === 'gregory-levy')?.links,
+    {
+      website: 'https://gregorylevy.github.io',
+      linkedin: 'https://www.linkedin.com/in/greg-levy-3779071a3',
+      github: 'https://github.com/gregorylevy',
+    },
+  )
   assert.equal(
     listingBySlug['gregory-levy']?.primaryPersonLink,
     'https://gregorylevy.github.io',
@@ -1744,12 +2013,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       ['Postdoc', ['johannes-forkel']],
       [
         'PhD Student',
-        [
-          'ravi-hammond',
-          'ross-murphy',
-          'shashank-reddy',
-          'harry-mayne',
-        ],
+        ['ravi-hammond', 'ross-murphy', 'shashank-reddy', 'harry-mayne'],
       ],
       [
         'Associate Members',

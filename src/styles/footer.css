@@ -26,7 +26,10 @@
 
 .footer-inner {
   display: grid;
-  grid-template-columns: minmax(260px, 1.1fr) minmax(160px, 0.4fr) minmax(160px, 0.4fr);
+  grid-template-columns: minmax(260px, 1.1fr) minmax(160px, 0.4fr) minmax(
+      160px,
+      0.4fr
+    );
   gap: 42px;
 }
 

@@ -4,11 +4,7 @@ import { NotFoundPage } from '../features/not-found/NotFoundPage'
 import { OpportunitiesPage } from '../features/opportunities/OpportunitiesPage'
 import { PeoplePage } from '../features/people/PeoplePage'
 import { PersonDetailPage } from '../features/people/PersonDetailPage'
-import {
-  getActiveSection,
-  getRouteMeta,
-  parseRoute,
-} from '../routing/routes'
+import { getActiveSection, getRouteMeta, parseRoute } from '../routing/routes'
 import { SiteFooter } from '../ui/layout/SiteFooter'
 import { SiteHeader } from '../ui/layout/SiteHeader'
 import { setDocumentMeta } from './documentMeta'

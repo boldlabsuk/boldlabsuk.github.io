@@ -19,7 +19,8 @@ export const papers: Paper[] = [
       paper: 'https://example.ac.uk/papers/autocurricula-tool-using-agents',
       pdf: 'https://example.ac.uk/papers/autocurricula-tool-using-agents.pdf',
       code: 'https://github.com',
-      bibtex: '@inproceedings{singh2026autocurricula,title={Autocurricula for Tool-Using Language Agents}}',
+      bibtex:
+        '@inproceedings{singh2026autocurricula,title={Autocurricula for Tool-Using Language Agents}}',
     },
   },
   {
@@ -59,7 +60,8 @@ export const papers: Paper[] = [
     links: {
       paper: 'https://example.ac.uk/papers/behavioural-portfolios',
       pdf: 'https://example.ac.uk/papers/behavioural-portfolios.pdf',
-      bibtex: '@techreport{morrison2026portfolios,title={Behavioural Portfolios for Continually Learning Systems}}',
+      bibtex:
+        '@techreport{morrison2026portfolios,title={Behavioural Portfolios for Continually Learning Systems}}',
     },
   },
   {
@@ -104,7 +106,11 @@ export const papers: Paper[] = [
     date: '2025-08-19',
     summary:
       'Representation-learning methods for steering generative search across scientific design spaces.',
-    researchAreas: ['Representation Learning', 'Generative Models', 'AI for Discovery'],
+    researchAreas: [
+      'Representation Learning',
+      'Generative Models',
+      'AI for Discovery',
+    ],
     paperType: 'preprint',
     links: {
       paper: 'https://example.ac.uk/papers/controllable-generative-discovery',

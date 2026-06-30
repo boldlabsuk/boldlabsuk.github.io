@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
+import type {
+  ExpressionOfInterestFormConfig,
+  OpportunityRoute,
+} from '../../content'
 import {
   expressionOfInterestFormConfig,
   getExpressionOfInterestEmbedUrl,
   opportunityRoutes,
-} from '../../content'
-import type {
-  ExpressionOfInterestFormConfig,
-  OpportunityRoute,
 } from '../../content'
 
 const tallyEmbedScriptId = 'tally-embed-script'
@@ -39,7 +39,7 @@ export function OpportunitiesPage({
         <h1>Interested in joining, visiting, or collaborating with BOLD?</h1>
       </div>
 
-      <div className="opportunity-route-index" aria-label="Opportunity Routes">
+      <ul className="opportunity-route-index" aria-label="Opportunity Routes">
         {opportunityRoutes.map((route) => (
           <OpportunityRouteIndexEntry
             key={route.slug}
@@ -47,7 +47,7 @@ export function OpportunitiesPage({
             onSelect={() => setSelectedRouteSlug(route.slug)}
           />
         ))}
-      </div>
+      </ul>
 
       <ExpressionOfInterestSection
         formConfig={formConfig}
@@ -67,7 +67,7 @@ function OpportunityRouteIndexEntry({
   onSelect: () => void
 }) {
   return (
-    <article className="opportunity-route-index-entry" id={route.slug}>
+    <li className="opportunity-route-index-entry" id={route.slug}>
       <div className="opportunity-route-index-main">
         <div className="opportunity-route-index-heading">
           <h3>{route.title}</h3>
@@ -75,6 +75,7 @@ function OpportunityRouteIndexEntry({
         <p>{route.shortSummary}</p>
       </div>
 
+      {/* biome-ignore lint/a11y/useValidAnchor: This link both selects the route and navigates to the in-page form section. */}
       <a
         className="button button-primary"
         href="#express-interest"
@@ -83,7 +84,7 @@ function OpportunityRouteIndexEntry({
       >
         {route.primaryActionLabel}
       </a>
-    </article>
+    </li>
   )
 }
 
@@ -129,10 +130,7 @@ function ExpressionOfInterestSection({
         </label>
 
         {selectedRoute ? (
-          <SelectedRouteForm
-            embedUrl={embedUrl}
-            route={selectedRoute}
-          />
+          <SelectedRouteForm embedUrl={embedUrl} route={selectedRoute} />
         ) : null}
       </div>
     </section>

@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import test from 'node:test'
 
 test('Home Page renders the static hero logo without the transition overlay', () => {
   const result = spawnSync(

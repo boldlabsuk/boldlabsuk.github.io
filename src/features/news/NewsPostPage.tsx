@@ -42,7 +42,9 @@ export function NewsPostPage({ slug }: { slug: string }) {
             <p>
               This announcement is available as an external public social post.
             </p>
-            <ExternalLink href={post.socialEmbedUrl}>Open social post</ExternalLink>
+            <ExternalLink href={post.socialEmbedUrl}>
+              Open social post
+            </ExternalLink>
           </div>
         )}
 

@@ -1,5 +1,5 @@
-import { paperTypeLabels, papers } from '../content.ts'
 import type { Paper, PaperType } from '../content.ts'
+import { papers, paperTypeLabels } from '../content.ts'
 import { allFilterValue, unique } from './shared.ts'
 
 export type PaperFilters = {
@@ -59,8 +59,10 @@ export function filterPapers({
       normalizedQuery.length === 0 || searchableText.includes(normalizedQuery)
     const matchesYear = year === allFilterValue || String(paper.year) === year
     const matchesArea =
-      area === allFilterValue || paper.researchAreas.some((item) => item === area)
-    const matchesType = paperType === allFilterValue || paper.paperType === paperType
+      area === allFilterValue ||
+      paper.researchAreas.some((item) => item === area)
+    const matchesType =
+      paperType === allFilterValue || paper.paperType === paperType
     const matchesVenue = venue === allFilterValue || paper.venue === venue
     const matchesAuthor =
       author === allFilterValue || paper.authors.some((item) => item === author)

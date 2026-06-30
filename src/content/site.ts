@@ -20,8 +20,7 @@ export const siteMeta = {
   socialLinks: [
     {
       label: 'LinkedIn',
-      href:
-        'https://www.linkedin.com/company/british-open-ended-learning-discovery-lab',
+      href: 'https://www.linkedin.com/company/british-open-ended-learning-discovery-lab',
     },
     { label: 'X', href: 'https://x.com/bold_lab_ai' },
   ],
@@ -57,13 +56,11 @@ export const homepageContent = {
   labBet: [
     {
       title: 'Fundamental AI breakthroughs are still possible.',
-      body:
-        'The current scale-only paradigm is powerful, but it is not the end of AI. Fundamental AI breakthroughs are still possible through new learning principles, discovery systems, and embodied intelligence.',
+      body: 'The current scale-only paradigm is powerful, but it is not the end of AI. Fundamental AI breakthroughs are still possible through new learning principles, discovery systems, and embodied intelligence.',
     },
     {
       title: 'Academia needs a new operating model to pursue them.',
-      body:
-        'Britain has exceptional AI talent, but paradigm-changing work needs a focused, agile, critical-mass lab where researchers, engineers, students, and fellows build under one ambitious research vision.',
+      body: 'Britain has exceptional AI talent, but paradigm-changing work needs a focused, agile, critical-mass lab where researchers, engineers, students, and fellows build under one ambitious research vision.',
     },
   ],
   researchDirections: [

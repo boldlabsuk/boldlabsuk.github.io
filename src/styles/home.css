@@ -7,7 +7,7 @@
   overflow: clip;
   background: #f8f6ef;
   color: var(--ink);
-  --home-accent: #038DD3;
+  --home-accent: #038dd3;
 }
 
 .home-hero-brand,
@@ -39,7 +39,7 @@
 }
 
 .home-hero-subtitle-initial {
-  color: #01417C;
+  color: #01417c;
 }
 
 .home-hero-main {
@@ -200,7 +200,7 @@
   padding: clamp(72px, 8vw, 118px) var(--content-edge);
   border-top: 1px solid #d8dee4;
   background: var(--paper);
-  --home-accent: #038DD3;
+  --home-accent: #038dd3;
 }
 
 .home-section .eyebrow {
@@ -264,7 +264,8 @@
 .bet-item {
   display: grid;
   gap: 16px;
-  padding: clamp(26px, 4vw, 46px) clamp(24px, 4vw, 46px) clamp(26px, 4vw, 46px) 0;
+  padding: clamp(26px, 4vw, 46px) clamp(24px, 4vw, 46px) clamp(26px, 4vw, 46px)
+    0;
 }
 
 .bet-item + .bet-item {

@@ -1,14 +1,14 @@
 import { execFile } from 'node:child_process'
-import { createServer } from 'node:http'
-import { rename, stat, writeFile } from 'node:fs/promises'
 import {
   createReadStream,
   existsSync,
   mkdirSync,
-  readFileSync,
   readdirSync,
+  readFileSync,
   statSync,
 } from 'node:fs'
+import { rename, stat, writeFile } from 'node:fs/promises'
+import { createServer } from 'node:http'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -181,7 +181,9 @@ async function handleRequest(request, response) {
     response.end('Not found')
   } catch (error) {
     console.error(error)
-    response.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' })
+    response.writeHead(500, {
+      'Content-Type': 'application/json; charset=utf-8',
+    })
     response.end(
       JSON.stringify({
         error: error instanceof Error ? error.message : String(error),
@@ -290,7 +292,9 @@ function buildRosterManifest(sourcePeople) {
     const sourcePath = existsSync(rawPath) ? rawPath : outputPath
 
     if (!existsSync(sourcePath)) {
-      throw new Error(`No source image found for ${sourcePerson.name}: ${sourcePath}`)
+      throw new Error(
+        `No source image found for ${sourcePerson.name}: ${sourcePath}`,
+      )
     }
 
     entries.push({
@@ -310,7 +314,10 @@ function buildRosterManifest(sourcePeople) {
 function buildSourceDirManifest(sourceDir, sourcePeople) {
   const resolvedSourceDir = resolveCliPath(sourceDir)
 
-  if (!existsSync(resolvedSourceDir) || !statSync(resolvedSourceDir).isDirectory()) {
+  if (
+    !existsSync(resolvedSourceDir) ||
+    !statSync(resolvedSourceDir).isDirectory()
+  ) {
     throw new Error(`Source directory does not exist: ${resolvedSourceDir}`)
   }
 
@@ -339,7 +346,10 @@ function listImageSourcePaths(dir) {
         return listImageSourcePaths(entryPath)
       }
 
-      if (!entry.isFile() || !imageSourceExtensions.has(path.extname(entry.name).toLowerCase())) {
+      if (
+        !entry.isFile() ||
+        !imageSourceExtensions.has(path.extname(entry.name).toLowerCase())
+      ) {
         return []
       }
 
@@ -367,9 +377,7 @@ function buildSourceDirEntry(sourcePath, matcher) {
     slug,
     name: person?.name ?? formatFallbackName(fallbackSlug),
     role: person?.role ?? 'Unmatched source image',
-    sourceKind: person
-      ? `folder-${match.matchedBy}`
-      : 'folder-unmatched',
+    sourceKind: person ? `folder-${match.matchedBy}` : 'folder-unmatched',
     sourcePath,
     outputPath,
   }
@@ -382,12 +390,28 @@ function buildPersonMatcher(sourcePeople) {
   for (const person of people) {
     addMatchKey(matchMap, `slug:${person.slug}`, person)
     addMatchKey(matchMap, `slug:${slugify(person.name)}`, person)
-    addMatchKey(matchMap, `filename:${normalizeFileName(person.outputFile)}`, person)
-    addMatchKey(matchMap, `slug:${slugify(getFileStem(person.outputFile))}`, person)
+    addMatchKey(
+      matchMap,
+      `filename:${normalizeFileName(person.outputFile)}`,
+      person,
+    )
+    addMatchKey(
+      matchMap,
+      `slug:${slugify(getFileStem(person.outputFile))}`,
+      person,
+    )
 
     if (person.profilePicture) {
-      addMatchKey(matchMap, `filename:${normalizeFileName(person.profilePicture)}`, person)
-      addMatchKey(matchMap, `slug:${slugify(getFileStem(person.profilePicture))}`, person)
+      addMatchKey(
+        matchMap,
+        `filename:${normalizeFileName(person.profilePicture)}`,
+        person,
+      )
+      addMatchKey(
+        matchMap,
+        `slug:${slugify(getFileStem(person.profilePicture))}`,
+        person,
+      )
     }
   }
 
@@ -433,7 +457,9 @@ function buildKnownPeople(sourcePeople) {
   const preferredPeople = [
     ...sourcePeople.filter(isWebsiteRosterSourcePerson),
     ...sourcePeople.filter(isSupplementalAlumniSourcePerson),
-    ...sourcePeople.filter((sourcePerson) => Boolean(sourcePerson.name?.trim())),
+    ...sourcePeople.filter((sourcePerson) =>
+      Boolean(sourcePerson.name?.trim()),
+    ),
   ]
 
   for (const sourcePerson of preferredPeople) {
@@ -507,7 +533,9 @@ function hasWebsiteRosterRequiredFields(sourcePerson) {
 }
 
 function normalizeSourceName(source) {
-  return String(source ?? '').trim().toLowerCase()
+  return String(source ?? '')
+    .trim()
+    .toLowerCase()
 }
 
 function isExplicitAlumniMarker(value) {
@@ -525,7 +553,10 @@ function getCanonicalPersonSlug(name) {
 }
 
 function getSourceFileSlug(sourcePath) {
-  return slugify(getTrailingPersonName(getFileStem(path.basename(sourcePath)))) || 'profile-image'
+  return (
+    slugify(getTrailingPersonName(getFileStem(path.basename(sourcePath)))) ||
+    'profile-image'
+  )
 }
 
 function getFileStem(fileName) {

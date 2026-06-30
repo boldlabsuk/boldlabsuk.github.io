@@ -6,10 +6,7 @@ import {
   faSquareLinkedin,
   faXTwitter,
 } from '@fortawesome/free-brands-svg-icons'
-import {
-  faEnvelope,
-  faHouseChimney,
-} from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faHouseChimney } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { Person } from '../../content'
 import { ExternalLink } from '../primitives/ExternalLink'
@@ -41,10 +38,12 @@ export function SocialLinks({
   }
 
   return (
-    <div className={compact ? 'social-links social-links-compact' : 'social-links'}>
+    <div
+      className={compact ? 'social-links social-links-compact' : 'social-links'}
+    >
       {items.map((item) => {
         const content = compact ? (
-          <SocialLinkIcon icon={item.key} />
+          <SocialLinkIcon key={item.key} icon={item.key} />
         ) : (
           item.label
         )

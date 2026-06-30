@@ -1,11 +1,11 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
+import test from 'node:test'
 
 import { canonicalPeopleResearchAreas, people } from '../src/content.ts'
 import {
   buildPeopleDirectoryViewModel,
-  getPeopleSection,
   getPeopleFilterOptions,
+  getPeopleSection,
   peopleSectionOrder,
   shufflePeopleWithinSections,
 } from '../src/domain/people.ts'
@@ -499,12 +499,7 @@ test('People Directory treats explicit alumni flags as non-directory people', ()
       section.title,
       section.people.map((listing) => listing.slug),
     ]),
-    [
-      [
-        'Associate Members',
-        ['alumni-group-member'],
-      ],
-    ],
+    [['Associate Members', ['alumni-group-member']]],
   )
   assert.equal(directory.totalPeople, 1)
   assert.equal(directory.visiblePeopleCount, 1)
@@ -601,12 +596,7 @@ test('People Directory preserves non-cohort section ordering', () => {
     directory.sections
       .find((section) => section.title === 'Associate Faculty')
       ?.people.map((listing) => listing.slug),
-    [
-      'luca-furieri',
-      'zhengyao-jiang',
-      'aya-kayal',
-      'kristen-menou',
-    ],
+    ['luca-furieri', 'zhengyao-jiang', 'aya-kayal', 'kristen-menou'],
   )
 
   assert.deepEqual(
@@ -723,11 +713,7 @@ test('People Directory exposes public PhD students newest-cohort first without s
     directory.sections
       .find((section) => section.title === 'Incoming PhD Students')
       ?.people.map((listing) => listing.slug),
-    [
-      'antoine-gorceix',
-      'george-mavroghenis',
-      'bassel-al-omari',
-    ],
+    ['antoine-gorceix', 'george-mavroghenis', 'bassel-al-omari'],
   )
 })
 
@@ -768,9 +754,7 @@ test('People Directory search filters Person Listings while preserving People Se
       section.title,
       section.people.map((listing) => listing.slug),
     ]),
-    [
-      ['Principal Investigator', ['alex-principal']],
-    ],
+    [['Principal Investigator', ['alex-principal']]],
   )
   assert.equal(directory.visiblePeopleCount, 1)
   assert.equal(directory.totalPeople, 4)

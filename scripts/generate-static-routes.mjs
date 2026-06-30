@@ -2,10 +2,7 @@ import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-export const staticAppRoutes = [
-  '/people',
-  '/opportunities',
-]
+export const staticAppRoutes = ['/people', '/opportunities']
 
 const defaultPeopleSourcePath = new URL('../our_people.json', import.meta.url)
 const profileAssetOverrides = {
@@ -78,7 +75,9 @@ function getPeopleRouteProfileImageHrefs(sourcePeople) {
 }
 
 function buildProfileAssetUrl(personSlug) {
-  return profileAssetOverrides[personSlug] ?? `/profile-assets/${personSlug}.webp`
+  return (
+    profileAssetOverrides[personSlug] ?? `/profile-assets/${personSlug}.webp`
+  )
 }
 
 function injectImagePreloads(indexHtml, imageHrefs) {
@@ -128,7 +127,9 @@ function isWebsiteRosterSourcePerson(sourcePerson) {
 }
 
 function isPeopleDirectorySourcePerson(sourcePerson) {
-  return isWebsiteRosterSourcePerson(sourcePerson) && sourcePerson.alumni !== true
+  return (
+    isWebsiteRosterSourcePerson(sourcePerson) && sourcePerson.alumni !== true
+  )
 }
 
 function unique(values) {
@@ -145,7 +146,9 @@ function slugify(value) {
 }
 
 const currentFilePath = fileURLToPath(import.meta.url)
-const invokedFilePath = process.argv[1] ? fileURLToPath(pathToFileURL(process.argv[1])) : ''
+const invokedFilePath = process.argv[1]
+  ? fileURLToPath(pathToFileURL(process.argv[1]))
+  : ''
 
 if (currentFilePath === invokedFilePath) {
   const { routes } = await generateStaticRouteEntries({

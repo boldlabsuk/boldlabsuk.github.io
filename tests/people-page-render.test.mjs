@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import test from 'node:test'
 
 test('People Page initial render hides active filters and reset controls', () => {
   const result = spawnSync(

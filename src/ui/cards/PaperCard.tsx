@@ -1,5 +1,5 @@
-import { paperTypeLabels } from '../../content'
 import type { Paper } from '../../content'
+import { paperTypeLabels } from '../../content'
 import { getPrimaryPaperLink } from '../../domain/papers'
 import { ExternalLink } from '../primitives/ExternalLink'
 import { TagList, TagPill } from '../primitives/TagList'

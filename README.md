@@ -25,7 +25,9 @@ Vite prints the local URL after the server starts, usually
 ```bash
 npm run dev      # start the local development server
 npm test         # run the node test suite
-npm run lint     # run ESLint
+npm run lint     # run Biome linting
+npm run format   # format supported files with Biome
+npm run check    # run Biome, tests, and production build
 npm run build    # type-check, build, and generate static routes
 npm run preview  # preview the production build locally
 ```

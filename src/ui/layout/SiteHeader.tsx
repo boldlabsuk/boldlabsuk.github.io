@@ -14,27 +14,31 @@ export function SiteHeader({
   isMenuOpen: boolean
   onMenuToggle: () => void
 }) {
+  const brandLogo = (
+    <img
+      ref={brandLogoRef}
+      className="brand-logo"
+      src="/bold_full_vector_logo.svg"
+      width="1995"
+      height="788"
+      loading="eager"
+      decoding="sync"
+      fetchPriority="high"
+      alt=""
+    />
+  )
+
   return (
     <header className="site-header">
-      <a
-        aria-hidden={showBrandLogo ? undefined : true}
-        aria-label={showBrandLogo ? `${siteMeta.name} home` : undefined}
-        className={showBrandLogo ? 'brand' : 'brand brand-hidden'}
-        href="/"
-        tabIndex={showBrandLogo ? undefined : -1}
-      >
-        <img
-          ref={brandLogoRef}
-          className="brand-logo"
-          src="/bold_full_vector_logo.svg"
-          width="1995"
-          height="788"
-          loading="eager"
-          decoding="sync"
-          fetchPriority="high"
-          alt=""
-        />
-      </a>
+      {showBrandLogo ? (
+        <a aria-label={`${siteMeta.name} home`} className="brand" href="/">
+          {brandLogo}
+        </a>
+      ) : (
+        <span aria-hidden="true" className="brand brand-hidden" tabIndex={-1}>
+          {brandLogo}
+        </span>
+      )}
 
       <button
         className="menu-toggle"

@@ -11,8 +11,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     slug: 'phd-students',
     title: 'PhD Students',
     shortTitle: 'PhD Students',
-    shortSummary:
-      'PhD routes with BOLD-aligned supervision.',
+    shortSummary: 'PhD routes with BOLD-aligned supervision.',
     positioning:
       'For prospective doctoral researchers who want to explore whether their research direction fits BOLD.',
     status: 'Rolling interest',
@@ -43,8 +42,7 @@ export const opportunityRoutes: OpportunityRoute[] = [
     slug: 'visiting-students',
     title: 'Visiting Students',
     shortTitle: 'Visiting Students',
-    shortSummary:
-      'Time-bound research visits with a BOLD host.',
+    shortSummary: 'Time-bound research visits with a BOLD host.',
     positioning:
       'For students at another institution who want a time-bound research visit with a clear project shape.',
     status: 'Rolling interest',
@@ -75,13 +73,13 @@ export const opportunityRoutes: OpportunityRoute[] = [
     slug: 'masters-students',
     title: "Master's Students",
     shortTitle: "Master's",
-    shortSummary:
-      'Supervised projects where timing and fit align.',
+    shortSummary: 'Supervised projects where timing and fit align.',
     positioning:
       "For Master's students looking for BOLD-aligned project supervision or research project fit.",
     status: 'Rolling interest',
     location: 'BOLD groups where supervision capacity is available',
-    timing: 'Project windows depend on programme requirements and supervisor capacity',
+    timing:
+      'Project windows depend on programme requirements and supervisor capacity',
     formalApplicationPath:
       'Expressing interest in BOLD does not replace your university programme, module, or project allocation process.',
     prefillValue: 'masters-students',
@@ -107,13 +105,13 @@ export const opportunityRoutes: OpportunityRoute[] = [
     slug: 'research-engineers',
     title: 'Research Engineers',
     shortTitle: 'Research Engineers',
-    shortSummary:
-      'ML systems and research tooling close to frontier work.',
+    shortSummary: 'ML systems and research tooling close to frontier work.',
     positioning:
       'For engineers who want technical systems work to sit close to ambitious AI research.',
     status: 'Rolling interest',
     location: 'Hybrid or in-person depending on role shape and team needs',
-    timing: 'Rolling interest, with specific advertised roles listed separately when open',
+    timing:
+      'Rolling interest, with specific advertised roles listed separately when open',
     formalApplicationPath:
       'This intake is not a job application; any formal hiring process for an advertised role will be separate.',
     prefillValue: 'research-engineers',
@@ -144,7 +142,8 @@ export const opportunityRoutes: OpportunityRoute[] = [
     positioning:
       "For researchers with an established agenda who see a serious fit with BOLD's scientific programme.",
     status: 'Rolling interest',
-    location: 'Flexible by route shape, host fit, and institutional arrangement',
+    location:
+      'Flexible by route shape, host fit, and institutional arrangement',
     timing: 'Timing depends on role shape, funding route, and host capacity',
     formalApplicationPath:
       'An Expression of Interest starts a fit conversation; fellowship, visiting, employment, or institutional routes may require separate formal processes.',
@@ -171,13 +170,13 @@ export const opportunityRoutes: OpportunityRoute[] = [
     slug: 'collaborators',
     title: 'Collaborators',
     shortTitle: 'Collaborators',
-    shortSummary:
-      'Research collaborations with clear scientific fit.',
+    shortSummary: 'Research collaborations with clear scientific fit.',
     positioning:
       'For individuals, groups, companies, or institutions proposing a collaboration with BOLD.',
     status: 'Rolling interest',
     location: 'Collaboration working mode depends on the proposed relationship',
-    timing: 'Include timing, expected outputs, and any funding, data, or partnership considerations',
+    timing:
+      'Include timing, expected outputs, and any funding, data, or partnership considerations',
     formalApplicationPath:
       'A Collaborator Expression of Interest is collaboration intake, not a job, student, or admissions application.',
     prefillValue: 'collaborators',
@@ -201,14 +200,16 @@ export const opportunityRoutes: OpportunityRoute[] = [
   },
 ]
 
-export const involvementRoutes: InvolvementRoute[] = opportunityRoutes.map((route) => ({
-  id: route.slug,
-  title: route.title,
-  shortTitle: route.shortTitle,
-  href: '/opportunities',
-  summary: route.shortSummary,
-  guidance: route.whoThisIsFor,
-}))
+export const involvementRoutes: InvolvementRoute[] = opportunityRoutes.map(
+  (route) => ({
+    id: route.slug,
+    title: route.title,
+    shortTitle: route.shortTitle,
+    href: '/opportunities',
+    summary: route.shortSummary,
+    guidance: route.whoThisIsFor,
+  }),
+)
 
 export const opportunities: Opportunity[] = [
   {

@@ -12,7 +12,10 @@ const tallyHostnames = new Set(['tally.so', 'www.tally.so'])
 
 export function getExpressionOfInterestEmbedUrl(
   route: Pick<OpportunityRoute, 'prefillValue'>,
-  config: ExpressionOfInterestFormConfig | null | undefined = expressionOfInterestFormConfig,
+  config:
+    | ExpressionOfInterestFormConfig
+    | null
+    | undefined = expressionOfInterestFormConfig,
 ) {
   if (!config) {
     return undefined

@@ -1,15 +1,15 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
+import test from 'node:test'
 
 import {
-  homepageContent,
   expressionOfInterestFormConfig,
   getExpressionOfInterestEmbedUrl,
+  homepageContent,
   involvementRoutes,
   navigation,
   newsPosts,
-  opportunityRoutes,
   opportunities,
+  opportunityRoutes,
   papers,
   people,
   siteMeta,
@@ -65,10 +65,7 @@ test('BOLD presents the v2 lab information architecture', () => {
 
 test('homepage presents the BOLD Our Bets positioning and proof metrics', () => {
   assert.equal(homepageContent.hero.headline, 'Building the next AI paradigm.')
-  assert.match(
-    homepageContent.hero.lede,
-    /Oxford, UCL, and Imperial/,
-  )
+  assert.match(homepageContent.hero.lede, /Oxford, UCL, and Imperial/)
 
   assert.deepEqual(
     homepageContent.proofMetrics.map((metric) => metric.value),
@@ -77,11 +74,7 @@ test('homepage presents the BOLD Our Bets positioning and proof metrics', () => 
 
   assert.deepEqual(
     homepageContent.proofMetrics.map((metric) => metric.label),
-    [
-      'Universities',
-      'Bets',
-      'Research Directions',
-    ],
+    ['Universities', 'Bets', 'Research Directions'],
   )
 
   assert.match(
@@ -108,7 +101,10 @@ test('homepage content exposes the approved CTAs, Our Bets, and Research Directi
   )
 
   assert.equal(homepageContent.labBet.length, 2)
-  assert.match(homepageContent.labBet[0].body, /breakthroughs are still possible/)
+  assert.match(
+    homepageContent.labBet[0].body,
+    /breakthroughs are still possible/,
+  )
   assert.match(homepageContent.labBet[1].body, /focused, agile, critical-mass/)
 
   assert.deepEqual(
@@ -135,14 +131,12 @@ test('structured content supports people, news, papers, and opportunities', () =
   assert.ok(involvementRoutes.length === 6)
   assert.ok(opportunities.length >= 1)
 
-  assert.ok(people.every((person) => person.slug && person.researchAreas.length))
+  assert.ok(
+    people.every((person) => person.slug && person.researchAreas.length),
+  )
   assert.ok(newsPosts.every((post) => /^\d{4}-\d{2}-\d{2}$/.test(post.date)))
   assert.ok(papers.every((paper) => paper.id && paper.links))
-  assert.ok(
-    involvementRoutes.every(
-      (route) => route.href === '/opportunities',
-    ),
-  )
+  assert.ok(involvementRoutes.every((route) => route.href === '/opportunities'))
 })
 
 test('launch routes exclude news and papers while content remains available', () => {

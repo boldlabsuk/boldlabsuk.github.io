@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import test from 'node:test'
 
 import {
   getPersonPrimaryLinkName,
@@ -19,10 +19,7 @@ test('Person Listing compact links expose destination and Person names', () => {
 
   assert.deepEqual(
     links.map((link) => link.accessibleName),
-    [
-      'Website for Accessible Links',
-      'Google Scholar for Accessible Links',
-    ],
+    ['Website for Accessible Links', 'Google Scholar for Accessible Links'],
   )
 })
 

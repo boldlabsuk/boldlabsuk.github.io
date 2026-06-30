@@ -146,7 +146,9 @@ export function verifyTallyExpressionOfInterestPayload(payload) {
   }
 
   if (summary.name !== TALLY_FORM_NAME) {
-    failures.push(`expected form name ${TALLY_FORM_NAME}, found ${summary.name}`)
+    failures.push(
+      `expected form name ${TALLY_FORM_NAME}, found ${summary.name}`,
+    )
   }
 
   if (!summary.hiddenFields.includes(TALLY_ROUTE_PARAMETER)) {
@@ -336,7 +338,10 @@ async function main() {
   }
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
   main().catch((error) => {
     console.error(error)
     process.exitCode = 1

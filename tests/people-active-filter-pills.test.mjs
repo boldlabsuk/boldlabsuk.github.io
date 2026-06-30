@@ -1,12 +1,11 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
-
+import test from 'node:test'
+import { getPeopleActiveFilterPills } from '../src/domain/people.ts'
+import { allFilterValue } from '../src/domain/shared.ts'
 import {
   getNextPeopleActiveFilterPillOrder,
   orderPeopleActiveFilterPills,
 } from '../src/features/people/activeFilterPillOrder.ts'
-import { getPeopleActiveFilterPills } from '../src/domain/people.ts'
-import { allFilterValue } from '../src/domain/shared.ts'
 
 const emptyFilters = {
   query: '',
@@ -109,22 +108,13 @@ test('People active filter pills render in activation order', () => {
   let activePillOrder = []
 
   filters = { ...filters, affiliation: 'BOLD Lab' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: 'Casey' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, section: 'PhD Student' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   const orderedPills = orderPeopleActiveFilterPills(
     getPeopleActiveFilterPills(filters),
@@ -142,22 +132,13 @@ test('People active filter pills keep position when active values change', () =>
   let activePillOrder = []
 
   filters = { ...filters, affiliation: 'BOLD Lab' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: 'Casey' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: 'Alex' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   const orderedPills = orderPeopleActiveFilterPills(
     getPeopleActiveFilterPills(filters),
@@ -178,22 +159,13 @@ test('People active filter pills remove cleared filters from activation order', 
   let activePillOrder = []
 
   filters = { ...filters, affiliation: 'BOLD Lab' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: 'Casey' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: '' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   assert.deepEqual(activePillOrder, ['affiliation'])
 })
@@ -203,34 +175,19 @@ test('People active filter pills append removed filters when re-added', () => {
   let activePillOrder = []
 
   filters = { ...filters, affiliation: 'BOLD Lab' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: 'Casey' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, section: 'PhD Student' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: '' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   filters = { ...filters, query: 'Alex' }
-  activePillOrder = getNextPeopleActiveFilterPillOrder(
-    activePillOrder,
-    filters,
-  )
+  activePillOrder = getNextPeopleActiveFilterPillOrder(activePillOrder, filters)
 
   const orderedPills = orderPeopleActiveFilterPills(
     getPeopleActiveFilterPills(filters),

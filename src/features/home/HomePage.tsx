@@ -50,7 +50,9 @@ export function HomePage({
         return
       }
 
-      animationFrameId = window.requestAnimationFrame(updateLogoVisibilityFromRect)
+      animationFrameId = window.requestAnimationFrame(
+        updateLogoVisibilityFromRect,
+      )
     }
 
     scheduleLogoVisibilityUpdate()
@@ -95,7 +97,7 @@ export function HomePage({
           <div className="home-hero-copy">
             <h1 id="home-hero-title">{homepageContent.hero.headline}</h1>
             <p className="hero-lede">{homepageContent.hero.lede}</p>
-            <div className="hero-actions" aria-label="Primary actions">
+            <nav className="hero-actions" aria-label="Primary actions">
               {homepageContent.hero.actions.map((action, index) => (
                 <a
                   className={`button ${index === 0 ? 'button-primary' : 'button-secondary'}`}
@@ -105,7 +107,7 @@ export function HomePage({
                   {action.label}
                 </a>
               ))}
-            </div>
+            </nav>
             <dl className="hero-metrics" aria-label="Lab highlights">
               {homepageContent.proofMetrics.map((metric) => (
                 <div key={metric.label}>
@@ -136,7 +138,9 @@ export function HomePage({
       <section className="home-section bet-section" aria-labelledby="bet-title">
         <div className="home-section-header">
           <p className="eyebrow eyebrow-title-case">Our Bets</p>
-          <h2 id="bet-title">The next paradigm will not come from scale alone.</h2>
+          <h2 id="bet-title">
+            The next paradigm will not come from scale alone.
+          </h2>
         </div>
         <div className="bet-list">
           {homepageContent.labBet.map((bet, index) => (
@@ -159,8 +163,8 @@ export function HomePage({
             <p className="eyebrow eyebrow-title-case">Research Directions</p>
             <p>
               Each direction is designed to test Our Bets from a different
-              scientific angle while sharing systems, infrastructure, and critical
-              mass.
+              scientific angle while sharing systems, infrastructure, and
+              critical mass.
             </p>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import test from 'node:test'
 
 test('Site Footer renders the landing page brand logo without a link', () => {
   const result = spawnSync(

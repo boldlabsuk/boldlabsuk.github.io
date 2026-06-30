@@ -134,6 +134,9 @@
   flex-wrap: wrap;
   gap: 8px;
   min-width: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
 }
 
 .people-active-filter-pill {
@@ -181,7 +184,8 @@
   color: var(--blue);
 }
 
-.people-active-filter-pill:not(:disabled):hover .people-active-filter-pill-remove,
+.people-active-filter-pill:not(:disabled):hover
+  .people-active-filter-pill-remove,
 .people-active-filter-pill:not(:disabled):focus-visible
   .people-active-filter-pill-remove {
   background: var(--blue);
@@ -280,6 +284,7 @@
   justify-content: center;
   width: 100%;
   height: calc(16px * 1.22 * 2);
+  /* biome-ignore lint/suspicious/noDuplicateProperties: calc() is a fallback for browsers without lh unit support. */
   height: 2lh;
   margin: 0;
   font-size: 16px;
@@ -355,6 +360,7 @@
   place-items: center;
   width: 100%;
   height: calc(13px * 1.25 * 2);
+  /* biome-ignore lint/suspicious/noDuplicateProperties: calc() is a fallback for browsers without lh unit support. */
   height: 2lh;
   color: var(--muted);
   font-size: 13px;

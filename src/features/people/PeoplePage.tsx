@@ -1,7 +1,4 @@
-import {
-  faMagnifyingGlass,
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { FormEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -11,10 +8,10 @@ import {
   getPeopleActiveFilterPills,
   getPeopleFilterOptions,
   getPeopleSectionFilterLabel,
-  shufflePeopleWithinSections,
   type PeopleActiveFilterPill,
-  type PeopleDirectorySection,
   type PeopleDirectoryFilters,
+  type PeopleDirectorySection,
+  shufflePeopleWithinSections,
 } from '../../domain/people'
 import { allFilterValue } from '../../domain/shared'
 import { PersonListing } from '../../ui/cards/PersonListing'
@@ -43,7 +40,8 @@ export function PeoplePage() {
   const closeTimerRef = useRef<number | null>(null)
   const openFrameRef = useRef<number | null>(null)
 
-  const { sections, areas, affiliations, supervisors } = getPeopleFilterOptions()
+  const { sections, areas, affiliations, supervisors } =
+    getPeopleFilterOptions()
   const filters = { query, section, area, affiliation, supervisor }
   const activeFilterPills = orderPeopleActiveFilterPills(
     getPeopleActiveFilterPills(filters),
@@ -190,14 +188,13 @@ export function PeoplePage() {
   }
 
   return (
-    <>
-      <section className="section-band page-content people-page-content">
-        <div className="filter-panel people-filter-panel" aria-label="People filters">
-          <form
-            className="search-input people-name-search"
-            role="search"
-            onSubmit={applyNameSearch}
-          >
+    <section className="section-band page-content people-page-content">
+      <section
+        className="filter-panel people-filter-panel"
+        aria-label="People filters"
+      >
+        <search className="search-input people-name-search">
+          <form onSubmit={applyNameSearch}>
             <label htmlFor="people-search">
               <span>Search by name</span>
             </label>
@@ -230,112 +227,103 @@ export function PeoplePage() {
               )}
             </div>
           </form>
-          <SelectFilter
-            id="people-section"
-            label="Role"
-            value={section}
-            options={[allFilterValue, ...sections]}
-            getLabel={getPeopleSectionFilterLabel}
-            onChange={updateSection}
-          />
-          <SelectFilter
-            id="people-supervisor"
-            label="Supervisor"
-            value={supervisor}
-            options={[allFilterValue, ...supervisors]}
-            onChange={updateSupervisor}
-          />
-          <SelectFilter
-            id="people-area"
-            label="Research area"
-            value={area}
-            options={[allFilterValue, ...areas]}
-            onChange={updateArea}
-          />
-          <SelectFilter
-            id="people-affiliation"
-            label="Affiliation"
-            value={affiliation}
-            options={[allFilterValue, ...affiliations]}
-            onChange={updateAffiliation}
-          />
-          {isFilterActionRowMounted && (
-            <div
-              className={
-                isFilterActionRowOpen
-                  ? 'people-filter-actions is-open'
-                  : 'people-filter-actions is-closed'
-              }
-              aria-hidden={!isFilterActionRowOpen}
-            >
-              <div className="people-filter-actions-inner">
-                <div
-                  className="people-active-filter-pills"
-                  role={hasActiveFilters ? 'group' : undefined}
-                  aria-label={
-                    hasActiveFilters ? 'Active people filters' : undefined
-                  }
-                >
-                  {activeFilterPills.map((pill) => (
-                    <button
-                      className="people-active-filter-pill"
-                      type="button"
-                      key={pill.key}
-                      aria-label={pill.removeLabel}
-                      disabled={!isFilterActionRowOpen}
-                      onClick={() => clearPeopleFilter(pill.key)}
-                    >
-                      <span className="people-active-filter-pill-text">
-                        {pill.displayLabel}
-                      </span>
-                      <span
-                        className="people-active-filter-pill-remove"
-                        aria-hidden="true"
-                      >
-                        <FontAwesomeIcon
-                          icon={faXmark}
-                          aria-hidden="true"
-                          focusable="false"
-                        />
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {directory.sections.length > 0 ? (
+        </search>
+        <SelectFilter
+          id="people-section"
+          label="Role"
+          value={section}
+          options={[allFilterValue, ...sections]}
+          getLabel={getPeopleSectionFilterLabel}
+          onChange={updateSection}
+        />
+        <SelectFilter
+          id="people-supervisor"
+          label="Supervisor"
+          value={supervisor}
+          options={[allFilterValue, ...supervisors]}
+          onChange={updateSupervisor}
+        />
+        <SelectFilter
+          id="people-area"
+          label="Research area"
+          value={area}
+          options={[allFilterValue, ...areas]}
+          onChange={updateArea}
+        />
+        <SelectFilter
+          id="people-affiliation"
+          label="Affiliation"
+          value={affiliation}
+          options={[allFilterValue, ...affiliations]}
+          onChange={updateAffiliation}
+        />
+        {isFilterActionRowMounted && (
           <div
-            className="people-directory"
-            id="people-results"
+            className={
+              isFilterActionRowOpen
+                ? 'people-filter-actions is-open'
+                : 'people-filter-actions is-closed'
+            }
+            aria-hidden={!isFilterActionRowOpen}
           >
-            {directory.sections.map((peopleSection) => (
-              <section
-                className="people-section"
-                key={peopleSection.title}
+            <div className="people-filter-actions-inner">
+              <fieldset
+                className="people-active-filter-pills"
+                aria-label="Active people filters"
               >
-                <h2>{peopleSection.label}</h2>
-                <PersonListingGrid
-                  highPriorityListingSlugs={highPriorityListingSlugs}
-                  people={peopleSection.people}
-                />
-              </section>
-            ))}
-          </div>
-        ) : (
-          <div
-            id="people-results"
-            role="status"
-            aria-atomic="true"
-            aria-live="polite"
-          >
-            <EmptyState message="No people match the selected filters." />
+                {activeFilterPills.map((pill) => (
+                  <button
+                    className="people-active-filter-pill"
+                    type="button"
+                    key={pill.key}
+                    aria-label={pill.removeLabel}
+                    disabled={!isFilterActionRowOpen}
+                    onClick={() => clearPeopleFilter(pill.key)}
+                  >
+                    <span className="people-active-filter-pill-text">
+                      {pill.displayLabel}
+                    </span>
+                    <span
+                      className="people-active-filter-pill-remove"
+                      aria-hidden="true"
+                    >
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        aria-hidden="true"
+                        focusable="false"
+                      />
+                    </span>
+                  </button>
+                ))}
+              </fieldset>
+            </div>
           </div>
         )}
       </section>
-    </>
+
+      {directory.sections.length > 0 ? (
+        <div className="people-directory" id="people-results">
+          {directory.sections.map((peopleSection) => (
+            <section className="people-section" key={peopleSection.title}>
+              <h2>{peopleSection.label}</h2>
+              <PersonListingGrid
+                highPriorityListingSlugs={highPriorityListingSlugs}
+                people={peopleSection.people}
+              />
+            </section>
+          ))}
+        </div>
+      ) : (
+        <div
+          id="people-results"
+          role="status"
+          aria-atomic="true"
+          aria-live="polite"
+        >
+          <EmptyState message="No people match the selected filters." />
+        </div>
+      )}
+    </section>
   )
 }
 

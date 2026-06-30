@@ -10,11 +10,13 @@ export function FilterBar({
   onChange: (value: string) => void
 }) {
   return (
-    <div className="filter-bar" aria-label={label}>
+    <fieldset className="filter-bar" aria-label={label}>
       {options.map((option) => (
         <button
           aria-pressed={value === option.value}
-          className={value === option.value ? 'filter-chip active' : 'filter-chip'}
+          className={
+            value === option.value ? 'filter-chip active' : 'filter-chip'
+          }
           key={option.value}
           type="button"
           onClick={() => onChange(option.value)}
@@ -22,6 +24,6 @@ export function FilterBar({
           {option.label}
         </button>
       ))}
-    </div>
+    </fieldset>
   )
 }

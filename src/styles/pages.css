@@ -17,7 +17,7 @@
   aspect-ratio: 1.7;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
-  content: '';
+  content: "";
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
     linear-gradient(0deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
@@ -110,6 +110,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
 }
 
 .filter-chip {

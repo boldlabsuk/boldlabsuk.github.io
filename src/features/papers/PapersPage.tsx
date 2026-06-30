@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { paperTypeLabels, papers } from '../../content'
 import type { PaperType } from '../../content'
+import { papers, paperTypeLabels } from '../../content'
 import {
   filterPapers,
   getFeaturedPapers,

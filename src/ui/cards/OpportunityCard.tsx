@@ -1,5 +1,5 @@
-import { opportunityTypeLabels } from '../../content'
 import type { Opportunity } from '../../content'
+import { opportunityTypeLabels } from '../../content'
 import { formatDate, titleCase } from '../../lib/format'
 import { ExternalLink } from '../primitives/ExternalLink'
 import { TagPill } from '../primitives/TagList'

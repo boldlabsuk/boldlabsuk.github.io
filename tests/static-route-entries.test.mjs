@@ -1,14 +1,15 @@
-import test from 'node:test'
 import assert from 'node:assert/strict'
 import { mkdtemp, readFile, stat } from 'node:fs/promises'
-import { join } from 'node:path'
 import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import test from 'node:test'
 
 import { generateStaticRouteEntries } from '../scripts/generate-static-routes.mjs'
 
 test('static route generation creates deployable SPA entry files', async () => {
   const distDir = await mkdtemp(join(tmpdir(), 'bold-static-routes-'))
-  const indexHtml = '<!doctype html><html><head></head><body><div id="root"></div></body></html>'
+  const indexHtml =
+    '<!doctype html><html><head></head><body><div id="root"></div></body></html>'
   await import('node:fs/promises').then(({ writeFile }) =>
     writeFile(join(distDir, 'index.html'), indexHtml),
   )
@@ -54,7 +55,10 @@ test('static route generation creates deployable SPA entry files', async () => {
     '/people/jakob-foerster',
   ])
   assert.equal(await readFile(join(distDir, '404.html'), 'utf8'), indexHtml)
-  const peopleIndexHtml = await readFile(join(distDir, 'people/index.html'), 'utf8')
+  const peopleIndexHtml = await readFile(
+    join(distDir, 'people/index.html'),
+    'utf8',
+  )
 
   assert.match(
     peopleIndexHtml,
@@ -66,10 +70,7 @@ test('static route generation creates deployable SPA entry files', async () => {
   )
   assert.doesNotMatch(peopleIndexHtml, /hidden-person/)
   assert.doesNotMatch(peopleIndexHtml, /fetchpriority="high"/)
-  assert.equal(
-    peopleIndexHtml.match(/\/profile-assets\//g)?.length,
-    2,
-  )
+  assert.equal(peopleIndexHtml.match(/\/profile-assets\//g)?.length, 2)
   assert.equal(
     await readFile(join(distDir, 'opportunities/index.html'), 'utf8'),
     indexHtml,
