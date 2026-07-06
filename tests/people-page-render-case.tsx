@@ -55,6 +55,7 @@ const associateMembersSectionIndex = peoplePage.indexOf(
   '<h2>Associate Members</h2>',
 )
 const stefanListingIndex = peoplePage.indexOf('Stefan Zohren')
+const xiListingIndex = peoplePage.indexOf('Xi Xiong')
 const mastersSectionIndex = peoplePage.search(
   /<h2>Master(?:'|&#x27;)s Students<\/h2>/,
 )
@@ -67,6 +68,8 @@ assert.ok(associateFacultySectionIndex > incomingSectionIndex)
 assert.ok(associateMembersSectionIndex > associateFacultySectionIndex)
 assert.ok(stefanListingIndex > associateFacultySectionIndex)
 assert.ok(stefanListingIndex < associateMembersSectionIndex)
+assert.ok(xiListingIndex > associateFacultySectionIndex)
+assert.ok(xiListingIndex < associateMembersSectionIndex)
 assert.match(peoplePage, /<p class="person-phd-start-year">2026<\/p>/)
 assert.doesNotMatch(
   peoplePage,

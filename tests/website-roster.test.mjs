@@ -813,6 +813,10 @@ test('Full Website Roster carries Associate Faculty titles and affiliations', ()
         role: 'Associate Faculty',
         affiliation: 'Oxford',
       },
+      'xi-xiong': {
+        role: 'Associate Faculty',
+        affiliation: 'Tongji University',
+      },
       'kristen-menou': {
         role: 'Associate Faculty',
         affiliation: 'University of Toronto',
@@ -1711,8 +1715,8 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'PhD Student': 51,
       'Incoming PhD Students': 3,
       'Masters Student': 13,
-      'Associate Faculty': 5,
-      'Associate Members': 34,
+      'Associate Faculty': 6,
+      'Associate Members': 33,
     },
   )
   assert.equal(new Set(listings.map((listing) => listing.slug)).size, 124)
@@ -1832,7 +1836,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['roberto-rafael-maura-rivero', 'Associate Members'],
       ['evzen-wybitul', 'Associate Members'],
       ['bassel-al-omari', 'Incoming PhD Students'],
-      ['xi-xiong', 'Associate Members'],
+      ['xi-xiong', 'Associate Faculty'],
       ['kale-ab-tessera', 'Associate Members'],
       ['brandon-kaplowitz', 'Associate Members'],
       ['adrian-hayler', 'Associate Members'],
