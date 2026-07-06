@@ -809,6 +809,10 @@ test('Full Website Roster carries Associate Faculty titles and affiliations', ()
         role: 'Associate Professor',
         affiliation: 'Oxford',
       },
+      'stefan-zohren': {
+        role: 'Associate Faculty',
+        affiliation: 'Oxford',
+      },
       'kristen-menou': {
         role: 'Associate Faculty',
         affiliation: 'University of Toronto',
@@ -1707,8 +1711,8 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'PhD Student': 51,
       'Incoming PhD Students': 3,
       'Masters Student': 13,
-      'Associate Faculty': 4,
-      'Associate Members': 35,
+      'Associate Faculty': 5,
+      'Associate Members': 34,
     },
   )
   assert.equal(new Set(listings.map((listing) => listing.slug)).size, 124)
@@ -1833,7 +1837,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['brandon-kaplowitz', 'Associate Members'],
       ['adrian-hayler', 'Associate Members'],
       ['aime-bienfait-igiraneza', 'Associate Members'],
-      ['stefan-zohren', 'Associate Members'],
+      ['stefan-zohren', 'Associate Faculty'],
     ],
   )
   assert.deepEqual(

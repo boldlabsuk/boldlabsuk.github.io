@@ -438,8 +438,8 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'PhD Student': 51,
       'Incoming PhD Students': 3,
       'Masters Student': 13,
-      'Associate Faculty': 4,
-      'Associate Members': 35,
+      'Associate Faculty': 5,
+      'Associate Members': 34,
     },
   )
   assert.deepEqual(
@@ -596,7 +596,13 @@ test('People Directory preserves non-cohort section ordering', () => {
     directory.sections
       .find((section) => section.title === 'Associate Faculty')
       ?.people.map((listing) => listing.slug),
-    ['luca-furieri', 'zhengyao-jiang', 'aya-kayal', 'kristen-menou'],
+    [
+      'luca-furieri',
+      'zhengyao-jiang',
+      'aya-kayal',
+      'kristen-menou',
+      'stefan-zohren',
+    ],
   )
 
   assert.deepEqual(
@@ -638,7 +644,6 @@ test('People Directory preserves non-cohort section ordering', () => {
       'evzen-wybitul',
       'xi-xiong',
       'yingchen-xu',
-      'stefan-zohren',
     ],
   )
 })
