@@ -5,7 +5,7 @@ export const siteMeta = {
   shortName: 'BOLD',
   expandedName: 'British Open-Ended Learning & Discovery Lab',
   description:
-    'A focused, critical-mass AI research lab across Oxford, UCL, and Imperial pursuing fundamental AI breakthroughs from Britain.',
+    'A focused, critical-mass AI research lab across Oxford, UCL, and Imperial pursuing fundamental AI breakthroughs from the UK.',
   missionPhrase: 'Building the next AI paradigm.',
   mission:
     'BOLD brings together key researchers in fundamental AI from Oxford, UCL, and Imperial College into one focused, critical-mass UK AI Research Lab, dedicated to paradigm breaking discoveries in fundamental AI. Our initial research pillars are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied AI.',

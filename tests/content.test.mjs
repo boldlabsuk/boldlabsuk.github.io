@@ -84,7 +84,7 @@ test('homepage presents the BOLD Our Bets positioning and proof metrics', () => 
 
   assert.match(
     getRouteMeta({ name: 'home' }).description,
-    /fundamental AI breakthroughs from Britain/,
+    /fundamental AI breakthroughs from the UK/,
   )
 })
 

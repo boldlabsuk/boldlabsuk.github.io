@@ -217,7 +217,7 @@ export const opportunities: Opportunity[] = [
     title: 'Research Engineer Expressions of Interest',
     type: 'engineer',
     status: 'rolling',
-    location: 'England / hybrid',
+    location: 'UK / hybrid',
     summary:
       'Rolling expressions of interest for engineers with experience in ML systems, research infrastructure, evaluation tooling, and data platforms.',
     contactEmail: siteMeta.contactEmail,

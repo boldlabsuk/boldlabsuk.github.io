@@ -11,7 +11,7 @@ export const newsPosts: NewsPost[] = [
     tags: ['Lab', 'Collaboration', 'Launch'],
     featured: true,
     content:
-      'BOLD Lab launches today as a unified AI research environment spanning three university labs in England.\n\nThe lab is designed to give researchers the scale, infrastructure, and collaborative density needed for long-term AI research. Its initial programme focuses on open-ended learning, evaluation, AI for discovery, research tooling, and responsible deployment.\n\nOver the coming months, BOLD will publish research updates, open calls, technical reports, and opportunities for students, engineers, fellows, and collaborators.',
+      'BOLD Lab launches today as a unified AI research environment spanning three university labs in the UK.\n\nThe lab is designed to give researchers the scale, infrastructure, and collaborative density needed for long-term AI research. Its initial programme focuses on open-ended learning, evaluation, AI for discovery, research tooling, and responsible deployment.\n\nOver the coming months, BOLD will publish research updates, open calls, technical reports, and opportunities for students, engineers, fellows, and collaborators.',
   },
   {
     slug: 'evaluation-for-open-ended-systems',

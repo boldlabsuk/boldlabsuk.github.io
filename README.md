@@ -1,6 +1,6 @@
 # BOLD Website
 
-Static Vite and React website for BOLD, a unified AI research lab in England
+Static Vite and React website for BOLD, a unified AI research lab in the UK
 formed from three university AI labs.
 
 ## Getting Started
