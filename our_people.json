@@ -2071,6 +2071,23 @@
   },
   {
     "source": "main",
+    "name": "Mert Albeyoglu",
+    "role": "MEng Computer Science ’26",
+    "peopleSection": "Masters Student",
+    "homeInstitution": "UCL",
+    "researchInterestKeywords": [
+      "Machine Learning"
+    ],
+    "profilePicture": "20A70BF0-519E-4557-9D7C-CDF84D887812_1_105_c - Mert Albeyoglu.jpeg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.linkedin.com/in/mertalbeyoglu, https://github.com/LYOK0",
+    "supervisors": [
+      "Tim Rocktäschel",
+      "Davide Paglieri"
+    ]
+  },
+  {
+    "source": "main",
     "name": "Ross Murphy",
     "role": "PhD Student",
     "homeInstitution": "UCL",

@@ -437,7 +437,7 @@ test('People Directory maps every public directory Person into exactly one Peopl
       'Research Engineers': 2,
       'PhD Student': 51,
       'Incoming PhD Students': 3,
-      'Masters Student': 13,
+      'Masters Student': 14,
       'Associate Faculty': 6,
       'Associate Members': 33,
     },
@@ -576,6 +576,7 @@ test('People Directory preserves non-cohort section ordering', () => {
       .find((section) => section.title === 'Masters Student')
       ?.people.map((listing) => listing.slug),
     [
+      'mert-albeyoglu',
       'alexandre-bismuth',
       'michal-bravansky',
       'kevin-buhler',
@@ -742,6 +743,7 @@ test('People Directory filter options expose public People Sections and remainin
     'Antoine Cully',
     'Laura Toni',
     'Shimon Whiteson',
+    'Davide Paglieri',
   ])
 })
 

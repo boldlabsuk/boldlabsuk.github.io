@@ -1686,9 +1686,9 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
   })
   const listings = directory.sections.flatMap((section) => section.people)
 
-  assert.equal(people.length, 130)
+  assert.equal(people.length, 131)
   assert.equal(people.filter((person) => person.alumni).length, 6)
-  assert.equal(directory.totalPeople, 124)
+  assert.equal(directory.totalPeople, 125)
   assert.deepEqual(
     [
       ...new Set(
@@ -1699,7 +1699,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     ],
     [],
   )
-  assert.equal(directory.visiblePeopleCount, 124)
+  assert.equal(directory.visiblePeopleCount, 125)
   assert.deepEqual(
     Object.fromEntries(
       directory.sections.map((section) => [
@@ -1714,12 +1714,12 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       'Research Engineers': 2,
       'PhD Student': 51,
       'Incoming PhD Students': 3,
-      'Masters Student': 13,
+      'Masters Student': 14,
       'Associate Faculty': 6,
       'Associate Members': 33,
     },
   )
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 124)
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 125)
   assert.deepEqual(
     directory.sections.map((section) => section.title),
     [
@@ -1771,6 +1771,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     'alexandre-bismuth',
     'michal-bravansky',
     'suhas-hariharan',
+    'mert-albeyoglu',
     'ross-murphy',
     'jack-dalton',
     'mohammed-amara',
@@ -1822,6 +1823,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
       ['alexandre-bismuth', 'Masters Student'],
       ['michal-bravansky', 'Masters Student'],
       ['suhas-hariharan', 'Masters Student'],
+      ['mert-albeyoglu', 'Masters Student'],
       ['ross-murphy', 'PhD Student'],
       ['jack-dalton', 'Associate Members'],
       ['mohammed-amara', 'Associate Members'],
@@ -1890,6 +1892,24 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
     people.find((person) => person.slug === 'henry-heppe')?.links,
     {
       github: 'https://github.com/henry-heppe',
+    },
+  )
+  assert.deepEqual(
+    people.find((person) => person.slug === 'mert-albeyoglu'),
+    {
+      slug: 'mert-albeyoglu',
+      name: 'Mert Albeyoglu',
+      role: 'MEng Computer Science ’26',
+      group: 'Masters Student',
+      affiliation: 'UCL',
+      bio: '',
+      image: '/profile-assets/mert-albeyoglu.webp',
+      links: {
+        linkedin: 'https://www.linkedin.com/in/mertalbeyoglu',
+        github: 'https://github.com/LYOK0',
+      },
+      researchAreas: ['Machine Learning'],
+      supervisors: ['Tim Rocktäschel', 'Davide Paglieri'],
     },
   )
 
@@ -2010,7 +2030,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     ],
   )
   assert.equal(matchingDirectory.visiblePeopleCount, 3)
-  assert.equal(matchingDirectory.totalPeople, 124)
+  assert.equal(matchingDirectory.totalPeople, 125)
 
   assert.deepEqual(
     areaDirectory.sections.map((section) => [
@@ -2064,6 +2084,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       [
         'Masters Student',
         [
+          'mert-albeyoglu',
           'alexandre-bismuth',
           'michal-bravansky',
           'kevin-buhler',
@@ -2081,7 +2102,7 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
       ],
     ],
   )
-  assert.equal(sectionDirectory.visiblePeopleCount, 13)
+  assert.equal(sectionDirectory.visiblePeopleCount, 14)
 
   assert.deepEqual(
     combinedDirectory.sections.map((section) => [
@@ -2091,9 +2112,9 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
     [],
   )
   assert.equal(combinedDirectory.visiblePeopleCount, 0)
-  assert.equal(combinedDirectory.totalPeople, 124)
+  assert.equal(combinedDirectory.totalPeople, 125)
 
   assert.deepEqual(emptyDirectory.sections, [])
   assert.equal(emptyDirectory.visiblePeopleCount, 0)
-  assert.equal(emptyDirectory.totalPeople, 124)
+  assert.equal(emptyDirectory.totalPeople, 125)
 })
