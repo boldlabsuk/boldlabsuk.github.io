@@ -875,7 +875,7 @@ test('Full Website Roster carries PhD cohort and CDT metadata', () => {
   assert.equal(kang?.cdtStudent, false)
   assert.equal(kang?.cdtStartYear, undefined)
   assert.equal(lisa?.phdSortSurname, 'Coiffard')
-  assert.equal(lisa?.phdStartYear, 2023)
+  assert.equal(lisa?.phdStartYear, 2024)
   assert.equal(lisa?.phdStartYearStatus, 'user_provided')
   assert.equal(lisa?.cdtStudent, false)
   assert.equal(lisa?.cdtStartYear, undefined)
@@ -2063,9 +2063,9 @@ test('Full Website Roster filters preserve grouping, counts, and empty state mod
         'PhD Student',
         [
           'richard-bornemann',
+          'lisa-coiffard',
           'runjun-mao',
           'konstantinos-mitsides',
-          'lisa-coiffard',
           'hannah-janmohamed',
         ],
       ],
