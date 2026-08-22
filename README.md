@@ -57,6 +57,10 @@ Routine work starts on `dev`. Promote a reviewed commit from `dev` to
 `staging`; after approval, promote the same commit from `staging` to `main`.
 Do not merge `dev` directly into `main`.
 
+A push to `main` starts the production workflow. The existing `github-pages`
+environment protection then requires approval from `ravihammond` or
+`boldlabsuk` before that deployment becomes live.
+
 `.github/workflows/ci.yml` validates pushes to all three long-lived branches.
 `.github/workflows/deploy.yml` builds only `main` and publishes `dist` to
 GitHub Pages. Cloudflare Pages is configured separately to build `staging` as a

@@ -17,8 +17,9 @@ This repo uses a single-context domain-doc layout. See `docs/agents/domain.md`.
 - `dev` is the working and integration branch. Start routine website work here.
 - `staging` is the supervisor-review branch. Pushing it updates
   `https://staging.bold-lab-preview.pages.dev` through Cloudflare Pages.
-- `main` is the production branch. Pushing it updates `https://bold-lab.ai`
-  through GitHub Pages.
+- `main` is the production branch. Pushing it starts the GitHub Pages deployment
+  for `https://bold-lab.ai`; publication waits for the existing environment
+  reviewer approval.
 
 Promote changes in one direction: `dev` to `staging`, then `staging` to `main`.
 Do not promote `dev` directly to `main`.
