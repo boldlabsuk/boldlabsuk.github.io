@@ -13,15 +13,15 @@ The public framing that BOLD brings together researchers across Oxford, UCL, and
 _Avoid_: Research. Build. Transform., generic AI collaboration
 
 **Landing Page Audience**:
-The primary public audiences the BOLD homepage must persuade: incoming members across PIs, postdocs, engineers, fellows, and PhD students.
+The primary public audiences the BOLD homepage must persuade: incoming researchers, institutional partners, donors, and founders.
 _Avoid_: General website visitors, casual AI audience
 
 **Landing Page Persuasion Order**:
-The homepage hierarchy that leads with scientific ambition for incoming members, then uses proof of scale, Our Bets, and Research Directions before closing with the site footer.
+The homepage hierarchy that leads with scientific ambition, then presents The Vision, Three Initial Research Pillars, Team & Track Record, field leaders, BOLD's research funnel and UK case, At a Glance, and the European AI sovereignty statement before closing with the site footer.
 _Avoid_: Generic recruitment page
 
 **National Mission Framing**:
-The homepage treatment of Britain's role in BOLD: a supporting proof point for frontier AI ambition, not the primary headline or brand identity.
+The homepage treatment of Britain's and Europe's role in BOLD: a dedicated part of the operating-model case and the closing statement, not the primary headline or brand identity.
 _Avoid_: Made in Britain as the hero headline, UK-first government campaign language
 
 **University Credibility Line**:
@@ -32,9 +32,9 @@ _Avoid_: Consortium-led headline, three university labs as the core proposition
 The homepage's non-photographic visual language: typography-led sections with flat abstract graphics that suggest open-ended learning, discovery, networks, feedback loops, and embodied testbeds.
 _Avoid_: People-photo hero, generic stock lab imagery, decorative card-heavy template graphics
 
-**Homepage Proof Metrics**:
-The early stats that prove Our Bets: 3 universities, 2 Bets, and 3 Research Directions.
-_Avoid_: 12 research themes, 6 routes to join, decorative vanity metrics
+**At a Glance**:
+The six-part homepage summary of BOLD's Focus, Home, Model, Founding labs, Recognition, and Advisors, placed after the full narrative rather than in the hero.
+_Avoid_: The former 3/2/3 hero metrics, decorative vanity metrics
 
 **Homepage CTA Strategy**:
 The homepage uses primary actions near the top, then avoids repeated CTA blocks further down the page.
@@ -81,27 +81,27 @@ The public tone for Opportunities copy: selective but not exclusionary, serious 
 _Avoid_: Gatekeeping language, generic recruitment copy, overpromising fit
 
 **Research Direction Interest**:
-An applicant's free-form description of how their interests relate to BOLD's Research Directions, without forcing them to choose a fixed research category.
+An applicant's free-form description of how their interests relate to BOLD's Research Pillars, without forcing them to choose a fixed research category.
 _Avoid_: Research direction checkbox, single-theme classification
 
-**Our Bets**:
-The public two-part argument that fundamental AI breakthroughs are still possible, and that academia needs a more focused, agile, critical-mass mode of research to pursue them.
-_Avoid_: Research theme, slogan, About section
+**The Vision**:
+The homepage case that paradigm-breaking discoveries remain possible and that academia, given focus, scale, and compute, is still the best place to pursue them.
+_Avoid_: Our Bets, slogan, abbreviated proof cards
 
-**Research Direction**:
-A public-facing area of BOLD's scientific programme. The canonical Research Directions are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied Learning; on the homepage they appear as three equal pillar cards tied to Our Bets.
-_Avoid_: Research theme, paper category, card grid
+**Research Pillar**:
+A public-facing area of BOLD's initial scientific programme. The canonical Research Pillars are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied Learning; on the homepage they appear as three complete editorial entries tied to The Vision.
+_Avoid_: Research theme, paper category, abbreviated equal-height card
 
 **Beyond Backpropagation**:
-A Research Direction focused on learning methods for settings where gradients are unavailable, unreliable, or a poor fit for the hardware.
+A Research Pillar focused on rethinking foundational neural network optimization beyond the limitations of backpropagation.
 _Avoid_: Backpropagation alternatives
 
 **Human-Centric Learning & Discovery**:
-A Research Direction focused on AI systems that collaborate with people and support multi-agent discovery rather than treating humans as data sources.
+A Research Pillar focused on multi-agent coordination and co-improving, human-in-the-loop discovery systems.
 _Avoid_: Human-in-the-loop AI
 
 **Embodied Learning**:
-A Research Direction focused on resource-agile systems for autonomous skill discovery, resilient adaptation, and deployment beyond the datacentre.
+A Research Pillar focused on resource-agile systems for autonomous skill discovery, resilient adaptation, and real-time onboard deployment.
 _Avoid_: Robotics
 
 **Person**:

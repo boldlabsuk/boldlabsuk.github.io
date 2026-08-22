@@ -63,32 +63,37 @@ test('BOLD presents the v2 lab information architecture', () => {
   )
 })
 
-test('homepage presents the BOLD Our Bets positioning and proof metrics', () => {
+test('homepage presents the supervisor brief in document order', () => {
   assert.equal(homepageContent.hero.headline, 'Building the next AI paradigm.')
-  assert.match(homepageContent.hero.lede, /Oxford, UCL, and Imperial/)
-
+  assert.equal(
+    homepageContent.hero.lede,
+    'A world-leading academic lab catalyzing open frontier AI research, uniting top machine-learning groups at Oxford, UCL, and Imperial under one ambitious vision.',
+  )
   assert.deepEqual(
-    homepageContent.proofMetrics.map((metric) => metric.value),
-    ['3', '2', '3'],
+    homepageContent.researchPillars.map((pillar) => pillar.name),
+    [
+      'Beyond Backpropagation',
+      'Human-Centric Learning & Discovery',
+      'Embodied Learning',
+    ],
   )
-
+  assert.equal(homepageContent.team.faculty.length, 6)
+  assert.equal(homepageContent.operatingModel.phases.length, 3)
   assert.deepEqual(
-    homepageContent.proofMetrics.map((metric) => metric.label),
-    ['Universities', 'Bets', 'Research Directions'],
+    homepageContent.atAGlance.map((item) => item.label),
+    ['Focus', 'Home', 'Model', 'Founding labs', 'Recognition', 'Advisors'],
   )
+  assert.equal('proofMetrics' in homepageContent, false)
+  assert.equal('labBet' in homepageContent, false)
+  assert.equal('researchDirections' in homepageContent, false)
 
-  assert.match(
-    homepageContent.proofMetrics[1].detail,
-    /Breakthroughs remain possible/,
-  )
-
-  assert.match(
+  assert.equal(
     getRouteMeta({ name: 'home' }).description,
-    /fundamental AI breakthroughs from the UK/,
+    homepageContent.hero.lede,
   )
 })
 
-test('homepage content exposes the approved CTAs, Our Bets, and Research Directions', () => {
+test('homepage content exposes the approved controls and corrected document copy', () => {
   const homepageText = JSON.stringify(homepageContent)
 
   assert.deepEqual(
@@ -100,25 +105,17 @@ test('homepage content exposes the approved CTAs, Our Bets, and Research Directi
     ['/opportunities', '/people'],
   )
 
-  assert.equal(homepageContent.labBet.length, 2)
-  assert.match(
-    homepageContent.labBet[0].body,
-    /breakthroughs are still possible/,
-  )
-  assert.match(homepageContent.labBet[1].body, /focused, agile, critical-mass/)
-
-  assert.deepEqual(
-    homepageContent.researchDirections.map((direction) => direction.name),
-    [
-      'Beyond Backpropagation',
-      'Human-Centric Learning & Discovery',
-      'Embodied Learning',
-    ],
-  )
-
-  assert.match(homepageText, /gradients are unavailable/)
-  assert.match(homepageText, /collaborate with people/)
-  assert.match(homepageText, /deployment beyond the datacentre/)
+  assert.match(homepageText, /paradigm-breaking discoveries/)
+  assert.match(homepageText, /core training component/)
+  assert.match(homepageText, /Jakob Foerster/)
+  assert.match(homepageText, /Reflection AI/)
+  assert.match(homepageText, /Phase 3: Deep Mission Execution/)
+  assert.match(homepageText, /Europe’s AI sovereignty/)
+  assert.ok(!homepageText.includes('[a]'))
+  assert.ok(!homepageText.includes('[b]'))
+  assert.ok(!homepageText.includes('coretraining'))
+  assert.ok(!homepageText.includes('Jakob Forester'))
+  assert.ok(!homepageText.includes('Reflective'))
   assert.ok(!homepageText.includes('Research. Build. Transform.'))
   assert.ok(!homepageText.includes('12 research themes'))
   assert.ok(!homepageText.includes('6 routes to join'))

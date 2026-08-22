@@ -58,13 +58,28 @@
 
   .section-header,
   .identity-section,
-  .home-section-header,
+  .split-section-layout,
+  .pillars-layout,
   .detail-layout,
   .expression-interest-section,
   .contact-section,
   .footer-inner,
   .footer-bottom {
     grid-template-columns: 1fr;
+  }
+
+  .section-introduction {
+    margin-bottom: clamp(38px, 7vw, 58px);
+  }
+
+  .faculty-item,
+  .phase-item {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .faculty-item > p,
+  .phase-item > p {
+    grid-column: 2;
   }
 
   .opportunity-route-index {
@@ -137,34 +152,30 @@
     width: 100%;
   }
 
-  .hero-metrics {
+  .home-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .pillar-item,
+  .faculty-item,
+  .phase-item {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .glance-list {
     grid-template-columns: 1fr;
   }
 
-  .hero-metrics div {
-    padding: 18px 0;
-  }
-
-  .hero-metrics div + div {
-    padding-left: 0;
-    border-top: 1px solid #cfd6db;
-    border-left: 0;
-  }
-
-  .bet-list,
-  .direction-list {
+  .glance-list div {
     grid-template-columns: 1fr;
+    gap: 6px;
   }
 
-  .bet-item,
-  .bet-item + .bet-item {
-    padding-right: 0;
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .bet-item + .bet-item {
-    border-top: 1px solid #cfd6db;
+  .home-closing {
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   .four-up,

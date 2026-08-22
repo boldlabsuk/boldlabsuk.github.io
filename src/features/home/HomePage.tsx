@@ -108,17 +108,6 @@ export function HomePage({
                 </a>
               ))}
             </nav>
-            <dl className="hero-metrics" aria-label="Lab highlights">
-              {homepageContent.proofMetrics.map((metric) => (
-                <div key={metric.label}>
-                  <dt>{metric.value}</dt>
-                  <dd>
-                    <strong>{metric.label}</strong>
-                    <span>{metric.detail}</span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
           <div className="home-hero-visual">
             <img
@@ -135,63 +124,157 @@ export function HomePage({
         </div>
       </section>
 
-      <section className="home-section bet-section" aria-labelledby="bet-title">
-        <div className="home-section-header">
-          <p className="eyebrow eyebrow-title-case">Our Bets</p>
-          <h2 id="bet-title">
-            The next paradigm will not come from scale alone.
+      <section
+        className="home-section vision-section"
+        aria-labelledby="vision-title"
+      >
+        <div className="home-section-inner split-section-layout">
+          <h2 className="home-section-title" id="vision-title">
+            The Vision
           </h2>
-        </div>
-        <div className="bet-list">
-          {homepageContent.labBet.map((bet, index) => (
-            <article className="bet-item" key={bet.title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{bet.title}</h3>
-              <p>{bet.body}</p>
-            </article>
-          ))}
+          <div className="section-prose vision-copy">
+            {homepageContent.vision.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </div>
       </section>
 
       <section
-        className="home-section directions-section"
-        aria-labelledby="directions-title"
+        className="home-section pillars-section"
+        aria-labelledby="pillars-title"
       >
-        <div className="home-section-header">
-          <h2 id="directions-title">Three pillars.</h2>
-          <div className="home-section-summary">
-            <p className="eyebrow eyebrow-title-case">Research Directions</p>
-            <p>
-              Each direction is designed to test Our Bets from a different
-              scientific angle while sharing systems, infrastructure, and
-              critical mass.
-            </p>
+        <div className="home-section-inner pillars-layout">
+          <h2 className="home-section-title" id="pillars-title">
+            Three Initial Research Pillars
+          </h2>
+          <ol className="editorial-list pillar-list">
+            {homepageContent.researchPillars.map((pillar, index) => (
+              <li className="editorial-list-item pillar-item" key={pillar.name}>
+                <span className="item-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <article>
+                  <h3>{pillar.name}</h3>
+                  <p className="item-kicker">Lead: {pillar.lead}</p>
+                  <p>{pillar.description}</p>
+                </article>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section
+        className="home-section team-section"
+        aria-labelledby="team-title"
+      >
+        <div className="home-section-inner">
+          <div className="split-section-layout section-introduction">
+            <h2 className="home-section-title" id="team-title">
+              The Team &amp; Track Record
+            </h2>
+            <p>{homepageContent.team.introduction}</p>
+          </div>
+          <ol className="editorial-list faculty-list">
+            {homepageContent.team.faculty.map((member, index) => (
+              <li
+                className="editorial-list-item faculty-item"
+                key={member.identity}
+              >
+                <span className="item-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3>{member.identity}</h3>
+                <p>{member.description}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="team-track-record">
+            {homepageContent.team.trackRecord}
+          </p>
+        </div>
+      </section>
+
+      <section
+        className="home-section leaders-section"
+        aria-labelledby="leaders-title"
+      >
+        <div className="home-section-inner split-section-layout leaders-layout">
+          <h2 className="home-section-title" id="leaders-title">
+            Backed by the Field&apos;s Leaders
+          </h2>
+          <p className="leaders-statement">{homepageContent.fieldLeaders}</p>
+        </div>
+      </section>
+
+      <section
+        className="home-section operating-section"
+        aria-labelledby="operating-title"
+      >
+        <div className="home-section-inner">
+          <div className="split-section-layout section-introduction">
+            <h2 className="home-section-title" id="operating-title">
+              How BOLD Works, and Why the UK
+            </h2>
+            <p>{homepageContent.operatingModel.introduction}</p>
+          </div>
+          <ol className="editorial-list phase-list">
+            {homepageContent.operatingModel.phases.map((phase, index) => (
+              <li className="editorial-list-item phase-item" key={phase.name}>
+                <span className="item-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3>{phase.name}</h3>
+                <p>{phase.description}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="section-prose uk-case-copy">
+            {homepageContent.operatingModel.ukCase.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
-        <ol className="direction-list">
-          {homepageContent.researchDirections.map((direction) => (
-            <li className="direction-item" key={direction.name}>
-              <h3>{direction.name}</h3>
-              <p>{direction.description}</p>
-            </li>
-          ))}
-        </ol>
+      </section>
+
+      <section
+        className="home-section glance-section"
+        aria-labelledby="glance-title"
+      >
+        <div className="home-section-inner">
+          <h2 className="home-section-title" id="glance-title">
+            At a Glance
+          </h2>
+          <dl className="glance-list">
+            {homepageContent.atAGlance.map((item) => (
+              <div key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="home-closing" aria-label="BOLD mission statement">
+        <p>{homepageContent.closingStatement}</p>
       </section>
     </>
   )
 }
 
 function HomeHeroSubtitle({ text }: { text: string }) {
-  if (text !== 'British Open-Ended Learning & Discovery Lab') {
+  if (text !== 'British Open-ended Learning and Discovery') {
     return text
   }
 
   return (
     <>
       <span className="home-hero-subtitle-initial">B</span>ritish{' '}
-      <span className="home-hero-subtitle-initial">O</span>pen-Ended{' '}
-      <span className="home-hero-subtitle-initial">L</span>earning &{' '}
-      <span className="home-hero-subtitle-initial">D</span>iscovery Lab
+      <span className="home-hero-subtitle-initial">O</span>pen-ended{' '}
+      <span className="home-hero-subtitle-initial">L</span>earning and{' '}
+      <span className="home-hero-subtitle-initial">D</span>iscovery
     </>
   )
 }

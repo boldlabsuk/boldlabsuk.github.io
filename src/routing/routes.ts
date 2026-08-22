@@ -1,4 +1,4 @@
-import { people, siteMeta } from '../content.ts'
+import { homepageContent, people, siteMeta } from '../content.ts'
 
 export type Route =
   | { name: 'home' }
@@ -56,7 +56,7 @@ export function getRouteMeta(route: Route): Meta {
   const routeMeta: Record<Route['name'], Meta> = {
     home: {
       title: `Home | ${siteMeta.name}`,
-      description: siteMeta.description,
+      description: homepageContent.hero.lede,
     },
     people: {
       title: `Our People | ${siteMeta.name}`,
