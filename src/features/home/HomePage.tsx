@@ -265,16 +265,24 @@ export function HomePage({
 }
 
 function HomeHeroSubtitle({ text }: { text: string }) {
-  if (text !== 'British Open-ended Learning and Discovery') {
-    return text
-  }
+  const words = Array.from(text.matchAll(/\S+/g), (match) => ({
+    text: match[0],
+    offset: match.index,
+  }))
 
   return (
     <>
-      <span className="home-hero-subtitle-initial">B</span>ritish{' '}
-      <span className="home-hero-subtitle-initial">O</span>pen-ended{' '}
-      <span className="home-hero-subtitle-initial">L</span>earning and{' '}
-      <span className="home-hero-subtitle-initial">D</span>iscovery
+      {words.map((word, position) => (
+        <span key={`${word.offset}-${word.text}`}>
+          {word.text[0] === word.text[0]?.toUpperCase() ? (
+            <span className="home-hero-subtitle-initial">{word.text[0]}</span>
+          ) : (
+            word.text[0]
+          )}
+          {word.text.slice(1)}
+          {position < words.length - 1 ? ' ' : null}
+        </span>
+      ))}
     </>
   )
 }

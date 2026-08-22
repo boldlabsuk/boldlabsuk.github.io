@@ -81,7 +81,7 @@ The public tone for Opportunities copy: selective but not exclusionary, serious 
 _Avoid_: Gatekeeping language, generic recruitment copy, overpromising fit
 
 **Research Direction Interest**:
-An applicant's free-form description of how their interests relate to BOLD's Research Pillars, without forcing them to choose a fixed research category.
+An applicant's free-form description of how their interests relate to BOLD's Research Directions, without forcing them to choose a fixed research category.
 _Avoid_: Research direction checkbox, single-theme classification
 
 **The Vision**:

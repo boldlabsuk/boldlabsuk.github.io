@@ -3,12 +3,11 @@ import type { NavigationItem } from './types.ts'
 export const siteMeta = {
   name: 'BOLD Lab',
   shortName: 'BOLD',
-  expandedName: 'British Open-Ended Learning & Discovery Lab',
   description:
     'A focused, critical-mass AI research lab across Oxford, UCL, and Imperial pursuing fundamental AI breakthroughs from the UK.',
   missionPhrase: 'Building the next AI paradigm.',
   mission:
-    'BOLD brings together key researchers in fundamental AI from Oxford, UCL, and Imperial College into one focused, critical-mass UK AI Research Lab, dedicated to paradigm breaking discoveries in fundamental AI. Our initial research pillars are Beyond Backpropagation, Human-Centric Learning & Discovery, and Embodied AI.',
+    'A world-leading academic lab catalyzing open frontier AI research, uniting top machine-learning groups at Oxford, UCL, and Imperial under one ambitious vision.',
   identity:
     'Our lab brings together three leading university AI labs into a single collaborative research environment. We combine academic depth, engineering excellence, and long-term scientific ambition.',
   statement:
@@ -30,7 +29,7 @@ export const homepageContent = {
   hero: {
     eyebrow: 'British Open-ended Learning and Discovery',
     headline: siteMeta.missionPhrase,
-    lede: 'A world-leading academic lab catalyzing open frontier AI research, uniting top machine-learning groups at Oxford, UCL, and Imperial under one ambitious vision.',
+    lede: siteMeta.mission,
     actions: [
       { label: 'Join BOLD', href: '/opportunities' },
       { label: 'Meet the team', href: '/people' },
@@ -99,7 +98,7 @@ export const homepageContent = {
       'The labs have a proven pipeline from research to real-world impact: alumni have gone on to OpenAI, Anthropic, DeepMind, and the UK AI Security Institute, and have co-founded companies including Weco.ai (whose AIDE agent has been used by OpenAI and Meta), Helical, and the foundation-model unicorn Reflection AI.',
   },
   fieldLeaders:
-    "BOLD's scientific advisory board and endorsers read as a who's who of modern AI: David Silver, Pieter Abbeel, Nando de Freitas, Jeff Clune, Doina Precup, and Hugo Larochelle.",
+    "BOLD's scientific advisory board and endorsers read as a who's who of modern AI such as David Silver, Pieter Abbeel, Nando de Freitas, Jeff Clune, Doina Precup, Hugo Larochelle.",
   operatingModel: {
     introduction:
       'Rather than distributing resources thinly, BOLD consolidates existing world-class academic groups into a single co-located lab in Oxford, formally linked to all three universities. A lightweight three-phase research funnel—broad exploration, selective scale-up, then deep focused missions—lets promising ideas earn larger resources fast while failing cheaply, mirroring how the team turned early experiments into breakthroughs like EGGROLL within months.',
