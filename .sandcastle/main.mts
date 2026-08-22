@@ -572,17 +572,17 @@ function buildSandbox(githubToken: string) {
 
 /** A Codex model plus reasoning effort, named so phases can pick deliberately. */
 interface AgentSpec {
-  /** Codex model id (e.g. `gpt-5.5`). */
+  /** Codex model id (e.g. `gpt-5.6-sol`). */
   readonly model: string;
   /** Reasoning effort level. */
-  readonly effort: 'low' | 'medium' | 'high' | 'xhigh';
+  readonly effort: 'medium';
 }
 
-/** Planning is lightweight analysis. */
-export const PLANNER_AGENT: AgentSpec = {model: 'gpt-5.5', effort: 'low'};
+/** Planning uses the global default Codex reasoning setting. */
+export const PLANNER_AGENT: AgentSpec = {model: 'gpt-5.6-sol', effort: 'medium'};
 
-/** Implement/review/edit do the real engineering work. */
-export const WORKER_AGENT: AgentSpec = {model: 'gpt-5.5', effort: 'high'};
+/** Implement/review/edit use the same global default Codex reasoning setting. */
+export const WORKER_AGENT: AgentSpec = {model: 'gpt-5.6-sol', effort: 'medium'};
 
 /**
  * Builds a Codex agent from an {@link AgentSpec}.

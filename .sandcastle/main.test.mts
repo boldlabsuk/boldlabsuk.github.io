@@ -511,7 +511,7 @@ test('runCycle retries once when the Docker provider reports the image missing',
   );
 });
 
-test('runCycle runs all phases on gpt-5.5 with phase-specific effort', async () => {
+test('runCycle runs all phases on gpt-5.6-sol with medium effort', async () => {
   const {fn, calls} = makeFakeRun({
     planner: {stdout: PLAN_ONE, commits: [], iterations: []},
     implement: IMPLEMENT_DONE,
@@ -530,11 +530,11 @@ test('runCycle runs all phases on gpt-5.5 with phase-specific effort', async () 
 
   const agentFor = (name: string) => calls.find((c) => c.name === name).agent;
   assert.deepEqual(agentFor('planner'), PLANNER_AGENT);
-  assert.deepEqual(PLANNER_AGENT, {model: 'gpt-5.5', effort: 'low'});
+  assert.deepEqual(PLANNER_AGENT, {model: 'gpt-5.6-sol', effort: 'medium'});
   assert.deepEqual(agentFor('implement'), WORKER_AGENT);
   assert.deepEqual(agentFor('review'), WORKER_AGENT);
   assert.deepEqual(agentFor('merge'), WORKER_AGENT);
-  assert.deepEqual(WORKER_AGENT, {model: 'gpt-5.5', effort: 'high'});
+  assert.deepEqual(WORKER_AGENT, {model: 'gpt-5.6-sol', effort: 'medium'});
 });
 
 test('runCycles stops as soon as a cycle plans no issues', async () => {
