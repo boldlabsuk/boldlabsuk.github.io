@@ -44,8 +44,23 @@ enabled for the launch site.
 
 ## Deployment
 
-Deployment is handled by `.github/workflows/deploy.yml`, which builds the site
-and publishes `dist` to GitHub Pages.
+The repository uses three long-lived branches and a one-direction promotion
+flow:
+
+| Branch | Purpose | Deployment |
+| --- | --- | --- |
+| `dev` | Local development and integration | None |
+| `staging` | Supervisor review | `https://staging.bold-lab-preview.pages.dev` through Cloudflare Pages |
+| `main` | Public production | `https://bold-lab.ai` through GitHub Pages |
+
+Routine work starts on `dev`. Promote a reviewed commit from `dev` to
+`staging`; after approval, promote the same commit from `staging` to `main`.
+Do not merge `dev` directly into `main`.
+
+`.github/workflows/ci.yml` validates pushes to all three long-lived branches.
+`.github/workflows/deploy.yml` builds only `main` and publishes `dist` to
+GitHub Pages. Cloudflare Pages is configured separately to build `staging` as a
+preview branch; `dev` is not a deployment branch.
 
 The workflow has a deploy-job guard so only these GitHub actors can start or
 rerun the Pages deployment from the current workflow definition:

@@ -1,6 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
+  # Production only. Cloudflare Pages deploys the staging branch, while dev is
+  # intentionally validation-only.
   push:
     branches: [main]
   workflow_dispatch:
