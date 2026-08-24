@@ -68,5 +68,13 @@ assert.doesNotMatch(
   /The next paradigm will not come from scale alone/,
 )
 assert.doesNotMatch(renderedText, /Each direction is designed to test Our Bets/)
-assert.doesNotMatch(homePage, /class="hero-metrics"/)
+assert.match(homePage, /class="hero-metrics"/)
+assert.match(homePage, /aria-label="Lab highlights"/)
+for (const expectedMetricCopy of [
+  '3 Universities Oxford, UCL, and Imperial working as one lab.',
+  '2 Bets Breakthroughs remain possible, and academia needs a new model.',
+  '3 Research Directions A focused programme for open-ended learning and discovery.',
+]) {
+  assert.match(renderedText, new RegExp(expectedMetricCopy))
+}
 assert.doesNotMatch(renderedText, /\[a\]|\[b\]|coretraining|Jakob Forester/)

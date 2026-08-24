@@ -108,6 +108,17 @@ export function HomePage({
                 </a>
               ))}
             </nav>
+            <dl className="hero-metrics" aria-label="Lab highlights">
+              {homepageContent.proofMetrics.map((metric) => (
+                <div key={metric.label}>
+                  <dt>{metric.value}</dt>
+                  <dd>
+                    <strong>{metric.label}</strong>
+                    <span>{metric.detail}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <div className="home-hero-visual">
             <img
@@ -128,7 +139,7 @@ export function HomePage({
         className="home-section vision-section"
         aria-labelledby="vision-title"
       >
-        <div className="home-section-inner split-section-layout">
+        <div className="home-section-inner stacked-section-layout">
           <h2 className="home-section-title" id="vision-title">
             The Vision
           </h2>
@@ -144,7 +155,7 @@ export function HomePage({
         className="home-section pillars-section"
         aria-labelledby="pillars-title"
       >
-        <div className="home-section-inner pillars-layout">
+        <div className="home-section-inner stacked-section-layout">
           <h2 className="home-section-title" id="pillars-title">
             Three Initial Research Pillars
           </h2>

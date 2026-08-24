@@ -59,7 +59,6 @@
   .section-header,
   .identity-section,
   .split-section-layout,
-  .pillars-layout,
   .detail-layout,
   .expression-interest-section,
   .contact-section,
@@ -150,6 +149,20 @@
 
   .hero-actions .button {
     width: 100%;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-metrics div {
+    padding: 18px 0;
+  }
+
+  .hero-metrics div + div {
+    padding-left: 0;
+    border-top: 1px solid #cfd6db;
+    border-left: 0;
   }
 
   .home-section {

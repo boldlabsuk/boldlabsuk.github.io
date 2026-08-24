@@ -35,6 +35,23 @@ export const homepageContent = {
       { label: 'Meet the team', href: '/people' },
     ],
   },
+  proofMetrics: [
+    {
+      value: '3',
+      label: 'Universities',
+      detail: 'Oxford, UCL, and Imperial working as one lab.',
+    },
+    {
+      value: '2',
+      label: 'Bets',
+      detail: 'Breakthroughs remain possible, and academia needs a new model.',
+    },
+    {
+      value: '3',
+      label: 'Research Directions',
+      detail: 'A focused programme for open-ended learning and discovery.',
+    },
+  ],
   vision: [
     "The current paradigm is that scale is all you need. Instead, we believe two things: First, that paradigm-breaking discoveries are possible and, secondly, that academia, if given focus, scale, and compute, is still the best place for these breakthroughs. BOLD develops new paradigms for AI that enable robust real-world intelligence: AI systems that learn, reason, coordinate, and adapt in environments that are noisy, interactive, resource-constrained, and often non-differentiable. To pursue this at the necessary scale, BOLD does something UK academia has not done before: it merges the field's leading AI groups at Oxford, UCL, and Imperial into a single, co-located lab, uniting their talent and resources behind one shared vision. It is a new model for academia operating at industry speed, focus, and ambition, and fully committed to open source and open science in the public interest.",
     'BOLD is racing to pioneer AI breakthroughs the field (and Europe) urgently needs—AI that is radically more compute-efficient, safer, and openly shared. If it succeeds, this unified national effort will become a critical enabler of UK and European AI sovereignty in a race currently dominated by the US and China.',

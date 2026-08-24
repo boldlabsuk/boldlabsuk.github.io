@@ -83,7 +83,23 @@ test('homepage presents the supervisor brief in document order', () => {
     homepageContent.atAGlance.map((item) => item.label),
     ['Focus', 'Home', 'Model', 'Founding labs', 'Recognition', 'Advisors'],
   )
-  assert.equal('proofMetrics' in homepageContent, false)
+  assert.deepEqual(homepageContent.proofMetrics, [
+    {
+      value: '3',
+      label: 'Universities',
+      detail: 'Oxford, UCL, and Imperial working as one lab.',
+    },
+    {
+      value: '2',
+      label: 'Bets',
+      detail: 'Breakthroughs remain possible, and academia needs a new model.',
+    },
+    {
+      value: '3',
+      label: 'Research Directions',
+      detail: 'A focused programme for open-ended learning and discovery.',
+    },
+  ])
   assert.equal('labBet' in homepageContent, false)
   assert.equal('researchDirections' in homepageContent, false)
 
