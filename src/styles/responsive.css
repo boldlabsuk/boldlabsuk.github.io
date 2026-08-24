@@ -170,11 +170,25 @@
     padding-bottom: 64px;
   }
 
-  .pillar-item,
   .faculty-item,
   .phase-item {
     grid-template-columns: 38px minmax(0, 1fr);
     gap: 14px;
+  }
+
+  .pillar-item article {
+    grid-template-columns: 44px minmax(0, 1fr);
+    column-gap: 14px;
+  }
+
+  .pillar-item-icon {
+    grid-row: 1;
+    align-self: start;
+    height: 66px;
+  }
+
+  .pillar-item-description {
+    grid-column: 1 / -1;
   }
 
   .glance-list {

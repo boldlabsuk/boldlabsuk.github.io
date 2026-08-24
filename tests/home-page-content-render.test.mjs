@@ -8,6 +8,8 @@ test('Home Page renders the complete supervisor brief in order', () => {
     [
       '--tsconfig',
       'tsconfig.app.json',
+      '--import',
+      './tests/static-asset-loader.mjs',
       'tests/home-page-content-render-case.tsx',
     ],
     {

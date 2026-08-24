@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { type CSSProperties, useEffect, useRef } from 'react'
+import researchPillarIcon from '../../assets/research-pillar.svg'
 import { homepageContent } from '../../content'
 
 const stickyHeaderOffsetPx = 67
@@ -7,6 +8,26 @@ const siteHeaderSelector = '.site-header'
 const navbarLogoRevealOffsetPx = 20
 // The logo SVG has transparent space below the visible BOLD lettering.
 const boldLogoTextVisualBottomRatio = 619 / 788
+
+type ResearchPillarTone = {
+  className: string
+  style: CSSProperties & Record<'--pillar-dark' | '--pillar-light', string>
+}
+
+const researchPillarTones: readonly ResearchPillarTone[] = [
+  {
+    className: 'pillar-tone-dark-aqua',
+    style: { '--pillar-dark': '#538FA1', '--pillar-light': '#E3E3E1' },
+  },
+  {
+    className: 'pillar-tone-blue-periwinkle',
+    style: { '--pillar-dark': '#6D89AC', '--pillar-light': '#E3E3E1' },
+  },
+  {
+    className: 'pillar-tone-dark-violet',
+    style: { '--pillar-dark': '#8781A9', '--pillar-light': '#E3E3E1' },
+  },
+]
 
 export function HomePage({
   onHeroLogoVisibilityChange,
@@ -159,16 +180,29 @@ export function HomePage({
           <h2 className="home-section-title" id="pillars-title">
             Three Initial Research Pillars
           </h2>
-          <ol className="editorial-list pillar-list">
+          {/* biome-ignore lint/a11y/noRedundantRoles: Safari drops list semantics when list-style is none. */}
+          <ol className="editorial-list pillar-list" role="list">
             {homepageContent.researchPillars.map((pillar, index) => (
               <li className="editorial-list-item pillar-item" key={pillar.name}>
-                <span className="item-index" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
                 <article>
-                  <h3>{pillar.name}</h3>
-                  <p className="item-kicker">Lead: {pillar.lead}</p>
-                  <p>{pillar.description}</p>
+                  <svg
+                    className={`pillar-item-icon ${researchPillarTones[index].className}`}
+                    style={researchPillarTones[index].style}
+                    width="506"
+                    height="1104"
+                    viewBox="0 0 506 1104"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use href={`${researchPillarIcon}#research-pillar`} />
+                  </svg>
+                  <div className="pillar-item-heading">
+                    <h3>{pillar.name}</h3>
+                    <p className="item-kicker">Lead: {pillar.lead}</p>
+                  </div>
+                  <p className="pillar-item-description">
+                    {pillar.description}
+                  </p>
                 </article>
               </li>
             ))}

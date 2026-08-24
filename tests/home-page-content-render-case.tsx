@@ -77,4 +77,45 @@ for (const expectedMetricCopy of [
 ]) {
   assert.match(renderedText, new RegExp(expectedMetricCopy))
 }
+
+const pillarsSection = homePage.slice(
+  homePage.indexOf('aria-labelledby="pillars-title"'),
+  homePage.indexOf('aria-labelledby="team-title"'),
+)
+const pillarGraphics =
+  pillarsSection.match(
+    /<svg\b[^>]*class="pillar-item-icon[^>]*>[\s\S]*?<\/svg>/g,
+  ) ?? []
+
+assert.equal(pillarGraphics.length, 3)
+assert.doesNotMatch(pillarsSection, /<img\b[^>]*research-pillar\.svg/)
+
+const expectedPillarTones = [
+  ['pillar-tone-dark-aqua', '#538FA1', '#E3E3E1'],
+  ['pillar-tone-blue-periwinkle', '#6D89AC', '#E3E3E1'],
+  ['pillar-tone-dark-violet', '#8781A9', '#E3E3E1'],
+] as const
+
+for (const [index, pillarGraphic] of pillarGraphics.entries()) {
+  const [toneClass, dark, light] = expectedPillarTones[index]
+
+  assert.match(pillarGraphic, new RegExp(`class="[^"]*${toneClass}[^"]*"`))
+  assert.match(
+    pillarGraphic,
+    new RegExp(
+      `style="[^"]*--pillar-dark:${dark};--pillar-light:${light}[^"]*"`,
+    ),
+  )
+  assert.match(pillarGraphic, /aria-hidden="true"/)
+  assert.match(pillarGraphic, /focusable="false"/)
+  assert.match(
+    pillarGraphic,
+    /<use href="[^"]*research-pillar\.svg#research-pillar"><\/use>/,
+  )
+}
+assert.match(
+  pillarsSection,
+  /<ol class="editorial-list pillar-list" role="list">/,
+)
+assert.doesNotMatch(pillarsSection, />0[123]</)
 assert.doesNotMatch(renderedText, /\[a\]|\[b\]|coretraining|Jakob Forester/)

@@ -8,6 +8,8 @@ test('Home Page renders the static hero logo without the transition overlay', ()
     [
       '--tsconfig',
       'tsconfig.app.json',
+      '--import',
+      './tests/static-asset-loader.mjs',
       'tests/home-page-logo-mode-render-case.tsx',
     ],
     {
