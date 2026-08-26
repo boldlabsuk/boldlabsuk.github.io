@@ -38,7 +38,7 @@ for (const expectedCopy of [
   'Building the next AI paradigm.',
   'A world-leading academic lab catalyzing open frontier AI research',
   'The current paradigm is that scale is all you need.',
-  'BOLD is racing to pioneer AI breakthroughs',
+  'BOLD aims to pioneer AI breakthroughs that are radically more compute-efficient and safer.',
   'Three Initial Research Pillars',
   'Rethinking foundational neural network optimization.',
   'Pioneering multi-agent coordination as a core training component',
@@ -63,6 +63,10 @@ for (const expectedCopy of [
 }
 
 assert.doesNotMatch(renderedText, /Our Bets/)
+assert.doesNotMatch(
+  renderedText,
+  /Advisors Sutton, Silver, Abbeel, Precup, Larochelle & more/,
+)
 assert.doesNotMatch(
   renderedText,
   /The next paradigm will not come from scale alone/,

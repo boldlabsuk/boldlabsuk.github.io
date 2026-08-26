@@ -81,7 +81,7 @@ test('homepage presents the supervisor brief in document order', () => {
   assert.equal(homepageContent.operatingModel.phases.length, 3)
   assert.deepEqual(
     homepageContent.atAGlance.map((item) => item.label),
-    ['Focus', 'Home', 'Model', 'Founding labs', 'Recognition', 'Advisors'],
+    ['Focus', 'Home', 'Model', 'Founding labs', 'Recognition'],
   )
   assert.deepEqual(homepageContent.proofMetrics, [
     {
