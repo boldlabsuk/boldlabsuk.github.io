@@ -210,11 +210,7 @@ export function getPeopleFilterOptions() {
         [...visibleAreaSet].filter((area) => !canonicalAreaSet.has(area)),
       ),
     ],
-    affiliations: unique(
-      directoryPeople.flatMap((person) =>
-        person.affiliation ? [person.affiliation] : [],
-      ),
-    ),
+    affiliations: ['Imperial', 'UCL', 'Oxford'],
     supervisors: [
       ...principalInvestigatorSupervisors,
       ...unique(

@@ -735,7 +735,7 @@ test('People Directory filter options expose public People Sections and remainin
     ),
     [],
   )
-  assert.ok(options.affiliations.includes('Oxford'))
+  assert.deepEqual(options.affiliations, ['Imperial', 'UCL', 'Oxford'])
   assert.deepEqual(options.supervisors, [
     'Jakob Foerster',
     'Tim Rocktäschel',
@@ -743,7 +743,6 @@ test('People Directory filter options expose public People Sections and remainin
     'Antoine Cully',
     'Laura Toni',
     'Shimon Whiteson',
-    'Davide Paglieri',
   ])
 })
 

@@ -321,6 +321,18 @@
   margin: 0;
 }
 
+.pillar-lead-link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: none;
+}
+
+.pillar-lead-link:hover,
+.pillar-lead-link:focus-visible {
+  color: #026aa7;
+}
+
 .pillar-item h3,
 .faculty-item h3,
 .phase-item h3 {

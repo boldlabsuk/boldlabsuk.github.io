@@ -121,5 +121,19 @@ assert.match(
   pillarsSection,
   /<ol class="editorial-list pillar-list" role="list">/,
 )
+
+for (const [lead, encodedLead] of [
+  ['Laura Toni', 'Laura%20Toni'],
+  ['Jakob Foerster', 'Jakob%20Foerster'],
+  ['Antoine Cully', 'Antoine%20Cully'],
+] as const) {
+  assert.match(
+    pillarsSection,
+    new RegExp(
+      `<a class="pillar-lead-link" href="/people\\?supervisor=${encodedLead}">Lead: ${lead}</a>`,
+    ),
+  )
+}
+
 assert.doesNotMatch(pillarsSection, />0[123]</)
 assert.doesNotMatch(renderedText, /\[a\]|\[b\]|coretraining|Jakob Forester/)

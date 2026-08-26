@@ -1,7 +1,7 @@
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { FormEvent } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { people } from '../../content'
 import {
   buildPeopleDirectoryViewModel,
@@ -22,27 +22,30 @@ import {
   orderPeopleActiveFilterPills,
   type PeopleActiveFilterPillKey,
 } from './activeFilterPillOrder'
+import {
+  buildPeopleDirectoryUrl,
+  type PeopleDirectoryFilterOptions,
+  parsePeopleDirectoryFilters,
+} from './peopleFilterUrl'
 
 const shuffledPeople = shufflePeopleWithinSections(people)
+const peopleFilterOptions = getPeopleFilterOptions()
 const filterActionRowTransitionMs = 180
 const initialViewportPeopleListingImageCount = 6
 
 export function PeoplePage() {
   const [draftQuery, setDraftQuery] = useState('')
-  const [query, setQuery] = useState('')
-  const [section, setSection] = useState(allFilterValue)
-  const [area, setArea] = useState(allFilterValue)
-  const [affiliation, setAffiliation] = useState(allFilterValue)
-  const [supervisor, setSupervisor] = useState(allFilterValue)
+  const [filters, setFilters] = useState<PeopleDirectoryFilters>(() =>
+    getInitialPeopleDirectoryFilters(peopleFilterOptions),
+  )
   const [activeFilterPillOrder, setActiveFilterPillOrder] = useState<
     PeopleActiveFilterPillKey[]
   >([])
   const closeTimerRef = useRef<number | null>(null)
   const openFrameRef = useRef<number | null>(null)
 
-  const { sections, areas, affiliations, supervisors } =
-    getPeopleFilterOptions()
-  const filters = { query, section, area, affiliation, supervisor }
+  const { sections, areas, affiliations, supervisors } = peopleFilterOptions
+  const { section, area, affiliation, supervisor } = filters
   const activeFilterPills = orderPeopleActiveFilterPills(
     getPeopleActiveFilterPills(filters),
     activeFilterPillOrder,
@@ -76,7 +79,7 @@ export function PeoplePage() {
     }
   }, [])
 
-  function clearFilterActionRowTimers() {
+  const clearFilterActionRowTimers = useCallback(() => {
     if (closeTimerRef.current !== null) {
       window.clearTimeout(closeTimerRef.current)
       closeTimerRef.current = null
@@ -86,9 +89,9 @@ export function PeoplePage() {
       window.cancelAnimationFrame(openFrameRef.current)
       openFrameRef.current = null
     }
-  }
+  }, [])
 
-  function openFilterActionRow() {
+  const openFilterActionRow = useCallback(() => {
     clearFilterActionRowTimers()
 
     if (isFilterActionRowMounted) {
@@ -103,9 +106,9 @@ export function PeoplePage() {
       openFrameRef.current = null
       setIsFilterActionRowOpen(true)
     })
-  }
+  }, [clearFilterActionRowTimers, isFilterActionRowMounted])
 
-  function closeFilterActionRow() {
+  const closeFilterActionRow = useCallback(() => {
     clearFilterActionRowTimers()
     setIsFilterActionRowOpen(false)
 
@@ -113,22 +116,28 @@ export function PeoplePage() {
       closeTimerRef.current = null
       setIsFilterActionRowMounted(false)
     }, filterActionRowTransitionMs)
-  }
+  }, [clearFilterActionRowTimers])
 
-  function updateFilterActionRow(nextFilters: PeopleDirectoryFilters) {
-    if (getPeopleActiveFilterPills(nextFilters).length > 0) {
-      openFilterActionRow()
-    } else {
-      closeFilterActionRow()
-    }
-  }
+  const updateFilterActionRow = useCallback(
+    (nextFilters: PeopleDirectoryFilters) => {
+      if (getPeopleActiveFilterPills(nextFilters).length > 0) {
+        openFilterActionRow()
+      } else {
+        closeFilterActionRow()
+      }
+    },
+    [closeFilterActionRow, openFilterActionRow],
+  )
 
-  function updateActiveFilterControls(nextFilters: PeopleDirectoryFilters) {
-    setActiveFilterPillOrder((currentOrder) =>
-      getNextPeopleActiveFilterPillOrder(currentOrder, nextFilters),
-    )
-    updateFilterActionRow(nextFilters)
-  }
+  const updateActiveFilterControls = useCallback(
+    (nextFilters: PeopleDirectoryFilters) => {
+      setActiveFilterPillOrder((currentOrder) =>
+        getNextPeopleActiveFilterPillOrder(currentOrder, nextFilters),
+      )
+      updateFilterActionRow(nextFilters)
+    },
+    [updateFilterActionRow],
+  )
 
   function applyNameSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -140,29 +149,34 @@ export function PeoplePage() {
       return
     }
 
-    updateActiveFilterControls({ ...filters, query: nextQuery })
-    setQuery(nextQuery)
+    commitPeopleDirectoryFilters({ ...filters, query: nextQuery })
     setDraftQuery('')
   }
 
+  function commitPeopleDirectoryFilters(nextFilters: PeopleDirectoryFilters) {
+    updateActiveFilterControls(nextFilters)
+    window.history.pushState(
+      null,
+      '',
+      buildPeopleDirectoryUrl(new URL(window.location.href), nextFilters),
+    )
+    setFilters(nextFilters)
+  }
+
   function updateSection(nextSection: string) {
-    updateActiveFilterControls({ ...filters, section: nextSection })
-    setSection(nextSection)
+    commitPeopleDirectoryFilters({ ...filters, section: nextSection })
   }
 
   function updateArea(nextArea: string) {
-    updateActiveFilterControls({ ...filters, area: nextArea })
-    setArea(nextArea)
+    commitPeopleDirectoryFilters({ ...filters, area: nextArea })
   }
 
   function updateAffiliation(nextAffiliation: string) {
-    updateActiveFilterControls({ ...filters, affiliation: nextAffiliation })
-    setAffiliation(nextAffiliation)
+    commitPeopleDirectoryFilters({ ...filters, affiliation: nextAffiliation })
   }
 
   function updateSupervisor(nextSupervisor: string) {
-    updateActiveFilterControls({ ...filters, supervisor: nextSupervisor })
-    setSupervisor(nextSupervisor)
+    commitPeopleDirectoryFilters({ ...filters, supervisor: nextSupervisor })
   }
 
   function clearPeopleFilter(key: PeopleActiveFilterPill['key']) {
@@ -171,21 +185,31 @@ export function PeoplePage() {
       [key]: key === 'query' ? '' : allFilterValue,
     }
 
-    updateActiveFilterControls(nextFilters)
+    commitPeopleDirectoryFilters(nextFilters)
 
     if (key === 'query') {
-      setQuery('')
       setDraftQuery('')
-    } else if (key === 'section') {
-      setSection(allFilterValue)
-    } else if (key === 'area') {
-      setArea(allFilterValue)
-    } else if (key === 'affiliation') {
-      setAffiliation(allFilterValue)
-    } else {
-      setSupervisor(allFilterValue)
     }
   }
+
+  useEffect(() => {
+    function restorePeopleDirectoryFilters() {
+      const nextFilters = parsePeopleDirectoryFilters(
+        new URL(window.location.href),
+        peopleFilterOptions,
+      )
+
+      updateActiveFilterControls(nextFilters)
+      setFilters(nextFilters)
+      setDraftQuery('')
+    }
+
+    window.addEventListener('popstate', restorePeopleDirectoryFilters)
+
+    return () => {
+      window.removeEventListener('popstate', restorePeopleDirectoryFilters)
+    }
+  }, [updateActiveFilterControls])
 
   return (
     <section className="section-band page-content people-page-content">
@@ -324,6 +348,25 @@ export function PeoplePage() {
         </div>
       )}
     </section>
+  )
+}
+
+function getInitialPeopleDirectoryFilters(
+  filterOptions: PeopleDirectoryFilterOptions,
+) {
+  if (typeof window === 'undefined') {
+    return {
+      query: '',
+      section: allFilterValue,
+      area: allFilterValue,
+      affiliation: allFilterValue,
+      supervisor: allFilterValue,
+    }
+  }
+
+  return parsePeopleDirectoryFilters(
+    new URL(window.location.href),
+    filterOptions,
   )
 }
 

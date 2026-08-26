@@ -198,7 +198,14 @@ export function HomePage({
                   </svg>
                   <div className="pillar-item-heading">
                     <h3>{pillar.name}</h3>
-                    <p className="item-kicker">Lead: {pillar.lead}</p>
+                    <p className="item-kicker">
+                      <a
+                        className="pillar-lead-link"
+                        href={`/people?supervisor=${encodeURIComponent(pillar.lead)}`}
+                      >
+                        Lead: {pillar.lead}
+                      </a>
+                    </p>
                   </div>
                   <p className="pillar-item-description">
                     {pillar.description}

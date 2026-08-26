@@ -1909,7 +1909,7 @@ test('Full Website Roster builds the real sectioned People Directory', () => {
         github: 'https://github.com/LYOK0',
       },
       researchAreas: ['Machine Learning'],
-      supervisors: ['Tim Rocktäschel', 'Davide Paglieri'],
+      supervisors: ['Tim Rocktäschel'],
     },
   )
 
