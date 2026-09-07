@@ -511,6 +511,37 @@ test('runCycle retries once when the Docker provider reports the image missing',
   );
 });
 
+test('runCycle reports a failed issue and still merges completed issues', async (context) => {
+  const errors = context.mock.method(console, 'error', () => {});
+  const {fn, calls} = makeFakeRun({
+    implement: IMPLEMENT_DONE,
+    review: {stdout: '', commits: [], iterations: []},
+  });
+  const planned = await runCycle({
+    githubToken: 't',
+    baseBranch: 'hgroup-ravi',
+    forcedIssues: [
+      {number: 7, title: 'Fix auth', branch: 'sandcastle/issue-7'},
+      {number: 8, title: 'Add cache', branch: 'sandcastle/issue-8'},
+    ],
+    run: (async (options: any) => {
+      if (options.name === 'implement' && options.promptArgs.ISSUE_NUMBER === '7') {
+        throw new Error('Issue failed');
+      }
+      return fn(options);
+    }) as never,
+  });
+
+  assert.equal(planned, 2);
+  assert.deepEqual(errors.mock.calls.map((call) => call.arguments), [
+    ['An issue failed this cycle: Error: Issue failed'],
+  ]);
+  assert.deepEqual(calls.find((call) => call.name === 'merge').promptArgs, {
+    BRANCHES: '- sandcastle/issue-8',
+    ISSUES: '- #8: Add cache',
+  });
+});
+
 test('runCycle runs all phases on gpt-5.6-sol with medium effort', async () => {
   const {fn, calls} = makeFakeRun({
     planner: {stdout: PLAN_ONE, commits: [], iterations: []},

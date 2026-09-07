@@ -81,10 +81,6 @@
     grid-column: 2;
   }
 
-  .opportunity-route-index {
-    grid-template-columns: 1fr;
-  }
-
   .contact-section,
   .footer-bottom {
     display: grid;
@@ -100,7 +96,6 @@
   .featured-news-layout,
   .paper-card-grid,
   .opportunity-link-grid,
-  .involvement-grid,
   .current-opportunity-list {
     grid-template-columns: 1fr;
   }
@@ -170,6 +165,15 @@
     padding-bottom: 64px;
   }
 
+  .opportunities-hero {
+    padding-block: 25px;
+  }
+
+  .opportunities-intake,
+  .opportunities-fellows {
+    padding-block: 32px;
+  }
+
   .faculty-item,
   .phase-item {
     grid-template-columns: 38px minmax(0, 1fr);
@@ -215,7 +219,6 @@
   .paper-card,
   .card-body,
   .person-body,
-  .involvement-card,
   .current-opportunity-card {
     padding: 20px;
   }
@@ -248,10 +251,6 @@
   .current-opportunity-card dl div {
     grid-template-columns: 1fr;
     gap: 2px;
-  }
-
-  .opportunity-route-index-entry {
-    padding: 20px;
   }
 }
 

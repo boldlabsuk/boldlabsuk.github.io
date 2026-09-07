@@ -901,18 +901,7 @@ export async function runCycle(deps: CycleDeps): Promise<number> {
     issues.map((issue) => limit(() => processIssue(issue, ctx))),
   );
 
-  const completed = settled
-    .filter(
-      (result): result is PromiseFulfilledResult<IssueResult> =>
-        result.status === 'fulfilled' && result.value.commits.length > 0,
-    )
-    .map((result) => result.value);
-
-  for (const result of settled) {
-    if (result.status === 'rejected') {
-      console.error(`An issue failed this cycle: ${result.reason}`);
-    }
-  }
+  const completed = collectCompletedIssues(settled);
 
   // ── 3. MERGE — one agent merges every completed branch into the base ──
   // Runs in a merge-to-head worktree cut from the base branch, so its merge
@@ -921,15 +910,37 @@ export async function runCycle(deps: CycleDeps): Promise<number> {
   // linked parent issue it completes) itself. Following Matt Pocock's model the host never
   // pushes — completed work stays committed locally for you to review and push by
   // hand once the whole batch is finished.
+  await mergeCompletedIssues(completed, ctx);
+  return issues.length;
+}
+
+function collectCompletedIssues(
+  settled: PromiseSettledResult<IssueResult>[],
+): IssueResult[] {
+  const completed: IssueResult[] = [];
+  for (const result of settled) {
+    if (result.status === 'rejected') {
+      console.error(`An issue failed this cycle: ${result.reason}`);
+    } else if (result.value.commits.length > 0) {
+      completed.push(result.value);
+    }
+  }
+  return completed;
+}
+
+async function mergeCompletedIssues(
+  completed: IssueResult[],
+  ctx: CycleContext,
+): Promise<void> {
   if (completed.length === 0) {
     console.log('No issues completed this cycle; nothing to merge.');
-    return issues.length;
+    return;
   }
 
-  await runPhase({
+  await ctx.runPhase({
     name: 'merge',
-    agent: workerAgent,
-    hooks: fullHooks,
+    agent: ctx.workerAgent,
+    hooks: ctx.fullHooks,
     promptArgs: {
       BRANCHES: completed.map((c) => `- ${c.issue.branch}`).join('\n'),
       ISSUES: completed
@@ -944,7 +955,6 @@ export async function runCycle(deps: CycleDeps): Promise<number> {
   console.log(
     `Cycle merged ${completed.length} issue(s) locally and closed them. Nothing pushed — review and push by hand when the batch is complete.`,
   );
-  return issues.length;
 }
 
 /**

@@ -96,6 +96,13 @@ if (scenario === 'initial-url') {
   })
 
   assert.equal(
+    searchForm
+      .querySelector('button[type="submit"]')
+      ?.getAttribute('aria-label'),
+    'Search by name',
+  )
+
+  assert.equal(
     window.location.href,
     'https://bold-lab.ai/people/?utm_source=newsletter#people-results',
   )

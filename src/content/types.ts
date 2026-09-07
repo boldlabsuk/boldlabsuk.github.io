@@ -116,33 +116,12 @@ export type Opportunity = {
 export type OpportunityRoute = {
   slug: string
   title: string
-  shortTitle: string
-  shortSummary: string
-  positioning: string
-  status: string
-  location?: string
-  timing?: string
-  formalApplicationPath: string
+  description: string
   prefillValue: string
-  primaryActionLabel: 'Apply'
-  whoThisIsFor: string[]
-  whatWeLookFor: string[]
-  howThisWorks: string
-  formPrompt: string
-  formComingSoon: string
 }
 
 export type ExpressionOfInterestFormConfig = {
   formUrl?: string
   formId?: string
   routeParameterName: string
-}
-
-export type InvolvementRoute = {
-  id: string
-  title: string
-  shortTitle: string
-  href: string
-  summary: string
-  guidance: string[]
 }

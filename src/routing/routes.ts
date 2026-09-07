@@ -65,7 +65,8 @@ export function getRouteMeta(route: Route): Meta {
     },
     opportunities: {
       title: `Opportunities | ${siteMeta.name}`,
-      description: 'Join, visit, collaborate, or work with the lab.',
+      description:
+        'Express your interest in BOLD. We may be in touch if a relevant opportunity arises.',
     },
     'not-found': {
       title: `Page Not Found | ${siteMeta.name}`,

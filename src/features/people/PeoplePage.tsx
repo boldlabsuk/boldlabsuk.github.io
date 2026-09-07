@@ -1,372 +1,62 @@
-import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { FormEvent } from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
 import { people } from '../../content'
 import {
   buildPeopleDirectoryViewModel,
-  getPeopleActiveFilterPills,
-  getPeopleFilterOptions,
-  getPeopleSectionFilterLabel,
-  type PeopleActiveFilterPill,
-  type PeopleDirectoryFilters,
   type PeopleDirectorySection,
   shufflePeopleWithinSections,
 } from '../../domain/people'
-import { allFilterValue } from '../../domain/shared'
 import { PersonListing } from '../../ui/cards/PersonListing'
-import { SelectFilter } from '../../ui/forms/SelectFilter'
 import { EmptyState } from '../../ui/primitives/EmptyState'
-import {
-  getNextPeopleActiveFilterPillOrder,
-  orderPeopleActiveFilterPills,
-  type PeopleActiveFilterPillKey,
-} from './activeFilterPillOrder'
-import {
-  buildPeopleDirectoryUrl,
-  type PeopleDirectoryFilterOptions,
-  parsePeopleDirectoryFilters,
-} from './peopleFilterUrl'
+import { PeopleFilters } from './PeopleFilters'
+import { usePeopleDirectoryFilters } from './usePeopleDirectoryFilters'
 
 const shuffledPeople = shufflePeopleWithinSections(people)
-const peopleFilterOptions = getPeopleFilterOptions()
-const filterActionRowTransitionMs = 180
 const initialViewportPeopleListingImageCount = 6
 
 export function PeoplePage() {
-  const [draftQuery, setDraftQuery] = useState('')
-  const [filters, setFilters] = useState<PeopleDirectoryFilters>(() =>
-    getInitialPeopleDirectoryFilters(peopleFilterOptions),
-  )
-  const [activeFilterPillOrder, setActiveFilterPillOrder] = useState<
-    PeopleActiveFilterPillKey[]
-  >([])
-  const closeTimerRef = useRef<number | null>(null)
-  const openFrameRef = useRef<number | null>(null)
-
-  const { sections, areas, affiliations, supervisors } = peopleFilterOptions
-  const { section, area, affiliation, supervisor } = filters
-  const activeFilterPills = orderPeopleActiveFilterPills(
-    getPeopleActiveFilterPills(filters),
-    activeFilterPillOrder,
-  )
-  const hasActiveFilters = activeFilterPills.length > 0
-  const hasDraftQuery = draftQuery.trim().length > 0
-  const [isFilterActionRowMounted, setIsFilterActionRowMounted] =
-    useState(hasActiveFilters)
-  const [isFilterActionRowOpen, setIsFilterActionRowOpen] =
-    useState(hasActiveFilters)
+  const controls = usePeopleDirectoryFilters()
   const directory = buildPeopleDirectoryViewModel({
     people: shuffledPeople,
-    filters,
+    filters: controls.filters,
   })
-  const highPriorityListingSlugs = new Set(
-    directory.sections
-      .flatMap((peopleSection) => peopleSection.people)
-      .slice(0, initialViewportPeopleListingImageCount)
-      .map((listing) => listing.slug),
-  )
-
-  useEffect(() => {
-    return () => {
-      if (closeTimerRef.current !== null) {
-        window.clearTimeout(closeTimerRef.current)
-      }
-
-      if (openFrameRef.current !== null) {
-        window.cancelAnimationFrame(openFrameRef.current)
-      }
-    }
-  }, [])
-
-  const clearFilterActionRowTimers = useCallback(() => {
-    if (closeTimerRef.current !== null) {
-      window.clearTimeout(closeTimerRef.current)
-      closeTimerRef.current = null
-    }
-
-    if (openFrameRef.current !== null) {
-      window.cancelAnimationFrame(openFrameRef.current)
-      openFrameRef.current = null
-    }
-  }, [])
-
-  const openFilterActionRow = useCallback(() => {
-    clearFilterActionRowTimers()
-
-    if (isFilterActionRowMounted) {
-      setIsFilterActionRowOpen(true)
-      return
-    }
-
-    setIsFilterActionRowMounted(true)
-    setIsFilterActionRowOpen(false)
-
-    openFrameRef.current = window.requestAnimationFrame(() => {
-      openFrameRef.current = null
-      setIsFilterActionRowOpen(true)
-    })
-  }, [clearFilterActionRowTimers, isFilterActionRowMounted])
-
-  const closeFilterActionRow = useCallback(() => {
-    clearFilterActionRowTimers()
-    setIsFilterActionRowOpen(false)
-
-    closeTimerRef.current = window.setTimeout(() => {
-      closeTimerRef.current = null
-      setIsFilterActionRowMounted(false)
-    }, filterActionRowTransitionMs)
-  }, [clearFilterActionRowTimers])
-
-  const updateFilterActionRow = useCallback(
-    (nextFilters: PeopleDirectoryFilters) => {
-      if (getPeopleActiveFilterPills(nextFilters).length > 0) {
-        openFilterActionRow()
-      } else {
-        closeFilterActionRow()
-      }
-    },
-    [closeFilterActionRow, openFilterActionRow],
-  )
-
-  const updateActiveFilterControls = useCallback(
-    (nextFilters: PeopleDirectoryFilters) => {
-      setActiveFilterPillOrder((currentOrder) =>
-        getNextPeopleActiveFilterPillOrder(currentOrder, nextFilters),
-      )
-      updateFilterActionRow(nextFilters)
-    },
-    [updateFilterActionRow],
-  )
-
-  function applyNameSearch(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const nextQuery = draftQuery.trim()
-
-    if (!nextQuery) {
-      setDraftQuery('')
-      return
-    }
-
-    commitPeopleDirectoryFilters({ ...filters, query: nextQuery })
-    setDraftQuery('')
-  }
-
-  function commitPeopleDirectoryFilters(nextFilters: PeopleDirectoryFilters) {
-    updateActiveFilterControls(nextFilters)
-    window.history.pushState(
-      null,
-      '',
-      buildPeopleDirectoryUrl(new URL(window.location.href), nextFilters),
-    )
-    setFilters(nextFilters)
-  }
-
-  function updateSection(nextSection: string) {
-    commitPeopleDirectoryFilters({ ...filters, section: nextSection })
-  }
-
-  function updateArea(nextArea: string) {
-    commitPeopleDirectoryFilters({ ...filters, area: nextArea })
-  }
-
-  function updateAffiliation(nextAffiliation: string) {
-    commitPeopleDirectoryFilters({ ...filters, affiliation: nextAffiliation })
-  }
-
-  function updateSupervisor(nextSupervisor: string) {
-    commitPeopleDirectoryFilters({ ...filters, supervisor: nextSupervisor })
-  }
-
-  function clearPeopleFilter(key: PeopleActiveFilterPill['key']) {
-    const nextFilters = {
-      ...filters,
-      [key]: key === 'query' ? '' : allFilterValue,
-    }
-
-    commitPeopleDirectoryFilters(nextFilters)
-
-    if (key === 'query') {
-      setDraftQuery('')
-    }
-  }
-
-  useEffect(() => {
-    function restorePeopleDirectoryFilters() {
-      const nextFilters = parsePeopleDirectoryFilters(
-        new URL(window.location.href),
-        peopleFilterOptions,
-      )
-
-      updateActiveFilterControls(nextFilters)
-      setFilters(nextFilters)
-      setDraftQuery('')
-    }
-
-    window.addEventListener('popstate', restorePeopleDirectoryFilters)
-
-    return () => {
-      window.removeEventListener('popstate', restorePeopleDirectoryFilters)
-    }
-  }, [updateActiveFilterControls])
-
   return (
     <section className="section-band page-content people-page-content">
-      <section
-        className="filter-panel people-filter-panel"
-        aria-label="People filters"
-      >
-        <search className="search-input people-name-search">
-          <form onSubmit={applyNameSearch}>
-            <label htmlFor="people-search">
-              <span>Search by name</span>
-            </label>
-            <div
-              className={
-                hasDraftQuery
-                  ? 'people-name-search-control has-submit'
-                  : 'people-name-search-control'
-              }
-            >
-              <input
-                id="people-search"
-                type="search"
-                value={draftQuery}
-                placeholder="Search people"
-                onChange={(event) => setDraftQuery(event.target.value)}
-              />
-              {hasDraftQuery && (
-                <button
-                  className="people-name-search-submit"
-                  type="submit"
-                  aria-label="Apply name search"
-                >
-                  <FontAwesomeIcon
-                    icon={faMagnifyingGlass}
-                    aria-hidden="true"
-                    focusable="false"
-                  />
-                </button>
-              )}
-            </div>
-          </form>
-        </search>
-        <SelectFilter
-          id="people-section"
-          label="Role"
-          value={section}
-          options={[allFilterValue, ...sections]}
-          getLabel={getPeopleSectionFilterLabel}
-          onChange={updateSection}
-        />
-        <SelectFilter
-          id="people-supervisor"
-          label="Supervisor"
-          value={supervisor}
-          options={[allFilterValue, ...supervisors]}
-          onChange={updateSupervisor}
-        />
-        <SelectFilter
-          id="people-area"
-          label="Research area"
-          value={area}
-          options={[allFilterValue, ...areas]}
-          onChange={updateArea}
-        />
-        <SelectFilter
-          id="people-affiliation"
-          label="Affiliation"
-          value={affiliation}
-          options={[allFilterValue, ...affiliations]}
-          onChange={updateAffiliation}
-        />
-        {isFilterActionRowMounted && (
-          <div
-            className={
-              isFilterActionRowOpen
-                ? 'people-filter-actions is-open'
-                : 'people-filter-actions is-closed'
-            }
-            aria-hidden={!isFilterActionRowOpen}
-          >
-            <div className="people-filter-actions-inner">
-              <fieldset
-                className="people-active-filter-pills"
-                aria-label="Active people filters"
-              >
-                {activeFilterPills.map((pill) => (
-                  <button
-                    className="people-active-filter-pill"
-                    type="button"
-                    key={pill.key}
-                    aria-label={pill.removeLabel}
-                    disabled={!isFilterActionRowOpen}
-                    onClick={() => clearPeopleFilter(pill.key)}
-                  >
-                    <span className="people-active-filter-pill-text">
-                      {pill.displayLabel}
-                    </span>
-                    <span
-                      className="people-active-filter-pill-remove"
-                      aria-hidden="true"
-                    >
-                      <FontAwesomeIcon
-                        icon={faXmark}
-                        aria-hidden="true"
-                        focusable="false"
-                      />
-                    </span>
-                  </button>
-                ))}
-              </fieldset>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {directory.sections.length > 0 ? (
-        <div className="people-directory" id="people-results">
-          {directory.sections.map((peopleSection) => (
-            <section className="people-section" key={peopleSection.title}>
-              <h2>{peopleSection.label}</h2>
-              <PersonListingGrid
-                highPriorityListingSlugs={highPriorityListingSlugs}
-                people={peopleSection.people}
-              />
-            </section>
-          ))}
-        </div>
-      ) : (
-        <div
-          id="people-results"
-          role="status"
-          aria-atomic="true"
-          aria-live="polite"
-        >
-          <EmptyState message="No people match the selected filters." />
-        </div>
-      )}
+      <PeopleFilters controls={controls} />
+      <PeopleResults sections={directory.sections} />
     </section>
   )
 }
 
-function getInitialPeopleDirectoryFilters(
-  filterOptions: PeopleDirectoryFilterOptions,
-) {
-  if (typeof window === 'undefined') {
-    return {
-      query: '',
-      section: allFilterValue,
-      area: allFilterValue,
-      affiliation: allFilterValue,
-      supervisor: allFilterValue,
-    }
+function PeopleResults({ sections }: { sections: PeopleDirectorySection[] }) {
+  const highPriorityListingSlugs = new Set(
+    sections
+      .flatMap((section) => section.people)
+      .slice(0, initialViewportPeopleListingImageCount)
+      .map((listing) => listing.slug),
+  )
+  if (sections.length === 0) {
+    return (
+      <div
+        id="people-results"
+        role="status"
+        aria-atomic="true"
+        aria-live="polite"
+      >
+        <EmptyState message="No people match the selected filters." />
+      </div>
+    )
   }
-
-  return parsePeopleDirectoryFilters(
-    new URL(window.location.href),
-    filterOptions,
+  return (
+    <div className="people-directory" id="people-results">
+      {sections.map((section) => (
+        <section className="people-section" key={section.title}>
+          <h2>{section.label}</h2>
+          <PersonListingGrid
+            highPriorityListingSlugs={highPriorityListingSlugs}
+            people={section.people}
+          />
+        </section>
+      ))}
+    </div>
   )
 }
 

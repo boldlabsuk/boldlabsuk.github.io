@@ -5,7 +5,6 @@ import {
   expressionOfInterestFormConfig,
   getExpressionOfInterestEmbedUrl,
   homepageContent,
-  involvementRoutes,
   navigation,
   newsPosts,
   opportunities,
@@ -114,7 +113,7 @@ test('homepage content exposes the approved controls and corrected document copy
 
   assert.deepEqual(
     homepageContent.hero.actions.map((action) => action.label),
-    ['Join BOLD', 'Meet the team'],
+    ['Express interest', 'Meet the team'],
   )
   assert.deepEqual(
     homepageContent.hero.actions.map((action) => action.href),
@@ -141,7 +140,6 @@ test('structured content supports people, news, papers, and opportunities', () =
   assert.ok(people.length >= 10)
   assert.ok(newsPosts.length >= 6)
   assert.ok(papers.length >= 7)
-  assert.ok(involvementRoutes.length === 6)
   assert.ok(opportunities.length >= 1)
 
   assert.ok(
@@ -149,7 +147,6 @@ test('structured content supports people, news, papers, and opportunities', () =
   )
   assert.ok(newsPosts.every((post) => /^\d{4}-\d{2}-\d{2}$/.test(post.date)))
   assert.ok(papers.every((paper) => paper.id && paper.links))
-  assert.ok(involvementRoutes.every((route) => route.href === '/opportunities'))
 })
 
 test('launch routes exclude news and papers while content remains available', () => {
@@ -161,40 +158,20 @@ test('launch routes exclude news and papers while content remains available', ()
 })
 
 test('Opportunity Routes remain structured content while child URLs are not public routes', () => {
-  const approvedRoutes = [
-    ['phd-students', 'PhD Students'],
-    ['visiting-students', 'Visiting Students'],
-    ['masters-students', "Master's Students"],
-    ['research-engineers', 'Research Engineers'],
-    ['fellows', 'Fellows and Experienced Researchers'],
-    ['collaborators', 'Collaborators'],
-  ]
-
   assert.deepEqual(
     opportunityRoutes.map((route) => [route.slug, route.title]),
-    approvedRoutes,
-  )
-
-  assert.deepEqual(
-    opportunityRoutes.map((route) => route.shortSummary),
     [
-      'PhD routes with BOLD-aligned supervision.',
-      'Time-bound research visits with a BOLD host.',
-      'Supervised projects where timing and fit align.',
-      'ML systems and research tooling close to frontier work.',
-      'Fellowship, visiting, or longer-term research relationships.',
-      'Research collaborations with clear scientific fit.',
+      ['phd-students', 'PhD research'],
+      ['visiting-students', 'a student visit'],
+      ['masters-students', 'Master’s research'],
+      ['research-engineers', 'research engineering'],
+      ['collaborators', 'collaboration or affiliation'],
     ],
   )
 
   for (const route of opportunityRoutes) {
-    assert.equal(route.primaryActionLabel, 'Apply')
-    assert.ok(route.shortSummary)
-    assert.ok(route.status)
-    assert.ok(route.prefillValue)
-    assert.ok(route.formalApplicationPath)
-    assert.ok(route.formPrompt)
-    assert.equal('metadata' in route, false)
+    assert.ok(route.description)
+    assert.equal(route.prefillValue, route.slug)
     assert.deepEqual(parseRoute(`/opportunities/${route.slug}`), {
       name: 'not-found',
     })
@@ -222,7 +199,6 @@ test('Opportunity Routes share one Tally form with route-specific prefill values
       'https://tally.so/embed/A7aa0W?route=visiting-students',
       'https://tally.so/embed/A7aa0W?route=masters-students',
       'https://tally.so/embed/A7aa0W?route=research-engineers',
-      'https://tally.so/embed/A7aa0W?route=fellows',
       'https://tally.so/embed/A7aa0W?route=collaborators',
     ],
   )

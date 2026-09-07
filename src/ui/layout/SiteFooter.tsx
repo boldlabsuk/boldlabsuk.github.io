@@ -6,13 +6,6 @@ export function SiteFooter({
 }: {
   isBrandLinkEnabled?: boolean
 }) {
-  const brandLogo = (
-    <img
-      className="brand-logo"
-      src="/bold_full_vector_logo_white_no_background.svg"
-      alt=""
-    />
-  )
   const linkedInHref = siteMeta.socialLinks.find(
     (link) => link.label === 'LinkedIn',
   )?.href
@@ -21,16 +14,7 @@ export function SiteFooter({
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        <div className="footer-summary">
-          {isBrandLinkEnabled ? (
-            <a className="footer-brand" href="/">
-              {brandLogo}
-            </a>
-          ) : (
-            <span className="footer-brand">{brandLogo}</span>
-          )}
-          <p>{siteMeta.description}</p>
-        </div>
+        <FooterSummary isBrandLinkEnabled={isBrandLinkEnabled} />
 
         <nav className="footer-links" aria-label="Footer navigation">
           {navigation.map((item) => (
@@ -64,5 +48,31 @@ export function SiteFooter({
         <span>Unified university AI research lab.</span>
       </div>
     </footer>
+  )
+}
+
+function FooterSummary({
+  isBrandLinkEnabled,
+}: {
+  isBrandLinkEnabled: boolean
+}) {
+  const brandLogo = (
+    <img
+      className="brand-logo"
+      src="/bold_full_vector_logo_white_no_background.svg"
+      alt=""
+    />
+  )
+  return (
+    <div className="footer-summary">
+      {isBrandLinkEnabled ? (
+        <a className="footer-brand" href="/">
+          {brandLogo}
+        </a>
+      ) : (
+        <span className="footer-brand">{brandLogo}</span>
+      )}
+      <p>{siteMeta.description}</p>
+    </div>
   )
 }

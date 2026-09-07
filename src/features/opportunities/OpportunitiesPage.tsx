@@ -34,57 +34,59 @@ export function OpportunitiesPage({
   const selectedRoute = getOpportunityRoute(selectedRouteSlug)
 
   return (
-    <section className="section-band page-content opportunities-index-page">
-      <div className="opportunities-index-intro">
-        <h1>Interested in joining, visiting, or collaborating with BOLD?</h1>
+    <>
+      <OpportunitiesHero />
+      <div className="home-section opportunities-intake">
+        <ExpressionOfInterestSection
+          formConfig={formConfig}
+          selectedRoute={selectedRoute}
+          selectedRouteSlug={selectedRouteSlug}
+          onSelectedRouteChange={setSelectedRouteSlug}
+        />
       </div>
+      <BoldFellowsSection />
+    </>
+  )
+}
 
-      <ul className="opportunity-route-index" aria-label="Opportunity Routes">
-        {opportunityRoutes.map((route) => (
-          <OpportunityRouteIndexEntry
-            key={route.slug}
-            route={route}
-            onSelect={() => setSelectedRouteSlug(route.slug)}
-          />
-        ))}
-      </ul>
-
-      <ExpressionOfInterestSection
-        formConfig={formConfig}
-        selectedRoute={selectedRoute}
-        selectedRouteSlug={selectedRouteSlug}
-        onSelectedRouteChange={setSelectedRouteSlug}
-      />
+function OpportunitiesHero() {
+  return (
+    <section
+      className="home-section opportunities-hero"
+      aria-labelledby="opportunities-title"
+    >
+      <div className="home-section-inner opportunities-index-intro">
+        <h1 id="opportunities-title">Express your interest in BOLD.</h1>
+        <p>We may be in touch if a relevant opportunity arises.</p>
+      </div>
     </section>
   )
 }
 
-function OpportunityRouteIndexEntry({
-  route,
-  onSelect,
-}: {
-  route: OpportunityRoute
-  onSelect: () => void
-}) {
+function BoldFellowsSection() {
   return (
-    <li className="opportunity-route-index-entry" id={route.slug}>
-      <div className="opportunity-route-index-main">
-        <div className="opportunity-route-index-heading">
-          <h3>{route.title}</h3>
+    <section
+      className="home-section opportunities-fellows"
+      aria-labelledby="bold-fellows-title"
+    >
+      <div className="home-section-inner split-section-layout">
+        <h2 className="home-section-title" id="bold-fellows-title">
+          BOLD Fellows
+        </h2>
+        <div className="section-prose">
+          <p>
+            Explore BOLD Fellowship opportunities through the University of
+            Oxford.
+          </p>
+          <a
+            className="button button-primary"
+            href="https://eng.ox.ac.uk/jobs/job-detail?vacancyID=187853"
+          >
+            View Oxford job advert
+          </a>
         </div>
-        <p>{route.shortSummary}</p>
       </div>
-
-      {/* biome-ignore lint/a11y/useValidAnchor: This link both selects the route and navigates to the in-page form section. */}
-      <a
-        className="button button-primary"
-        href="#express-interest"
-        aria-label={`Apply for ${route.title}`}
-        onClick={onSelect}
-      >
-        {route.primaryActionLabel}
-      </a>
-    </li>
+    </section>
   )
 }
 
@@ -114,13 +116,14 @@ function ExpressionOfInterestSection({
           className="select-filter opportunity-route-selector"
           htmlFor="opportunity-route-select"
         >
+          <span>I’m interested in…</span>
           <select
             id="opportunity-route-select"
-            aria-label="Select a role"
+            required
             value={selectedRouteSlug}
             onChange={(event) => onSelectedRouteChange(event.target.value)}
           >
-            <option value="">Select a role</option>
+            <option value="">Choose an area of interest</option>
             {opportunityRoutes.map((route) => (
               <option key={route.slug} value={route.slug}>
                 {route.title}
@@ -153,10 +156,7 @@ function SelectedRouteForm({
   return (
     <div className="selected-route-form">
       <div className="selected-route-guidance">
-        <h3>{route.title}</h3>
-        <p>{route.positioning}</p>
-        <p>{route.howThisWorks}</p>
-        <p>{route.formPrompt}</p>
+        <p>{route.description}</p>
       </div>
 
       {autoResizeEmbedUrl ? (
@@ -170,12 +170,7 @@ function SelectedRouteForm({
       ) : (
         <div className="empty-state">
           <h3>Form coming soon</h3>
-          <p>{route.formComingSoon}</p>
-          <p>
-            This section will host the embedded Expression of Interest form. It
-            will not replace any separate Formal Application Path where one is
-            required.
-          </p>
+          <p>Please check back later to express your interest in BOLD.</p>
         </div>
       )}
     </div>

@@ -405,58 +405,15 @@ export function buildPeopleDirectoryViewModel({
     return peopleSection ? [{ person, peopleSection }] : []
   })
 
-  const matchedPeople = directoryPeople.filter(({ person, peopleSection }) => {
-    const supervisor = (filters.supervisor ?? allFilterValue).trim()
-    const hasSupervisorFilter = supervisor && supervisor !== allFilterValue
-    const isSelectedSupervisor =
-      hasSupervisorFilter &&
-      peopleSection === 'Principal Investigator' &&
-      person.name === supervisor
-    const matchesQuery = person.name
-      .toLowerCase()
-      .includes(filters.query.trim().toLowerCase())
-    const matchesSection =
-      filters.section === allFilterValue || peopleSection === filters.section
-    const matchesArea =
-      filters.area === allFilterValue ||
-      person.researchAreas.some((item) => item === filters.area)
-    const matchesAffiliation =
-      filters.affiliation === allFilterValue ||
-      person.affiliation === filters.affiliation
-    const matchesSupervisor =
-      !hasSupervisorFilter || person.supervisors?.includes(supervisor)
-
-    return (
-      isSelectedSupervisor ||
-      (matchesQuery &&
-        matchesSection &&
-        matchesArea &&
-        matchesAffiliation &&
-        matchesSupervisor)
-    )
-  })
+  const matchedPeople = directoryPeople.filter((directoryPerson) =>
+    matchesPeopleDirectoryFilters(directoryPerson, filters),
+  )
 
   const sections = peopleSectionOrder
     .map((section) => {
       const sectionPeople = matchedPeople
         .filter((directoryPerson) => directoryPerson.peopleSection === section)
-        .map(({ person }) => ({
-          slug: person.slug,
-          name: person.name,
-          role: person.role,
-          ...(person.piRole ? { piRole: person.piRole } : {}),
-          affiliation: person.affiliation,
-          image: person.image,
-          links: person.links,
-          peopleSection: section,
-          primaryPersonLink: getPrimaryPersonLink(person),
-          ...(person.phdSortSurname
-            ? { phdSortSurname: person.phdSortSurname }
-            : {}),
-          ...(person.phdStartYear === undefined
-            ? {}
-            : { phdStartYear: person.phdStartYear }),
-        }))
+        .map(({ person }) => buildPersonListing(person, section))
       const orderedPeople =
         section === 'PhD Student'
           ? orderPhDStudents(sectionPeople)
@@ -476,6 +433,58 @@ export function buildPeopleDirectoryViewModel({
     sections,
     totalPeople: directoryPeople.length,
     visiblePeopleCount: matchedPeople.length,
+  }
+}
+
+function matchesPeopleDirectoryFilters(
+  { person, peopleSection }: { person: Person; peopleSection: PeopleSection },
+  filters: PeopleDirectoryFilters,
+) {
+  const supervisor = (filters.supervisor ?? allFilterValue).trim()
+  const hasSupervisorFilter = supervisor && supervisor !== allFilterValue
+  const isSelectedSupervisor =
+    hasSupervisorFilter &&
+    peopleSection === 'Principal Investigator' &&
+    person.name === supervisor
+  const matchesQuery = person.name
+    .toLowerCase()
+    .includes(filters.query.trim().toLowerCase())
+  const matchesSection =
+    filters.section === allFilterValue || peopleSection === filters.section
+  const matchesArea =
+    filters.area === allFilterValue ||
+    person.researchAreas.some((item) => item === filters.area)
+  const matchesAffiliation =
+    filters.affiliation === allFilterValue ||
+    person.affiliation === filters.affiliation
+  const matchesSupervisor =
+    !hasSupervisorFilter || person.supervisors?.includes(supervisor)
+
+  return (
+    isSelectedSupervisor ||
+    (matchesQuery &&
+      matchesSection &&
+      matchesArea &&
+      matchesAffiliation &&
+      matchesSupervisor)
+  )
+}
+
+function buildPersonListing(person: Person, section: PeopleSection) {
+  return {
+    slug: person.slug,
+    name: person.name,
+    role: person.role,
+    ...(person.piRole ? { piRole: person.piRole } : {}),
+    affiliation: person.affiliation,
+    image: person.image,
+    links: person.links,
+    peopleSection: section,
+    primaryPersonLink: getPrimaryPersonLink(person),
+    ...(person.phdSortSurname ? { phdSortSurname: person.phdSortSurname } : {}),
+    ...(person.phdStartYear === undefined
+      ? {}
+      : { phdStartYear: person.phdStartYear }),
   }
 }
 

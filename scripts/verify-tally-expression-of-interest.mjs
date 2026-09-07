@@ -8,60 +8,37 @@ export const ACCEPTED_TALLY_ROUTES = [
   'visiting-students',
   'masters-students',
   'research-engineers',
-  'fellows',
   'collaborators',
 ]
 
-const baselineChecks = [
-  ['full name', /full\s+name/i],
-  ['email', /\bemail\b/i],
-  ['current role/title', /current\s+role|role\/title/i],
-  [
-    'current organization/institution',
-    /current\s+organi[sz]ation|current\s+institution|organi[sz]ation\/institution/i,
-  ],
-  ['location/time zone', /location\s*\/\s*time\s*zone|location.*time\s*zone/i],
-  ['fit statement', /fit\s+statement/i],
-  ['200-400 word fit prompt', /200\s*-\s*400|200[^.]*400/i],
-  ['relevant links', /relevant\s+links/i],
-  ['free-form Research Direction Interest', /research\s+direction\s+interest/i],
-  [
-    'optional practical constraints',
-    /location,\s*timing,\s*or\s*eligibility\s+constraints|location\s*\/\s*timing\s*\/\s*eligibility\s+constraints|practical\s+constraints/i,
-  ],
-  ['desired timing', /desired\s+timing|ideally\s+start/i],
-  [
-    'what the respondent wants to work on with BOLD',
-    /what\s+(would|do)\s+you\s+(like|want)\s+to\s+work\s+on\s+with\s+BOLD|work\s+on\s+with\s+BOLD/i,
-  ],
-  [
-    'current application or Formal Application Path status',
-    /formal\s+application\s+path|formal\s+process|application\s+status|institutional\s+process/i,
-  ],
-  [
-    'relevant BOLD people or groups',
-    /relevant\s+BOLD\s+people|BOLD\s+researchers|supervisors|groups|labs/i,
-  ],
+const fieldChecks = [
+  {
+    name: 'full name',
+    label: /^(full )?name$/i,
+    type: 'INPUT_TEXT',
+    required: true,
+  },
+  { name: 'email', label: /^email$/i, type: 'INPUT_EMAIL', required: true },
+  {
+    name: 'research connection note',
+    label: /connection.*BOLD.*research/i,
+    type: 'TEXTAREA',
+    required: true,
+  },
+  {
+    name: 'profile links',
+    label: /^(profile|relevant) links/i,
+    type: 'TEXTAREA',
+    required: false,
+  },
+  { name: 'CV', label: /^CV\b/i, type: 'FILE_UPLOAD', required: false },
 ]
 
-const prohibitedChecks = [
-  ['visible Desired role field', /desired\s+role/i],
-  ['detailed immigration question', /\bimmigration\b/i],
-  ['detailed visa question', /\bvisa\b/i],
-  ['demographic question', /\bdemographic/i],
-  ['equal-opportunities monitoring question', /equal[-\s]opportunities/i],
-]
-
-const freeFormInputTypes = new Set(['INPUT_TEXT', 'TEXTAREA'])
-const fixedChoiceInputTypes = new Set([
-  'CHECKBOXES',
-  'CHECKBOX_OPTION',
-  'DROPDOWN',
-  'DROPDOWN_OPTION',
-  'MULTIPLE_CHOICE',
-  'MULTIPLE_CHOICE_OPTION',
-  'RADIO',
-  'SELECT',
+const contentBlockTypes = new Set([
+  'FORM_TITLE',
+  'HIDDEN_FIELDS',
+  'TEXT',
+  'PAGE_BREAK',
 ])
 
 export function buildTallyEmbedUrl(routeValue) {
@@ -92,109 +69,110 @@ export function extractTallyPayload(html) {
 
 export function summarizeTallyPayload(payload) {
   const blocks = Array.isArray(payload.blocks) ? payload.blocks : []
-  const hiddenFields = blocks.flatMap((block) => {
-    if (block.type !== 'HIDDEN_FIELDS') {
-      return []
-    }
-
-    return Array.isArray(block.payload?.hiddenFields)
+  const hiddenFields = blocks.flatMap((block) =>
+    block.type === 'HIDDEN_FIELDS' && Array.isArray(block.payload?.hiddenFields)
       ? block.payload.hiddenFields
           .map((field) => field?.name)
           .filter((name) => typeof name === 'string')
-      : []
-  })
-  const blockText = blocks.map((block) => flattenText(block.payload)).join(' ')
-  const blockTypes = blocks
-    .map((block) => block.type)
-    .filter((type) => typeof type === 'string')
-  const integrations = Array.isArray(payload.integrations)
-    ? payload.integrations
-    : []
-  const fileUploads = blocks
-    .filter((block) => block.type === 'FILE_UPLOAD')
-    .map((block) => summarizeFileUpload(block.payload))
-  const hasFileUpload = fileUploads.length > 0
-  const hasPdfOnlyFileUpload = fileUploads.some((upload) => upload.pdfOnly)
-  const hasTenMbFileUploadLimit = fileUploads.some(
-    (upload) => upload.hasTenMbLimit,
+      : [],
   )
-  const researchDirectionInterest = summarizeResearchDirectionInterest(blocks)
-
   return {
     formId: payload.formId,
-    workspaceId: payload.workspaceId,
     name: payload.name,
     hiddenFields,
-    blockTypes,
-    blockText,
-    hasFileUpload,
-    hasPdfOnlyFileUpload,
-    hasTenMbFileUploadLimit,
-    researchDirectionInterest,
-    integrationsCount: integrations.length,
-    visibleTextBlockCount: blocks.filter((block) => block.type === 'TEXT')
-      .length,
+    blockTypes: blocks.map((block) => block.type),
+    blockText: blocks.map((block) => flattenText(block.payload)).join(' '),
+    confirmationText: getConfirmationText(blocks),
+    submitLabel: blocks.find((block) => block.type === 'FORM_TITLE')?.payload
+      ?.button?.label,
+    fields: summarizeInputFields(blocks),
+    integrationsCount: Array.isArray(payload.integrations)
+      ? payload.integrations.length
+      : 0,
   }
+}
+
+function summarizeInputFields(blocks) {
+  const fields = []
+  let label = ''
+  let isThankYouPage = false
+  for (const block of blocks) {
+    if (block.type === 'PAGE_BREAK') {
+      label = ''
+      isThankYouPage = block.payload?.isThankYouPage === true
+    }
+    if (isThankYouPage) {
+      continue
+    }
+    if (block.type === 'TITLE') {
+      label = flattenText(block.payload)
+    } else if (!contentBlockTypes.has(block.type)) {
+      fields.push({ label, type: block.type, payload: block.payload })
+      label = ''
+    }
+  }
+  return fields
+}
+
+function checkInputFields(fields) {
+  const failures = []
+  for (const check of fieldChecks) {
+    const matches = fields.filter((field) => check.label.test(field.label))
+    if (matches.length !== 1 || matches[0].type !== check.type) {
+      failures.push(`expected one ${check.name} ${check.type} input`)
+    } else if (matches[0].payload?.isRequired !== check.required) {
+      failures.push(
+        `${check.name} must be ${check.required ? 'required' : 'optional'}`,
+      )
+    }
+  }
+  for (const field of fields) {
+    if (!fieldChecks.some((check) => check.label.test(field.label))) {
+      failures.push(`unexpected input: ${field.label || field.type}`)
+    }
+  }
+  return failures
 }
 
 export function verifyTallyExpressionOfInterestPayload(payload) {
   const summary = summarizeTallyPayload(payload)
-  const failures = []
-
+  const failures = checkInputFields(summary.fields)
   if (summary.formId !== TALLY_FORM_ID) {
     failures.push(`expected form ID ${TALLY_FORM_ID}, found ${summary.formId}`)
   }
-
   if (summary.name !== TALLY_FORM_NAME) {
     failures.push(
       `expected form name ${TALLY_FORM_NAME}, found ${summary.name}`,
     )
   }
-
   if (!summary.hiddenFields.includes(TALLY_ROUTE_PARAMETER)) {
     failures.push(`missing hidden route field: ${TALLY_ROUTE_PARAMETER}`)
   }
-
-  for (const [label, pattern] of baselineChecks) {
-    if (!pattern.test(summary.blockText)) {
-      failures.push(`missing baseline field: ${label}`)
-    }
-  }
-
-  if (!summary.hasFileUpload) {
-    failures.push('missing CV/resume upload field')
-  }
-
-  if (!summary.hasPdfOnlyFileUpload) {
+  const upload = summary.fields.find((field) => field.type === 'FILE_UPLOAD')
+  const constraints = summarizeFileUpload(upload?.payload)
+  if (!constraints.pdfOnly) {
     failures.push('missing PDF-only CV/resume setting')
   }
-
-  if (!summary.hasTenMbFileUploadLimit) {
+  if (!constraints.hasTenMbLimit) {
     failures.push('missing 10 MB upload limit setting')
   }
-
-  if (
-    summary.researchDirectionInterest.found &&
-    !summary.researchDirectionInterest.freeForm
-  ) {
-    failures.push('Research Direction Interest must be free-form')
-  }
-
-  if (!hasRequiredConfirmationCopy(summary.blockText)) {
+  if (!hasRequiredConfirmationCopy(summary.confirmationText)) {
     failures.push('missing non-promissory confirmation copy')
   }
-
-  for (const [label, pattern] of prohibitedChecks) {
-    if (pattern.test(summary.blockText)) {
-      failures.push(`contains prohibited MVP content: ${label}`)
-    }
+  if (summary.submitLabel !== 'Express interest') {
+    failures.push('submission action must be Express interest')
   }
-
-  return {
-    ready: failures.length === 0,
-    failures,
-    summary,
+  if (summary.blockTypes.includes('CONDITIONAL_LOGIC')) {
+    failures.push('shared intake must not use conditional logic')
   }
+  if (
+    /\bapply\b|200\s*[-–]\s*400|(?:will|'ll|’ll)\s+(?:contact|respond|reply)|review.*periodically/i.test(
+      summary.blockText,
+    )
+  ) {
+    failures.push('form contains recruitment wording or response promises')
+  }
+  return { ready: failures.length === 0, failures, summary }
 }
 
 export async function verifyLiveTallyExpressionOfInterest(fetchImpl = fetch) {
@@ -260,60 +238,24 @@ function summarizeFileUpload(payload) {
   }
 }
 
-function summarizeResearchDirectionInterest(blocks) {
-  let found = false
-  let freeForm = false
-  let fixedChoice = false
-
-  for (let index = 0; index < blocks.length; index += 1) {
-    const block = blocks[index]
-
-    if (!/research\s+direction\s+interest/i.test(flattenText(block.payload))) {
-      continue
-    }
-
-    found = true
-    freeForm ||= freeFormInputTypes.has(block.type)
-    fixedChoice ||= fixedChoiceInputTypes.has(block.type)
-
-    if (block.type === 'TITLE') {
-      for (
-        let followingIndex = index + 1;
-        followingIndex < blocks.length;
-        followingIndex += 1
-      ) {
-        const followingBlock = blocks[followingIndex]
-
-        if (followingBlock.type === 'TITLE') {
-          break
-        }
-
-        freeForm ||= freeFormInputTypes.has(followingBlock.type)
-        fixedChoice ||= fixedChoiceInputTypes.has(followingBlock.type)
-      }
+function getConfirmationText(blocks) {
+  let isThankYouPage = false
+  const text = []
+  for (const block of blocks) {
+    if (block.type === 'PAGE_BREAK') {
+      isThankYouPage = block.payload?.isThankYouPage === true
+    } else if (isThankYouPage && ['TEXT', 'TITLE'].includes(block.type)) {
+      text.push(flattenText(block.payload))
     }
   }
-
-  return {
-    found,
-    freeForm: freeForm && !fixedChoice,
-    fixedChoice,
-  }
+  return text.join(' ').replace(/\s+/g, ' ').trim()
 }
 
-function hasRequiredConfirmationCopy(blockText) {
+function hasRequiredConfirmationCopy(text) {
   return (
-    /BOLD has received your Expression of Interest/i.test(blockText) &&
-    /review (Expressions of Interest|submissions) periodically/i.test(
-      blockText,
-    ) &&
-    /strong fit with current BOLD priorities, supervision capacity, or open opportunities/i.test(
-      blockText,
-    ) &&
-    /Formal applications? may still need/i.test(blockText) &&
-    /university, departmental, placement, or employment processes/i.test(
-      blockText,
-    )
+    text ===
+    'Thank you for expressing your interest in BOLD. ' +
+      'We may be in touch if a relevant opportunity arises.'
   )
 }
 

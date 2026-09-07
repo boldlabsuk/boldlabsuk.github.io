@@ -2,23 +2,28 @@ import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
 import test from 'node:test'
 
-test('Opportunities Index exposes route links with meaningful accessible names', () => {
-  const result = spawnSync(
-    './node_modules/.bin/tsx',
-    [
-      '--tsconfig',
-      'tsconfig.app.json',
-      'tests/opportunities-index-render-case.tsx',
-    ],
-    {
-      cwd: process.cwd(),
-      encoding: 'utf8',
-    },
-  )
+const scenarios = [
+  [
+    'opportunities-index-render-case.tsx',
+    'Opportunities Index offers a simple invitation and five accessible interest choices',
+  ],
+  [
+    'opportunities-interaction-case.tsx',
+    'Opportunity selection replaces the shared form and cleans up Tally resize listeners',
+  ],
+]
 
-  assert.equal(
-    result.status,
-    0,
-    `${result.stdout.trim()}\n${result.stderr.trim()}`.trim(),
-  )
-})
+for (const [filename, title] of scenarios) {
+  test(title, () => {
+    const result = spawnSync(
+      './node_modules/.bin/tsx',
+      ['--tsconfig', 'tsconfig.app.json', `tests/${filename}`],
+      { cwd: process.cwd(), encoding: 'utf8' },
+    )
+    assert.equal(
+      result.status,
+      0,
+      `${result.stdout.trim()}\n${result.stderr.trim()}`.trim(),
+    )
+  })
+}

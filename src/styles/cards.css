@@ -2,7 +2,6 @@
 .article-grid,
 .paper-card-grid,
 .opportunity-link-grid,
-.involvement-grid,
 .current-opportunity-list,
 .people-grid,
 .person-listing-grid {
@@ -69,8 +68,7 @@
 .paper-card:hover,
 .person-card:hover,
 .opportunity-link-card:hover,
-.current-opportunity-card:hover,
-.involvement-card:hover {
+.current-opportunity-card:hover {
   box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
@@ -116,7 +114,6 @@
 .article-card,
 .paper-card,
 .person-card,
-.involvement-card,
 .current-opportunity-card,
 .opportunity-link-card {
   border: 1px solid var(--line);
@@ -170,7 +167,6 @@
 .article-card h3,
 .paper-card h3,
 .person-card h3,
-.involvement-card h3,
 .current-opportunity-card h3 {
   margin: 14px 0 10px;
   color: var(--ink);
@@ -200,7 +196,6 @@
 .article-card p,
 .paper-card p,
 .person-card p,
-.involvement-card p,
 .current-opportunity-card p,
 .publication-main p,
 .article-body p,
@@ -211,7 +206,6 @@
 .article-card p,
 .paper-card p,
 .person-card p,
-.involvement-card p,
 .current-opportunity-card p {
   margin: 0;
 }

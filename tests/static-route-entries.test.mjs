@@ -6,6 +6,37 @@ import test from 'node:test'
 
 import { generateStaticRouteEntries } from '../scripts/generate-static-routes.mjs'
 
+const staticRouteSourcePeople = [
+  {
+    source: 'main',
+    name: 'Ada Lovelace',
+    role: 'PhD student',
+    profilePicture: 'ada.jpg',
+    listOnBoldWebsite: '',
+  },
+  {
+    source: 'main',
+    name: 'Jakob Foerster',
+    role: 'Faculty',
+    profilePicture: 'jakob.jpg',
+    listOnBoldWebsite: '',
+  },
+  {
+    source: 'main',
+    name: 'Hidden Person',
+    role: 'PhD student',
+    profilePicture: 'hidden.jpg',
+    listOnBoldWebsite: 'No',
+  },
+  {
+    source: 'slack',
+    name: 'Slack Only',
+    role: 'Visitor',
+    profilePicture: 'slack.jpg',
+    listOnBoldWebsite: '',
+  },
+]
+
 test('static route generation creates deployable SPA entry files', async () => {
   const distDir = await mkdtemp(join(tmpdir(), 'bold-static-routes-'))
   const indexHtml =
@@ -16,36 +47,7 @@ test('static route generation creates deployable SPA entry files', async () => {
 
   const { routes } = await generateStaticRouteEntries({
     distDir,
-    sourcePeople: [
-      {
-        source: 'main',
-        name: 'Ada Lovelace',
-        role: 'PhD student',
-        profilePicture: 'ada.jpg',
-        listOnBoldWebsite: '',
-      },
-      {
-        source: 'main',
-        name: 'Jakob Foerster',
-        role: 'Faculty',
-        profilePicture: 'jakob.jpg',
-        listOnBoldWebsite: '',
-      },
-      {
-        source: 'main',
-        name: 'Hidden Person',
-        role: 'PhD student',
-        profilePicture: 'hidden.jpg',
-        listOnBoldWebsite: 'No',
-      },
-      {
-        source: 'slack',
-        name: 'Slack Only',
-        role: 'Visitor',
-        profilePicture: 'slack.jpg',
-        listOnBoldWebsite: '',
-      },
-    ],
+    sourcePeople: staticRouteSourcePeople,
   })
 
   assert.deepEqual(routes, [

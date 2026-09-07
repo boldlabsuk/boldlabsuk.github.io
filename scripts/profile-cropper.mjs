@@ -112,57 +112,17 @@ async function handleRequest(request, response) {
     }
 
     if (request.method === 'GET' && url.pathname === '/api/manifest') {
-      sendJson(response, {
-        entries: manifest.map((entry) => ({
-          id: entry.id,
-          slug: entry.slug,
-          name: entry.name,
-          role: entry.role,
-          sourceFile: path.basename(entry.sourcePath),
-          sourceKind: entry.sourceKind,
-          outputFile: path.basename(entry.outputPath),
-          saved: Boolean(getCropRecord(entry)),
-          crop: getCropRecord(entry)?.crop ?? null,
-        })),
-      })
+      sendJson(response, { entries: manifest.map(summarizeManifestEntry) })
       return
     }
 
     if (request.method === 'GET' && url.pathname.startsWith('/image/')) {
-      const id = decodeURIComponent(url.pathname.slice('/image/'.length))
-      const entry = getEntry(id)
-      const previewPath = await ensurePreview(entry)
-
-      response.writeHead(200, {
-        'Content-Type': 'image/jpeg',
-        'Cache-Control': 'no-store',
-      })
-      createReadStream(previewPath).pipe(response)
+      await sendPreviewImage(url, response)
       return
     }
 
     if (request.method === 'POST' && url.pathname === '/api/save-crop') {
-      const payload = await readJsonBody(request)
-      const entry = getEntry(String(payload.id ?? payload.slug ?? ''))
-      const crop = normalizeCrop(payload.crop)
-      const previewPath = await ensurePreview(entry)
-      const dimensions = await getImageDimensions(previewPath)
-      const safeCrop = clampCrop(crop, dimensions)
-
-      await writeSquareCrop({
-        inputPath: previewPath,
-        outputPath: entry.outputPath,
-        crop: safeCrop,
-      })
-      await recordCrop(entry, safeCrop)
-
-      sendJson(response, {
-        ok: true,
-        id: entry.id,
-        slug: entry.slug,
-        saved: true,
-        crop: safeCrop,
-      })
+      await saveRequestedCrop(request, response)
       return
     }
 
@@ -190,6 +150,55 @@ async function handleRequest(request, response) {
       }),
     )
   }
+}
+
+function summarizeManifestEntry(entry) {
+  const record = getCropRecord(entry)
+  return {
+    id: entry.id,
+    slug: entry.slug,
+    name: entry.name,
+    role: entry.role,
+    sourceFile: path.basename(entry.sourcePath),
+    sourceKind: entry.sourceKind,
+    outputFile: path.basename(entry.outputPath),
+    saved: Boolean(record),
+    crop: record?.crop ?? null,
+  }
+}
+
+async function sendPreviewImage(url, response) {
+  const id = decodeURIComponent(url.pathname.slice('/image/'.length))
+  const previewPath = await ensurePreview(getEntry(id))
+  response.writeHead(200, {
+    'Content-Type': 'image/jpeg',
+    'Cache-Control': 'no-store',
+  })
+  createReadStream(previewPath).pipe(response)
+}
+
+async function saveRequestedCrop(request, response) {
+  const payload = await readJsonBody(request)
+  const entry = getEntry(String(payload.id ?? payload.slug ?? ''))
+  const crop = normalizeCrop(payload.crop)
+  const previewPath = await ensurePreview(entry)
+  const dimensions = await getImageDimensions(previewPath)
+  const safeCrop = clampCrop(crop, dimensions)
+
+  await writeSquareCrop({
+    inputPath: previewPath,
+    outputPath: entry.outputPath,
+    crop: safeCrop,
+  })
+  await recordCrop(entry, safeCrop)
+
+  sendJson(response, {
+    ok: true,
+    id: entry.id,
+    slug: entry.slug,
+    saved: true,
+    crop: safeCrop,
+  })
 }
 
 function parseCliOptions(args) {
@@ -385,6 +394,12 @@ function buildSourceDirEntry(sourcePath, matcher) {
 
 function buildPersonMatcher(sourcePeople) {
   const people = buildKnownPeople(sourcePeople)
+  const matchMap = buildPersonMatchMap(people)
+
+  return { match: (sourcePath) => findPersonMatch(sourcePath, matchMap) }
+}
+
+function buildPersonMatchMap(people) {
   const matchMap = new Map()
 
   for (const person of people) {
@@ -415,41 +430,34 @@ function buildPersonMatcher(sourcePeople) {
     }
   }
 
-  return {
-    match(sourcePath) {
-      const sourceFile = path.basename(sourcePath)
-      const sourceStem = getFileStem(sourceFile)
-      const trailingName = getTrailingPersonName(sourceStem)
-      const candidateKeys = [
-        ['filename', `filename:${normalizeFileName(sourceFile)}`],
-        ['slug', `slug:${slugify(sourceStem)}`],
-        ['trailing-name', `slug:${slugify(trailingName)}`],
-      ]
+  return matchMap
+}
 
-      for (const [matchedBy, key] of candidateKeys) {
-        const matches = matchMap.get(key)
+function findPersonMatch(sourcePath, matchMap) {
+  const sourceFile = path.basename(sourcePath)
+  const sourceStem = getFileStem(sourceFile)
+  const trailingName = getTrailingPersonName(sourceStem)
+  const candidateKeys = [
+    ['filename', `filename:${normalizeFileName(sourceFile)}`],
+    ['slug', `slug:${slugify(sourceStem)}`],
+    ['trailing-name', `slug:${slugify(trailingName)}`],
+  ]
 
-        if (!matches) {
-          continue
-        }
-
-        if (matches.size > 1) {
-          throw new Error(
-            `Ambiguous cropper match for ${sourcePath}: ${[...matches]
-              .map((person) => person.name)
-              .join(', ')}`,
-          )
-        }
-
-        return {
-          matchedBy,
-          person: [...matches][0],
-        }
-      }
-
-      return undefined
-    },
+  for (const [matchedBy, key] of candidateKeys) {
+    const matches = matchMap.get(key)
+    if (!matches) {
+      continue
+    }
+    if (matches.size > 1) {
+      throw new Error(
+        `Ambiguous cropper match for ${sourcePath}: ${[...matches]
+          .map((person) => person.name)
+          .join(', ')}`,
+      )
+    }
+    return { matchedBy, person: [...matches][0] }
   }
+  return undefined
 }
 
 function buildKnownPeople(sourcePeople) {
@@ -828,704 +836,8 @@ async function sendHtml(response) {
 }
 
 function getHtml() {
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BOLD Profile Cropper</title>
-  <style>
-    :root {
-      --bg: #f7f4ef;
-      --panel: #ffffff;
-      --ink: #171717;
-      --muted: #6a655e;
-      --line: #d7d1c7;
-      --accent: #1f6b62;
-      --accent-strong: #154d47;
-      --danger: #a74435;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      height: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--ink);
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    .app {
-      display: grid;
-      grid-template-columns: minmax(250px, 330px) 1fr;
-      height: 100vh;
-      min-height: 0;
-      overflow: hidden;
-    }
-
-    .sidebar {
-      display: grid;
-      grid-template-rows: auto auto minmax(0, 1fr);
-      height: 100vh;
-      min-width: 0;
-      min-height: 0;
-      overflow: hidden;
-      border-right: 1px solid var(--line);
-      background: var(--panel);
-    }
-
-    .sidebar-header {
-      display: grid;
-      gap: 8px;
-      padding: 18px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .sidebar-header h1 {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.2;
-    }
-
-    .progress {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .search {
-      width: calc(100% - 36px);
-      margin: 12px 18px;
-      padding: 9px 10px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #fff;
-    }
-
-    .people-list {
-      min-height: 0;
-      overflow: auto;
-      padding: 0 10px 14px;
-    }
-
-    .person-button {
-      display: grid;
-      grid-template-columns: 16px 1fr;
-      gap: 8px;
-      width: 100%;
-      min-height: 44px;
-      padding: 8px;
-      border: 0;
-      border-radius: 6px;
-      background: transparent;
-      color: inherit;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .person-button:hover,
-    .person-button:focus-visible {
-      background: #f0ebe4;
-      outline: none;
-    }
-
-    .person-button.active {
-      background: #e3f0ed;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      margin-top: 5px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: #fff;
-    }
-
-    .person-button.saved .dot {
-      border-color: var(--accent);
-      background: var(--accent);
-    }
-
-    .person-name {
-      min-width: 0;
-      font-size: 14px;
-      font-weight: 750;
-      line-height: 1.2;
-    }
-
-    .person-meta {
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.25;
-      overflow-wrap: anywhere;
-    }
-
-    .main {
-      display: grid;
-      grid-template-rows: auto minmax(0, 1fr) auto;
-      min-width: 0;
-      min-height: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .topbar {
-      display: grid;
-      gap: 4px;
-      padding: 18px 24px 14px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.72);
-    }
-
-    .current-name {
-      margin: 0;
-      font-size: clamp(22px, 2.2vw, 32px);
-      line-height: 1.08;
-    }
-
-    .current-meta {
-      color: var(--muted);
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
-
-    .stage {
-      display: grid;
-      place-items: center;
-      min-height: 0;
-      overflow: hidden;
-      padding: clamp(14px, 2vw, 24px);
-    }
-
-    .crop-frame {
-      position: relative;
-      width: min(64vw, 640px, calc(100vh - 226px));
-      min-width: min(84vw, 320px);
-      max-width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      border: 2px solid #151515;
-      background: #ddd8ce;
-      box-shadow: 0 16px 50px rgba(34, 28, 20, 0.16);
-      touch-action: none;
-      cursor: grab;
-      user-select: none;
-    }
-
-    .crop-frame.dragging {
-      cursor: grabbing;
-    }
-
-    .crop-frame img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      max-width: none;
-      transform-origin: 0 0;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    .crop-frame::before,
-    .crop-frame::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .crop-frame::before {
-      background:
-        linear-gradient(to right, transparent 33.333%, rgba(255, 255, 255, 0.55) 33.333%, rgba(255, 255, 255, 0.55) calc(33.333% + 1px), transparent calc(33.333% + 1px), transparent 66.666%, rgba(255, 255, 255, 0.55) 66.666%, rgba(255, 255, 255, 0.55) calc(66.666% + 1px), transparent calc(66.666% + 1px)),
-        linear-gradient(to bottom, transparent 33.333%, rgba(255, 255, 255, 0.55) 33.333%, rgba(255, 255, 255, 0.55) calc(33.333% + 1px), transparent calc(33.333% + 1px), transparent 66.666%, rgba(255, 255, 255, 0.55) 66.666%, rgba(255, 255, 255, 0.55) calc(66.666% + 1px), transparent calc(66.666% + 1px));
-    }
-
-    .crop-frame::after {
-      border: 1px solid rgba(255, 255, 255, 0.88);
-    }
-
-    .loading {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      padding: 20px;
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .controls {
-      display: grid;
-      grid-template-columns: auto minmax(180px, 360px) 1fr auto auto auto;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 24px 18px;
-      border-top: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.78);
-    }
-
-    .zoom-label {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .zoom-slider {
-      width: 100%;
-      accent-color: var(--accent);
-    }
-
-    .status {
-      min-width: 0;
-      color: var(--muted);
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
-
-    .status.error {
-      color: var(--danger);
-      font-weight: 700;
-    }
-
-    .button {
-      min-height: 38px;
-      padding: 8px 13px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #fff;
-      color: var(--ink);
-      font-weight: 780;
-      cursor: pointer;
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      border-color: var(--accent);
-      outline: none;
-    }
-
-    .button.primary {
-      border-color: var(--accent);
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .button.primary:hover,
-    .button.primary:focus-visible {
-      background: var(--accent-strong);
-    }
-
-    .button:disabled {
-      cursor: not-allowed;
-      opacity: 0.55;
-    }
-
-    @media (max-width: 880px) {
-      .app {
-        grid-template-rows: minmax(180px, 32vh) minmax(0, 1fr);
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        height: auto;
-        max-height: none;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .main {
-        height: auto;
-        min-height: 0;
-      }
-
-      .crop-frame {
-        width: min(88vw, calc(68vh - 178px));
-        min-width: min(82vw, 260px);
-      }
-
-      .controls {
-        grid-template-columns: 1fr 1fr;
-        padding: 10px 14px 12px;
-      }
-
-      .zoom-label,
-      .zoom-slider,
-      .status {
-        grid-column: 1 / -1;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h1>BOLD Profile Cropper</h1>
-        <div class="progress" id="progress">Loading</div>
-      </div>
-      <input class="search" id="search" type="search" placeholder="Search people">
-      <div class="people-list" id="peopleList"></div>
-    </aside>
-
-    <main class="main">
-      <div class="topbar">
-        <h2 class="current-name" id="currentName"></h2>
-        <div class="current-meta" id="currentMeta"></div>
-      </div>
-
-      <section class="stage">
-        <div class="crop-frame" id="frame">
-          <img id="photo" alt="">
-          <div class="loading" id="loading">Loading image</div>
-        </div>
-      </section>
-
-      <div class="controls">
-        <label class="zoom-label" for="zoom">Zoom</label>
-        <input class="zoom-slider" id="zoom" type="range" min="1" max="4" step="0.01" value="1">
-        <div class="status" id="status"></div>
-        <button class="button" id="previousButton" type="button">Previous</button>
-        <button class="button" id="nextButton" type="button">Next</button>
-        <button class="button primary" id="saveButton" type="button">Save and Next</button>
-      </div>
-    </main>
-  </div>
-
-  <script>
-    const state = {
-      entries: [],
-      filteredEntries: [],
-      index: 0,
-      scale: 1,
-      minScale: 1,
-      offsetX: 0,
-      offsetY: 0,
-      imageReady: false,
-      dragging: false,
-      dragStartX: 0,
-      dragStartY: 0,
-      startOffsetX: 0,
-      startOffsetY: 0,
-    };
-
-    const elements = {
-      peopleList: document.getElementById('peopleList'),
-      progress: document.getElementById('progress'),
-      search: document.getElementById('search'),
-      currentName: document.getElementById('currentName'),
-      currentMeta: document.getElementById('currentMeta'),
-      frame: document.getElementById('frame'),
-      photo: document.getElementById('photo'),
-      loading: document.getElementById('loading'),
-      zoom: document.getElementById('zoom'),
-      status: document.getElementById('status'),
-      previousButton: document.getElementById('previousButton'),
-      nextButton: document.getElementById('nextButton'),
-      saveButton: document.getElementById('saveButton'),
-    };
-
-    async function boot() {
-      const response = await fetch('/api/manifest');
-      const data = await response.json();
-
-      state.entries = data.entries;
-      state.filteredEntries = state.entries;
-      renderList();
-      selectEntry(0);
-    }
-
-    function renderList() {
-      const query = elements.search.value.trim().toLowerCase();
-      state.filteredEntries = state.entries.filter((entry) => {
-        return (
-          !query ||
-          entry.name.toLowerCase().includes(query) ||
-          entry.outputFile.toLowerCase().includes(query)
-        );
-      });
-
-      elements.peopleList.replaceChildren(
-        ...state.filteredEntries.map((entry) => {
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = [
-            'person-button',
-            entry.saved ? 'saved' : '',
-            entry.id === currentEntry()?.id ? 'active' : '',
-          ].filter(Boolean).join(' ');
-          button.addEventListener('click', () => {
-            selectEntry(state.entries.findIndex((candidate) => candidate.id === entry.id));
-          });
-
-          const dot = document.createElement('span');
-          dot.className = 'dot';
-
-          const body = document.createElement('span');
-          const name = document.createElement('span');
-          name.className = 'person-name';
-          name.textContent = entry.name;
-
-          const meta = document.createElement('span');
-          meta.className = 'person-meta';
-          meta.textContent = entry.outputFile;
-
-          body.append(name, meta);
-          button.append(dot, body);
-
-          return button;
-        }),
-      );
-
-      renderProgress();
-    }
-
-    function renderProgress() {
-      const saved = state.entries.filter((entry) => entry.saved).length;
-      elements.progress.textContent = saved + ' of ' + state.entries.length + ' saved';
-    }
-
-    function currentEntry() {
-      return state.entries[state.index] ?? null;
-    }
-
-    async function selectEntry(index) {
-      if (index < 0 || index >= state.entries.length) {
-        return;
-      }
-
-      state.index = index;
-      const entry = currentEntry();
-      state.imageReady = false;
-      elements.photo.removeAttribute('src');
-      elements.photo.alt = entry.name;
-      elements.photo.style.display = 'none';
-      elements.loading.style.display = 'grid';
-      elements.loading.textContent = 'Loading image';
-      elements.status.className = 'status';
-      elements.status.textContent = entry.saved ? 'Saved' : 'Unsaved';
-      elements.currentName.textContent = entry.name;
-      elements.currentMeta.textContent = entry.sourceKind + ' source: ' + entry.sourceFile + ' -> ' + entry.outputFile;
-      elements.previousButton.disabled = state.index === 0;
-      elements.nextButton.disabled = state.index === state.entries.length - 1;
-      elements.saveButton.disabled = true;
-      renderList();
-
-      const imageUrl = '/image/' + encodeURIComponent(entry.id) + '?v=' + Date.now();
-      elements.photo.onload = () => {
-        state.imageReady = true;
-        elements.photo.style.display = 'block';
-        elements.loading.style.display = 'none';
-        elements.saveButton.disabled = false;
-        fitImage(entry.crop);
-      };
-      elements.photo.onerror = () => {
-        elements.loading.textContent = 'Could not load this image. Check the terminal for details.';
-        elements.status.className = 'status error';
-        elements.status.textContent = 'Image load failed';
-      };
-      elements.photo.src = imageUrl;
-    }
-
-    function getFrameSize() {
-      return elements.frame.getBoundingClientRect().width;
-    }
-
-    function fitImage(savedCrop) {
-      const frameSize = getFrameSize();
-      const naturalWidth = elements.photo.naturalWidth;
-      const naturalHeight = elements.photo.naturalHeight;
-      state.minScale = Math.max(frameSize / naturalWidth, frameSize / naturalHeight);
-
-      if (savedCrop) {
-        state.scale = frameSize / savedCrop.size;
-        elements.zoom.value = String(Math.max(1, Math.min(4, state.scale / state.minScale)));
-        state.offsetX = -savedCrop.x * state.scale;
-        state.offsetY = -savedCrop.y * state.scale;
-      } else {
-        state.scale = state.minScale;
-        elements.zoom.value = '1';
-        state.offsetX = (frameSize - naturalWidth * state.scale) / 2;
-        state.offsetY = (frameSize - naturalHeight * state.scale) / 2;
-      }
-
-      clampOffsets();
-      renderImage();
-    }
-
-    function renderImage() {
-      const width = elements.photo.naturalWidth * state.scale;
-      const height = elements.photo.naturalHeight * state.scale;
-
-      elements.photo.style.width = width + 'px';
-      elements.photo.style.height = height + 'px';
-      elements.photo.style.transform = 'translate(' + state.offsetX + 'px, ' + state.offsetY + 'px)';
-    }
-
-    function clampOffsets() {
-      const frameSize = getFrameSize();
-      const imageWidth = elements.photo.naturalWidth * state.scale;
-      const imageHeight = elements.photo.naturalHeight * state.scale;
-      const minX = Math.min(0, frameSize - imageWidth);
-      const minY = Math.min(0, frameSize - imageHeight);
-
-      state.offsetX = Math.max(minX, Math.min(0, state.offsetX));
-      state.offsetY = Math.max(minY, Math.min(0, state.offsetY));
-    }
-
-    function getCrop() {
-      const frameSize = getFrameSize();
-
-      return {
-        x: Math.max(0, -state.offsetX / state.scale),
-        y: Math.max(0, -state.offsetY / state.scale),
-        size: frameSize / state.scale,
-      };
-    }
-
-    function goToNextUnsavedOrNext() {
-      const nextUnsaved = state.entries.findIndex((entry, index) => {
-        return index > state.index && !entry.saved;
-      });
-
-      if (nextUnsaved >= 0) {
-        selectEntry(nextUnsaved);
-        return;
-      }
-
-      if (state.index < state.entries.length - 1) {
-        selectEntry(state.index + 1);
-      } else {
-        elements.status.className = 'status';
-        elements.status.textContent = 'All entries after this one are saved';
-      }
-    }
-
-    async function saveCrop() {
-      const entry = currentEntry();
-
-      if (!entry || !state.imageReady) {
-        return;
-      }
-
-      elements.saveButton.disabled = true;
-      elements.status.className = 'status';
-      elements.status.textContent = 'Saving ' + entry.outputFile;
-
-      try {
-        const response = await fetch('/api/save-crop', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            id: entry.id,
-            crop: getCrop(),
-          }),
-        });
-        const data = await response.json();
-
-        if (!response.ok || !data.ok) {
-          throw new Error(data.error || 'Save failed');
-        }
-
-        entry.saved = true;
-        entry.crop = data.crop;
-        renderList();
-        elements.status.textContent = 'Saved ' + entry.outputFile;
-        goToNextUnsavedOrNext();
-      } catch (error) {
-        elements.status.className = 'status error';
-        elements.status.textContent = error instanceof Error ? error.message : String(error);
-      } finally {
-        elements.saveButton.disabled = false;
-      }
-    }
-
-    elements.frame.addEventListener('pointerdown', (event) => {
-      if (!state.imageReady) {
-        return;
-      }
-
-      state.dragging = true;
-      state.dragStartX = event.clientX;
-      state.dragStartY = event.clientY;
-      state.startOffsetX = state.offsetX;
-      state.startOffsetY = state.offsetY;
-      elements.frame.classList.add('dragging');
-      elements.frame.setPointerCapture(event.pointerId);
-    });
-
-    elements.frame.addEventListener('pointermove', (event) => {
-      if (!state.dragging) {
-        return;
-      }
-
-      state.offsetX = state.startOffsetX + event.clientX - state.dragStartX;
-      state.offsetY = state.startOffsetY + event.clientY - state.dragStartY;
-      clampOffsets();
-      renderImage();
-    });
-
-    function stopDragging(event) {
-      state.dragging = false;
-      elements.frame.classList.remove('dragging');
-
-      if (event.pointerId !== undefined && elements.frame.hasPointerCapture(event.pointerId)) {
-        elements.frame.releasePointerCapture(event.pointerId);
-      }
-    }
-
-    elements.frame.addEventListener('pointerup', stopDragging);
-    elements.frame.addEventListener('pointercancel', stopDragging);
-
-    elements.zoom.addEventListener('input', () => {
-      if (!state.imageReady) {
-        return;
-      }
-
-      const frameSize = getFrameSize();
-      const centerX = (-state.offsetX + frameSize / 2) / state.scale;
-      const centerY = (-state.offsetY + frameSize / 2) / state.scale;
-      state.scale = state.minScale * Number(elements.zoom.value);
-      state.offsetX = frameSize / 2 - centerX * state.scale;
-      state.offsetY = frameSize / 2 - centerY * state.scale;
-      clampOffsets();
-      renderImage();
-    });
-
-    elements.previousButton.addEventListener('click', () => selectEntry(state.index - 1));
-    elements.nextButton.addEventListener('click', () => selectEntry(state.index + 1));
-    elements.saveButton.addEventListener('click', saveCrop);
-    elements.search.addEventListener('input', renderList);
-
-    window.addEventListener('resize', () => {
-      const entry = currentEntry();
-
-      if (entry && state.imageReady) {
-        entry.crop = getCrop();
-        fitImage(entry.crop);
-      }
-    });
-
-    boot().catch((error) => {
-      elements.status.className = 'status error';
-      elements.status.textContent = error instanceof Error ? error.message : String(error);
-    });
-  </script>
-</body>
-</html>`
+  return readFileSync(
+    new URL('./profile-cropper.html', import.meta.url),
+    'utf8',
+  )
 }

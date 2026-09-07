@@ -1,171 +1,113 @@
 # Tally Expression of Interest Form
 
-Agent-facing setup notes for issue #24 and follow-on website implementation.
-
-## Live form contract
-
-- Form name: BOLD Expression of Interest
-- Form URL: `https://tally.so/r/A7aa0W`
-- Form ID: `A7aa0W`
-- Embed URL template: `https://tally.so/embed/A7aa0W?route={routeValue}`
-- Route parameter name: `route`
-
-Accepted route values:
-
-| Opportunity Route | Route value |
-| --- | --- |
-| PhD Students | `phd-students` |
-| Visiting Students | `visiting-students` |
-| Master's Students | `masters-students` |
-| Research Engineers | `research-engineers` |
-| Fellows and Experienced Researchers | `fellows` |
-| Collaborators | `collaborators` |
-
-The website implementation should use one shared Tally form and pass the selected
-Opportunity Route through the `route` hidden field or prefill parameter.
-
-The Tally form should remain generic. The website owns Opportunity Route
-Selection, so the live Tally form must not include a visible `Desired role`
-field and should not depend on route-specific conditional sections for the MVP.
-
 ## Current status
 
-The live form exists and the public embed confirms the form ID, title, hidden
-`route` field, generic baseline fields, PDF-only 10 MB CV/resume upload setting,
-no visible `Desired role` field, and the required non-promissory confirmation
-copy.
+The website and published Tally form implement the revised intake contract below.
+On 2026-09-07, public verification passed for all five routes. An anonymous
+browser submission succeeded with only name, email, the selected route, and the
+research note. The exact thank-you wording appeared, and the existing register
+recorded the selected `collaborators` route without a CV or profile links.
 
-Completing the setup requires access to the BOLD-owned Tally workspace. Agents
-without that access can verify the public embed contract, but cannot configure
-fields, conditional logic, file-upload rules, confirmation behavior, owner email
-notifications, or Google Sheets integration.
+All 83 pre-existing submissions retained their answer values and file identities;
+the nine removed questions remain archived in Tally's question records. Retained
+field IDs were preserved. Two clearly labelled verification submissions were
+added to the register: one for minimal intake and one after saving notifications.
 
-Issue #24 comments report that the BOLD-owned account owns the form, Google
-Sheets integration is connected, and self email notifications are enabled to the
-same account acting as the intake email. Those owner-side settings are not
-exposed in the unauthenticated public payload, so the verifier reports the public
-`integrations` count for context but does not treat it as a public readiness
-failure.
+Google Sheets delivery was independently verified in the existing connection's
+Events log for both test submissions on 2026-09-07. The owner also confirmed the
+first test row's route and note. Although the screenshot showed self email notifications
+enabled, the saved form had null settings. Tally's interface initializes that
+state with notifications disabled. Saving `hasSelfEmailNotifications: true`
+through the API fixed the persisted configuration; a subsequent read confirmed
+it enabled. The default recipient remains the BOLD form owner, and form blocks
+and Google Sheets settings were not changed by this fix.
 
-Fresh public verification on 2026-06-23 confirms every accepted route embed
-returns HTTP 200 with the shared form ID, hidden `route` field, generic baseline
-fields, PDF-only 10 MB CV/resume upload settings, no visible `Desired role`
-field, no route-specific conditional sections, and the required confirmation
-copy.
+The second anonymous submission completed successfully after that setting was
+saved. Background inspection of the signed-in BOLD Gmail inbox confirmed receipt
+of the Tally notification, including the selected `collaborators` route, test
+name, email, and research note. This completes the submission and email-delivery
+checks. The user's active Chrome tab was unchanged during verification.
 
-Run `node scripts/verify-tally-expression-of-interest.mjs` to repeat the public
-verification. The script exits nonzero if the public payload stops exposing the
-generic baseline fields, PDF-only 10 MB CV/resume upload settings, confirmation
-copy, no visible `Desired role` field, and the rest of the publicly visible form
-contract needed for issue #24.
+## Website invitation
 
-## Tally owner setup checklist
+> Express your interest in BOLD. We may be in touch if a relevant opportunity arises.
 
-Use this checklist in the Tally workspace before treating issue #24 as complete:
+Use a welcoming, research-focused voice. A text hero with a restrained accent
+rule introduces the page, followed by a white section containing one
+“I’m interested in…” selector and one shared embedded form. Below the complete
+intake, a pale blue BOLD Fellows section uses the homepage's typography and
+spacing, with the sentence “Explore BOLD Fellowship opportunities through the
+University of Oxford.” and a
+[View Oxford job advert](https://eng.ox.ac.uk/jobs/job-detail?vacancyID=187853)
+button. The section remains below the form when the embed expands.
+Keep “Opportunities” in navigation and “Express interest” on the homepage.
 
-- Add the shared baseline fields listed below.
-- Keep `route` as a hidden or pre-filled field populated from the website embed
-  URL.
-- Remove any visible `Desired role` field.
-- Do not add route-specific conditional sections for the MVP; route-specific
-  context belongs on the website above the embedded form.
-- Configure the CV/resume upload as PDF-only with the 10 MB free-plan limit
-  communicated in the form.
-- Avoid detailed immigration or visa questions, demographic questions, and
-  equal-opportunities monitoring questions.
-- Configure the non-promissory confirmation state below.
-- Send form-owner notifications to the BOLD intake address.
-- Sync submissions into one Google Sheet used as the Expression of Interest
-  Register.
-- Confirm the `route` value appears as a filterable column in the register.
-- Confirm respondents can submit without a Tally or Google account.
+## Shared form contract
 
-## Required shared fields
+- Form name: BOLD Expression of Interest
+- Form ID: `A7aa0W`
+- Form URL: `https://tally.so/r/A7aa0W`
+- Embed URL: `https://tally.so/embed/A7aa0W?route={routeValue}`
+- Hidden route parameter: `route`
 
-The form should collect this baseline for every Expression of Interest:
+| Selector label | Route value |
+| --- | --- |
+| PhD research | `phd-students` |
+| a student visit | `visiting-students` |
+| Master’s research | `masters-students` |
+| research engineering | `research-engineers` |
+| collaboration or affiliation | `collaborators` |
 
-- Full name
-- Email
-- Current role/title
-- Current organization/institution
-- Location/time zone
-- Route of interest, hidden or pre-filled from `route`
-- Required fit statement, prompted as 200-400 words on why BOLD, the route, and
-  the research or technical fit
-- Relevant links, such as website, Google Scholar, GitHub, LinkedIn, papers,
-  projects, or portfolios
-- Free-form Research Direction Interest
-- PDF CV/resume upload
-- Optional location, timing, or eligibility constraints
-- Desired timing
-- What the respondent wants to work on with BOLD
-- Current application or Formal Application Path status
-- Relevant BOLD people or groups
+Collaboration or affiliation includes experienced researchers seeking visits or
+longer-term connections. BOLD Fellows is an advert link, not a current intake
+option. Retain historical Fellows submissions in the existing register.
 
-The form must not ask for detailed immigration or visa status, demographic
-questions, or equal-opportunities monitoring questions in the MVP.
+## Published form configuration
 
-## CV/resume upload rules
+Keep the same form, existing register, integrations, and field identities where
+retained. Configure only these visible inputs:
 
-- Accept PDF only.
-- Communicate Tally's free-plan upload limit of 10 MB per file.
+| Label | Input | Required |
+| --- | --- | --- |
+| Full name | Short answer (`INPUT_TEXT`) | Yes |
+| Email | Email (`INPUT_EMAIL`) | Yes |
+| Your connection to BOLD’s research | Long answer (`TEXTAREA`) | Yes |
+| Profile links (optional) | Long answer (`TEXTAREA`) | No |
+| CV (optional) | File upload (`FILE_UPLOAD`) | No |
 
-## Confirmation and integrations
+The selector supplies the required area of interest through hidden `route`;
+there must be no second route or research-area question. Prompt the short note
+with “Briefly describe your interests and their connection to BOLD’s research.”
+Do not impose the former 200–400-word requirement.
 
-The confirmation state should be non-promissory:
+Remove the other recruitment questions from current intake, including role,
+institution, location, timing, formal-process status, and relevant people.
+Retain historical submission data. Keep CV uploads PDF-only, with a communicated
+10 MB limit. Keep the form generic without conditional route-specific sections.
 
-> BOLD has received your Expression of Interest. We review Expressions of
-> Interest periodically and will contact you if there is a strong fit with
-> current BOLD priorities, supervision capacity, or open opportunities. Formal
-> applications may still need to happen through university, departmental,
-> placement, or employment processes.
+Set the submit button to “Express interest”. Its API schema uses
+`FORM_TITLE.payload.button.label` ([Tally block schema](https://developers.tally.so/api-reference/endpoint/forms/post)).
+Public input blocks expose `payload.isRequired`; their labels are preceding
+`TITLE` blocks with `payload.safeHTMLSchema`.
 
-Operational requirements:
+Set the thank-you page to:
 
-- Form owner email notifications go to the BOLD intake address.
-- Submissions sync into one Google Sheet used as the Expression of Interest
-  Register.
-- The `route` value is captured as a filterable column in that register.
-- Respondents do not need a Tally or Google account to submit.
+> Thank you for expressing your interest in BOLD. We may be in touch if a relevant opportunity arises.
 
-## Public verification on 2026-06-23
+Do not promise review, contact, or a reply elsewhere in the form. The public
+thank-you page begins at `PAGE_BREAK.payload.isThankYouPage`.
 
-The public Tally payloads at these URLs expose the same visible form structure:
+## Verification
 
-- `https://tally.so/embed/A7aa0W?route=phd-students`
-- `https://tally.so/embed/A7aa0W?route=visiting-students`
-- `https://tally.so/embed/A7aa0W?route=masters-students`
-- `https://tally.so/embed/A7aa0W?route=research-engineers`
-- `https://tally.so/embed/A7aa0W?route=fellows`
-- `https://tally.so/embed/A7aa0W?route=collaborators`
+Run `node scripts/verify-tally-expression-of-interest.mjs` after publishing the
+owner-side form changes. It checks all five public embeds and must pass before
+reporting the intake as complete. It checks actual input types and required
+flags, optional links/CV, the hidden route, upload constraints, submit wording,
+and confirmation on the thank-you page. Legacy recruitment fields or response
+promises cause failure.
 
-The exposed structure is:
-
-- form title: `BOLD Expression of Interest`
-- form ID: `A7aa0W`
-- workspace ID: `3NbqgN`
-- one hidden field named `route`
-- generic visible baseline fields for name, email, current role/title, current
-  organization/institution, location/time zone, fit statement, relevant links,
-  Research Direction Interest, practical constraints, desired timing, intended
-  work with BOLD, Formal Application Path status, and relevant BOLD people or
-  groups
-- one CV/resume upload field configured for PDF files only with a 10 MB maximum
-- no visible `Desired role` field
-- no required route-specific conditional sections
-- confirmation copy that confirms receipt, periodic review, strong-fit contact
-  criteria, and the separate Formal Application Path caveat
-- `integrations` is exposed as an empty array
-
-The unauthenticated Tally forms API at `https://api.tally.so/forms/A7aa0W`
-returned `401 Unauthorized`, so completing the live form configuration requires
-Tally owner access for settings that are not visible publicly. The empty public
-embed `integrations` array is not enough to confirm whether owner-side Google
-Sheets sync or email notifications are configured, though issue #24 comments
-report that both are connected.
-
-The verifier script was run against the live embed routes on 2026-06-23 and
-returned ready for every route: HTTP 200 with form `A7aa0W`, hidden field
-`route`, generic baseline blocks, a `FILE_UPLOAD` block configured for PDF files
-only with a 10 MB maximum, no prohibited visible `Desired role` field, the
-required confirmation copy, and `integrations=0` for owner-only context.
+An owner-side submission check must also confirm that a visitor can submit with
+only name, email, the website-selected route, and the short note, without a
+Tally/Google account, CV, or profile link. Confirm the selected route is recorded
+in the existing Expression of Interest Register and existing notification and
+Sheets integrations still work. Public payload checks alone cannot prove this.

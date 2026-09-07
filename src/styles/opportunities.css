@@ -1,9 +1,25 @@
-.opportunities-index-page {
-  display: grid;
-  gap: 34px;
+.opportunities-hero {
+  padding-block: clamp(44px, 6vw, 89px);
+  background: var(--paper);
+}
+
+.opportunities-intake {
+  padding-block: clamp(36px, 4vw, 59px);
+  background: var(--surface);
+}
+
+.opportunities-fellows {
+  padding-block: clamp(36px, 4vw, 59px);
+  background: #eaf3f7;
+}
+
+.opportunities-fellows .button {
+  justify-self: start;
 }
 
 .opportunities-index-intro {
+  display: grid;
+  gap: 16px;
   width: min(1200px, 100%);
   margin: 0 auto;
 }
@@ -14,78 +30,19 @@
   color: var(--ink);
   font-size: clamp(32px, 4.5vw, 58px);
   line-height: 1.02;
+  text-wrap: balance;
 }
 
-.opportunity-route-index {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  width: min(1120px, 100%);
-  padding: 0;
-  margin: 0 auto;
-  list-style: none;
-}
-
-.opportunity-route-index-entry {
-  display: grid;
-  align-content: space-between;
-  gap: 22px;
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-}
-
-.opportunity-route-index-main,
-.opportunity-route-index-heading {
-  display: grid;
-  gap: 10px;
-}
-
-.opportunity-route-index-main h3,
-.opportunity-route-index-main p {
-  margin: 0;
-}
-
-.opportunity-route-index-main p {
-  color: var(--muted);
-}
-
-.opportunity-route-index-entry .button {
-  justify-self: start;
-  white-space: nowrap;
-}
-
-.involvement-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(1200px, 100%);
-  margin: 0 auto;
-}
-
-.involvement-card {
-  scroll-margin-top: 98px;
-  display: grid;
-  gap: 22px;
-  padding: 26px;
-}
-
-.involvement-card h3 {
-  margin-top: 10px;
-}
-
-.involvement-card ul {
-  display: grid;
-  gap: 10px;
-  padding-left: 18px;
+.opportunities-index-intro p {
   margin: 0;
   color: var(--muted);
 }
 
-.involvement-card a {
-  width: fit-content;
-  color: var(--blue);
-  font-weight: 850;
-  text-decoration: none;
+.opportunities-index-intro::before {
+  width: 56px;
+  height: 3px;
+  background: var(--blue);
+  content: "";
 }
 
 .current-opportunity-list {
@@ -162,7 +119,6 @@
   overflow: visible;
 }
 
-.selected-route-guidance h3,
 .selected-route-guidance p {
   margin: 0;
 }

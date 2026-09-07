@@ -1,163 +1,112 @@
 import assert from 'node:assert/strict'
+import { JSDOM } from 'jsdom'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-import {
-  expressionOfInterestFormConfig,
-  getExpressionOfInterestEmbedUrl,
-  opportunityRoutes,
-} from '../src/content'
 import { OpportunitiesPage } from '../src/features/opportunities/OpportunitiesPage'
 
-const opportunitiesIndex = renderToStaticMarkup(
-  createElement(OpportunitiesPage),
-)
-const selectedRoute = opportunityRoutes.find(
-  (route) => route.slug === 'research-engineers',
-)
-
-assert.ok(selectedRoute)
-
-const selectedOpportunitiesIndex = renderToStaticMarkup(
-  createElement(OpportunitiesPage, {
-    initialSelectedRouteSlug: selectedRoute.slug,
-  }),
-)
-const fallbackOpportunitiesIndex = renderToStaticMarkup(
-  createElement(OpportunitiesPage, {
-    formConfig: null,
-    initialSelectedRouteSlug: selectedRoute.slug,
-  }),
-)
-
-assert.match(
-  opportunitiesIndex,
-  /<h1>Interested in joining, visiting, or collaborating with BOLD\?<\/h1>/,
-)
-assert.doesNotMatch(opportunitiesIndex, />Opportunities<\/p>/)
-assert.doesNotMatch(
-  opportunitiesIndex,
-  /BOLD reviews serious Expressions of Interest/,
-)
-
-for (const route of opportunityRoutes) {
-  const renderedTitle = escapeHtml(route.title)
-  const renderedHref = '#express-interest'
-  const renderedAction = escapeHtml(route.primaryActionLabel)
-
-  assert.ok(route.location)
-  assert.ok(route.timing)
-  assert.ok(route.formalApplicationPath)
-
-  assert.match(
-    opportunitiesIndex,
-    new RegExp(`>${escapeRegExp(renderedTitle)}<`),
-  )
-  assert.match(
-    opportunitiesIndex,
-    new RegExp(escapeRegExp(escapeHtml(route.shortSummary))),
-  )
-  assert.match(
-    opportunitiesIndex,
-    new RegExp(
-      `href="${renderedHref}"[^>]*>${escapeRegExp(renderedAction)}</a>`,
-    ),
-  )
-  assert.doesNotMatch(
-    opportunitiesIndex,
-    new RegExp(`>${escapeRegExp(route.status)}<`),
-  )
-  assert.doesNotMatch(
-    opportunitiesIndex,
-    new RegExp(escapeRegExp(escapeHtml(route.location))),
-  )
-  assert.doesNotMatch(
-    opportunitiesIndex,
-    new RegExp(escapeRegExp(escapeHtml(route.timing))),
-  )
-  assert.doesNotMatch(
-    opportunitiesIndex,
-    new RegExp(escapeRegExp(escapeHtml(route.formalApplicationPath))),
-  )
-  assert.match(
-    opportunitiesIndex,
-    new RegExp(`aria-label="Apply for ${escapeRegExp(renderedTitle)}"`),
-  )
-  assert.doesNotMatch(
-    opportunitiesIndex,
-    new RegExp(escapeRegExp(escapeHtml(route.whoThisIsFor[0]))),
-  )
-}
-
-assert.doesNotMatch(opportunitiesIndex, /this Opportunities page/)
-assert.match(opportunitiesIndex, /id="express-interest"/)
-assert.match(opportunitiesIndex, /aria-label="Expression of Interest form"/)
-assert.match(opportunitiesIndex, /aria-label="Select a role"/)
-assert.doesNotMatch(opportunitiesIndex, />Opportunity Route<\/span>/)
-assert.doesNotMatch(opportunitiesIndex, /Select an Opportunity Route/)
-assert.doesNotMatch(
-  opportunitiesIndex,
-  /<h2 id="express-interest-heading">Select a role<\/h2>/,
-)
-assert.doesNotMatch(
-  opportunitiesIndex,
-  /Changing route resets the embedded form/,
-)
-assert.doesNotMatch(opportunitiesIndex, /stable anchor/)
-assert.doesNotMatch(opportunitiesIndex, /\/opportunities\/phd-students/)
-assert.doesNotMatch(opportunitiesIndex, /<iframe/)
-assert.doesNotMatch(opportunitiesIndex, />Apply now</)
+const approvedRoutes = [
+  ['phd-students', 'PhD research'],
+  ['visiting-students', 'a student visit'],
+  ['masters-students', 'Master’s research'],
+  ['research-engineers', 'research engineering'],
+  ['collaborators', 'collaboration or affiliation'],
+]
+const document = renderPage().window.document
 assert.equal(
-  opportunitiesIndex.match(/>Apply<\/a>/g)?.length ?? 0,
-  opportunityRoutes.length,
+  document.querySelector('h1')?.textContent,
+  'Express your interest in BOLD.',
 )
-
-assert.match(selectedOpportunitiesIndex, />Research Engineers</)
-assert.match(
-  selectedOpportunitiesIndex,
-  /For engineers who want technical systems work/,
+assert.equal(
+  document.querySelector('.opportunities-index-intro p')?.textContent,
+  'We may be in touch if a relevant opportunity arises.',
 )
-assert.match(
-  selectedOpportunitiesIndex,
-  /Use the Expression of Interest to share/,
+assert.equal(document.querySelectorAll('select').length, 1)
+assert.equal(
+  document
+    .querySelector('label')
+    ?.textContent?.trim()
+    .startsWith('I’m interested in…'),
+  true,
 )
-assert.match(selectedOpportunitiesIndex, /ML systems, research infrastructure/)
-assert.match(
-  selectedOpportunitiesIndex,
-  new RegExp(
-    `<div class="selected-route-guidance"><h3>${escapeRegExp(escapeHtml(selectedRoute.title))}</h3>` +
-      `<p>${escapeRegExp(escapeHtml(selectedRoute.positioning))}</p>` +
-      `<p>${escapeRegExp(escapeHtml(selectedRoute.howThisWorks))}</p>` +
-      `<p>${escapeRegExp(escapeHtml(selectedRoute.formPrompt))}</p></div>`,
-  ),
+assert.equal(document.querySelector('select')?.required, true)
+assert.deepEqual(
+  [...document.querySelectorAll('option')].map((option) => [
+    option.value,
+    option.textContent,
+  ]),
+  [['', 'Choose an area of interest'], ...approvedRoutes],
 )
+assert.equal(document.querySelector('select')?.value, '')
+assert.equal(document.querySelector('iframe'), null)
+assert.equal(document.querySelector('.opportunity-route-index'), null)
 assert.doesNotMatch(
-  selectedOpportunitiesIndex,
-  /Changing route resets the embedded form/,
+  document.body.textContent ?? '',
+  /\bapply\b|what we look for|exceptional candidates/i,
 )
-assert.match(
-  selectedOpportunitiesIndex,
-  new RegExp(
-    escapeRegExp(
-      escapeHtml(
-        getExpressionOfInterestEmbedUrl(
-          selectedRoute,
-          expressionOfInterestFormConfig,
-        ) ?? '',
-      ),
-    ),
-  ),
-)
-assert.match(selectedOpportunitiesIndex, /dynamicHeight=1/)
+assertFellowsAfterForm(document)
 
-assert.match(fallbackOpportunitiesIndex, /Form coming soon/)
-assert.match(fallbackOpportunitiesIndex, /embedded Expression of Interest form/)
-assert.doesNotMatch(fallbackOpportunitiesIndex, /<iframe/)
-
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+for (const [slug, title] of approvedRoutes) {
+  const selected = renderPage({ initialSelectedRouteSlug: slug }).window
+    .document
+  assertFellowsAfterForm(selected)
+  const iframe = selected.querySelector('iframe')
+  assert.ok(iframe)
+  assert.equal(selected.querySelector('select')?.value, slug)
+  assert.equal(iframe.title, `${title} Expression of Interest form`)
+  const embedUrl = new URL(iframe.src)
+  assert.equal(embedUrl.origin, 'https://tally.so')
+  assert.equal(embedUrl.pathname, '/embed/A7aa0W')
+  assert.equal(embedUrl.searchParams.get('route'), slug)
+  assert.equal(embedUrl.searchParams.get('dynamicHeight'), '1')
 }
 
-function escapeHtml(value: string) {
-  return value.replace(/'/g, '&#x27;')
+const collaborators = renderPage({ initialSelectedRouteSlug: 'collaborators' })
+  .window.document
+assert.match(
+  collaborators.querySelector('.selected-route-guidance')?.textContent ?? '',
+  /experienced researchers seeking visits or longer-term affiliations/,
+)
+const fallback = renderPage({
+  formConfig: null,
+  initialSelectedRouteSlug: 'research-engineers',
+}).window.document
+assert.match(fallback.body.textContent, /Form coming soon/)
+assert.equal(
+  fallback.querySelector('.empty-state p')?.textContent,
+  'Please check back later to express your interest in BOLD.',
+)
+assert.equal(fallback.querySelector('iframe'), null)
+assertFellowsAfterForm(fallback)
+assert.equal(
+  renderPage({
+    initialSelectedRouteSlug: 'fellows',
+  }).window.document.querySelector('iframe'),
+  null,
+)
+
+function renderPage(props = {}) {
+  return new JSDOM(
+    renderToStaticMarkup(createElement(OpportunitiesPage, props)),
+  )
+}
+
+function assertFellowsAfterForm(page: Document) {
+  const form = page.querySelector('#express-interest')
+  const fellows = page.querySelector(
+    'section[aria-labelledby="bold-fellows-title"]',
+  )
+  assert.ok(form)
+  assert.ok(fellows)
+  assert.equal(fellows.querySelector('h2')?.textContent, 'BOLD Fellows')
+  const advertUrl = 'https://eng.ox.ac.uk/jobs/job-detail?vacancyID=187853'
+  const links = page.querySelectorAll(`a[href="${advertUrl}"]`)
+  assert.equal(links.length, 1)
+  assert.ok(fellows.contains(links[0]))
+  assert.equal(links[0]?.textContent?.trim(), 'View Oxford job advert')
+  assert.ok(page.defaultView)
+  assert.ok(
+    form.compareDocumentPosition(fellows) &
+      page.defaultView.Node.DOCUMENT_POSITION_FOLLOWING,
+  )
 }

@@ -31,7 +31,7 @@ export const homepageContent = {
     headline: siteMeta.missionPhrase,
     lede: siteMeta.mission,
     actions: [
-      { label: 'Join BOLD', href: '/opportunities' },
+      { label: 'Express interest', href: '/opportunities' },
       { label: 'Meet the team', href: '/people' },
     ],
   },

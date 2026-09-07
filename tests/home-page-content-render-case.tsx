@@ -5,6 +5,8 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { HomePage } from '../src/features/home/HomePage'
 
 const homePage = renderToStaticMarkup(createElement(HomePage))
+assert.match(homePage, /href="\/opportunities">Express interest<\/a>/)
+assert.doesNotMatch(homePage, />Join BOLD<\/a>/)
 const renderedText = homePage
   .replace(/<[^>]+>/g, ' ')
   .replaceAll('&amp;', '&')

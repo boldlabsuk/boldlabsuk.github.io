@@ -41,7 +41,7 @@ The homepage uses primary actions near the top, then avoids repeated CTA blocks 
 _Avoid_: Repeated buttons to the same destination, every section as a conversion panel
 
 **Expression of Interest**:
-A route-level intake submission for someone who wants to join, visit, work with, or collaborate with BOLD before there is necessarily a formal advertised role or university application path.
+An informal submission from someone interested in joining, visiting, working with, or collaborating with BOLD, whether or not a suitable opportunity currently exists. BOLD may make contact if a relevant opportunity arises; submitting does not imply a response.
 _Avoid_: Application, job application, sign-up
 
 **Formal Application Path**:
@@ -53,11 +53,11 @@ The embedded intake area on the Opportunities page where visitors choose the rel
 _Avoid_: Separate route page, modal, popup, off-page form
 
 **Embedded Expression of Interest Form**:
-The applicant-facing form surface shown inside BOLD's Opportunities page while an external form backend handles submission and storage.
+The visitor-facing form surface shown inside BOLD's Opportunities page while an external form backend handles submission and storage.
 _Avoid_: Off-site form link, redirect-only intake, third-party landing page
 
 **Collaborator Expression of Interest**:
-An Expression of Interest for a research collaboration, which may represent an individual, group, company, or institution and should be framed around collaboration fit rather than personal hiring credentials.
+An Expression of Interest for a research collaboration, visit, or longer-term affiliation, including interest from experienced researchers, individuals, groups, companies, or institutions. It is framed around research fit.
 _Avoid_: Job application, student application, resume-first collaboration form
 
 **Expression of Interest Register**:
@@ -65,23 +65,23 @@ The central reviewable collection of submitted Expressions of Interest across al
 _Avoid_: Separate role inboxes, per-route spreadsheet silos
 
 **Opportunities Index**:
-The single Opportunities page that summarizes available BOLD routes in a compact card grid and keeps visitors on the same page for route selection, route-specific context, and the embedded Expression of Interest form.
-_Avoid_: Separate route pages, repeated route detail
+The single public page for expressing interest in involvement with BOLD and finding the advertised BOLD Fellows opportunity.
+_Avoid_: Job board, separate route pages, repeated route detail
 
 **Opportunity Route**:
 A public route through which someone can express interest in joining, visiting, working with, or collaborating with BOLD.
 _Avoid_: Job role, vacancy, application category
 
 **Opportunity Route Selection**:
-The visitor's website-owned chosen Opportunity Route on the Opportunities page, set either by clicking an Apply action or by changing the role selector above the embedded form, then passed into the intake backend as hidden metadata.
+The visitor's choice of how they would like to become involved with BOLD when expressing interest.
 _Avoid_: Separate page navigation, application category routing
 
 **Opportunities Voice**:
-The public tone for Opportunities copy: selective but not exclusionary, serious and ambitious without sounding arrogant, corporate, or like a generic HR funnel.
-_Avoid_: Gatekeeping language, generic recruitment copy, overpromising fit
+The public tone for Opportunities copy: welcoming but focused, inviting people whose interests connect with BOLD's research.
+_Avoid_: Exceptional candidates, what we look for, gatekeeping language, generic recruitment copy, overpromising fit
 
 **Research Direction Interest**:
-An applicant's free-form description of how their interests relate to BOLD's Research Directions, without forcing them to choose a fixed research category.
+A person's free-form description, in their short Expression of Interest note, of how their interests connect with BOLD's research. It is separate in meaning from their chosen Opportunity Route, but does not require another form field.
 _Avoid_: Research direction checkbox, single-theme classification
 
 **The Vision**:
