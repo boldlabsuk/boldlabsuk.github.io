@@ -1,6 +1,8 @@
 import type { Ref } from 'react'
 import { navigation, siteMeta } from '../../content'
 
+const headerNavigation = [{ label: 'Home', href: '/' }, ...navigation]
+
 export function SiteHeader({
   activeSection,
   brandLogoRef,
@@ -36,7 +38,7 @@ export function SiteHeader({
         id="primary-navigation"
         aria-label="Primary navigation"
       >
-        {navigation.map((item) => (
+        {headerNavigation.map((item) => (
           <a
             aria-current={activeSection === item.href ? 'page' : undefined}
             key={item.href}

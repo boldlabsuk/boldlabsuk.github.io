@@ -40,7 +40,6 @@ export function HomePage({
       <VisionSection />
       <ResearchPillarsSection />
       <TeamSection />
-      <FieldLeadersSection />
       <OperatingModelSection />
       <AtAGlanceSection />
       <section className="home-closing" aria-label="BOLD mission statement">
@@ -227,22 +226,6 @@ function TeamSection() {
           ))}
         </ol>
         <p className="team-track-record">{homepageContent.team.trackRecord}</p>
-      </div>
-    </section>
-  )
-}
-
-function FieldLeadersSection() {
-  return (
-    <section
-      className="home-section leaders-section"
-      aria-labelledby="leaders-title"
-    >
-      <div className="home-section-inner split-section-layout leaders-layout">
-        <h2 className="home-section-title" id="leaders-title">
-          Backed by the Field&apos;s Leaders
-        </h2>
-        <p className="leaders-statement">{homepageContent.fieldLeaders}</p>
       </div>
     </section>
   )

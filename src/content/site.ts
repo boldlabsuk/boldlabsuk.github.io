@@ -114,8 +114,6 @@ export const homepageContent = {
     trackRecord:
       'The labs have a proven pipeline from research to real-world impact: alumni have gone on to OpenAI, Anthropic, DeepMind, and the UK AI Security Institute, and have co-founded companies including Weco.ai (whose AIDE agent has been used by OpenAI and Meta), Helical, and the foundation-model unicorn Reflection AI.',
   },
-  fieldLeaders:
-    "BOLD's scientific advisory board and endorsers read as a who's who of modern AI such as David Silver, Pieter Abbeel, Nando de Freitas, Jeff Clune, Doina Precup, Hugo Larochelle.",
   operatingModel: {
     introduction:
       'Rather than distributing resources thinly, BOLD consolidates existing world-class academic groups into a single co-located lab in Oxford, formally linked to all three universities. A lightweight three-phase research funnel—broad exploration, selective scale-up, then deep focused missions—lets promising ideas earn larger resources fast while failing cheaply, mirroring how the team turned early experiments into breakthroughs like EGGROLL within months.',

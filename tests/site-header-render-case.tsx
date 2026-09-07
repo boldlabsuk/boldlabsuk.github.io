@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { JSDOM } from 'jsdom'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
@@ -45,3 +46,19 @@ assert.match(visibleBrandHeader, /fetchPriority="high"/)
 assert.match(visibleBrandHeader, /aria-current="page"/)
 assert.doesNotMatch(visibleBrandHeader, /favicon\.svg/)
 assert.doesNotMatch(visibleBrandHeader, /brand-hidden/)
+
+const header = new JSDOM(visibleBrandHeader).window.document
+const homeLink = header.querySelector('#primary-navigation a')
+assert.equal(homeLink?.textContent, 'Home')
+assert.equal(homeLink?.getAttribute('href'), '/')
+assert.equal(
+  homeLink?.getAttribute('href'),
+  header.querySelector('a.brand')?.getAttribute('href'),
+)
+assert.equal(homeLink?.nextElementSibling?.textContent, 'Our People')
+const homeHeader = new JSDOM(hiddenBrandHeader).window.document
+assert.equal(
+  homeHeader.querySelector('#primary-navigation a[aria-current="page"]')
+    ?.textContent,
+  'Home',
+)

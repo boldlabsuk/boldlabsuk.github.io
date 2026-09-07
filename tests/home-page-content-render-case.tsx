@@ -19,7 +19,6 @@ const orderedSectionIds = [
   'vision-title',
   'pillars-title',
   'team-title',
-  'leaders-title',
   'operating-title',
   'glance-title',
 ]
@@ -48,8 +47,6 @@ for (const expectedCopy of [
   'The Team & Track Record',
   'Jakob Foerster (Oxford)',
   'Reflection AI',
-  "Backed by the Field's Leaders",
-  "BOLD's scientific advisory board and endorsers",
   'How BOLD Works, and Why the UK',
   'Phase 1: Broad Exploration',
   'Phase 2: Gated Scaling',
@@ -64,6 +61,10 @@ for (const expectedCopy of [
   )
 }
 
+assert.doesNotMatch(
+  renderedText,
+  /Backed by the Field's Leaders|scientific advisory board and endorsers/,
+)
 assert.doesNotMatch(renderedText, /Our Bets/)
 assert.doesNotMatch(
   renderedText,

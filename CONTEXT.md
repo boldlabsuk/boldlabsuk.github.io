@@ -17,7 +17,7 @@ The primary public audiences the BOLD homepage must persuade: incoming researche
 _Avoid_: General website visitors, casual AI audience
 
 **Landing Page Persuasion Order**:
-The homepage hierarchy that leads with scientific ambition, then presents The Vision, Three Initial Research Pillars, Team & Track Record, field leaders, BOLD's research funnel and UK case, At a Glance, and the European AI sovereignty statement before closing with the site footer.
+The homepage hierarchy that leads with scientific ambition, then presents The Vision, Three Initial Research Pillars, Team & Track Record, BOLD's research funnel and UK case, At a Glance, and the European AI sovereignty statement before closing with the site footer.
 _Avoid_: Generic recruitment page
 
 **National Mission Framing**:
