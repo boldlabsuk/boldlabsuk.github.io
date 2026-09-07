@@ -81,6 +81,8 @@ function BoldFellowsSection() {
           <a
             className="button button-primary"
             href="https://eng.ox.ac.uk/jobs/job-detail?vacancyID=187853"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             View Oxford job advert
           </a>

@@ -104,6 +104,8 @@ function assertFellowsAfterForm(page: Document) {
   assert.equal(links.length, 1)
   assert.ok(fellows.contains(links[0]))
   assert.equal(links[0]?.textContent?.trim(), 'View Oxford job advert')
+  assert.equal(links[0]?.getAttribute('target'), '_blank')
+  assert.equal(links[0]?.getAttribute('rel'), 'noopener noreferrer')
   assert.ok(page.defaultView)
   assert.ok(
     form.compareDocumentPosition(fellows) &
