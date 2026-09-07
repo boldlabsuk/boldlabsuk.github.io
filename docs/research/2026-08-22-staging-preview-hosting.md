@@ -1,5 +1,8 @@
 # Staging and branch-preview hosting for the BOLD website
 
+> Production branch rename: deployment configuration now uses `prod`.
+> References to `main` below describe the original hosting investigation.
+
 Date: 2026-08-22
 
 ## Recommendation

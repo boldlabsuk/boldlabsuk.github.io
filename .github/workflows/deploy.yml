@@ -4,7 +4,7 @@ on:
   # Production only. Cloudflare Pages deploys the staging branch, while dev is
   # intentionally validation-only.
   push:
-    branches: [main]
+    branches: [prod]
   workflow_dispatch:
 
 permissions:
