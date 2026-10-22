@@ -318,19 +318,26 @@
   {
     "source": "main",
     "name": "Jakob Hartmann",
-    "role": "Associate Members",
+    "role": "PhD Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Reinforcement Learning",
+      "Machine Learning",
       "Multi-Agent Systems",
-      "Complex Systems"
+      "Open-Ended Learning",
+      "Reinforcement Learning"
     ],
     "profilePicture": "picture_jakob_hartmann - Jakob Hartmann.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "LinkedIn: https://www.linkedin.com/in/jakobhartmann99, Google Scholar: https://scholar.google.com/citations?user=1Ptmm2EAAAAJ, GitHub: https://github.com/jakobhartmann",
+    "socialLinks": "https://www.linkedin.com/in/jakobhartmann99; https://x.com/jakobhartmann99; https://scholar.google.com/citations?user=1Ptmm2EAAAAJ; https://github.com/jakobhartmann",
     "supervisors": [
-      "Jakob Foerster"
-    ]
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
+    "phdSortSurname": "Hartmann",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
