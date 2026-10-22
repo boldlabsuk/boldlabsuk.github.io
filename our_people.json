@@ -1058,18 +1058,25 @@
   {
     "source": "main",
     "name": "Jess Carr",
-    "role": "Associate Members",
+    "role": "PhD Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Complex Systems",
-      "Foundation Models"
+      "AI for Science",
+      "Machine Learning",
+      "Meta-Learning & Adaptation"
     ],
     "profilePicture": "94DC0228-5A8A-4F5C-AB17-5632DC952A5C_4_5005_c - Jess Carr.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "n/a",
+    "socialLinks": "https://www.linkedin.com/in/jess-carr-3420a9217/",
     "supervisors": [
       "Ani Calinescu"
-    ]
+    ],
+    "phdSortSurname": "Carr",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",

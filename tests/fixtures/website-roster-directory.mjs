@@ -3,10 +3,10 @@ export const expectedPublicSectionCounts = {
   'Adjunct Faculty': 3,
   Postdoc: 7,
   'Research Engineers': 2,
-  'PhD Student': 62,
+  'PhD Student': 63,
   'Masters Student': 14,
   'Associate Faculty': 6,
-  'Associate Members': 29,
+  'Associate Members': 28,
 }
 
 export const expectedPublicSectionOrder = [
