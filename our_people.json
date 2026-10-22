@@ -519,20 +519,26 @@
   {
     "source": "main",
     "name": "James Harvey",
-    "role": "Associate Members",
+    "role": "PhD Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
-      "Meta-Learning & Adaptation",
-      "World Models",
-      "Reinforcement Learning",
-      "Language Models"
+      "AI for Science",
+      "Automated Discovery",
+      "Complex Systems",
+      "Open-Ended Learning",
+      "Meta-Learning & Adaptation"
     ],
     "profilePicture": "IMG_1949 - James Harvey.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://x.com/jamesha46471726?s=11&t=UPshzKmD0hwVfVX0lgSyUw",
+    "socialLinks": "https://www.linkedin.com/in/james-ed-luke-harvey/; https://x.com/JamesHa46471726; https://scholar.google.com/citations?view_op=list_works&hl=en&user=yB6szXsAAAAJ; https://github.com/james-harvey-git",
     "supervisors": [
       "Jakob Foerster"
-    ]
+    ],
+    "phdSortSurname": "Harvey",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -971,7 +977,7 @@
     ],
     "profilePicture": "IMG_6964 - Francesco Capuano.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://github.com/fracapuano",
+    "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://scholar.google.com/citations?user=E6WpTrUAAAAJ&hl=en&oi=ao, https://github.com/fracapuano",
     "supervisors": [
       "Jakob Foerster"
     ],

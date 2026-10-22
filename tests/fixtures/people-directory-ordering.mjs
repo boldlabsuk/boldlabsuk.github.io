@@ -54,11 +54,11 @@ export const expectedPublicSectionCounts = {
   'Adjunct Faculty': 3,
   Postdoc: 7,
   'Research Engineers': 2,
-  'PhD Student': 60,
+  'PhD Student': 61,
   'Incoming PhD Students': 0,
   'Masters Student': 14,
   'Associate Faculty': 6,
-  'Associate Members': 31,
+  'Associate Members': 30,
 }
 
 export const representativePublicSlugs = [
@@ -159,7 +159,6 @@ export const expectedAssociateMembers = [
   'erik-feng',
   'tim-franzmeyer',
   'jakob-hartmann',
-  'james-harvey',
   'adrian-hayler',
   'aime-bienfait-igiraneza',
   'brandon-kaplowitz',
@@ -185,6 +184,7 @@ export const phdCohortsExpectedPhdSection = [
   'max-davy',
   'antoine-gorceix',
   'utkarsh-gupta',
+  'james-harvey',
   'george-mavroghenis',
   'bassel-al-omari',
   'anqi-qu',
