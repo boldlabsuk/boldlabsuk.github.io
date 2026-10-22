@@ -621,6 +621,10 @@ function normalizePublicPersonLink(value: string) {
     return { key: 'bluesky' as const, href }
   }
 
+  if (isHostnameOrSubdomain(hostname, 'instagram.com')) {
+    return { key: 'instagram' as const, href }
+  }
+
   return { key: 'website' as const, href }
 }
 
@@ -634,11 +638,11 @@ function cleanPublicLinkValue(value: string) {
   return value
     .trim()
     .replace(
-      /^(?:website|site|x|twitter|scholar|google scholar|linkedin|github)\s*:\s*/i,
+      /^(?:website|site|x|twitter|scholar|google scholar|linkedin|github|instagram|ig)\s*:\s*/i,
       '',
     )
     .replace(
-      /\s+\((?:website|site|x|twitter|scholar|google scholar|linkedin|github)\)\s*$/i,
+      /\s+\((?:website|site|x|twitter|scholar|google scholar|linkedin|github|instagram|ig)\)\s*$/i,
       '',
     )
     .trim()

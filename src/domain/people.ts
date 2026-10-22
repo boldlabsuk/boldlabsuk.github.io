@@ -151,6 +151,7 @@ const groupToPeopleSection: Record<string, PeopleSection> = {
   'PhD Student': 'PhD Student',
   'DPhil Student': 'PhD Student',
   'PhD student': 'PhD Student',
+  'Incoming PhD Students': 'Incoming PhD Students',
   'Masters Student': 'Masters Student',
   'Master Student': 'Masters Student',
   'Current Masters Student, but inc. PhD this fall with Jakob+Shimon':
@@ -488,21 +489,12 @@ function buildPersonListing(person: Person, section: PeopleSection) {
   }
 }
 
-export function getPeopleSection(
-  person: Pick<Person, 'group' | 'alumni' | 'phdStartYear'>,
-) {
+export function getPeopleSection(person: Pick<Person, 'group' | 'alumni'>) {
   if (person.alumni) {
     return null
   }
 
-  const peopleSection =
-    groupToPeopleSection[person.group] ?? 'Associate Members'
-
-  if (peopleSection === 'PhD Student' && person.phdStartYear === 2026) {
-    return 'Incoming PhD Students'
-  }
-
-  return peopleSection
+  return groupToPeopleSection[person.group] ?? 'Associate Members'
 }
 
 export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
@@ -519,6 +511,7 @@ export function getPrimaryPersonLink(person: Pick<Person, 'links'>) {
     links.linkedin,
     links.twitter,
     links.bluesky,
+    links.instagram,
   ]
 
   return (

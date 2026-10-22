@@ -84,13 +84,13 @@ const directoryFilterCases = [
     filters: { query: 'wang' },
     sections: fixtures.expectedNameMatches,
     count: 3,
-    total: 125,
+    total: 129,
   },
   {
     name: 'research area',
     filters: { area: 'Human-AI Interaction' },
     sections: fixtures.expectedResearchAreaMatches,
-    count: 8,
+    count: 11,
   },
   {
     name: 'affiliation',
@@ -109,14 +109,14 @@ const directoryFilterCases = [
     filters: fixtures.combinedRosterFilters,
     sections: [],
     count: 0,
-    total: 125,
+    total: 129,
   },
   {
     name: 'unmatched name',
     filters: { query: 'not a real person' },
     sections: [],
     count: 0,
-    total: 125,
+    total: 129,
   },
 ]
 
@@ -146,9 +146,9 @@ for (const scenario of directoryFilterCases) {
 }
 
 function assertPublicDirectoryCounts(directory, listings) {
-  assert.equal(people.length, 131)
+  assert.equal(people.length, 135)
   assert.equal(people.filter((person) => person.alumni).length, 6)
-  assert.equal(directory.totalPeople, 125)
+  assert.equal(directory.totalPeople, 129)
   assert.deepEqual(
     [
       ...new Set(
@@ -159,7 +159,7 @@ function assertPublicDirectoryCounts(directory, listings) {
     ],
     [],
   )
-  assert.equal(directory.visiblePeopleCount, 125)
+  assert.equal(directory.visiblePeopleCount, 129)
   assert.deepEqual(
     Object.fromEntries(
       directory.sections.map((section) => [
@@ -169,7 +169,7 @@ function assertPublicDirectoryCounts(directory, listings) {
     ),
     fixtures.expectedPublicSectionCounts,
   )
-  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 125)
+  assert.equal(new Set(listings.map((listing) => listing.slug)).size, 129)
   assert.deepEqual(
     directory.sections.map((section) => section.title),
     fixtures.expectedPublicSectionOrder,

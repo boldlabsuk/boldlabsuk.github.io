@@ -225,11 +225,12 @@ export const labeledLinksSourcePeople = [
     profilePicture: 'spreadsheet-linked.jpg',
     listOnBoldWebsite: 'YES',
     socialLinks:
-      'website: spreadsheet.example | X: https://x.com/spreadsheet_ai | Scholar: https://scholar.google.co.uk/citations?user=spreadsheet | LinkedIn: https://www.linkedin.com/in/spreadsheet',
+      'Instagram: https://www.instagram.com/spreadsheet_ai/ | website: spreadsheet.example | X: https://x.com/spreadsheet_ai | Scholar: https://scholar.google.co.uk/citations?user=spreadsheet | LinkedIn: https://www.linkedin.com/in/spreadsheet',
   },
 ]
 
 export const labeledLinksExpectedRoster = {
+  instagram: 'https://www.instagram.com/spreadsheet_ai',
   website: 'https://spreadsheet.example',
   twitter: 'https://x.com/spreadsheet_ai',
   googleScholar: 'https://scholar.google.co.uk/citations?user=spreadsheet',

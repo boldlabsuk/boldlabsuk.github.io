@@ -102,7 +102,7 @@
     ],
     "profilePicture": "headshot - Darius Muglich.jpeg",
     "listOnBoldWebsite": "",
-    "socialLinks": "https://scholar.google.com/citations?user=EOXzZqoAAAAJ&hl=en; https://github.com/gfppoy",
+    "socialLinks": "https://dariusmuglich.com; https://scholar.google.com/citations?user=EOXzZqoAAAAJ&hl=en; https://github.com/gfppoy",
     "supervisors": [
       "Jakob Foerster"
     ],
@@ -962,7 +962,7 @@
   {
     "source": "main",
     "name": "Francesco Capuano",
-    "role": "Associate Members",
+    "role": "PhD student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "World Models",
@@ -974,7 +974,12 @@
     "socialLinks": "https://fracapuano.github.io, https://x.com/_fracapuano, https://www.linkedin.com/in/fracapuano, https://github.com/fracapuano",
     "supervisors": [
       "Jakob Foerster"
-    ]
+    ],
+    "phdSortSurname": "Capuano",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided",
+    "cdtStudent": true,
+    "cdtStartYear": 2025
   },
   {
     "source": "main",
@@ -1882,12 +1887,14 @@
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
       "Automated Discovery",
-      "Reinforcement Learning",
-      "World Models"
+      "Open-Ended Learning",
+      "AI for Science",
+      "Human-AI Interaction",
+      "AI Agents"
     ],
     "profilePicture": "_1 - Utkarsh Gupta.PNG",
-    "listOnBoldWebsite": "No",
-    "socialLinks": "https://sites.google.com/view/utkarshgupta1496/home",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://sites.google.com/view/utkarshgupta1496/; https://www.linkedin.com/in/utkarsh1496/; https://x.com/Utkarsh_1496; https://scholar.google.com/citations?user=hpGjXSUAAAAJ&hl=en; https://github.com/Utkarsh-Gupta1496",
     "supervisors": [
       "Jakob Foerster"
     ],
@@ -2308,18 +2315,91 @@
   {
     "source": "main",
     "name": "Evžen Wybitul",
-    "role": "Associate Members",
+    "role": "PhD Student",
     "homeInstitution": "Oxford",
     "researchInterestKeywords": [
+      "AI Safety & Governance",
       "Interpretability",
-      "AI Safety & Governance"
+      "Language Models",
+      "Human-AI Interaction"
     ],
     "profilePicture": "IMG_9781 - Evžen Wybitul.jpg",
     "listOnBoldWebsite": "YES",
-    "socialLinks": "https://scholar.google.com/citations?user=O_KgypMAAAAJ&hl=cs, https://x.com/evzen_wy",
+    "socialLinks": "https://www.linkedin.com/in/ev%C5%BEen-wybitul-a93857a3/; https://x.com/evzen_wy; https://scholar.google.com/citations?user=O_KgypMAAAAJ&hl=cs; https://github.com/Eugleo; https://www.instagram.com/evzen.w/",
     "supervisors": [
       "Jakob Foerster"
-    ]
+    ],
+    "phdSortSurname": "Wybitul",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided"
+  },
+  {
+    "source": "main",
+    "name": "Tanish Baranwal",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "World Models",
+      "Open-Ended Learning",
+      "Language Models",
+      "Reinforcement Learning"
+    ],
+    "profilePicture": "tanish-baranwal.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://tekotan.github.io/; https://x.com/tanishbaranwal; https://scholar.google.com/citations?user=7Fg3KXAAAAAJ&hl=en; https://www.linkedin.com/in/btanish/",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
+    "phdSortSurname": "Baranwal",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided"
+  },
+  {
+    "source": "main",
+    "name": "Anqi Qu",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI Safety & Governance",
+      "Evolutionary Computation",
+      "Meta-Learning & Adaptation",
+      "Reinforcement Learning",
+      "Robustness & Generalization"
+    ],
+    "profilePicture": "anqi-qu.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://www.anqiqu.com; https://x.com/Anqinator; https://github.com/AnqiQu",
+    "supervisors": [
+      "Jakob Foerster",
+      "Shimon Whiteson"
+    ],
+    "phdSortSurname": "Qu",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided"
+  },
+  {
+    "source": "main",
+    "name": "Max Davy",
+    "role": "PhD Student",
+    "homeInstitution": "Oxford",
+    "researchInterestKeywords": [
+      "AI Agents",
+      "AI Safety & Governance",
+      "AI Evaluations",
+      "Automated Discovery",
+      "Causal Inference",
+      "Human-AI Interaction",
+      "Interpretability"
+    ],
+    "profilePicture": "max-davy.jpg",
+    "listOnBoldWebsite": "YES",
+    "socialLinks": "https://maxdavy.com/; https://www.linkedin.com/in/maxdavy/; https://scholar.google.com/citations?user=QS6E49AAAAAJ&hl=en; https://github.com/daxmavy",
+    "supervisors": [
+      "Jakob Foerster"
+    ],
+    "phdSortSurname": "Davy",
+    "phdStartYear": 2026,
+    "phdStartYearStatus": "user_provided"
   },
   {
     "source": "main",

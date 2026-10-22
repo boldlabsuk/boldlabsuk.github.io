@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { buildWebsiteRoster } from '../src/content/people.ts'
 import { people } from '../src/content.ts'
 import {
   buildPeopleDirectoryViewModel,
@@ -123,7 +124,9 @@ test('People Directory renders non-empty People Sections in canonical order', ()
 
   assert.deepEqual(
     directory.sections.map((section) => section.title),
-    peopleSectionOrder,
+    peopleSectionOrder.filter(
+      (section) => fixtures.expectedPublicSectionCounts[section] > 0,
+    ),
   )
 })
 
@@ -214,6 +217,39 @@ test('People Directory maps canonical source role values to matching People Sect
   )
 })
 
+test('People Directory distinguishes current and incoming PhD students in the same cohort', () => {
+  const sourcePerson = {
+    source: 'main',
+    role: 'PhD Student',
+    researchInterestKeywords: [],
+    profilePicture: 'student.jpg',
+    phdStartYear: 2026,
+  }
+  const roster = buildWebsiteRoster([
+    { ...sourcePerson, name: 'Current Student' },
+    {
+      ...sourcePerson,
+      name: 'Incoming Student',
+      peopleSection: 'Incoming PhD Students',
+    },
+  ])
+  const directory = buildPeopleDirectoryViewModel({
+    people: roster,
+    filters: emptyFilters,
+  })
+
+  assert.deepEqual(
+    directory.sections.map((section) => [
+      section.title,
+      section.people.map((listing) => [listing.slug, listing.phdStartYear]),
+    ]),
+    [
+      ['PhD Student', [['current-student', 2026]]],
+      ['Incoming PhD Students', [['incoming-student', 2026]]],
+    ],
+  )
+})
+
 test('People Directory preserves non-cohort section ordering', () => {
   const directory = buildPeopleDirectoryViewModel({
     people,
@@ -236,7 +272,7 @@ test('People Directory preserves non-cohort section ordering', () => {
     directory.sections
       .find((section) => section.title === 'PhD Student')
       ?.people.at(0)?.slug,
-    'austin-andrews',
+    'tanish-baranwal',
   )
   assert.deepEqual(
     directory.sections
@@ -280,10 +316,10 @@ test('People Directory exposes public PhD students newest-cohort first without s
     phdSection?.people.map((listing) => listing.slug),
     fixtures.phdCohortsExpectedPhdSection,
   )
-  assert.deepEqual(
-    directory.sections
-      .find((section) => section.title === 'Incoming PhD Students')
-      ?.people.map((listing) => listing.slug),
-    ['antoine-gorceix', 'george-mavroghenis', 'bassel-al-omari'],
+  assert.equal(
+    directory.sections.find(
+      (section) => section.title === 'Incoming PhD Students',
+    ),
+    undefined,
   )
 })

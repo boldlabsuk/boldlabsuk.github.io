@@ -9,6 +9,7 @@ export const personSocialLinkOrder: readonly PersonSocialLinkKey[] = [
   'linkedin',
   'github',
   'bluesky',
+  'instagram',
   'email',
 ]
 
@@ -21,6 +22,7 @@ const labels: Record<PersonSocialLinkKey, string> = {
   github: 'GitHub',
   twitter: 'X',
   bluesky: 'Bluesky',
+  instagram: 'Instagram',
   email: 'Email',
 }
 

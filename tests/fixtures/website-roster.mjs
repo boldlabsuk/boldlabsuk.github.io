@@ -288,7 +288,7 @@ export const foersterExpectedPublicLinkTypesBySlug = {
   'j-rosser': ['github', 'googleScholar', 'twitter', 'website'],
   'hannah-erlebach': ['github', 'googleScholar', 'twitter', 'website'],
   'harry-mayne': ['github', 'googleScholar', 'twitter', 'website'],
-  'darius-muglich': ['github', 'googleScholar'],
+  'darius-muglich': ['github', 'googleScholar', 'website'],
   'bidipta-sarkar': ['github', 'googleScholar', 'twitter', 'website'],
   'thom-foster': ['github', 'googleScholar', 'twitter', 'website'],
   'clarisse-wibault': ['github'],

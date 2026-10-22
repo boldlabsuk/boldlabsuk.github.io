@@ -6,6 +6,7 @@ import {
   faSquareLinkedin,
   faXTwitter,
 } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram'
 import { faEnvelope, faHouseChimney } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { Person } from '../../content'
@@ -19,6 +20,7 @@ const socialLinkIcons: Record<string, IconDefinition> = {
   linkedin: faSquareLinkedin,
   github: faGithub,
   bluesky: faBluesky,
+  instagram: faInstagram,
   email: faEnvelope,
 }
 

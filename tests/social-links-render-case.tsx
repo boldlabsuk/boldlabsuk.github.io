@@ -10,12 +10,14 @@ const fullLinks = renderToStaticMarkup(
     links: {
       website: 'https://example.ac.uk/labelled-person',
       googleScholar: 'https://scholar.google.com/labelled-person',
+      instagram: 'https://www.instagram.com/labelled_person',
     },
   }),
 )
 
 assert.match(fullLinks, />Website</)
 assert.match(fullLinks, />Google Scholar</)
+assert.match(fullLinks, />Instagram</)
 
 const compactLinks = renderToStaticMarkup(
   createElement(SocialLinks, {
@@ -28,6 +30,7 @@ const compactLinks = renderToStaticMarkup(
       github: 'https://github.com/icon-person',
       twitter: 'https://x.com/iconperson',
       bluesky: 'https://bsky.app/profile/icon-person.bsky.social',
+      instagram: 'https://www.instagram.com/icon_person',
       email: 'mailto:icon.person@example.ac.uk',
     },
   }),
@@ -41,6 +44,7 @@ assert.match(compactLinks, /aria-label="LinkedIn for Icon Person"/)
 assert.match(compactLinks, /aria-label="GitHub for Icon Person"/)
 assert.match(compactLinks, /aria-label="X for Icon Person"/)
 assert.match(compactLinks, /aria-label="Bluesky for Icon Person"/)
+assert.match(compactLinks, /aria-label="Instagram for Icon Person"/)
 assert.doesNotMatch(compactLinks, /aria-label="Email for Icon Person"/)
 assert.match(compactLinks, /title="Website"/)
 assert.match(compactLinks, /title="Google Scholar"/)
@@ -55,7 +59,15 @@ assert.deepEqual(
   [...compactLinks.matchAll(/data-social-link-key="([^"]+)"/g)].map(
     ([, key]) => key,
   ),
-  ['website', 'googleScholar', 'twitter', 'linkedin', 'github', 'bluesky'],
+  [
+    'website',
+    'googleScholar',
+    'twitter',
+    'linkedin',
+    'github',
+    'bluesky',
+    'instagram',
+  ],
 )
 assert.match(
   compactLinks,
@@ -87,6 +99,8 @@ assert.match(compactLinks, /data-icon="x-twitter"/)
 assert.match(compactLinks, /data-icon="square-linkedin"/)
 assert.match(compactLinks, /data-icon="github"/)
 assert.match(compactLinks, /data-icon="bluesky"/)
+assert.match(compactLinks, /data-icon="instagram"/)
+assert.match(compactLinks, /href="https:\/\/www\.instagram\.com\/icon_person"/)
 assert.match(compactLinks, /href="https:\/\/example\.ac\.uk\/icon-person"/)
 assert.match(compactLinks, /href="https:\/\/scholar\.google\.com\/icon-person"/)
 assert.doesNotMatch(compactLinks, /href="mailto:icon\.person@example\.ac\.uk"/)

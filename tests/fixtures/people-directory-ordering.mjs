@@ -45,7 +45,6 @@ export const sectionHeadingsExpectedDirectory = [
   'PhD Students',
   'Research Engineers',
   "Master's Students",
-  'Incoming PhD Students',
   'Associate Faculty',
   'Associate Members',
 ]
@@ -55,11 +54,11 @@ export const expectedPublicSectionCounts = {
   'Adjunct Faculty': 3,
   Postdoc: 7,
   'Research Engineers': 2,
-  'PhD Student': 51,
-  'Incoming PhD Students': 3,
+  'PhD Student': 60,
+  'Incoming PhD Students': 0,
   'Masters Student': 14,
   'Associate Faculty': 6,
-  'Associate Members': 33,
+  'Associate Members': 31,
 }
 
 export const representativePublicSlugs = [
@@ -152,7 +151,6 @@ export const expectedAssociateMembers = [
   'mohammed-amara',
   'junming-an',
   'simon-buhrer',
-  'francesco-capuano',
   'jess-carr',
   'aniket-chatterjee',
   'evangelos-chatzaroulas',
@@ -178,11 +176,19 @@ export const expectedAssociateMembers = [
   'edan-toledo',
   'timon-willi',
   'maksymilian-wolski',
-  'evzen-wybitul',
   'yingchen-xu',
 ]
 
 export const phdCohortsExpectedPhdSection = [
+  'tanish-baranwal',
+  'francesco-capuano',
+  'max-davy',
+  'antoine-gorceix',
+  'utkarsh-gupta',
+  'george-mavroghenis',
+  'bassel-al-omari',
+  'anqi-qu',
+  'evzen-wybitul',
   'austin-andrews',
   'richard-bornemann',
   'hannah-erlebach',

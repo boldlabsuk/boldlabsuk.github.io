@@ -3,11 +3,10 @@ export const expectedPublicSectionCounts = {
   'Adjunct Faculty': 3,
   Postdoc: 7,
   'Research Engineers': 2,
-  'PhD Student': 51,
-  'Incoming PhD Students': 3,
+  'PhD Student': 60,
   'Masters Student': 14,
   'Associate Faculty': 6,
-  'Associate Members': 33,
+  'Associate Members': 31,
 }
 
 export const expectedPublicSectionOrder = [
@@ -17,7 +16,6 @@ export const expectedPublicSectionOrder = [
   'PhD Student',
   'Research Engineers',
   'Masters Student',
-  'Incoming PhD Students',
   'Associate Faculty',
   'Associate Members',
 ]
@@ -60,13 +58,16 @@ export const publicDirectoryExpectedNewPublicSlugs = [
   'adrian-hayler',
   'aime-bienfait-igiraneza',
   'stefan-zohren',
+  'tanish-baranwal',
+  'utkarsh-gupta',
+  'anqi-qu',
+  'max-davy',
 ]
 
 export const publicDirectoryExpectedHiddenNewSlugs = [
   'labeebah-islaam',
   'lize-alberts',
   'garrett-deceuninck-ziviani',
-  'utkarsh-gupta',
   'benjamin-moll',
 ]
 
@@ -100,14 +101,18 @@ export const expectedNewPublicSections = [
   ['efstathios-siatras', 'Associate Members'],
   ['mikayel-samvelyan', 'Associate Members'],
   ['roberto-rafael-maura-rivero', 'Associate Members'],
-  ['evzen-wybitul', 'Associate Members'],
-  ['bassel-al-omari', 'Incoming PhD Students'],
+  ['evzen-wybitul', 'PhD Student'],
+  ['bassel-al-omari', 'PhD Student'],
   ['xi-xiong', 'Associate Faculty'],
   ['kale-ab-tessera', 'Associate Members'],
   ['brandon-kaplowitz', 'Associate Members'],
   ['adrian-hayler', 'Associate Members'],
   ['aime-bienfait-igiraneza', 'Associate Members'],
   ['stefan-zohren', 'Associate Faculty'],
+  ['tanish-baranwal', 'PhD Student'],
+  ['utkarsh-gupta', 'PhD Student'],
+  ['anqi-qu', 'PhD Student'],
+  ['max-davy', 'PhD Student'],
 ]
 
 export const expectedKevinBuhlerLinks = {
@@ -174,7 +179,15 @@ export const expectedResearchAreaMatches = [
   ['Postdoc', ['johannes-forkel']],
   [
     'PhD Student',
-    ['ravi-hammond', 'ross-murphy', 'shashank-reddy', 'harry-mayne'],
+    [
+      'max-davy',
+      'utkarsh-gupta',
+      'evzen-wybitul',
+      'ravi-hammond',
+      'ross-murphy',
+      'shashank-reddy',
+      'harry-mayne',
+    ],
   ],
   [
     'Associate Members',
@@ -188,6 +201,7 @@ export const expectedAffiliationMatches = [
   [
     'PhD Student',
     [
+      'george-mavroghenis',
       'richard-bornemann',
       'lisa-coiffard',
       'runjun-mao',
@@ -196,7 +210,6 @@ export const expectedAffiliationMatches = [
     ],
   ],
   ['Research Engineers', ['jiankai-wang', 'oscar-pang']],
-  ['Incoming PhD Students', ['george-mavroghenis']],
 ]
 
 export const expectedMastersStudents = [
